@@ -1,0 +1,119 @@
+$font-body: 'Merriweather', serif;
+$font-sans-serif: 'Merriweather', serif;
+@import "vendor/bootstrap";
+
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	li {
+		padding-bottom: 0.5em;
+		padding-top: 0.5em;
+	}
+}
+label {
+	display: inline-block;
+	min-width: 120px;
+	cursor: pointer;
+	&.disabled {
+		color: #999;
+	}
+}
+input[type=number] {
+	width: 45px;
+}
+input[type=range] {
+	width: 85%;
+}
+img#demoimage {
+	max-width: 100%;
+	width: 100%;
+	transition: filter 0.5s ease;
+
+	@media (min-width: 600px) {
+		float: left;
+	}
+}
+#filter {
+	background-color: #eee;
+	border: 1px solid #aaa;
+	height: 200px;
+	text-indent: 20px;
+	max-width: 100%;
+	padding: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	@media (min-width: 600px) {
+		float: left;
+	}
+	font-family: Consolas, 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monaco, monospace;
+	font-size: 13px;
+}
+#imageURL {
+	max-width: 100%;
+	width: 290px;
+}
+img {
+	max-width: 100%;
+}
+#preview-images {
+	margin-bottom: 2em;
+	@media(min-width: $screen-sm-min) {
+		margin-bottom: inherit;
+	}
+}
+img[data-fullsize] {
+	border: 1px solid #aaa;
+}
+///
+
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
+}
+
+
+//tables
+.more-info {
+	display: none;
+}
+.supported {
+
+    background: rgb(166, 237, 178);
+}
+.nosupport {
+	background: rgba(196, 66, 47, 0.6);
+}
+.partial-support {
+	background: rgba(168, 189, 4, 0.6);
+}
+
+table {
+	font-size: 12px;
+	@media (max-width: 600px) {
+		font-size: 9px;
+
+	}
+	@media (min-width: $screen-sm-min) {
+		font-size: 1em;
+	}
+}
+@media (max-width: 600px) {
+	td {
+		padding: 3px !important;
+	}	
+}

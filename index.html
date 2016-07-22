@@ -1,0 +1,241 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>CSSfiltergenerator.com</title>
+        <meta name="description" content="CSS Filter Generator lets you preview CSS filters in real time">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300' rel='stylesheet' type='text/css'>
+        <link href='/css/main.css' rel='stylesheet' type='text/css'>
+        <!--facebook-->
+        <meta property="og:url"                content="http://www.CSSfiltergenerator.com" />
+        <meta property="og:type"               content="website" />
+        <meta property="og:title"              content="CSSfiltergenerator.com"/>
+        <meta property="og:description"        content="CSS Filter Generator lets you preview CSS filters in real time" />
+        <meta property="og:image"              content="http://cssfiltergenerator.com/img/simple.jpg" />
+        <meta property="fb:app_id" content="1074923705934110" />
+
+        <!--twitter-->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@tannerbaldus" />
+        <meta name="twitter:title" content="CSS3generator.com" />
+        <meta name="twitter:description" content="CSS Filter Generator lets you preview CSS filters in real time" />
+        <meta name="twitter:image" content="http://cssfiltergenerator.com/img/simple.jpg" />
+
+      </head>
+    <body>
+      <div id="inlinestyle"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1>CSSFilterGenerator.com</h1>
+            <small>Beta V0.1 - prerelease - working but not pretty - more to come!</small>
+            <p>Click and drag the order of the filters to change the filter order. Click the label to enable/disable each filter. Animated hovers currently supported in Safari/FireFox. Chrome support coming (Chrome supports this behavior but apparently by the method of writing in a style tag).</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div id="contain">
+              <ul id="sortable">
+              	<li>
+                  <label for="brightness-a" data-filter="brightness">Brightness:</label>
+                  <input id="brightness-a" type="range" min="0" max="3" step=".01" data-filter="brightness" value="1">
+                  <input type="number" id="brightness-b" min="0" max="3"  step=".01" data-filter="brightness" value="1">
+              	</li>
+
+
+                <li>
+                  <label for="contrast-a" data-filter="contrast">Contrast:</label>
+                  <input id="contrast-a"  type="range" min="0" max="3" step=".01" data-filter="contrast" value="1">
+                  <input type="number" id="contrast-b" min="0" max="3" step=".01" data-filter="contrast" value="1">
+                </li>
+
+                <li>
+                 <label for="invert-a" data-filter="invert">Invert:</label>
+                 <input id="invert-a"  type="range" min="0" max="1" step=".01" data-filter="invert" value="0">
+                 <input type="number" id="invert-b" min="0" max="1" step=".01" data-filter="invert" value="0">
+              	</li>
+
+                <li>
+                  <label for="grayscale-a" data-filter="grayscale">Grayscale:</label>
+                  <input id="grayscale-a"  type="range" min="0" max="1" step=".01" data-filter="grayscale" value="0">
+                  <input type="number" id="grayscale-b" min="0" max="1" step=".01" data-filter="grayscale" value="1">
+              	</li>
+
+                <li>
+                  <label for="saturate-a" data-filter="saturate">Saturate:</label>
+                  <input id="saturate-a"  type="range" min="0" max="3" step=".01" data-filter="saturate" value="1">
+                  <input type="number" id="saturate-b" min="0" max="3" step=".01" data-filter="saturate" value="1">
+                </li>
+
+                <li>
+                  <label for="sepia-a" data-filter="sepia">Sepia:</label>
+                  <input id="sepia-a"  type="range" min="0" max="1" step=".01" data-filter="sepia" value="0">
+                  <input type="number" id="sepia-b" min="0" max="1" step=".01" data-filter="sepia" value="1">
+                </li>
+              </ul>
+            </div>
+            <label>Image URL</label>
+          <input type="text" id="imageURL" placeholder="http://img.thesun.co.uk/aidemitlum/archive/02251/CATMAIN_2251083a.jpg">
+        <div class="row">
+            <div class="col-sm-12">
+              <h4>Or use one of the following image (click to swap).</h4>
+            </div>
+        </div>
+            <div class="row" id="preview-images">
+                <div class="col-xs-4">
+                  <img src="/img/dalles-thumb.jpg" data-fullsize="/img/dalles.jpg">
+                  <small>The Dalles</small>
+                </div>
+                <div class="col-xs-4">
+                  <img src="/img/paintedhills-thumb.jpg" data-fullsize="/img/paintedhills.jpg">
+                  <small>The Painted Hills</small>
+                </div>
+                <div class="col-xs-4">
+                  <img src="/img/hood-thumb.jpg" data-fullsize="/img/hood.jpg">
+                  <small>Mt. Hood</small>
+                </div>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+
+
+              <img src="http://img.thesun.co.uk/aidemitlum/archive/02251/CATMAIN_2251083a.jpg" id="demoimage"></p>
+              <div id="filter"></div>
+            </div>
+      	</div>
+        <div class="row info">
+          <div class="col-sm-12">
+            <h4>What Browsers Support CSS Filters?</h4>
+            <p><span class="nosupport">No support</span> <span class="partial-support">Partial Support</span> <span class="supported"> Supported</span></p>
+              <table class="table">
+        <tbody><tr>
+            <th>IE</th>
+            <th>Edge</th>
+            <th>Firefox</th>
+            <th>Chrome</th>
+            <th>Safari</th>
+            <th>Opera</th>
+            <th>iOS Safari</th>
+            <th>Android Browser</th>
+            <th>Chrome for Android</th>
+        </tr>
+        <tr>
+            <td class="nosupport">
+              9
+            </td>
+            <td class="empty"></td>
+            <td class="partial-support">3.6 - 34</td>
+            <td class="empty">
+            </td>
+            <td class="empty">
+            </td>
+            <td class="empty"></td>
+            <td class="empty">
+            </td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+        </tr>
+        <tr>
+            <td class="nosupport">10
+
+            </td>
+            <td class="partial-support">12</td>
+            <td class="prefixed supported">35-47
+                <div class="more-info">
+                    Support using <span class="syntax">-moz-</span> prefix<br>
+                    Browser usage:  0.25%<br>
+                </div>
+            </td>
+            <td class="supported">18 - 52
+                <div class="more-info">
+                    Support using <span class="syntax">-webkit-</span> prefix<br>
+                    Browser usage: 0.36%
+                </div>
+            </td>
+            <td class="supported">6 - 9
+                <div class="more-info">
+                    Support using <span class="syntax">-webkit-</span> prefix<br>
+                    Browser usage: 0.2%
+                </div>
+            </td>
+            <td class="supported">15 - 38
+             <div class="more-info">
+                    Support using <span class="syntax">-o-</span> prefix <br>
+                    Browser usage: 0.01%<br>
+                    Select "Maximize compatibility" to support
+                </div>
+            </td>
+            <td class="supported">6.1 - 9.3
+                <div class="more-info">
+                    Support using <span class="syntax">-webkit-</span> prefix<br>
+                    Browser usage: 0.04%
+                </div>
+            </td>
+            <td class="empty">
+            </td>
+            <td class="empty"></td>
+        </tr>
+        <tr>
+            <td class="nosupport">11
+            </td>
+            <td class="partial-support">13+
+              <div class="more-info">Partial support (unprefixed)</div>
+            </td>
+            <td class="supported">16+
+              <div class="more-info">Full support (unprefixed)</div>
+            </td>
+            <td class="supported">53+
+              <div class="more-info">Full support (unprefixed)</div>
+            </td>
+            <td class="supported">9.1+
+              <div class="more-info">Full support (unprefixed)</div>
+            </td>
+            <td class="supported">39+
+              <div class="more-info">Full support (unprefixed)</div>
+            </td>
+            <td class="supported">10+
+              <div class="more-info">Full support (unprefixed)</div>
+            </td>
+            <td class="supported">4.4+
+              <div class="more-info">Full support (unprefixed)</div>
+            </td>
+            <td class="supported">40+
+              <div class="more-info">Full support (unprefixed)</div>
+            </td>
+        </tr>
+    </tbody></table>
+            </div>
+
+          <div class="col-sm-12">
+            <p> See <a href="http://caniuse.com/#search=filter">caniuse.com for a full list.</a> </p>
+            <p>Q: <strong>It looks like Blur and Hue Shift is missing on this generator?</strong>:</p>
+            <p>Both the Blur and Hue shift support are coming soon!</p>
+            <p>Q: <strong>Can I use Filters on Gifs, SVGs, Videos etc?</strong>:</p>
+            <p>Yes!</p>
+            <p>Q: <strong>Does this degrade gracefully</strong>:</p>
+            <p>Yes. I recommend using for IE <a href="https://modernizr.com/">modernizr</a> to detect if filters are supported. Using :after overlays can simulate brightness/darkness by using a simple overlay with a transparent background. Check out the codepen below for an example of Modernizr + filters</p>
+            <p data-height="400" data-theme-id="7806" data-slug-hash="QEAWZP" data-default-tab="css,result" data-user="fuzzywalrus" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/fuzzywalrus/pen/QEAWZP/">Simple CSS filter fallback</a> by Greg Gant (<a href="http://codepen.io/fuzzywalrus">@fuzzywalrus</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+            <small><a href="http://greggant.com">by Greg Gant</a></small>
+          </div>
+        </div>
+      </div>
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script src="/js/app-min.js"></script>
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-81231767-1', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+    </body>
+</html>
