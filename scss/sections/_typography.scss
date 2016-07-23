@@ -1,0 +1,10 @@
+//typography
+h1 {
+	font-size: 26px;
+	@media (min-width: $screen-sm-min){
+		font-size: 40px;
+	}
+}
+small {
+	font-size: 75%;
+}
