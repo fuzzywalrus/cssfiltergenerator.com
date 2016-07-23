@@ -51,15 +51,17 @@
 						  });
 							// ugly writes to DOM
 							$("#filter").html("filter: " + filters + "; <p> -webkit-filter: " + filters +  ";  <p> -moz-filter: " + filters + ";");
-							$("#inlinestyle").html("<style> img#demoimage:hover {"+ "filter: " + hoverState + " !important; -webkit-filter: " + hoverState + " !important;  -moz-filter: " + hoverState + " !important;" +"}</style>")
-							$("#demoimage").attr("style", "filter: " + filters + "; -webkit-filter: " + filters + ";  -moz-filter: " + filters + ";");
+							$("#inlinestyle").html("<style> #filter-wrapper:hover {"+ "filter: " + hoverState + " !important; -webkit-filter: " + hoverState + " !important;  -moz-filter: " + hoverState + " !important;" +"}</style>")
+							$("#filter-wrapper").attr("style", "filter: " + filters + "; -webkit-filter: " + filters + ";  -moz-filter: " + filters + ";");
 							$("img[data-fullsize]").attr("style", "filter: " + filters + "; -webkit-filter: " + filters + ";  -moz-filter: " + filters + ";");
 						});
 					},
 					newimage : function (){
 						$("img[data-fullsize]").click(function() {
+
 								var newUrl = $(this).data("fullsize");
 								$("#demoimage").attr("src", newUrl);
+									console.log(newUrl);
 						});
 					},
 					showhidefilters : function (){
@@ -97,6 +99,38 @@
 								$("#sepia-a").change();
 						 }
 					 });
+				 },
+				 presetSet : function(filterName, newValue) {
+
+					 var mySliderNameA = "#" + filterName + "-a";
+					 var mySliderNameB ="#" +  filterName + "-b";
+					 if (newValue !== undefined ) {
+						 $(mySliderNameA).val(newValue);
+						 $(mySliderNameB).val(newValue);
+
+					 } else {
+							newValue  = $(mySliderNameA).attr('value');
+							$(mySliderNameA).val(newValue);
+							$(mySliderNameB).val(newValue);
+					 }
+				 },
+				 presets : function() {
+					 $(".preset").click(function() {
+
+						 var myBrightness = $(this).data("brightness");
+						 Engine.ui.presetSet("brightness", myBrightness);
+						 var myContrast = $(this).data("contrast");
+						 Engine.ui.presetSet("contrast", myContrast);
+						 var myGrayscale = $(this).data("grayscale");
+						 Engine.ui.presetSet("grayscale", myGrayscale);
+						 var myHuerotate = $(this).data("huerotate");
+						 Engine.ui.presetSet("hue-rotate", myHuerotate);
+						 var mySaturate = $(this).data("saturate");
+						 Engine.ui.presetSet("saturate", mySaturate);
+						 var mySepia = $(this).data("sepia");
+						 Engine.ui.presetSet("sepia", mySepia);
+						 $("#sepia-a").change();
+					 });
 				}
 		} // ui
 	}; // Engine
@@ -105,6 +139,8 @@
 	Engine.ui.sorting();
 	Engine.ui.showhidefilters();
 	Engine.ui.reset();
+	Engine.ui.presets();
+	Engine.ui.newimage();
 });
 }(jQuery));
 

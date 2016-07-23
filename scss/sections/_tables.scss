@@ -3,7 +3,9 @@ table {
 	font-size: 12px;
 	@media (max-width: 600px) {
 		font-size: 9px;
-
+	}
+	@media (max-width: 450px) {
+		font-size: 7.5px;
 	}
 	@media (min-width: $screen-sm-min) {
 		font-size: 1em;
@@ -19,12 +21,17 @@ table {
 	display: none;
 }
 .supported {
-
-    background: rgb(166, 237, 178);
+  background: rgb(166, 237, 178);
 }
 .nosupport {
 	background: rgba(196, 66, 47, 0.6);
 }
 .partial-support {
-	background: rgba(168, 189, 4, 0.6);
+	background: rgba(168, 189, 4, 0.5);
+}
+span.partial-support, span.nosupport, span.supported {
+	padding: 3px;
+	@media(min-width: $screen-sm-min) {
+		padding: 5px;
+	}
 }

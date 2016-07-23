@@ -41,14 +41,31 @@ input[type=range] {
 	margin-top: 1em;
 }
 
+body {
+	background: rgba(250,250,250, 1);
+	.container {
+		background: white;
+	}
+}
 
 img#demoimage {
 	max-width: 100%;
 	width: 100%;
-	transition: filter 0.5s ease;
-
 	@media (min-width: 600px) {
 		float: left;
+	}
+}
+#filter-wrapper {
+	transition: filter 0.5s ease;
+	&:after {
+		content: '';
+	  display: block;
+	  height: 100%;
+	  width: 100%;
+	  top: 0;
+	  left: 0;
+	  position: absolute;
+	  pointer-events: none;
 	}
 }
 #filter {

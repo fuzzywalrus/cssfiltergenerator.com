@@ -6,7 +6,7 @@
         <title>CSSfiltergenerator.com</title>
         <meta name="description" content="CSS Filter Generator lets you preview CSS filters in real time">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Merriweather:700,400,300' rel='stylesheet' type='text/css'>
         <link href='/css/main.css' rel='stylesheet' type='text/css'>
         <!--facebook-->
         <meta property="og:url"                content="http://www.CSSfiltergenerator.com" />
@@ -30,7 +30,7 @@
         <div class="row">
           <div class="col-sm-12">
             <h1>CSSFilterGenerator.com</h1>
-            <small>Beta V0.2 - prerelease - working but not pretty - more to come!</small>
+            <small>Beta V0.3 - prerelease - working but not pretty - more to come!</small>
             <p>CSS filters allow graphical effects, leverging inbrowser post-processing of images.<br><strong>Instructions:</strong> Click and drag the order of the filters to change the filter order. Click the label to enable/disable each filter. Animated hovers currently supported in Safari/FireFox. Chrome support coming (Chrome supports this behavior but apparently by the method of writing in a style tag).</p>
           </div>
         </div>
@@ -65,7 +65,7 @@
 
                 <li>
                  <label for="hue-rotate-a" data-filter="hue-rotate">Hue-Rotate:</label>
-                 <input id="hue-rotate-a"  type="range" min="0" max="360" step="1" data-filter="hue-rotate" data-additional="deg" value="0">
+                 <input id="hue-rotate-a"  type="range" min="-360" max="360" step="1" data-filter="hue-rotate" data-additional="deg" value="0">
                  <input type="number" id="hue-rotate-b" min="0" max="360" step="1" data-filter="hue-rotate" data-additional="deg" value="0">
                 </li>
 
@@ -119,11 +119,39 @@
 
           <div class="col-sm-6">
 
-
-              <img src="http://img.thesun.co.uk/aidemitlum/archive/02251/CATMAIN_2251083a.jpg" id="demoimage"></p>
+              <div id="filter-wrapper">
+                <img src="http://img.thesun.co.uk/aidemitlum/archive/02251/CATMAIN_2251083a.jpg" id="demoimage"></p>
+              </div>
               <div id="filter"></div>
             </div>
       	</div>
+        <div class="row">
+          <div class="col-sm-12">
+            <h3>Presents (beta)</h3>
+            <small>courtesy of <a href="https://una.im/CSSgram/">CSSGram</a></small><br>
+            <a class="preset" data-contrast="1.1" data-brightness="1.1" data-saturate="1.3">1977</a>
+            <a class="preset" data-huerotate="-20" data-contrast="0.9" data-saturate="0.85" data-brightness="1.2">aden</a>
+            <a class="preset" data-contrast="0.9" data-brightness="1.1">brooklyn</a>
+            <a class="preset" data-contrast="1.2" data-saturate="1.35">clarendon</a>
+            <a class="preset" data-contrast="0.9" data-sepia="0.2">earlybird</a>
+            <a class="preset" data-brightness="1.05" data-huerotate="-10">gingham</a>
+            <a class="preset" data-brightness="1.2" data-contrast="0.9" data-saturate="1.1">hudson</a>
+            <a class="preset" data-sepia="0.3" data-contrast="1.1" data-brightness="1.1" data-grayscale="1">inkwell</a>
+            <a class="preset" data-contrast="0.9">lark</a>
+            <a class="preset" data-saturate="1.1" data-contrast="1.5">lofi</a>
+            <a class="preset" data-contrast="1.1" data-saturate="1.1">mayfair</a>
+            <a class="preset" data-grayscale="1" data-contrast="1.1" data-brightness="1.1">moon</a>
+            <a class="preset" data-sepia="0.2" data-contrast="1.2" data-brightness="1.05" data-saturate="1.2">nashville</a>
+            <!-- <a class="preset" data-sepia="0.2" data-contrast="1.2" data-brightness="1.05" data-saturate="1.2">perpetua</a> -->
+            <a class="preset" data-sepia="0.22" data-brightness="1.1" data-contrast="0.85" data-saturate="0.75">reyes</a>
+            <a class="preset" data-brightness="1.05" data-sepia="0.2" data-contrast="0.9" data-saturate="0.9">rise</a>
+            <a class="preset" data-saturate="0.66" data-brightness="1.05">slumber</a>
+            <a class="preset" data-contrast="1.5" data-brightness="0.9">toaster</a>
+            <a class="preset" data-brightness="1.1" data-huerotate="-10" data-sepia="0.3" data-saturate="1.6">walden</a>
+            <a class="preset" data-grayscale="0.5" data-contrast="0.95" data-brightness="0.9">willow</a>
+            <a class="preset" data-sepia="0.3">xpro2</a>
+          </div>
+        </div>
         <div class="row info">
           <div class="col-sm-12">
             <h4>What Browsers Support CSS Filters?</h4>
@@ -233,9 +261,11 @@
             <p>Q: <strong>Can I use Filters on Gifs, SVGs, Videos etc?</strong>:</p>
             <p>Yes!</p>
             <p>Q: <strong>Does this degrade gracefully</strong>:</p>
-            <p>Yes. I recommend using for IE <a href="https://modernizr.com/">modernizr</a> to detect if filters are supported. Using :after overlays can simulate brightness/darkness by using a simple overlay with a transparent background. Check out the codepen below for an example of Modernizr + filters</p>
+            <p>Yes. I recommend using for IE <a href="https://modernizr.com/">modernizr</a> to detect if filters are supported. Using :after overlays can simulate brightness/darkness by using a simple overlay with a transparent background. Check out the codepen below for an example of Modernizr + filters. This can be chained with <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Applying_SVG_effects_to_HTML_content">SVGFilters</a> for IE10/IE11 support as well.</p>
             <p data-height="600" data-theme-id="7806" data-slug-hash="QEAWZP" data-default-tab="css,result" data-user="fuzzywalrus" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/fuzzywalrus/pen/QEAWZP/">Simple CSS filter fallback</a> by Greg Gant (<a href="http://codepen.io/fuzzywalrus">@fuzzywalrus</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+            <h3>What's to come?</h3>
+            <p>Overlay Generator. Preset Previews. Preset Filter Reordering. UI revamp.</p>
             <small><a href="http://greggant.com">by Greg Gant</a></small>
           </div>
         </div>
