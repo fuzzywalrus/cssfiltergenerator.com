@@ -27,11 +27,6 @@
 						});
 					},
 					onChangesEvents : function() {
-						//Replace the SRC of the demo image with the new URL to image
-						$("#imageURL").change(function() {
-							var demoimage = $(this).val();
-							$("#demoimage").attr("src", demoimage);
-						});
 						//when sliders are changed
 						$("#contain input").change(function() {
 							var filters = "";
@@ -51,8 +46,8 @@
 									hoverState = hoverState + concatMehover;
 								}
 						  });
-							// ugly writes to DOM
-							$("#filter span").html("<p>" + "filter: " + filters + ";</p> <p> -webkit-filter: " + filters +  ";  <p> -moz-filter: " + filters + ";");
+							// ugly writes to DOM, to be replaced;
+							$("#filter .filter-css").html("<p>" + ".myfilter { <p>&nbsp;&nbsp;&nbsp; filter: " + filters + ";</p> <p>&nbsp;&nbsp;&nbsp; -webkit-filter: " + filters +  ";  <p>&nbsp;&nbsp;&nbsp; -moz-filter: " + filters + "; <p>&nbsp;&nbsp;&nbsp; }");
 							$("#inlinestyle").html("<style> #filter-wrapper:hover {"+ "filter: " + hoverState + " !important; -webkit-filter: " + hoverState + " !important;  -moz-filter: " + hoverState + " !important;" +"}</style>")
 							$("#filter-wrapper").attr("style", "filter: " + filters + "; -webkit-filter: " + filters + ";  -moz-filter: " + filters + ";");
 							$("img[data-fullsize]").attr("style", "filter: " + filters + "; -webkit-filter: " + filters + ";  -moz-filter: " + filters + ";");
@@ -63,7 +58,14 @@
 						$("img[data-fullsize]").click(function() {
 								var newUrl = $(this).data("fullsize");
 								$("#demoimage").attr("src", newUrl);
+								$(".preset img").attr("src", newUrl);
 									console.log(newUrl);
+						});
+						//Replace the SRC of the demo image with the new URL to image
+						$("#imageURL").change(function() {
+							var demoimage = $(this).val();
+							$("#demoimage").attr("src", demoimage);
+							$(".preset img").attr("src", demoimage);
 						});
 					},
 					showhidefilters : function (){
@@ -136,6 +138,8 @@
 							console.log("Yes");
 							var myColor = $("#overlay-solid-color-text").val();
 							var myBlending = $("#blending-mode").val();
+							//ugly writes to the DOM
+							$("#filter .overlay-css").html("<p>" + ".myfilter {<p>&nbsp;&nbsp;&nbsp;position:relative; <p>} <p>.myfilter:after{ <p>&nbsp;&nbsp;&nbsp; content: ''; <p>&nbsp;&nbsp;&nbsp; display: block;  <p>&nbsp;&nbsp;&nbsp;  top: 0;  <p>&nbsp;&nbsp;&nbsp;  left: 0;  <p>&nbsp;&nbsp;&nbsp;  height: 100%;  <p>&nbsp;&nbsp;&nbsp;  width: 100%;  <p>&nbsp;&nbsp;&nbsp; position: absolute;  <p>&nbsp;&nbsp;&nbsp; background-color:" + myColor + ";  <p>&nbsp;&nbsp;&nbsp; mix-blend-mode: " + myBlending + "; <p> }");
 							myColor = "<style>#filter-wrapper:after{ background-color:" + myColor +"; mix-blend-mode: "  + myBlending + "; }</style>";
 							$("#overlay-css").html(myColor)
 						});

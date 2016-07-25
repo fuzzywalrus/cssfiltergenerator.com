@@ -4,6 +4,7 @@ $font-sans-serif: 'Merriweather', serif;
 @import "sections/tables";
 @import "sections/typography";
 @import "vendor/spectrum/color";
+@import "vendor/cssgram/cssgram.min";
 
 #error {
 	display: none;
@@ -73,7 +74,7 @@ img#demoimage {
 #filter {
 	background-color: #eee;
 	border: 1px solid #aaa;
-	min-height: 200px;
+	min-height: 520px;
 	text-indent: 20px;
 	max-width: 100%;
 	padding: 10px;
@@ -84,7 +85,7 @@ img#demoimage {
 		margin: 0;
 	}
 	@media (min-width: 600px) {
-		float: left;
+		//float: left;
 	}
 	font-family: Consolas, 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monaco, monospace;
 	font-size: 13px;
@@ -105,7 +106,9 @@ img {
 img[data-fullsize] {
 	border: 1px solid #aaa;
 }
-
+.preset {
+	display: inline-block;
+}
 //overlay
 .overlay-group {
 	display: none;
