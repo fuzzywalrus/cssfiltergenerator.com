@@ -5,6 +5,7 @@
       Engine = {
         ui: {
 					sliders : function () {
+						//on change events for sliders
 						function slider(mySliderName){
 							//follow naming scheme
 							var filterName = $(mySliderName).data("filter");
@@ -25,25 +26,26 @@
 							slider(this);
 						});
 					},
-					onchanges : function() {
+					onChangesEvents : function() {
+						//Replace the SRC of the demo image with the new URL to image
 						$("#imageURL").change(function() {
 							var demoimage = $(this).val();
 							$("#demoimage").attr("src", demoimage);
 						});
-
+						//when sliders are changed
 						$("#contain input").change(function() {
 							var filters = "";
 							var hoverState = "";
 							$( "input[type=range]" ).each(function() {
 								var myValue = $(this).val();
 							 	var filterName = $(this).data("filter");
-								var myDefaultVal  = $(this).attr('value');
-								var dataAdditional = $(this).data("additional"); //
-								if (dataAdditional == undefined) {
+								var myDefaultVal  = $(this).attr('value'); //gets the default value of the input for use for hover state
+								var dataAdditional = $(this).data("additional"); //appends the input data with suffix to relevant CSS
+								if (dataAdditional == undefined) { //error handler
 									dataAdditional = "";
 								}
 						    var concatMe =  filterName + "("+ myValue + dataAdditional +") ";
-								var concatMehover = filterName + "(" + myDefaultVal + ") ";
+								var concatMehover = filterName + "(" + myDefaultVal + ") "; //hover state
 								if ($(this).is(':disabled') === false) {
 									filters = filters + concatMe;
 									hoverState = hoverState + concatMehover;
@@ -57,14 +59,15 @@
 						});
 					},
 					newimage : function (){
+						//Super simple demo image swap
 						$("img[data-fullsize]").click(function() {
-
 								var newUrl = $(this).data("fullsize");
 								$("#demoimage").attr("src", newUrl);
 									console.log(newUrl);
 						});
 					},
 					showhidefilters : function (){
+						//toggle the sliders/text box inputs to enable or disable filters
 						$("label").click(function() {
 							var myLabel = $(this);
 							var myFilter = $(this).data("filter");
@@ -82,6 +85,7 @@
 						});
 					},
 					reset : function() {
+						//Return to every input to its default value
 						$("#reset").click(function() {
 							$( "input[data-filter]" ).each(function() {
 								var defaultVal = $(this).attr('value');
@@ -91,6 +95,7 @@
 						});
 					},
 					activeOverlay : function() {
+						//New overlay functionality
 						$('input[type=radio][name=overlay]').change(function() {
 							var myChecked = $("input[type=radio][name=overlay]:checked").val();
 							if ( myChecked == "none") {
@@ -102,6 +107,7 @@
 						});
 					},
 					sorting : function(){
+						//jQuery UI init
 						$( "#sortable" ).sortable({
 							axis: "y",
 							containment:  "#contain",
@@ -112,6 +118,7 @@
 					 });
 				 },
 				 colorPick : function() {
+					 //New Spectrum code
 					 	$('#overlay-solid-color .color').spectrum({
 							preferredFormat: "rgb",
 					    showInput: true,
@@ -125,23 +132,16 @@
 			 				$(element).val( (color ? color : "") );
 							$(element).change();
 						}
-
-
 						$('.overlay-solid-color').change(function() {
 							console.log("Yes");
 							var myColor = $("#overlay-solid-color-text").val();
 							var myBlending = $("#blending-mode").val();
 							myColor = "<style>#filter-wrapper:after{ background-color:" + myColor +"; mix-blend-mode: "  + myBlending + "; }</style>";
 							$("#overlay-css").html(myColor)
-
-							//$("#overlay-css$('#cp1').change(function() {console.log("Yes");});").html(myColor);
-
 						});
-
-						// $('#cp1').change(function() {console.log("Yes");});
 				 },
 				 presetSet : function(filterName, newValue) {
-
+					 //use for presets
 					 var mySliderNameA = "#" + filterName + "-a";
 					 var mySliderNameB ="#" +  filterName + "-b";
 					 if (newValue !== undefined ) {
@@ -156,7 +156,7 @@
 				 },
 				 presets : function() {
 					 $(".preset").click(function() {
-
+						 //eventually I'd like to simplify this to programmically cycle through the list of filters
 						 var myBrightness = $(this).data("brightness");
 						 Engine.ui.presetSet("brightness", myBrightness);
 						 var myContrast = $(this).data("contrast");
@@ -175,7 +175,7 @@
 		} // ui
 	}; // Engine
 	Engine.ui.sliders();
-	Engine.ui.onchanges();
+	Engine.ui.onChangesEvents();
 	Engine.ui.sorting();
 	Engine.ui.showhidefilters();
 	Engine.ui.reset();
