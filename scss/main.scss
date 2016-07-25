@@ -3,6 +3,8 @@ $font-sans-serif: 'Merriweather', serif;
 @import "vendor/bootstrap";
 @import "sections/tables";
 @import "sections/typography";
+@import "vendor/spectrum/color";
+
 #error {
 	display: none;
 	text-align: center;
@@ -52,10 +54,10 @@ img#demoimage {
 	max-width: 100%;
 	width: 100%;
 	@media (min-width: 600px) {
-		float: left;
+		//float: left;
 	}
 }
-#filter-wrapper {
+#filter-wrapper, #demoimage {
 	transition: filter 0.5s ease;
 	&:after {
 		content: '';
@@ -71,13 +73,16 @@ img#demoimage {
 #filter {
 	background-color: #eee;
 	border: 1px solid #aaa;
-	height: 200px;
+	min-height: 200px;
 	text-indent: 20px;
 	max-width: 100%;
 	padding: 10px;
 	width: 100%;
 	box-sizing: border-box;
 	margin-bottom: 1em;
+	h5, p {
+		margin: 0;
+	}
 	@media (min-width: 600px) {
 		float: left;
 	}
@@ -99,4 +104,9 @@ img {
 }
 img[data-fullsize] {
 	border: 1px solid #aaa;
+}
+
+//overlay
+.overlay-group {
+	display: none;
 }

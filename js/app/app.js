@@ -31,7 +31,7 @@
 							$("#demoimage").attr("src", demoimage);
 						});
 
-						$("input").change(function() {
+						$("#contain input").change(function() {
 							var filters = "";
 							var hoverState = "";
 							$( "input[type=range]" ).each(function() {
@@ -50,7 +50,7 @@
 								}
 						  });
 							// ugly writes to DOM
-							$("#filter").html("filter: " + filters + "; <p> -webkit-filter: " + filters +  ";  <p> -moz-filter: " + filters + ";");
+							$("#filter span").html("<p>" + "filter: " + filters + ";</p> <p> -webkit-filter: " + filters +  ";  <p> -moz-filter: " + filters + ";");
 							$("#inlinestyle").html("<style> #filter-wrapper:hover {"+ "filter: " + hoverState + " !important; -webkit-filter: " + hoverState + " !important;  -moz-filter: " + hoverState + " !important;" +"}</style>")
 							$("#filter-wrapper").attr("style", "filter: " + filters + "; -webkit-filter: " + filters + ";  -moz-filter: " + filters + ";");
 							$("img[data-fullsize]").attr("style", "filter: " + filters + "; -webkit-filter: " + filters + ";  -moz-filter: " + filters + ";");
@@ -90,6 +90,17 @@
 								$("#sepia-a").change();
 						});
 					},
+					activeOverlay : function() {
+						$('input[type=radio][name=overlay]').change(function() {
+							var myChecked = $("input[type=radio][name=overlay]:checked").val();
+							if ( myChecked == "none") {
+								$('.overlay-group').hide();
+							} else {
+								$('.overlay-group').hide();
+								$(myChecked).show();
+							}
+						});
+					},
 					sorting : function(){
 						$( "#sortable" ).sortable({
 							axis: "y",
@@ -99,6 +110,35 @@
 								$("#sepia-a").change();
 						 }
 					 });
+				 },
+				 colorPick : function() {
+					 	$('#overlay-solid-color .color').spectrum({
+							preferredFormat: "rgb",
+					    showInput: true,
+							showAlpha: true,
+					    showPalette: false,
+							color: 'rgba(112,55,200, 0.2)',
+							move: function (color) { updateColor("#overlay-solid-color-text", color); },
+							hide: function (color) { updateColor("#overlay-solid-color-text", color); }
+						});
+						function updateColor(element, color) {
+			 				$(element).val( (color ? color : "") );
+							$(element).change();
+						}
+
+
+						$('.overlay-solid-color').change(function() {
+							console.log("Yes");
+							var myColor = $("#overlay-solid-color-text").val();
+							var myBlending = $("#blending-mode").val();
+							myColor = "<style>#filter-wrapper:after{ background-color:" + myColor +"; mix-blend-mode: "  + myBlending + "; }</style>";
+							$("#overlay-css").html(myColor)
+
+							//$("#overlay-css$('#cp1').change(function() {console.log("Yes");});").html(myColor);
+
+						});
+
+						// $('#cp1').change(function() {console.log("Yes");});
 				 },
 				 presetSet : function(filterName, newValue) {
 
@@ -141,6 +181,8 @@
 	Engine.ui.reset();
 	Engine.ui.presets();
 	Engine.ui.newimage();
+	Engine.ui.activeOverlay();
+	Engine.ui.colorPick();
 });
 }(jQuery));
 
