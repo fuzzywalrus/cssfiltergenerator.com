@@ -251,12 +251,12 @@
 					 $(".overlay-group input.color2").val(color2);
 					 var blendingMode = $(obj).data("blending-mode");
            $("#blending-mode").val(blendingMode);
+           Engine.ui.updateColorPicker(".overlay-group input.color1.text", ".overlay-group input.color1.picker");
+           Engine.ui.updateColorPicker(".overlay-group input.color2.text", ".overlay-group input.color2.picker");
 
 				 },
          updateColorPicker : function(target, destination) {
-           $(target).change(function() {
              $(destination).spectrum("set", $(target).val());
-           });
          },
          updateColor : function(element, color) {
            $(element).val( (color ? color : "") );
@@ -278,6 +278,7 @@
 						 var mySepia = $(this).data("sepia");
 						 Engine.ui.presetSet("sepia", mySepia);
 						 Engine.ui.gradientCheck(this);
+
 						 $("#sepia-a").change();
 						 $("input[type=radio]").change();
 					 });
@@ -293,8 +294,7 @@
 	Engine.ui.newimage();
 	Engine.ui.activeOverlay();
 	Engine.ui.colorPick();
-  Engine.ui.updateColorPicker(".overlay-group input.color1.text", ".overlay-group input.color1.picker");
-  Engine.ui.updateColorPicker(".overlay-group input.color2.text", ".overlay-group input.color2.picker");
+
 });
 }(jQuery));
 
