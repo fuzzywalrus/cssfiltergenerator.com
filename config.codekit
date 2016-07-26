@@ -11,6 +11,28 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/img\/columbia-gorge-thumb.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 106455,
+		"inputAbbreviatedPath": "\/img\/columbia-gorge-thumb.jpg",
+		"outputAbbreviatedPath": "\/img\/columbia-gorge-thumb.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/img\/columbia-gorge.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 545939,
+		"inputAbbreviatedPath": "\/img\/columbia-gorge.jpg",
+		"outputAbbreviatedPath": "\/img\/columbia-gorge.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/img\/dalles-thumb.jpg": {
 		"fileType": 16384,
 		"ignore": 0,
@@ -33,6 +55,17 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/img\/demo.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 427972,
+		"inputAbbreviatedPath": "\/img\/demo.jpg",
+		"outputAbbreviatedPath": "\/img\/demo.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/img\/hood-thumb.jpg": {
 		"fileType": 16384,
 		"ignore": 0,
@@ -51,6 +84,28 @@
 		"initialSize": 389737,
 		"inputAbbreviatedPath": "\/img\/hood.jpg",
 		"outputAbbreviatedPath": "\/img\/hood.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/img\/mcloughlin-thumb.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 107261,
+		"inputAbbreviatedPath": "\/img\/mcloughlin-thumb.jpg",
+		"outputAbbreviatedPath": "\/img\/mcloughlin-thumb.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/img\/mcloughlin.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 567495,
+		"inputAbbreviatedPath": "\/img\/mcloughlin.jpg",
+		"outputAbbreviatedPath": "\/img\/mcloughlin.jpg",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
@@ -84,6 +139,28 @@
 		"initialSize": 68593,
 		"inputAbbreviatedPath": "\/img\/simple.jpg",
 		"outputAbbreviatedPath": "\/img\/simple.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/img\/south-sister-thumb.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 63304,
+		"inputAbbreviatedPath": "\/img\/south-sister-thumb.jpg",
+		"outputAbbreviatedPath": "\/img\/south-sister-thumb.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/img\/south-sister.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 329812,
+		"inputAbbreviatedPath": "\/img\/south-sister.jpg",
+		"outputAbbreviatedPath": "\/img\/south-sister.jpg",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0

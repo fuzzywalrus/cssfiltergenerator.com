@@ -103,6 +103,10 @@ img {
 		margin-bottom: inherit;
 	}
 }
+#blending-mode {
+	display: none;
+	float: left;
+}
 img[data-fullsize] {
 	border: 1px solid #aaa;
 }

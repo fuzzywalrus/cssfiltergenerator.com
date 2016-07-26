@@ -30,7 +30,7 @@
         <div class="row">
           <div class="col-sm-12">
             <h1>CSSFilterGenerator.com</h1>
-            <small>Beta V0.4 - prerelease - working but not pretty - more to come!</small>
+            <small>Beta V0.5 - prerelease - working but not pretty - more to come!</small>
             <p>CSS filters allow graphical effects, leverging inbrowser post-processing of images.<br><strong>Instructions:</strong> Click and drag the order of the filters to change the filter order. Click the label to enable/disable each filter. Animated hovers currently supported in Safari/FireFox. Chrome support coming (Chrome supports this behavior but apparently by the method of writing in a style tag).</p>
           </div>
         </div>
@@ -114,42 +114,65 @@
                   <img src="/img/hood-thumb.jpg" data-fullsize="/img/hood.jpg">
                   <small>Mt. Hood</small>
                 </div>
+
+                <div class="col-xs-4">
+                  <img src="/img/columbia-gorge-thumb.jpg" data-fullsize="/img/columbia-gorge.jpg">
+                  <small>Columbia Gorge</small>
+                </div>
+                <div class="col-xs-4">
+                  <img src="/img/mcloughlin-thumb.jpg" data-fullsize="/img/mcloughlin.jpg">
+                  <small>Mount McLoughlin</small>
+                </div>
+                <div class="col-xs-4">
+                  <img src="/img/south-sister-thumb.jpg" data-fullsize="/img/south-sister.jpg">
+                  <small>South Sister</small>
+                </div>
             </div>
             <div class="overlay">
               <h3>Overlay (beta)</h3>
-              <input type="radio" name="overlay" value="none" checked> None<br>
-              <input type="radio" name="overlay" value="#overlay-solid" > Solid<br>
-            <!--  <input type="radio" name="overlay" value="#overlay-linear-gradient" > Linear Gradient<br> -->
+              <input type="radio" name="overlay" value="#overlay-radio-none" id="overlay-radio-none" checked> None<br>
+              <input type="radio" name="overlay" value="#overlay-solid" id="overlay-radio-solid"> Solid<br>
+              <input type="radio" name="overlay" value="#overlay-linear-gradient" > Linear Gradient<br>
+              <input type="radio" name="overlay" value="#overlay-radial-gradient" > Radial Gradient<br>
               <div id="overlay-solid" class="overlay-group">
-              <div  id="overlay-solid-color">
-                <input type="text" class="overlay-solid-color color" name="solid" value="#5367ce"/>
-                <input type="text" class="overlay-solid-color" name="solid"  id="overlay-solid-color-text" value="#5367ce"/>
-                <select id="blending-mode" class="overlay-solid-color">
-                  <option value="multiply" selected>multiply<option>
-                  <option value="screen">screen</option>
-                  <option value="overlay">overlay</option>
-                  <option value="darken">darken</option>
-                  <option value="lighten">lighten</option>
-                  <option value="color-dodge">color-dodge</option>
-                  <option value="color-burn">color-burn</option>
-                  <option value="hard-light">hard-light</option>
-                  <option value="soft-light">soft-light</option>
-                  <option value="difference">difference</option>
-                  <option value="exclusion">exclusion</option>
-                  <option value="hue">hue</option>
-                  <option value="saturation">saturation</option>
-                  <option value="color">color</option>
-                  <option value="saturation">luminosity</option>
-                  <option value="saturation">normal</option>
-
-                </select>
-              </div>
+                <div  id="overlay-solid-color">
+                  <input type="text" class="overlay-solid-color color picker " name="solid" value="#5367ce"/>
+                  <input type="text" class="overlay-solid-color color1 text" name="solid"  id="overlay-solid-color-text" value="#5367ce"/>
+                </div>
               </div>
 
               <div id="overlay-linear-gradient" class="overlay-group">
-                <input class="color" value="rgba(62, 162, 253, 0.4)" id="overlay-linear-gradient-color1">
-                <input class="color" value="rgba(2, 122, 233, 0.8)" id="overlay-linear-gradient-color2">
+                <input class="overlay-linear-gradient-color color1 picker" value="rgba(62, 162, 253, 0.4)" id="overlay-linear-gradient-color1">
+                <input class="overlay-linear-gradient-color color1 text" value="rgba(62, 162, 253, 0.4)" id="overlay-linear-gradient-color1-text">
+                <br>
+                <input class="overlay-linear-gradient-color color2 picker" value="rgba(2, 122, 233, 0.8)" id="overlay-linear-gradient-color2">
+                <input class="overlay-linear-gradient-color color2 text" value="rgba(2, 122, 233, 0.8)" id="overlay-linear-gradient-color2-text">
               </div>
+              <div id="overlay-radial-gradient" class="overlay-group">
+                <input class="overlay-radial-gradient-color color1 picker" value="rgba(62, 162, 253, 0.4)" id="overlay-radial-gradient-color1">
+                <input class="overlay-radial-gradient-color color1 text" value="rgba(62, 162, 253, 0.4)" id="overlay-radial-gradient-color1-text">
+                <br>
+                <input class="overlay-radial-gradient-color color2 picker" value="rgba(83, 10, 100, 0.9)" id="overlay-radial-gradient-color2">
+                <input class="overlay-radial-gradient-color color2 text" value="rgba(83, 10, 100, 0.9)" id="overlay-radial-gradient-color2-text">
+              </div>
+              <select id="blending-mode" class="overlay-solid-color">
+                <option value="multiply" selected>multiply<option>
+                <option value="screen">screen</option>
+                <option value="overlay">overlay</option>
+                <option value="darken">darken</option>
+                <option value="lighten">lighten</option>
+                <option value="color-dodge">color-dodge</option>
+                <option value="color-burn">color-burn</option>
+                <option value="hard-light">hard-light</option>
+                <option value="soft-light">soft-light</option>
+                <option value="difference">difference</option>
+                <option value="exclusion">exclusion</option>
+                <option value="hue">hue</option>
+                <option value="saturation">saturation</option>
+                <option value="color">color</option>
+                <option value="saturation">luminosity</option>
+                <option value="saturation">normal</option>
+              </select>
               <div id="overlay-css"></div>
             </div>
             <h3>Preset (beta)</h3>
@@ -157,129 +180,121 @@
             <small>courtesy of <a href="https://una.im/CSSgram/">CSSGram</a></small><br>
             <div class="row">
               <div class="col-xs-3">
-                <a class="preset _1977" data-contrast="1.1" data-brightness="1.1" data-saturate="1.3">
+                <a class="preset _1977" data-contrast="1.1" data-brightness="1.1" data-saturate="1.3" data-blending-mode="screen" data-color1="rgba(243, 106, 188, 0.3)" data-gradient="#overlay-solid">
                   <img src="/img/dalles-thumb.jpg" >
                 </a><br>
                 1977
               </div>
               <div class="col-xs-3">
-                <a class="preset aden" data-huerotate="-20" data-contrast="0.9" data-saturate="0.85" data-brightness="1.2">
-                  <img src="/img/dalles-thumb.jpg" >
+                <a class="preset aden" data-huerotate="-20" data-contrast="0.9" data-saturate="0.85" data-brightness="1.2" data-gradient="#overlay-linear-gradient" data-blending-mode="darken" data-color1="rgba(66, 10, 14, 0.2)" data-color2="rgba(66, 10, 14, 0.0)">
+                  <img src="/img/dalles-thumb.jpg">
                 </a><br>
                 aden
               </div>
               <div class="col-xs-3">
-                  <a class="preset brooklyn" data-contrast="0.9" data-brightness="1.1">
+                  <a class="preset brooklyn" data-contrast="0.9" data-brightness="1.1" data-blending-mode="overlay" data-gradient="#overlay-radial-gradient" data-color1="rgba(168, 223, 193, 0.4)" data-color2="rgba(196, 183, 200, 0.99)">
                   <img src="/img/dalles-thumb.jpg" >
                 </a><br>
                 brooklyn
               </div>
               <div class="col-xs-3">
-                  <a class="preset clarendon" data-contrast="1.2" data-saturate="1.35">
+                  <a class="preset clarendon" data-contrast="1.2" data-saturate="1.35" data-blending-mode="overlay" data-color1="rgba(127, 187, 227, 0.2)" data-gradient="#overlay-solid">
                   <img src="/img/dalles-thumb.jpg" >
                 </a><br>
                 clarendon
               </div>
               <div class="col-xs-3">
-                  <a class="preset clarendon" data-contrast="0.9" data-sepia="0.2">
+                  <a class="preset earlybird" data-contrast="0.9" data-sepia="0.2" data-blending-mode="overlay" data-gradient="#overlay-radial-gradient" data-color1="rgba(208, 186, 142, 0.2)" data-color2="rgba(54, 3, 9, 0.85)">
                   <img src="/img/dalles-thumb.jpg" >
                 </a><br>
-                clarendon
+                earlybird
               </div>
               <div class="col-xs-3">
-                  <a class="preset clarendon" data-brightness="1.05" data-huerotate="-10">
+                  <a class="preset gingham" data-brightness="1.05" data-huerotate="-10" data-blending-mode="darken"  data-gradient="#overlay-linear-gradient" data-color1="rgba(66, 10, 14, 0.2)" data-color2="rgba(66, 10, 14, 0.0)">
                   <img src="/img/dalles-thumb.jpg" >
                 </a><br>
                 gingham
               </div>
               <div class="col-xs-3">
-                    <a class="preset hudson" data-brightness="1.2" data-contrast="0.9" data-saturate="1.1">
-                  <img src="/img/dalles-thumb.jpg" ><br>
-                  hudson
-                </a>
+                    <a class="preset hudson" data-brightness="1.2" data-contrast="0.9" data-saturate="1.1" data-blending-mode="multiply" data-gradient="#overlay-radial-gradient" data-color1="rgba(166, 177, 255, 0.5)" data-color2="rgba(52, 33, 54, 0.5)">
+                  <img src="/img/dalles-thumb.jpg" >
+                </a><br>
+                hudson
               </div>
               <div class="col-xs-3">
-                  <a class="preset inkwell" data-sepia="0.3" data-contrast="1.1" data-brightness="1.1" data-grayscale="1">
+                  <a class="preset inkwell" data-sepia="0.3" data-contrast="1.1" data-brightness="1.1" data-grayscale="1" data-gradient="#overlay-radio-none">
                   <img src="/img/dalles-thumb.jpg" >
                 </a><br>
                 inkwell
               </div>
               <div class="col-xs-3">
-                  <a class="preset lark" data-contrast="0.9">
-                  <img src="/img/dalles-thumb.jpg" ><br>
-                  lark
-                </a>
+                  <a class="preset lark" data-contrast="0.9"  data-blending-mode="color-dodge" data-color1="#22253f" data-gradient="#overlay-solid">
+                  <img src="/img/dalles-thumb.jpg" >
+                </a><br>
+                lark
               </div>
               <div class="col-xs-3">
-                  <a class="preset lofi" data-saturate="1.1" data-contrast="1.5">
+                  <a class="preset lofi" data-saturate="1.1" data-contrast="1.5" data-blending-mode="multiply"  data-gradient="#overlay-radial-gradient" data-color1="rgba(0, 0, 0, 0.0)" data-color2="rgba(34, 34, 34, 0.99)">
                   <img src="/img/dalles-thumb.jpg" >
                 </a><br>
                 lofi
               </div>
               <div class="col-xs-3">
-                  <a class="preset mayfair" data-contrast="1.1" data-saturate="1.1">
+                  <a class="preset mayfair" data-contrast="1.1" data-saturate="1.1" data-blending-mode="overlay" data-gradient="#overlay-radial-gradient" data-color1="rgba(255, 255, 255, 0.4)" data-color2="rgba(255, 200, 200, 0.3)">
                   <img src="/img/dalles-thumb.jpg" >
                 </a><br>
                 mayfair
               </div>
               <div class="col-xs-3">
-                  <a class="preset moon" data-grayscale="1" data-contrast="1.1" data-brightness="1.1">
+                  <a class="preset moon" data-grayscale="1" data-contrast="1.1" data-brightness="1.1" data-color1="#383838" data-blending-mode="lighten" data-gradient="#overlay-solid">
                   <img src="/img/dalles-thumb.jpg" >
                 </a><br>
                 moon
               </div>
               <div class="col-xs-3">
-                  <a class="preset nashville" data-sepia="0.2" data-contrast="1.2" data-brightness="1.05" data-saturate="1.2">
+                  <a class="preset nashville" data-sepia="0.2" data-contrast="1.2" data-brightness="1.05" data-saturate="1.2" data-gradient="#overlay-solid"  data-color1="rgba(247, 176, 153, 0.56)" data-blending-mode="lighten" >
                   <img src="/img/dalles-thumb.jpg" >
                 </a><br>
                 nashville
               </div>
-              <!--
               <div class="col-xs-3">
-                  <a class="preset perpetua">
-                  <img src="/img/dalles-thumb.jpg" ><br>
-                  perpetua
-                </a>
-              </div>
-              -->
-              <div class="col-xs-3">
-                  <a class="preset reyes" data-sepia="0.22" data-brightness="1.1" data-contrast="0.85" data-saturate="0.75">
+                  <a class="preset reyes" data-sepia="0.22" data-brightness="1.1" data-contrast="0.85" data-saturate="0.75" data-color1="#efcdad" data-gradient="#overlay-solid" data-blending-mode="soft-light" >
                   <img src="/img/dalles-thumb.jpg" >
                 </a><br>
                 reyes
               </div>
               <div class="col-xs-3">
-                  <a class="preset rise"  data-brightness="1.1" data-contrast="0.85" data-saturate="0.75">
+                  <a class="preset rise"  data-brightness="1.1" data-contrast="0.85" data-saturate="0.75"  data-blending-mode="multiply" data-color1="rgba(236, 205, 169, 0.15)" data-color2="rgba(50, 30, 7, 0.4)">
                   <img src="/img/dalles-thumb.jpg" >
                 </a><br>
                 rise
               </div>
               <div class="col-xs-3">
-                  <a class="preset slumber" data-saturate="0.66" data-brightness="1.05">
+                  <a class="preset slumber" data-saturate="0.66" data-brightness="1.05" data-blending-mode="lighten" data-color1="rgba(69, 41, 12, 0.4)" data-gradient="#overlay-solid">
                   <img src="/img/dalles-thumb.jpg" >
                 </a><br>
                 slumber
               </div>
               <div class="col-xs-3">
-                  <a class="preset toaster" data-contrast="1.5" data-brightness="0.9">
+                  <a class="preset toaster" data-contrast="1.5" data-brightness="0.9" data-blending-mode="screen" data-color1="rgba(128, 78, 15, 0.99)" data-color2="rgba(59, 0, 59, 0.99)">
                   <img src="/img/dalles-thumb.jpg" >
                 </a><br>
                 toaster
               </div>
               <div class="col-xs-3">
-                  <a class="preset walden" data-brightness="1.1" data-huerotate="-10" data-sepia="0.3" data-saturate="1.6">
+                  <a class="preset walden" data-brightness="1.1" data-huerotate="-10" data-sepia="0.3" data-saturate="1.6"  data-blending-mode="screen" data-color1="rgba(0, 68, 204, 0.3)" data-gradient="#overlay-solid">
                   <img src="/img/dalles-thumb.jpg" >
                 </a>
                 <br>walden
               </div>
               <div class="col-xs-3">
-                  <a class="preset willow" data-contrast="0.95" data-brightness="0.9">
+                  <a class="preset willow" data-contrast="0.95" data-brightness="0.9" data-blending-mode="overlay" data-color1="rgba(216, 205, 203, 0.99)" data-gradient="#overlay-solid">
                   <img src="/img/dalles-thumb.jpg" >
                 </a>
                 <br>willow
               </div>
               <div class="col-xs-3">
-                  <a class="preset xpro2" data-sepia="0.3">
+                  <a class="preset xpro2" data-sepia="0.3" data-blending-mode="color-burn" data-color1="rgba(230, 231, 224, 0.99)" data-color2="rgba(43, 42, 161, 0.3)">
                   <img src="/img/dalles-thumb.jpg" >
                 </a>
               <br>  xpro2
@@ -290,7 +305,7 @@
           <div class="col-sm-6">
               <div style="display:block;position:relative;">
                 <div id="filter-wrapper">
-                  <img src="http://img.thesun.co.uk/aidemitlum/archive/02251/CATMAIN_2251083a.jpg" id="demoimage">
+                  <img src="/img/demo.jpg" id="demoimage">
                 </div>
               </div>
               <div id="filter">
@@ -417,7 +432,9 @@
             <p data-height="600" data-theme-id="7806" data-slug-hash="QEAWZP" data-default-tab="css,result" data-user="fuzzywalrus" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/fuzzywalrus/pen/QEAWZP/">Simple CSS filter fallback</a> by Greg Gant (<a href="http://codepen.io/fuzzywalrus">@fuzzywalrus</a>) on <a href="http://codepen.io">CodePen</a>.</p>
             <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
             <h3>What's to come?</h3>
-            <p>Overlay Generator. Preset Previews. Preset Filter Reordering. UI revamp.</p>
+            <p>This project is active development and plenty-o-features are on the way. In no particular order, planned features:</p>
+            <p>Preset reordering of filters. Show/Hide Presets and demo images. M\Use JS templating for the writes to DOM. concat JS. Chrome animated changes. More documentation / examples.  Spiffier UI. Tooltips. Upload your own image. Better Touch Support. Better responsive behavior. Move project to GitHub after v1.0. Actual Logo + OpenGraph/Twitter Card logo.
+            </p>
             <small><a href="http://greggant.com">by Greg Gant</a></small>
           </div>
         </div>
