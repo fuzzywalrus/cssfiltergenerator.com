@@ -60,13 +60,13 @@
 					newimage : function (){
 						//Super simple demo image swap
 						$("a[data-fullsize]").click(function() {
-              event.preventDefault(); //stop href from using anchor #
+                event.preventDefault(); //stop href from using anchor #
 								var newUrl = $(this).data("fullsize");
 								$("#demoimage").attr("src", newUrl);
 								$(".preset img").attr("src", newUrl);
 								console.log(newUrl);
 						});
-						//Replace the SRC of the demo image with the new URL to image
+						//Replace the SRC of the demo image with the new URL to image in text field
 						$("#imageURL").change(function() {
 							var demoimage = $(this).val();
 							$("#demoimage").attr("src", demoimage);
@@ -257,6 +257,7 @@
 
 				 },
          updateColorPicker : function(target, destination) {
+             //Updates the colorPicker swatch to match the color value in the text field.
              $(destination).spectrum("set", $(target).val());
          },
          updateColor : function(element, color) {
@@ -281,8 +282,8 @@
 						 Engine.ui.presetSet("sepia", mySepia);
 						 Engine.ui.gradientCheck(this);
 
-						 $("#sepia-a").change();
-						 $("input[type=radio]").change();
+						 $("#sepia-a").change();//dummy change to trigger change() events.
+						 $("input[type=radio]").change();//dummy change to trigger change() events.
 
 					 });
 				}

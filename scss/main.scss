@@ -107,9 +107,17 @@ img {
 img[data-fullsize] {
 	border: 1px solid #aaa;
 }
-.preset {
+.ui-sortable {
+	label {
+		cursor: row-resize;
+		cursor: grab;
+		cursor: -webkit-grab;
+	}
+}
+.sortable {
 	display: inline-block;
 	cursor: pointer;
+
 }
 //overlay
 .overlay {
