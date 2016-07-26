@@ -110,8 +110,8 @@
 								Engine.ui.killOverlay();
 							} else {
 								$('.overlay-group').hide();
-								$(myChecked).show();
-								$("#blending-mode").show();
+								$(myChecked).css('display', 'inline-block');
+								$("#blending-mode").css('display', 'inline-block');
 								$(".overlay-group input:visible").change();
 							}
 						});
@@ -194,8 +194,9 @@
 							var myBlending = $("#blending-mode").val();
 							//ugly writes to the DOM
 							$("#filter .overlay-css").html("<p>" + ".myfilter {<p>&nbsp;&nbsp;&nbsp;position:relative; <p>} <p>.myfilter:after{ <p>&nbsp;&nbsp;&nbsp; content: ''; <p>&nbsp;&nbsp;&nbsp; display: block;  <p>&nbsp;&nbsp;&nbsp;  top: 0;  <p>&nbsp;&nbsp;&nbsp;  left: 0;  <p>&nbsp;&nbsp;&nbsp;  height: 100%;  <p>&nbsp;&nbsp;&nbsp;  width: 100%;  <p>&nbsp;&nbsp;&nbsp; position: absolute;  <p>&nbsp;&nbsp;&nbsp; background-color:" + myColor + ";  <p>&nbsp;&nbsp;&nbsp; mix-blend-mode: " + myBlending + "; <p> }");
-							myColor = "<style>#filter-wrapper:after{ background-color:" + myColor +"; mix-blend-mode: "  + myBlending + "; }</style>";
-							$("#overlay-css").html(myColor)
+              var myHover = "<style>#filter-wrapper:hover:after {opacity: 0;}</style>";
+              myColor = "<style>#filter-wrapper:after{ background-color:" + myColor +"; mix-blend-mode: "  + myBlending + "; }</style>";
+							$("#overlay-css").html(myColor  + myHover);
 						});
 
 						$('.overlay-linear-gradient-color').change(function() {
@@ -206,8 +207,10 @@
 							var myGradient = "linear-gradient(to bottom,"+ myColor1 +" 0%, "+ myColor2 +" 100%);"
 							//ugly writes to the DOM
 							$("#filter .overlay-css").html("<p>" + ".myfilter {<p>&nbsp;&nbsp;&nbsp;position:relative; <p>} <p>.myfilter:after{ <p>&nbsp;&nbsp;&nbsp; content: ''; <p>&nbsp;&nbsp;&nbsp; display: block;  <p>&nbsp;&nbsp;&nbsp;  top: 0;  <p>&nbsp;&nbsp;&nbsp;  left: 0;  <p>&nbsp;&nbsp;&nbsp;  height: 100%;  <p>&nbsp;&nbsp;&nbsp;  width: 100%;  <p>&nbsp;&nbsp;&nbsp; position: absolute;  <p>&nbsp;&nbsp;&nbsp; background:" + myGradient + ";  <p>&nbsp;&nbsp;&nbsp; mix-blend-mode: " + myBlending + "; <p> }");
-							myGradient = "<style>#filter-wrapper:after{ background:" + myGradient +"; mix-blend-mode: "  + myBlending + "; }</style>";
-							$("#overlay-css").html(myGradient)
+              var myHover = "<style>#filter-wrapper:hover:after {opacity: 0;}</style>";
+            	myGradient = "<style>#filter-wrapper:after{ background:" + myGradient +"; mix-blend-mode: "  + myBlending + "; }</style>";
+
+							$("#overlay-css").html(myGradient + myHover);
 						});
 
 						$('.overlay-radial-gradient-color').change(function() {
@@ -218,8 +221,9 @@
 							var myGradient = "radial-gradient(ellipse at center, " + myColor1x +" 0%, "+ myColor2x +" 100%);"
 							//ugly writes to the DOM
 							$("#filter .overlay-css").html("<p>" + ".myfilter {<p>&nbsp;&nbsp;&nbsp;position:relative; <p>} <p>.myfilter:after{ <p>&nbsp;&nbsp;&nbsp; content: ''; <p>&nbsp;&nbsp;&nbsp; display: block;  <p>&nbsp;&nbsp;&nbsp;  top: 0;  <p>&nbsp;&nbsp;&nbsp;  left: 0;  <p>&nbsp;&nbsp;&nbsp;  height: 100%;  <p>&nbsp;&nbsp;&nbsp;  width: 100%;  <p>&nbsp;&nbsp;&nbsp; position: absolute;  <p>&nbsp;&nbsp;&nbsp; background:" + myGradient + ";  <p>&nbsp;&nbsp;&nbsp; mix-blend-mode: " + myBlending + "; <p> }");
-							myGradient = "<style>#filter-wrapper:after{ background:" + myGradient +"; mix-blend-mode: "  + myBlending + "; }</style>";
-							$("#overlay-css").html(myGradient)
+              var myHover = "<style>#filter-wrapper:hover:after {opacity: 0;}</style>";
+            	myGradient = "<style>#filter-wrapper:after{ background:" + myGradient +"; mix-blend-mode: "  + myBlending + "; }</style>";
+							$("#overlay-css").html(myGradient + myHover);
 						});
 				 },
 				 presetSet : function(filterName, newValue) {

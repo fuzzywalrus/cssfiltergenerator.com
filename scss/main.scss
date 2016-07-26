@@ -54,13 +54,11 @@ body {
 img#demoimage {
 	max-width: 100%;
 	width: 100%;
-	@media (min-width: 600px) {
-		//float: left;
-	}
 }
 #filter-wrapper, #demoimage {
-	transition: filter 0.5s ease;
+	transition: all 0.6s ease;
 	&:after {
+		transition: all 0.6s ease;
 		content: '';
 	  display: block;
 	  height: 100%;
@@ -84,9 +82,6 @@ img#demoimage {
 	h5, p {
 		margin: 0;
 	}
-	@media (min-width: 600px) {
-		//float: left;
-	}
 	font-family: Consolas, 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monaco, monospace;
 	font-size: 13px;
 }
@@ -99,21 +94,30 @@ img {
 }
 #preview-images {
 	margin-bottom: 2em;
+	img:hover {
+		cursor: pointer;
+	}
 	@media(min-width: $screen-sm-min) {
 		margin-bottom: inherit;
 	}
 }
 #blending-mode {
 	display: none;
-	float: left;
 }
 img[data-fullsize] {
 	border: 1px solid #aaa;
 }
 .preset {
 	display: inline-block;
+	cursor: pointer;
 }
 //overlay
+.overlay {
+	input[type="radio"] {
+		    margin-bottom: 5px;
+	}
+}
 .overlay-group {
+	margin-top: 5px;
 	display: none;
 }
