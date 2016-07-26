@@ -94,40 +94,8 @@
                 </li>
               </ul>
             </div>
-            <label>Image URL</label>
-          <input type="text" id="imageURL" placeholder="http://img.thesun.co.uk/aidemitlum/archive/02251/CATMAIN_2251083a.jpg">
-        <div class="row">
-            <div class="col-sm-12">
-              <h4>Or use one of the following image (click to swap).</h4>
-            </div>
-        </div>
-            <div class="row" id="preview-images">
-                <div class="col-xs-4">
-                  <img src="/img/dalles-thumb.jpg" data-fullsize="/img/dalles.jpg">
-                  <small>The Dalles</small>
-                </div>
-                <div class="col-xs-4">
-                  <img src="/img/paintedhills-thumb.jpg" data-fullsize="/img/paintedhills.jpg">
-                  <small>The Painted Hills</small>
-                </div>
-                <div class="col-xs-4">
-                  <img src="/img/hood-thumb.jpg" data-fullsize="/img/hood.jpg">
-                  <small>Mt. Hood</small>
-                </div>
 
-                <div class="col-xs-4">
-                  <img src="/img/columbia-gorge-thumb.jpg" data-fullsize="/img/columbia-gorge.jpg">
-                  <small>Columbia Gorge</small>
-                </div>
-                <div class="col-xs-4">
-                  <img src="/img/mcloughlin-thumb.jpg" data-fullsize="/img/mcloughlin.jpg">
-                  <small>Mount McLoughlin</small>
-                </div>
-                <div class="col-xs-4">
-                  <img src="/img/south-sister-thumb.jpg" data-fullsize="/img/south-sister.jpg">
-                  <small>South Sister</small>
-                </div>
-            </div>
+
             <div class="overlay">
               <h3>Overlay (beta)</h3>
               <input type="radio" name="overlay" value="#overlay-radio-none" id="overlay-radio-none" checked> None<br>
@@ -175,7 +143,42 @@
               </select>
               <div id="overlay-css"></div>
             </div>
-            <h3>Preset (beta)</h3>
+            <div class="row">
+                <div class="col-sm-12">
+                  <h3>Preview Image</h3>
+                  <label>URL</label>
+                <input type="text" id="imageURL" placeholder="http://img.thesun.co.uk/aidemitlum/archive/02251/CATMAIN_2251083a.jpg">
+                  <h4>Or use one of the following image (click to swap).</h4>
+                </div>
+            </div>
+            <div class="row" id="preview-images">
+                <div class="col-xs-4">
+                  <img src="/img/dalles-thumb.jpg" data-fullsize="/img/dalles.jpg">
+                  <small>The Dalles</small>
+                </div>
+                <div class="col-xs-4">
+                  <img src="/img/paintedhills-thumb.jpg" data-fullsize="/img/paintedhills.jpg">
+                  <small>The Painted Hills</small>
+                </div>
+                <div class="col-xs-4">
+                  <img src="/img/hood-thumb.jpg" data-fullsize="/img/hood.jpg">
+                  <small>Mt. Hood</small>
+                </div>
+
+                <div class="col-xs-4">
+                  <img src="/img/columbia-gorge-thumb.jpg" data-fullsize="/img/columbia-gorge.jpg">
+                  <small>Columbia Gorge</small>
+                </div>
+                <div class="col-xs-4">
+                  <img src="/img/mcloughlin-thumb.jpg" data-fullsize="/img/mcloughlin.jpg">
+                  <small>Mount McLoughlin</small>
+                </div>
+                <div class="col-xs-4">
+                  <img src="/img/south-sister-thumb.jpg" data-fullsize="/img/south-sister.jpg">
+                  <small>South Sister</small>
+                </div>
+            </div>
+            <h3>Presets (beta)</h3>
             <p>Note: Presets do not support overlays yet so the presets will look somewhat different. Coming soon!</p>
             <small>courtesy of <a href="https://una.im/CSSgram/">CSSGram</a></small><br>
             <div class="row">
@@ -433,7 +436,7 @@
             <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
             <h3>What's to come?</h3>
             <p>This project is active development and plenty-o-features are on the way. In no particular order, planned features:</p>
-            <p>Preset reordering of filters. Show/Hide Presets and demo images. M\Use JS templating for the writes to DOM. concat JS. Chrome animated changes. More documentation / examples.  Spiffier UI. Tooltips. Upload your own image. Better Touch Support. Better responsive behavior. Move project to GitHub after v1.0. Actual Logo + OpenGraph/Twitter Card logo.
+            <p>Preset reordering of filters. Show/Hide Presets and demo images. Use JS templating for the writes to DOM. concat JS. Chrome animated changes. More documentation / examples.  Spiffier UI. Tooltips. Upload your own image. Better Touch Support. Better responsive behavior. Move project to GitHub after v1.0. Actual Logo + OpenGraph/Twitter Card logo.
             </p>
             <small><a href="http://greggant.com">by Greg Gant</a></small>
           </div>
