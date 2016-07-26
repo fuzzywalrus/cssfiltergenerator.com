@@ -59,7 +59,8 @@
 					},
 					newimage : function (){
 						//Super simple demo image swap
-						$("img[data-fullsize]").click(function() {
+						$("a[data-fullsize]").click(function() {
+              event.preventDefault(); //stop href from using anchor #
 								var newUrl = $(this).data("fullsize");
 								$("#demoimage").attr("src", newUrl);
 								$(".preset img").attr("src", newUrl);
@@ -265,6 +266,7 @@
 				 presets : function() {
 					 $(".preset").click(function() {
 						 //eventually I'd like to simplify this to programmically cycle through the list of filters
+             event.preventDefault(); //stop href from using anchor #
 						 var myBrightness = $(this).data("brightness");
 						 Engine.ui.presetSet("brightness", myBrightness);
 						 var myContrast = $(this).data("contrast");
@@ -281,6 +283,7 @@
 
 						 $("#sepia-a").change();
 						 $("input[type=radio]").change();
+
 					 });
 				}
 		} // ui
