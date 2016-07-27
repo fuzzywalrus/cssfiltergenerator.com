@@ -47,7 +47,7 @@
 								}
 						  });
 							// ugly writes to DOM, to be replaced;
-							$("#filter .filter-css").html("<p>" + ".myfilter { <p>&nbsp;&nbsp;&nbsp; filter: " + filters + ";</p> <p>&nbsp;&nbsp;&nbsp; -webkit-filter: " + filters +  ";  <p>&nbsp;&nbsp;&nbsp; -moz-filter: " + filters + "; <p>&nbsp;&nbsp;&nbsp; }");
+							$("#filter .filter-css").html("<p>" + ".myfilter { <p>&nbsp;&nbsp;&nbsp; filter: " + filters + ";</p> <p>&nbsp;&nbsp;&nbsp; -webkit-filter: " + filters +  ";  <p>&nbsp;&nbsp;&nbsp; -moz-filter: " + filters + "; <p>}");
 							$("#inlinestyle").html("<style> #filter-wrapper:hover {"+ "filter: " + hoverState + " !important; -webkit-filter: " + hoverState + " !important;  -moz-filter: " + hoverState + " !important;" +"}</style>")
 							$("#filter-wrapper").attr("style", "filter: " + filters + "; -webkit-filter: " + filters + ";  -moz-filter: " + filters + ";");
 							$("img[data-fullsize]").attr("style", "filter: " + filters + "; -webkit-filter: " + filters + ";  -moz-filter: " + filters + ";");

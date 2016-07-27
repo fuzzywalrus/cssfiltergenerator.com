@@ -3,129 +3,29 @@ $font-sans-serif: 'Merriweather', serif;
 @import "vendor/bootstrap";
 @import "sections/tables";
 @import "sections/typography";
+@import "sections/header";
+@import "sections/overlay";
+@import "sections/filter-inputs";
+@import "sections/right-pane";
+@import "sections/demo-images";
+@import "sections/presets";
+
+@import "sections/fallbacks-ie-hacks";
 @import "vendor/spectrum/color";
 @import "vendor/cssgram/cssgram.min";
-
-#error {
-	display: none;
-	text-align: center;
-	font-size: 30px;
-	padding: 10px;
-	background-color: #888;
-	.no-js & {
-		display: block;
-
-	}
-}
-ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	li {
-		padding-bottom: 0.5em;
-		padding-top: 0.5em;
-	}
-}
-label {
-	display: inline-block;
-	min-width: 120px;
-	cursor: pointer;
-	&.disabled {
-		color: #999;
-	}
-}
-input[type=number] {
-	width: 45px;
-}
-input[type=range] {
-	width: 85%;
-}
-#cp_embed_QEAWZP {
-	margin-top: 1em;
-}
-
 body {
-	background: rgba(250,250,250, 1);
+	background: #e1e1e1;
 	.container {
 		background: white;
 	}
 }
-
-img#demoimage {
-	max-width: 100%;
-	width: 100%;
-}
-#filter-wrapper, #demoimage {
-	transition: all 0.6s ease;
-	&:after {
-		transition: all 0.6s ease;
-		content: '';
-	  display: block;
-	  height: 100%;
-	  width: 100%;
-	  top: 0;
-	  left: 0;
-	  position: absolute;
-	  pointer-events: none;
-	}
-}
-#filter {
-	background-color: #eee;
-	border: 1px solid #aaa;
-	min-height: 520px;
-	text-indent: 20px;
-	max-width: 100%;
-	padding: 10px;
-	width: 100%;
-	box-sizing: border-box;
-	margin-bottom: 1em;
-	h5, p {
-		margin: 0;
-	}
-	font-family: Consolas, 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monaco, monospace;
-	font-size: 13px;
-}
-#imageURL {
-	max-width: 100%;
-	width: 290px;
+.intro {
+	margin-top: 40px;
+	margin-bottom: 40px;
 }
 img {
 	max-width: 100%;
 }
-#preview-images {
-	margin-bottom: 2em;
-	img:hover {
-		cursor: pointer;
-	}
-	@media(min-width: $screen-sm-min) {
-		margin-bottom: inherit;
-	}
-}
-#blending-mode {
-	display: none;
-}
-img[data-fullsize] {
-	border: 1px solid #aaa;
-}
-.ui-sortable {
-	label {
-		cursor: row-resize;
-		cursor: grab;
-		cursor: -webkit-grab;
-	}
-}
-.sortable {
-	display: inline-block;
-	cursor: pointer;
-
-}
-//overlay
-.overlay {
-	input[type="radio"] {
-		    margin-bottom: 5px;
-	}
-}
-.overlay-group {
-	margin-top: 5px;
-	display: none;
+#cp_embed_QEAWZP {
+	margin-top: 1em;
 }

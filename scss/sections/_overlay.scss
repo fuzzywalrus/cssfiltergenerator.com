@@ -1,0 +1,21 @@
+//overlay
+.overlay {
+	input[type="radio"] {
+		margin-bottom: 5px;
+		margin-right: 5px;
+	}
+	.sp-replacer {
+		margin-right: 1em;
+	}
+}
+.overlay-group {
+	margin-top: 5px;
+	display: none;
+	.wrapper {
+		margin-top: 0.5em;
+		margin-bottom: 0.5em;
+	}
+}
+.color1.text, .color2.text {
+	height: 31px;
+}

@@ -1,0 +1,43 @@
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	li {
+		padding-bottom: 0.5em;
+		padding-top: 0.5em;
+	}
+}
+label {
+	display: inline-block;
+	min-width: 120px;
+	cursor: pointer;
+	&.disabled {
+		color: #999;
+	}
+}
+.ui-sortable {
+	label {
+		cursor: row-resize;
+		cursor: grab;
+		cursor: -webkit-grab;
+	}
+}
+.sortable {
+	display: inline-block;
+	cursor: pointer;
+}
+input[type=number] {
+	width: 45px;
+}
+input[type=range] {
+	width: 85%;
+}
+//url
+#imageURL {
+	max-width: 100%;
+	width: 290px;
+}
+//select
+#blending-mode {
+	display: none;
+}

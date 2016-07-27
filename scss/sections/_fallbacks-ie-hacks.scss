@@ -1,0 +1,10 @@
+#error {
+	display: none;
+	text-align: center;
+	font-size: 30px;
+	padding: 10px;
+	background-color: #888;
+	.no-js & {
+		display: block;
+	}
+}

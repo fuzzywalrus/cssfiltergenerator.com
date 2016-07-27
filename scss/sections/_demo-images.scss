@@ -1,0 +1,28 @@
+#preview-images {
+	margin-bottom: 2em;
+	img:hover {
+		cursor: pointer;
+	}
+	small {
+		display: inline-block;
+		margin-bottom: 10px;
+	}
+	@media(min-width: $screen-sm-min) {
+		margin-bottom: inherit;
+	}
+	@media (max-width: 600px) {
+		margin-left: -10px;
+		margin-right: -10px;
+		.col-xs-4 {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+		small {
+			font-size: 8px;
+			margin-bottom: 10px;
+		}
+	}
+}
+img[data-fullsize] {
+	border: 1px solid #aaa;
+}
