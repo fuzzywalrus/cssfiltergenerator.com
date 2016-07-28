@@ -1,0 +1,17 @@
+.icon-browser {
+  width: 30px;
+}
+.tenth {
+  text-align: center;
+  width: 25%;
+  float: left;
+  margin-bottom: 1em;
+  @media (min-width: $screen-sm-min){
+    width: 20%;
+    float: left;
+  }
+  @media (min-width: $screen-md-min){
+    width: 10%;
+    float: left;
+  }
+}

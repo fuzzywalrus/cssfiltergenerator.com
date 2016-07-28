@@ -1,15 +1,35 @@
+.stripe {
+  width: 100%;
+  height: 10px;
+  background: #084c8d; /* Old browsers */
+  background: -moz-linear-gradient(left, #084c8d 0%, #a7d2f2 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #084c8d 0%,#a7d2f2 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #084c8d 0%,#a7d2f2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+header {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  h1 {
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    //line-height: 1em;
+  }
+  small {
+    color: white;
+    display: block;
+    margin-bottom: 10px;
+  }
+}
 body header .container {
-  //background-color: #0165b1;
-  background-color: rgba(16, 110, 189, 0.99);
   color: white;
   text-align: center;
   margin-top: 10px;
-  border-radius: 5px 5px 0px 0px;
-  -moz-border-radius: 5px 5px 0px 0px;
-  -webkit-border-radius: 5px 5px 0px 0px;
+
   -webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
   h1 {
+    color: white;
     margin-top: 1em;
     font-size: 2em;
     margin-bottom: 0;

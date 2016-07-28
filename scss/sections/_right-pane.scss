@@ -19,8 +19,10 @@ img#demoimage {
 #filter {
 	font-family: Consolas, 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monaco, monospace;
 	font-size: 13px;
-	background-color: #eee;
-	border: 1px solid #aaa;
+	//background-color: #eee;
+	border: 1px solid $dark-cobalt;
+	background-color: $dark-metal;
+	color: white;
 	min-height: 520px;
 	text-indent: 20px;
 	max-width: 100%;
@@ -45,4 +47,6 @@ img#demoimage {
 	left: 0px;
 	top: 0px;
 	z-index: 1000;
+	background-color: $dark-grey;
+	border: 1px solid $dark-metal;
 }

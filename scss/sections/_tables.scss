@@ -1,4 +1,8 @@
-
+.what-browsers-support-css-filters {
+	td {
+		border-top: 0 !important;
+	}
+}
 table {
 	font-size: 12px;
 	@media (max-width: 600px) {
@@ -21,7 +25,7 @@ table {
 	display: none;
 }
 .supported {
-  background: rgb(166, 237, 178);
+  background: rgba(166, 237, 178, 0.5);
 }
 .nosupport {
 	background: rgba(196, 66, 47, 0.6);
@@ -31,7 +35,9 @@ table {
 }
 span.partial-support, span.nosupport, span.supported {
 	padding: 3px;
+	margin-bottom: 1.5em;
+    display: inline-block;
 	@media(min-width: $screen-sm-min) {
-		padding: 5px;
+		padding: 3px;
 	}
 }

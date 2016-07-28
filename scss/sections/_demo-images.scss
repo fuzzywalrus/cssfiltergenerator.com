@@ -7,9 +7,6 @@
 		display: inline-block;
 		margin-bottom: 10px;
 	}
-	@media(min-width: $screen-sm-min) {
-		margin-bottom: inherit;
-	}
 	@media (max-width: 600px) {
 		margin-left: -10px;
 		margin-right: -10px;

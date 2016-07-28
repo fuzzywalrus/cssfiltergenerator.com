@@ -11,6 +11,8 @@ label {
 	display: inline-block;
 	min-width: 120px;
 	cursor: pointer;
+	font-family: $font-sans-serif;
+	font-weight: 400;
 	&.disabled {
 		color: #999;
 	}
@@ -28,9 +30,20 @@ label {
 }
 input[type=number] {
 	width: 45px;
+	background-color: $dark-metal;
+	border: 2px solid  rgb(70, 76, 90);
+	font-family:  $font-sans-serif;
+	font-weight: 500;
 }
 input[type=range] {
 	width: 85%;
+}
+input[type=text] {
+	color: white;
+	background-color: $dark-metal;
+	border: 2px solid  rgb(70, 76, 90);
+	font-family:  $font-sans-serif;
+	font-weight: 500;
 }
 //url
 #imageURL {

@@ -1,0 +1,25 @@
+.red-sky {
+  filter: brightness(1.59) grayscale(0.75) hue-rotate(173deg ;
+  -webkit-filter: brightness(1.59) grayscale(0.75) hue-rotate(173deg);
+  -moz-filter: brightness(1.59) grayscale(0.75) hue-rotate(173deg);
+}
+
+.purple-rain {
+    filter: blur(0px) brightness(1.55) contrast(1.39) grayscale(0) hue-rotate(17deg) invert(0) opacity(1) saturate(1.48) sepia(0.45) ;
+    -webkit-filter: blur(0px) brightness(1.55) contrast(1.39) grayscale(0) hue-rotate(17deg) invert(0) opacity(1) saturate(1.48) sepia(0.45) ;
+    -moz-filter: blur(0px) brightness(1.55) contrast(1.39) grayscale(0) hue-rotate(17deg) invert(0) opacity(1) saturate(1.48) sepia(0.45) ;
+}
+.purple-rain {
+   position:relative;
+}
+.purple-rain:after{
+    content: '';
+    display: block;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color:rgba(10, 41, 255, 0.57);
+    mix-blend-mode: overlay;
+}
