@@ -28,29 +28,51 @@
 						});
 					},
           createURL : function() {
-            $( "input[data-urlname]" ).change(function() {
+            //this changes the url on input changes
+            $( "[data-urlname]" ).change(function() {
               var fullURL = "";
               var myURL = "";
-              $("input[data-urlname]").each(function() {
+              $("[data-urlname]").each(function() { //iterate though is variable
                 var urlVarName = $(this).data("urlname");
                 var myValue = $(this).val();
+                myValue = myValue.replace(/\s/g, ''); // remove spaces
                 myURL = urlVarName + "=" + myValue + "&" ;
-                if ( $(this).is(':disabled') === false && $(this).is(':visible') ) {
+                if ( $(this).is(':disabled') === false && $(this).is(':visible') ) { //only get the visible inputs
                   fullURL = myURL + fullURL;
                 }
               });
               var radio = $("input[name=overlay]:checked").val();
+              radio = radio.substring(1); // this has a # so let's kill that because URL Vars do not like #
               fullURL = "?" + fullURL  + "r=" + radio;
               //fullURL = fullURL.slice(0, -1);
               window.history.replaceState(null, null, fullURL);
             });
           },
           getURL : function () {
+            //on init page load, this script makes sure that the URL doesn't if contain variables
             var queries = {};
              $.each(document.location.search.substr(1).split('&'),function(c,q){
                var i = q.split('=');
                queries[i[0].toString()] = i[1].toString();
              });
+             $.each( queries, function( key, value ) {
+                var query = "[data-urlname="  + key + "]";
+                console.log(query);
+                $(query).val(value);
+                $("#sepia-a").change();
+                $("#sepia-b").change();
+            });
+            if(window.location.href.indexOf("r=") > -1) {
+             var newString =  String(queries["r"]);
+              var myActiveOverlay = 'input[value="#' + newString + '"]';
+              console.log(myActiveOverlay);
+              $(myActiveOverlay).prop("checked", true).change();
+              Engine.ui.updateColorPicker(".color1.text",  ".color1.picker" );
+
+            }
+            if(window.location.href.indexOf("c2=")> -1) {
+              Engine.ui.updateColorPicker(".color2.text",  ".color2.picker" );
+            }
              console.log(queries);
           },
 					onChangesEvents : function() {
@@ -217,7 +239,7 @@
 
 
 						$('.overlay-solid-color').change(function() {
-							console.log("soild");
+							console.log("solid");
 							var myColor = $("#overlay-solid-color-text").val();
 							var myBlending = $("#blending-mode").val();
 							//ugly writes to the DOM
