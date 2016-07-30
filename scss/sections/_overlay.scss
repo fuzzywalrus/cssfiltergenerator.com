@@ -18,4 +18,8 @@
 }
 .color1.text, .color2.text {
 	height: 31px;
+	background-color: $dark-metal;
+	border: 2px solid  rgb(70, 76, 90);
+	font-family:  $font-sans-serif;
+	font-weight: 500;
 }

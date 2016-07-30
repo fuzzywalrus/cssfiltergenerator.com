@@ -1,30 +1,30 @@
 <!doctype html>
 <html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>CSSfiltergenerator.com</title>
-        <meta name="description" content="CSSFilterGenerator produces CSS filters and mix-blend-mode overlay code using a graphical user interface.">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,200' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Merriweather:700,400,300' rel='stylesheet' type='text/css'>
-        <link href='/css/main.css' rel='stylesheet' type='text/css'>
-        <!--facebook-->
-        <meta property="og:url"                content="http://www.CSSfiltergenerator.com" />
-        <meta property="og:type"               content="website" />
-        <meta property="og:title"              content="CSSfiltergenerator.com"/>
-        <meta property="og:description"        content="CSSFilterGenerator produces CSS filters and mix-blend-mode overlay code using a graphical user interface." />
-        <meta property="og:image"              content="http://cssfiltergenerator.com/img/simple.jpg" />
-        <meta property="fb:app_id" content="1074923705934110" />
-        <!--twitter-->
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@tannerbaldus" />
-        <meta name="twitter:title" content="CSS3generator.com" />
-        <meta name="twitter:description" content="CSSFilterGenerator produces CSS filters and mix-blend-mode overlay code using a graphical user interface." />
-        <meta name="twitter:image" content="http://cssfiltergenerator.com/img/simple.jpg" />
-        <script>document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
-      </head>
-    <body>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>CSSfiltergenerator.com</title>
+    <meta name="description" content="CSSFilterGenerator produces CSS filters and mix-blend-mode overlay code using a graphical user interface.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,200' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:700,400,300' rel='stylesheet' type='text/css'>
+    <link href='/css/main.css' rel='stylesheet' type='text/css'>
+    <!--facebook-->
+    <meta property="og:url"                content="http://www.CSSfiltergenerator.com" />
+    <meta property="og:type"               content="website" />
+    <meta property="og:title"              content="CSSfiltergenerator.com"/>
+    <meta property="og:description"        content="CSSFilterGenerator produces CSS filters and mix-blend-mode overlay code using a graphical user interface." />
+    <meta property="og:image"              content="http://cssfiltergenerator.com/img/simple.png" />
+    <meta property="fb:app_id"             content="1074923705934110" />
+    <!--twitter-->
+    <meta name="twitter:card"              content="summary" />
+    <meta name="twitter:site"              content="@tannerbaldus" />
+    <meta name="twitter:title"             content="CSS3generator.com" />
+    <meta name="twitter:description"       content="CSSFilterGenerator produces CSS filters and mix-blend-mode overlay code using a graphical user interface." />
+    <meta name="twitter:image"             content="http://cssfiltergenerator.com/img/simple.png" />
+    <script>document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
+  </head>
+  <body>
       <!-- hello person looking at my code :D -->
       <div id="error">Javascript appears to be disabled. Please visit <a href="http://enable-javascript.com/">enable-javascript.com</a> for more details</div>
       <div id="inlinestyle"></div>
@@ -60,55 +60,55 @@
                 <ul id="sortable">
                   <li>
                     <label for="blur-a" data-filter="blur">Blur:</label>
-                    <input id="blur-a" type="range" min="0" max="75" step=".01" data-filter="blur" data-additional="px" value="0">
-                    <input type="number" id="blur-b" min="0" max="75"  step=".01" data-filter="blur" data-additional="px" value="0">
+                    <input id="blur-a" type="range" min="0" max="75" step=".01" data-filter="blur" data-urlname="bl" data-additional="px" value="0">
+                    <input type="number" id="blur-b" min="0" max="75"  step=".01" data-filter="blur"  data-additional="px" value="0">
                 	</li>
 
                 	<li>
                     <label for="brightness-a" data-filter="brightness">Brightness:</label>
-                    <input id="brightness-a" type="range" min="0" max="3" step=".01" data-filter="brightness" value="1">
+                    <input id="brightness-a" type="range" min="0" max="3" step=".01" data-urlname="br" accept=""data-filter="brightness" value="1">
                     <input type="number" id="brightness-b" min="0" max="3"  step=".01" data-filter="brightness" value="1">
                 	</li>
 
                   <li>
                     <label for="contrast-a" data-filter="contrast">Contrast:</label>
-                    <input id="contrast-a"  type="range" min="0" max="3" step=".01" data-filter="contrast" value="1">
+                    <input id="contrast-a"  type="range" min="0" max="3" step=".01" data-urlname="c" data-filter="contrast" value="1">
                     <input type="number" id="contrast-b" min="0" max="3" step=".01" data-filter="contrast" value="1">
                   </li>
 
                   <li>
                     <label for="grayscale-a" data-filter="grayscale">Grayscale:</label>
-                    <input id="grayscale-a"  type="range" min="0" max="1" step=".01" data-filter="grayscale" value="0">
+                    <input id="grayscale-a"  type="range" min="0" max="1" step=".01" data-urlname="g" data-filter="grayscale" value="0">
                     <input type="number" id="grayscale-b" min="0" max="1" step=".01" data-filter="grayscale" value="1">
                   </li>
 
                   <li>
                    <label for="hue-rotate-a" data-filter="hue-rotate">Hue-Rotate:</label>
-                   <input id="hue-rotate-a"  type="range" min="-360" max="360" step="1" data-filter="hue-rotate" data-additional="deg" value="0">
+                   <input id="hue-rotate-a"  type="range" min="-360" max="360" step="1" data-urlname="h" data-filter="hue-rotate" data-additional="deg" value="0">
                    <input type="number" id="hue-rotate-b" min="0" max="360" step="1" data-filter="hue-rotate" data-additional="deg" value="0">
                   </li>
 
                   <li>
                    <label for="invert-a" data-filter="invert">Invert:</label>
-                   <input id="invert-a"  type="range" min="0" max="1" step=".01" data-filter="invert" value="0">
+                   <input id="invert-a"  type="range" min="0" max="1" step=".01" data-urlname="i" data-filter="invert" value="0">
                    <input type="number" id="invert-b" min="0" max="1" step=".01" data-filter="invert" value="0">
                 	</li>
 
                   <li>
                    <label for="opacity-a" data-filter="opacity">Opacity:</label>
-                   <input id="opacity-a"  type="range" min="0" max="1" step=".01" data-filter="opacity" value="1">
+                   <input id="opacity-a"  type="range" min="0" max="1" step=".01" data-urlname="o" data-filter="opacity" value="1">
                    <input type="number" id="opacity-b" min="0" max="1" step=".01" data-filter="opacity" value="1">
                 	</li>
 
                   <li>
                     <label for="saturate-a" data-filter="saturate">Saturate:</label>
-                    <input id="saturate-a"  type="range" min="0" max="3" step=".01" data-filter="saturate" value="1">
+                    <input id="saturate-a"  type="range" min="0" max="3" step=".01" data-urlname="sa"  data-filter="saturate" value="1">
                     <input type="number" id="saturate-b" min="0" max="3" step=".01" data-filter="saturate" value="1">
                   </li>
 
                   <li>
                     <label for="sepia-a" data-filter="sepia">Sepia:</label>
-                    <input id="sepia-a"  type="range" min="0" max="1" step=".01" data-filter="sepia" value="0">
+                    <input id="sepia-a"  type="range" min="0" max="1" step=".01" data-urlname="se" data-filter="sepia" value="0">
                     <input type="number" id="sepia-b" min="0" max="1" step=".01" data-filter="sepia" value="1">
                   </li>
                 </ul>
@@ -124,31 +124,31 @@
                 <div id="overlay-solid" class="overlay-group">
                   <div  id="overlay-solid-color">
                     <input type="text" class="overlay-solid-color color picker " name="solid" value="#5367ce"/>
-                    <input type="text" class="overlay-solid-color color1 text" name="solid"  id="overlay-solid-color-text" value="#5367ce"/>
+                    <input type="text" class="overlay-solid-color color1 text" name="solid"  data-urlname="c1" data-gradient="#overlay-solid" id="overlay-solid-color-text" value="#5367ce"/>
                   </div>
                 </div>
 
                 <div id="overlay-linear-gradient" class="overlay-group">
                   <div class="wrapper">
                     <input class="overlay-linear-gradient-color color1 picker" value="rgba(62, 162, 253, 0.4)" id="overlay-linear-gradient-color1">
-                    <input class="overlay-linear-gradient-color color1 text" value="rgba(62, 162, 253, 0.4)" id="overlay-linear-gradient-color1-text">
+                    <input class="overlay-linear-gradient-color color1 text" value="rgba(62, 162, 253, 0.4)" data-urlname="c1" data-gradient="#overlay-linear-gradient"  id="overlay-linear-gradient-color1-text">
                   </div>
                   <div class="wrapper">
                     <input class="overlay-linear-gradient-color color2 picker" value="rgba(2, 122, 233, 0.8)" id="overlay-linear-gradient-color2">
-                    <input class="overlay-linear-gradient-color color2 text" value="rgba(2, 122, 233, 0.8)" id="overlay-linear-gradient-color2-text">
+                    <input class="overlay-linear-gradient-color color2 text" value="rgba(2, 122, 233, 0.8)" data-urlname="c2" data-gradient="#overlay-linear-gradient" id="overlay-linear-gradient-color2-text">
                   </div>
                 </div>
                 <div id="overlay-radial-gradient" class="overlay-group">
                   <div class="wrapper">
                     <input class="overlay-radial-gradient-color color1 picker" value="rgba(62, 162, 253, 0.4)" id="overlay-radial-gradient-color1">
-                    <input class="overlay-radial-gradient-color color1 text" value="rgba(62, 162, 253, 0.4)" id="overlay-radial-gradient-color1-text">
+                    <input class="overlay-radial-gradient-color color1 text" value="rgba(62, 162, 253, 0.4)" data-urlname="c1" data-gradient="#overlay-radial-gradient"  id="overlay-radial-gradient-color1-text">
                   </div>
                   <div class="wrapper">
                     <input class="overlay-radial-gradient-color color2 picker" value="rgba(83, 10, 100, 0.9)" id="overlay-radial-gradient-color2">
-                    <input class="overlay-radial-gradient-color color2 text" value="rgba(83, 10, 100, 0.9)" id="overlay-radial-gradient-color2-text">
+                    <input class="overlay-radial-gradient-color color2 text" value="rgba(83, 10, 100, 0.9)" data-urlname="c2"  data-gradient="#overlay-radial-gradient" id="overlay-radial-gradient-color2-text">
                   </div>
                 </div>
-                <select id="blending-mode" class="overlay-solid-color">
+                <select id="blending-mode" class="overlay-solid-color" data-urlname="bm" >
                   <option value="multiply" selected>multiply<option>
                   <option value="screen">screen</option>
                   <option value="overlay">overlay</option>
@@ -186,7 +186,7 @@
                     <small>The Painted Hills</small>
                   </div>
                   <div class="col-xs-4 col-sm-6 col-md-4">
-                    <a href="#" data-fullsize="/img/hood.jpg"><img src="/img/hood-thumb.jpg"alt="Illumination Saddle, Mt Hood, Oregon"></a>
+                    <a href="#" data-fullsize="/img/hood.jpg"><img src="/img/hood-thumb.jpg" alt="Illumination Saddle, Mt Hood, Oregon"></a>
                     <small>Mt. Hood</small>
                   </div>
 
@@ -295,7 +295,7 @@
                 <small>lofi</small>
               </div>
               <div class="col-xs-3 col-sm-2">
-                  <a href="#" class="preset mayfair" data-contrast="1.1" data-saturate="1.1" data-blending-mode="overlay" data-gradient="#overlay-radial-gradient" data-color1="rgba(255, 255, 255, 0.4)" data-color2="rgba(255, 200, 200, 0.3)">
+                  <a href="#" class="preset mayfair" data-contrast="1.1" data-saturate="1.1" data-blending-mode="overlay" data-gradient="#overlay-radial-gradient" data-color1="rgba(255, 255, 255, 0.4)" data-color2="rgba(255, 200, 200, 0.3)" >
                   <img src="/img/dalles-thumb.jpg" alt="preset mayfair">
                 </a><br>
                 <small>mayfair</small>

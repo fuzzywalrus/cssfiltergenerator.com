@@ -24,8 +24,35 @@
 						}
 						$( "input[data-filter]" ).each(function() {
 							slider(this);
+
 						});
 					},
+          createURL : function() {
+            $( "input[data-urlname]" ).change(function() {
+              var fullURL = "";
+              var myURL = "";
+              $("input[data-urlname]").each(function() {
+                var urlVarName = $(this).data("urlname");
+                var myValue = $(this).val();
+                myURL = urlVarName + "=" + myValue + "&" ;
+                if ( $(this).is(':disabled') === false && $(this).is(':visible') ) {
+                  fullURL = myURL + fullURL;
+                }
+              });
+              var radio = $("input[name=overlay]:checked").val();
+              fullURL = "?" + fullURL  + "r=" + radio;
+              //fullURL = fullURL.slice(0, -1);
+              window.history.replaceState(null, null, fullURL);
+            });
+          },
+          getURL : function () {
+            var queries = {};
+             $.each(document.location.search.substr(1).split('&'),function(c,q){
+               var i = q.split('=');
+               queries[i[0].toString()] = i[1].toString();
+             });
+             console.log(queries);
+          },
 					onChangesEvents : function() {
 						//when sliders are changed
 						$("#contain input").change(function() {
@@ -298,7 +325,8 @@
 	Engine.ui.newimage();
 	Engine.ui.activeOverlay();
 	Engine.ui.colorPick();
-
+  Engine.ui.createURL();
+  Engine.ui.getURL();
 });
 }(jQuery));
 
