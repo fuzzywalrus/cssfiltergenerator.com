@@ -34,11 +34,14 @@
               var myURL = "";
               $("[data-urlname]").each(function() { //iterate though is variable
                 var urlVarName = $(this).data("urlname");
-                var myValue = $(this).val();
-                myValue = myValue.replace(/\s/g, ''); // remove spaces
+                var myDefaultVal  = $(this).attr('value'); //get the default for comparison
+                var myCurrentValue = $(this).val();  //get the current value
+                var myValue = myCurrentValue.replace(/\s/g, ''); // remove spaces
                 myURL = urlVarName + "=" + myValue + "&" ;
                 if ( $(this).is(':disabled') === false && $(this).is(':visible') ) { //only get the visible inputs
-                  fullURL = myURL + fullURL;
+                  if (myCurrentValue !== myDefaultVal) { // make sure we're not stashing the default values into the URL since its messy :)
+                    fullURL = myURL + fullURL;
+                  }
                 }
               });
               var radio = $("input[name=overlay]:checked").val();
