@@ -73,8 +73,8 @@
 
                   <li>
                     <label for="contrast-a" data-filter="contrast">Contrast:</label>
-                    <input id="contrast-a" type="range"  min="0" max="3" step=".01" data-urlname="c" data-filter="contrast" value="1">
-                    <input id="contrast-b" type="number" min="0" max="3" step=".01" data-pair="c"    data-filter="contrast" value="1" >
+                    <input id="contrast-a" type="range"  min="0" max="3" step=".01" data-urlname="ct" data-filter="contrast" value="1">
+                    <input id="contrast-b" type="number" min="0" max="3" step=".01" data-pair="ct"    data-filter="contrast" value="1" >
                   </li>
 
                   <li>
@@ -169,59 +169,26 @@
                 </select>
                 <div id="overlay-css"></div>
               </div>
-              <div class="row">
-                  <div class="col-sm-12">
-                    <h3>Preview Image</h3>
-                    <label>URL</label>
-                  <input type="text" id="imageURL" placeholder="http://www.cssfiltergenerator.com/img/demo.jpg">
-                    <h4>Or use one of the following image (click to swap).</h4>
-                  </div>
-              </div>
-              <div class="row" id="preview-images">
-                  <div class="col-xs-4 col-sm-6 col-md-4">
-                    <a href="#" data-fullsize="/img/dalles.jpg" ><img src="/img/dalles-thumb.jpg" alt="Wild Flowers, The Dalles, Oregon" ></a>
-                    <small>The Dalles</small>
-                  </div>
-                  <div class="col-xs-4 col-sm-6 col-md-4">
-                    <a href="#" data-fullsize="/img/paintedhills.jpg"><img src="/img/paintedhills-thumb.jpg" alt="Painted Cove, Painted Hills, Oregon" ></a>
-                    <small>The Painted Hills</small>
-                  </div>
-                  <div class="col-xs-4 col-sm-6 col-md-4">
-                    <a href="#" data-fullsize="/img/hood.jpg"><img src="/img/hood-thumb.jpg" alt="Illumination Saddle, Mt Hood, Oregon"></a>
-                    <small>Mt. Hood</small>
-                  </div>
 
-                  <div class="col-xs-4 col-sm-6 col-md-4">
-                    <a href="#" data-fullsize="/img/columbia-gorge.jpg"><img src="/img/columbia-gorge-thumb.jpg" alt="Columbia Gorge, Oregon"></a>
-                    <small>Columbia Gorge</small>
-                  </div>
-
-                  <div class="col-xs-4 col-sm-6 col-md-4">
-                    <a href="#" data-fullsize="/img/south-sister.jpg"><img src="/img/south-sister-thumb.jpg"  alt="False Summit, South Sister, Oregon"></a>
-                    <small>South Sister</small>
-                  </div>
-                  <div class="col-xs-4 col-sm-6 col-md-4">
-                    <a href="#" data-fullsize="/img/mcloughlin.jpg"><img src="/img/mcloughlin-thumb.jpg" alt="Mount McLoughlin (from Saddle Rock), Oregon" ></a>
-                    <small>Mount McLoughlin</small>
-                  </div>
-              </div>
             </div>
 
-            <div class="col-sm-6">
-                <div style="display:block;position:relative;">
+            <div class="col-sm-6 preview">
+                <div class="text-right"><a href="#" class="css-tab" data-text-swap="Hide CSS" data-text-original="Show CSS">Show CSS</a></div>
+                <div class="filter-parent">
                     <button id="reset">Reset</button>
                   <div id="filter-wrapper">
                     <img src="/img/demo.jpg" id="demoimage" alt="Demo Image for displaying CSS filters and mix-blend-modes">
                   </div>
+                  <div id="filter">
+                    <h5>HTML:</h5>
+                      <p><span>&lt;div class=&quot;myfilter&quot;&gt;&lt;img scr=&quot;my/path/to/image.jpg&quot;&gt;&lt;/div&gt;</span></p>
+                      <br>
+                    <h5>CSS:</h5>
+                    <span class="filter-css"></span>
+                    <span class="overlay-css"></span>
+                  </div>
                 </div>
-                <div id="filter">
-                  <h5>HTML:</h5>
-                    <p><span>&lt;div class=&quot;myfilter&quot;&gt;&lt;img scr=&quot;my/path/to/image.jpg&quot;&gt;&lt;/div&gt;</span></p>
-                    <br>
-                  <h5>CSS:</h5>
-                  <span class="filter-css"></span>
-                  <span class="overlay-css"></span>
-                </div>
+
                 <!-- Handlebars template -->
                 <script id="filter-template" type="text/x-handlebars-template">
                   <div class="entry">
@@ -252,13 +219,7 @@
                     <style>#filter-wrapper:hover:after {opacity: 0;}</style>
                     <style>#filter-wrapper:after{ background:  {{myGradient}}; mix-blend-mode: {{myBlending}}; }</style>
                     <p>.myfilter:after{
-                    <p>&nbsp;&nbsp;&nbsp; content: '';</p>
-                    <p>&nbsp;&nbsp;&nbsp; display: block; </p>
-                    <p>&nbsp;&nbsp;&nbsp; top: 0;  </p>
-                    <p>&nbsp;&nbsp;&nbsp; left: 0;  </p>
-                    <p>&nbsp;&nbsp;&nbsp; height: 100%;  </p>
-                    <p>&nbsp;&nbsp;&nbsp; width: 100%; </p>
-                    <p>&nbsp;&nbsp;&nbsp; position: absolute;</p>
+                    <p>&nbsp;&nbsp;&nbsp; position: absolute; content: ''; display: block; top: 0; left: 0; height: 100%; width: 100%; </p>
                     <p>&nbsp;&nbsp;&nbsp; background: {{myGradient}}; </p>
                     <p>&nbsp;&nbsp;&nbsp; mix-blend-mode: {{myBlending}}</p>
                     <p> }</p>
@@ -267,7 +228,49 @@
         	</div>
         </div>
       </section>
+      <section>
+        <div class="stripe"></div>
+      </section>
+      <section>
+        <div class="container">
+          <div class="row">
+              <div class="col-sm-12">
+                <h3>Preview Image</h3>
+                <label>URL</label>
+              <input type="text" id="imageURL" placeholder="http://www.cssfiltergenerator.com/img/demo.jpg">
+                <h4>Or use one of the following image (click to swap).</h4>
+              </div>
+          </div>
+          <div class="row" id="preview-images">
+              <div class="col-xs-3 col-sm-2">
+                <a href="#" data-fullsize="/img/dalles.jpg" ><img src="/img/dalles-thumb.jpg" alt="Wild Flowers, The Dalles, Oregon" ></a>
+                <small>The Dalles</small>
+              </div>
+              <div class="col-xs-3 col-sm-2">
+                <a href="#" data-fullsize="/img/paintedhills.jpg"><img src="/img/paintedhills-thumb.jpg" alt="Painted Cove, Painted Hills, Oregon" ></a>
+                <small>The Painted Hills</small>
+              </div>
+              <div class="col-xs-3 col-sm-2">
+                <a href="#" data-fullsize="/img/hood.jpg"><img src="/img/hood-thumb.jpg" alt="Illumination Saddle, Mt Hood, Oregon"></a>
+                <small>Mt. Hood</small>
+              </div>
 
+              <div class="col-xs-3 col-sm-2">
+                <a href="#" data-fullsize="/img/columbia-gorge.jpg"><img src="/img/columbia-gorge-thumb.jpg" alt="Columbia Gorge, Oregon"></a>
+                <small>Columbia Gorge</small>
+              </div>
+
+              <div class="col-xs-3 col-sm-2">
+                <a href="#" data-fullsize="/img/south-sister.jpg"><img src="/img/south-sister-thumb.jpg"  alt="False Summit, South Sister, Oregon"></a>
+                <small>South Sister</small>
+              </div>
+              <div class="col-xs-3 col-sm-2">
+                <a href="#" data-fullsize="/img/mcloughlin.jpg"><img src="/img/mcloughlin-thumb.jpg" alt="Mount McLoughlin (from Saddle Rock), Oregon" ></a>
+                <small>Mount McLoughlin</small>
+              </div>
+          </div>
+        </div>
+      </section>
       <section class="presets">
       <div class="container">
         <div class="row">
@@ -562,7 +565,7 @@
           <div class="col-sm-12">
             <h3>What's to come?</h3>
             <p>This project is active development and plenty-o-features are on the way. In no particular order, planned features:</p>
-            <p>Preset reordering of filters. Show/Hide Presets and demo images. Use JS templating for the writes to DOM. concat JS. More documentation / examples.  Spiffier UI. Tooltips. Upload your own image. Better Touch Support. Better responsive behavior. Move project to GitHub after v1.0. Actual Logo.
+            <p>Preset reordering of filters. Show/Hide Presets and demo images. concat JS. More documentation / examples. Spiffier UI. Tooltips. Upload your own image. Better Touch Support. Better responsive behavior. Move project to GitHub after v1.0. Actual Logo.
             </p>
             <small><a href="http://greggant.com">by Greg Gant</a></small>
           </div>

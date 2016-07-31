@@ -3,6 +3,7 @@ $font-sans-serif: 'Raleway', sans-serif;
 $dark-cobalt: rgba(40, 44, 52, 1);
 $dark-grey: #2d2d2d;
 $dark-metal: rgba(58, 63, 75, 1);
+$light-grey: rgb(88, 96, 114);
 @import "vendor/bootstrap";
 @import "sections/tables";
 @import "sections/typography";
@@ -23,6 +24,7 @@ $dark-metal: rgba(58, 63, 75, 1);
 @import "vendor/cssgram/cssgram.min";
 .inferface {
 	background: $dark-cobalt;
+	padding-bottom: 2em;
 }
 body {
 	background: $dark-grey;

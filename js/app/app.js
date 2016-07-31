@@ -317,6 +317,19 @@
            $(element).val( (color ? color : "") );
            $(element).change();
          },
+         flipDemoImage : function() {
+           $(".css-tab").click(function() {
+             event.preventDefault();
+             var el = $(this);
+             if (el.text() == el.data("text-swap")) {
+               el.text(el.data("text-original"));
+             } else {
+               el.data("text-original", el.text());
+               el.text(el.data("text-swap"));
+             }
+             $(".filter-parent").toggleClass("flip");
+           });
+         },
 				 presets : function() {
 					 $(".preset").click(function() {
 						 //eventually I'd like to simplify this to programmically cycle through the list of filters
@@ -351,6 +364,7 @@
 	Engine.ui.colorPick();
   Engine.ui.createURL();
   Engine.ui.getURL();
+  Engine.ui.flipDemoImage();
 });
 }(jQuery));
 
