@@ -66,9 +66,10 @@ img#demoimage {
 }
 .filter-parent {
 	transition: all 0.6s ease;
-	transform: rotateY(0deg);
+	transform: perspective( 1000px ) rotateY(0deg);
 	&.flip {
-		transform: rotateY(180deg);
+		//transform: rotateY(180deg);
+		transform: perspective( 1000px ) rotateY( 180deg );
 		&:after {
 			content: " ";
 			height: 100%;
@@ -87,6 +88,13 @@ img#demoimage {
 	}
 	#filter {
 		opacity: 0;
+	}
+}
+.css-tab-parent {
+	//transition: all 0.6s ease;
+	//transform:  rotateY(0deg);
+	&.flip {
+		//transform: rotateY( 180deg );
 	}
 }
 .css-tab {

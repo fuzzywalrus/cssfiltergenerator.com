@@ -23,9 +23,62 @@
           },
         },
         urlShare : {
-
+          //URL var creation/parssing
+          createURL : function() {
+            //this changes the url on input changes
+            $( "[data-urlname]" ).change(function() {
+              var fullURL = "";
+              var myURL = "";
+              $("[data-urlname]").each(function() { //iterate though is variable
+                var urlVarName = $(this).data("urlname");
+                var myDefaultVal  = $(this).attr('value'); //get the default for comparison
+                var myCurrentValue = $(this).val();  //get the current value
+                var myValue = myCurrentValue.replace(/\s/g, ''); // remove spaces
+                myURL = urlVarName + "=" + myValue + "&" ;
+                if ( $(this).is(':disabled') === false && $(this).is(':visible') ) { //only get the visible inputs
+                  if (myCurrentValue !== myDefaultVal) { // make sure we're not stashing the default values into the URL since its messy :)
+                    fullURL = myURL + fullURL;
+                  }
+                }
+              });
+              var radio = $("input[name=overlay]:checked").val();
+              radio = radio.substring(1); // this has a # so let's kill that because URL Vars do not like #
+              fullURL = "?" + fullURL  + "r=" + radio;
+              window.history.replaceState(null, null, fullURL);
+            });
+          },
+          getURL : function () {
+            //on init page load, this script makes sure that the URL doesn't if contain variables
+            var queries = {}; //object of URL vars
+             $.each(document.location.search.substr(1).split('&'),function(c,q){ // http://stackoverflow.com/questions/4656843/jquery-get-querystring-from-url
+               var i = q.split('=');
+               queries[i[0].toString()] = i[1].toString();
+             });
+             $.each( queries, function( key, value ) {
+                var query = "[data-urlname*='"  + key + "']"; //data attributes for both range & text input
+                var query2 = "[data-pair*='"  + key + "']";
+                console.log(query +" "+ value);
+                $(query).val(value);
+                $(query2).val(value);
+            });
+            //r is shorthand for radio checkbox, if this has been set, then tag action to select the radio box for gradients
+            if(window.location.href.indexOf("r=") > -1) {
+             var newString =  String(queries["r"]);
+              var myActiveOverlay = 'input[value="#' + newString + '"]';
+              console.log(myActiveOverlay);
+              $(myActiveOverlay).prop("checked", true).change();
+              Engine.ui.updateColorPicker(".color1.text",  ".color1.picker" );
+            }
+            //no point in tryig to set the second color if it doesn't exist
+            if(window.location.href.indexOf("c2=")> -1) {
+              Engine.ui.updateColorPicker(".color2.text",  ".color2.picker" );
+            }
+             console.log(queries);
+             $("#sepia-a").change();
+          }
         },
         ui: {
+          //The UI functionality
 					sliders : function () {
 						//on change events for sliders
 						function slider(mySliderName){
@@ -49,61 +102,6 @@
 
 						});
 					},
-          createURL : function() {
-            //this changes the url on input changes
-            $( "[data-urlname]" ).change(function() {
-              var fullURL = "";
-              var myURL = "";
-              $("[data-urlname]").each(function() { //iterate though is variable
-                var urlVarName = $(this).data("urlname");
-                var myDefaultVal  = $(this).attr('value'); //get the default for comparison
-                var myCurrentValue = $(this).val();  //get the current value
-                var myValue = myCurrentValue.replace(/\s/g, ''); // remove spaces
-                myURL = urlVarName + "=" + myValue + "&" ;
-                if ( $(this).is(':disabled') === false && $(this).is(':visible') ) { //only get the visible inputs
-                  if (myCurrentValue !== myDefaultVal) { // make sure we're not stashing the default values into the URL since its messy :)
-                    fullURL = myURL + fullURL;
-                  }
-                }
-              });
-              var radio = $("input[name=overlay]:checked").val();
-              radio = radio.substring(1); // this has a # so let's kill that because URL Vars do not like #
-              fullURL = "?" + fullURL  + "r=" + radio;
-              //fullURL = fullURL.slice(0, -1);
-              window.history.replaceState(null, null, fullURL);
-            });
-          },
-          getURL : function () {
-            //on init page load, this script makes sure that the URL doesn't if contain variables
-            var queries = {};
-             $.each(document.location.search.substr(1).split('&'),function(c,q){
-               var i = q.split('=');
-               queries[i[0].toString()] = i[1].toString();
-             });
-             $.each( queries, function( key, value ) {
-                var query = "[data-urlname*='"  + key + "']";
-                var query2 = "[data-pair*='"  + key + "']";
-                console.log(query +" "+ value);
-                $(query).val(value);
-                $(query2).val(value);
-                //$("#sepia-b").change();
-            });
-            if(window.location.href.indexOf("r=") > -1) {
-             var newString =  String(queries["r"]);
-              var myActiveOverlay = 'input[value="#' + newString + '"]';
-              console.log(myActiveOverlay);
-              $(myActiveOverlay).prop("checked", true).change();
-              Engine.ui.updateColorPicker(".color1.text",  ".color1.picker" );
-
-            }
-            if(window.location.href.indexOf("c2=")> -1) {
-              Engine.ui.updateColorPicker(".color2.text",  ".color2.picker" );
-            }
-             console.log(queries);
-             $("#sepia-a").change();
-
-          },
-
 					onChangesEvents : function() {
 						//when sliders are changed
 						$("#contain input").change(function() {
@@ -161,16 +159,19 @@
 							}
 						});
 					},
-					reset : function() {
-						//Return to every input to its default value
+          reset : function() {
+          //Return to every input to its default value
+            $( "input[data-filter]" ).each(function() {
+              var defaultVal = $(this).attr('value');
+              $(this).val(defaultVal);
+              Engine.ui.killOverlay(); //obliterate the Overlay
+              $("#overlay-radio-none").prop("checked", true);
+            });
+            $("#sepia-a").change();
+          },
+					resetButton : function() {
 						$("#reset").click(function() {
-							$( "input[data-filter]" ).each(function() {
-								var defaultVal = $(this).attr('value');
-								$(this).val(defaultVal);
-                Engine.ui.killOverlay();
-                $("#overlay-radio-none").prop("checked", true);
-							});
-								$("#sepia-a").change();
+							Engine.ui.reset(); //trigger reset
 						});
 					},
 					activeOverlay : function() {
@@ -288,7 +289,6 @@
 					 if (newValue !== undefined ) {
 						 $(mySliderNameA).val(newValue);
 						 $(mySliderNameB).val(newValue);
-
 					 } else {
 							newValue  = $(mySliderNameA).attr('value');
 							$(mySliderNameA).val(newValue);
@@ -323,29 +323,24 @@
              var el = $(this);
              if (el.text() == el.data("text-swap")) {
                el.text(el.data("text-original"));
+               $(this).parent().removeClass("flip");
              } else {
                el.data("text-original", el.text());
                el.text(el.data("text-swap"));
+               $(this).parent().addClass("flip");
              }
              $(".filter-parent").toggleClass("flip");
            });
          },
 				 presets : function() {
 					 $(".preset").click(function() {
-						 //eventually I'd like to simplify this to programmically cycle through the list of filters
              event.preventDefault(); //stop href from using anchor #
-						 var myBrightness = $(this).data("brightness");
-						 Engine.ui.presetSet("brightness", myBrightness);
-						 var myContrast = $(this).data("contrast");
-						 Engine.ui.presetSet("contrast", myContrast);
-						 var myGrayscale = $(this).data("grayscale");
-						 Engine.ui.presetSet("grayscale", myGrayscale);
-						 var myHuerotate = $(this).data("huerotate");
-						 Engine.ui.presetSet("hue-rotate", myHuerotate);
-						 var mySaturate = $(this).data("saturate");
-						 Engine.ui.presetSet("saturate", mySaturate);
-						 var mySepia = $(this).data("sepia");
-						 Engine.ui.presetSet("sepia", mySepia);
+             Engine.ui.reset();
+             var placed = {};
+             placed = $(this).data();
+             $.each( placed, function( key, value ) {
+                Engine.ui.presetSet(key, value);
+              });
 						 Engine.ui.gradientCheck(this);
 						 $("#sepia-a").change();//dummy change to trigger change() events.
 						 $("input[type=radio]").change();//dummy change to trigger change() events.
@@ -357,14 +352,14 @@
 	Engine.ui.onChangesEvents();
 	Engine.ui.sorting();
 	Engine.ui.showhidefilters();
-	Engine.ui.reset();
+	Engine.ui.resetButton();
 	Engine.ui.presets();
 	Engine.ui.newimage();
 	Engine.ui.activeOverlay();
 	Engine.ui.colorPick();
-  Engine.ui.createURL();
-  Engine.ui.getURL();
   Engine.ui.flipDemoImage();
+  Engine.urlShare.createURL();
+  Engine.urlShare.getURL();
 });
 }(jQuery));
 
