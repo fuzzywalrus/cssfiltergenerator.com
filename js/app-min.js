@@ -1,1 +1,385 @@
-!function(e){"use strict";var a;e(document).ready(function(){a={template:{writeCSS:function(e,a){var t=$("#filter-template").html(),r=Handlebars.compile(t),o={filters:e,hoverState:a},i=r(o);$(".filter-css").html(r(o))},writeOverlay:function(e,a){var t=$("#overlay-template").html(),r=Handlebars.compile(t),o={myBlending:e,myGradient:a},i=r(o);$(".overlay-css").html(r(o))}},urlShare:{createURL:function(){$("[data-urlname]").change(function(){var e="",a="";$("[data-urlname]").each(function(){var t=$(this).data("urlname"),r=$(this).attr("value"),o=$(this).val(),i=o.replace(/\s/g,"");a=t+"="+i+"&",$(this).is(":disabled")===!1&&$(this).is(":visible")&&o!==r&&(e=a+e)});var t=$("input[name=overlay]:checked").val();t=t.substring(1),e="?"+e+"r="+t,window.history.replaceState(null,null,e)})},getURL:function(){var e={};if($.each(document.location.search.substr(1).split("&"),function(a,t){var r=t.split("=");e[r[0].toString()]=r[1].toString()}),$.each(e,function(e,a){var t="[data-urlname*='"+e+"']",r="[data-pair*='"+e+"']";console.log(t+" "+a),$(t).val(a),$(r).val(a)}),window.location.href.indexOf("r=")>-1){var t=String(e.r),r='input[value="#'+t+'"]';console.log(r),$(r).prop("checked",!0).change(),a.ui.updateColorPicker(".color1.text",".color1.picker")}window.location.href.indexOf("c2=")>-1&&a.ui.updateColorPicker(".color2.text",".color2.picker"),console.log(e),$("#sepia-a").change()}},ui:{sliders:function(){function e(e){var a=$(e).data("filter"),t="#"+a+"-a",r="#"+a+"-b";$(t).change(function(){var e=$(this).val();$(r).val(e)}),$(r).change(function(){var e=$(this).val();$(t).val(e)})}$("input[data-filter]").each(function(){e(this)})},onChangesEvents:function(){$("#contain input").change(function(){var e="",t="";$("input[type=range]").each(function(){var a=$(this).val(),r=$(this).data("filter"),o=$(this).attr("value"),i=$(this).data("additional");void 0==i&&(i="");var l=r+"("+a+i+") ",n=r+"("+o+") ";$(this).is(":disabled")===!1&&(e+=l,t+=n)}),a.template.writeCSS(e,t)})},newimage:function(){$("a[data-fullsize]").click(function(){event.preventDefault();var e=$(this).data("fullsize");$("#demoimage").attr("src",e),$(".preset img").attr("src",e),console.log(e)}),$("#imageURL").change(function(){var e=$(this).val();$("#demoimage").attr("src",e),$(".preset img").attr("src",e)})},showhidefilters:function(){$("label").click(function(){var e=$(this),a=$(this).data("filter");a="input[data-filter="+a+"]",$(a).is(":disabled")===!0?($(a).attr("disabled",!1),$("#sepia-a").change(),$(e).removeClass("disabled")):($(a).attr("disabled",!0),$(e).addClass("disabled"),$("#sepia-a").change())})},reset:function(){$("input[data-filter]").each(function(){var e=$(this).attr("value");$(this).val(e),a.ui.killOverlay(),$("#overlay-radio-none").prop("checked",!0)}),$("#sepia-a").change()},resetButton:function(){$("#reset").click(function(){a.ui.reset()})},activeOverlay:function(){$("input[type=radio][name=overlay]").change(function(){var e=$("input[type=radio][name=overlay]:checked").val();"#overlay-radio-none"==e?a.ui.killOverlay():($(".overlay-group").hide(),$(e).css("display","inline-block"),$("#blending-mode").css("display","inline-block"),$(".overlay-group input:visible").change())})},killOverlay:function(){$(".overlay-group").hide(),$("#filter .overlay-css").html(""),$("#overlay-css").html(""),$("#blending-mode").hide()},sorting:function(){$("#sortable").sortable({axis:"y",containment:"#contain",scroll:!1,stop:function(e,a){$("#sepia-a").change()}})},colorPick:function(){$("#overlay-solid-color .color").spectrum({preferredFormat:"rgb",showInput:!0,showAlpha:!0,showPalette:!1,color:"rgba(112,55,200, 0.4)",move:function(e){a.ui.updateColor("#overlay-solid-color-text",e)},hide:function(e){a.ui.updateColor("#overlay-solid-color-text",e)}}),$("#overlay-linear-gradient-color1").spectrum({preferredFormat:"rgb",showInput:!0,showAlpha:!0,showPalette:!1,color:"rgba(255, 0, 134, 0.4)",move:function(e){a.ui.updateColor("#overlay-linear-gradient-color1-text",e)},hide:function(e){a.ui.updateColor("#overlay-linear-gradient-color1-text",e)}}),$("#overlay-linear-gradient-color2").spectrum({preferredFormat:"rgb",showInput:!0,showAlpha:!0,showPalette:!1,color:"rgba(16, 255, 0, 0.4)",move:function(e){a.ui.updateColor("#overlay-linear-gradient-color2-text",e)},hide:function(e){a.ui.updateColor("#overlay-linear-gradient-color2-text",e)}}),$("#overlay-radial-gradient-color1").spectrum({preferredFormat:"rgb",showInput:!0,showAlpha:!0,showPalette:!1,color:"rgba(100, 10, 10, 0.9)",move:function(e){a.ui.updateColor("#overlay-radial-gradient-color1-text",e)},hide:function(e){a.ui.updateColor("#overlay-radial-gradient-color1-text",e)}}),$("#overlay-radial-gradient-color2").spectrum({preferredFormat:"rgb",showInput:!0,showAlpha:!0,showPalette:!1,color:"rgba(83, 10, 100, 0.9)",move:function(e){a.ui.updateColor("#overlay-radial-gradient-color2-text",e)},hide:function(e){a.ui.updateColor("#overlay-radial-gradient-color2-text",e)}}),$(".overlay-solid-color").change(function(){var e=$("#overlay-solid-color-text").val(),t=$("#blending-mode").val();a.template.writeOverlay(t,e)}),$(".overlay-linear-gradient-color").change(function(){var e=$("#overlay-linear-gradient-color1-text").val(),t=$("#overlay-linear-gradient-color2-text").val(),r=$("#blending-mode").val(),o="linear-gradient(to bottom,"+e+" 0%, "+t+" 100%);";a.template.writeOverlay(r,o)}),$(".overlay-radial-gradient-color").change(function(){var e=$("#overlay-radial-gradient-color1-text").val(),t=$("#overlay-radial-gradient-color2-text").val(),r=$("#blending-mode").val(),o="radial-gradient(ellipse at center, "+e+" 0%, "+t+" 100%);";a.template.writeOverlay(r,o)})},presetSet:function(e,a){var t="#"+e+"-a",r="#"+e+"-b";void 0!==a?($(t).val(a),$(r).val(a)):(a=$(t).attr("value"),$(t).val(a),$(r).val(a))},gradientCheck:function(e){var t=$(e).data("gradient");t='[value="'+t+'"]',$("input[name=overlay]").filter(t).prop("checked",!0);var r=$(e).data("color1"),o=$(e).data("color2");$(".overlay-group input.color1").val(r),$(".overlay-group input.color2").val(o);var i=$(e).data("blending-mode");$("#blending-mode").val(i),a.ui.updateColorPicker(".overlay-group input.color1.text",".overlay-group input.color1.picker"),a.ui.updateColorPicker(".overlay-group input.color2.text",".overlay-group input.color2.picker")},updateColorPicker:function(e,a){$(a).spectrum("set",$(e).val())},updateColor:function(e,a){$(e).val(a?a:""),$(e).change()},flipDemoImage:function(){$(".css-tab").click(function(){event.preventDefault();var e=$(this);e.text()==e.data("text-swap")?(e.text(e.data("text-original")),$(this).parent().removeClass("flip")):(e.data("text-original",e.text()),e.text(e.data("text-swap")),$(this).parent().addClass("flip")),$(".filter-parent").toggleClass("flip")})},presets:function(){$(".preset").click(function(){event.preventDefault(),a.ui.reset();var e={};e=$(this).data(),$.each(e,function(e,t){a.ui.presetSet(e,t)}),a.ui.gradientCheck(this),$("#sepia-a").change(),$("input[type=radio]").change()})}}},a.ui.sliders(),a.ui.onChangesEvents(),a.ui.sorting(),a.ui.showhidefilters(),a.ui.resetButton(),a.ui.presets(),a.ui.newimage(),a.ui.activeOverlay(),a.ui.colorPick(),a.ui.flipDemoImage(),a.urlShare.createURL(),a.urlShare.getURL()})}(jQuery);
+(function(jQuery) {
+  "use strict";
+  var Engine;
+    jQuery(document).ready(function() {
+      Engine = {
+        template : {
+          //Mustachejs calls
+          writeCSS : function(filters, hoverState) {
+            //writes the css filter to the dom
+            var source   = $("#filter-template").html();
+            var template = Handlebars.compile(source);
+            var context = {filters: filters, hoverState: hoverState};
+            var html    = template(context);
+            $(".filter-css").html(template(context));
+          },
+          writeOverlay : function(myBlending, myGradient) {
+            //writes the css filter to the dom
+            var source   = $("#overlay-template").html();
+            var template = Handlebars.compile(source);
+            var context = {myBlending: myBlending, myGradient: myGradient};
+            var html    = template(context);
+            $(".overlay-css").html(template(context));
+            console.log("writeOverlay");
+          },
+        },
+        urlShare : {
+          //URL var creation/parssing
+          createURL : function() {
+            //this changes the url on input changes
+            $( "[data-urlname]" ).change(function() {
+              var fullURL = "";
+              var myURL = "";
+              $("[data-urlname]").each(function() { //iterate though is variable
+                var urlVarName = $(this).data("urlname");
+                var myDefaultVal  = $(this).attr('value'); //get the default for comparison
+                var myCurrentValue = $(this).val();  //get the current value
+                if (myCurrentValue != null) {
+                  var myCurrentValue = myCurrentValue.replace(/\s/g, ''); // remove spaces
+                }
+
+                myURL = urlVarName + "=" + myCurrentValue + "&" ;
+                if ( $(this).is(':disabled') === false && $(this).is(':visible') ) { //only get the visible inputs
+                  if (myCurrentValue !== myDefaultVal) { // make sure we're not stashing the default values into the URL since its messy :)
+                    fullURL = myURL + fullURL;
+                  }
+                }
+              });
+              var radio = $("input[name=overlay]:checked").val();
+              radio = radio.substring(1); // this has a # so let's kill that because URL Vars do not like #
+              fullURL = "?" + fullURL  + "r=" + radio;
+              window.history.replaceState(null, null, fullURL);
+            });
+          },
+          getURL : function () {
+            //on init page load, this script makes sure that the URL doesn't if contain variables
+            var queries = {}; //object of URL vars
+             $.each(document.location.search.substr(1).split('&'),function(c,q){ // http://stackoverflow.com/questions/4656843/jquery-get-querystring-from-url
+               var i = q.split('=');
+               queries[i[0].toString()] = i[1].toString();
+               console.log(queries);
+             });
+             $.each( queries, function( key, value ) {
+                var query = "[data-urlname*='"  + key + "']"; //data attributes for both range & text input
+                var query2 = "[data-pair*='"  + key + "']";
+                //console.log(query +" "+ value);
+                $(query).val(value);
+                $(query2).val(value);
+            });
+            //r is shorthand for radio checkbox, if this has been set, then tag action to select the radio box for gradients
+            if(window.location.href.indexOf("r=") > -1) {
+             var newString =  String(queries["r"]);
+              var myActiveOverlay = 'input[value="#' + newString + '"]';
+              $(myActiveOverlay).prop("checked", true).change();
+              Engine.ui.updateColorPicker(".color1.text",  ".color1.picker" );
+            }
+            //no point in tryig to set the second color if it doesn't exist
+            if(window.location.href.indexOf("c2=")> -1) {
+              Engine.ui.updateColorPicker(".color2.text",  ".color2.picker" );
+            } else {
+              Engine.ui.updateColorPicker(".color1.text",  ".color.picker" ); //if there isn't a second color, then update the solid color picker
+            }
+             console.log(queries);
+             $("#sepia-a").change();
+          }
+        },
+        ui: {
+          //The UI functionality
+					sliders : function () {
+						//on change events for sliders
+						function slider(mySliderName){
+							//follow naming scheme
+							var filterName = $(mySliderName).data("filter");
+							var mySliderNameA = "#" + filterName + "-a";
+							var mySliderNameB ="#" +  filterName + "-b";
+							//slider change
+							$( mySliderNameA ).change(function() {
+								var myval = $(this).val();
+								$(mySliderNameB).val(myval);
+							});
+							//number change
+							$(mySliderNameB).change(function() {
+								var myval = $(this).val();
+								$(mySliderNameA).val(myval);
+							});
+						}
+						$( "input[data-filter]" ).each(function() {
+							slider(this);
+
+						});
+					},
+					onChangesEvents : function() {
+						//when sliders are changed
+            console.log("onChangesEvents");
+						$("#contain input").change(function() {
+							var filters = "";
+							var hoverState = "";
+							$( "input[type=range]" ).each(function() {
+								var myValue = $(this).val();
+							 	var filterName = $(this).data("filter");
+								var myDefaultVal  = $(this).attr('value'); //gets the default value of the input for use for hover state
+								var dataAdditional = $(this).data("additional"); //appends the input data with suffix to relevant CSS
+								if (dataAdditional == undefined) { //error handler
+									dataAdditional = "";
+								}
+						    var concatMe =  filterName + "("+ myValue + dataAdditional +") ";
+								var concatMehover = filterName + "(" + myDefaultVal + ") "; //hover state
+								if ($(this).is(':disabled') === false) {
+									filters = filters + concatMe;
+									hoverState = hoverState + concatMehover;
+								}
+						  });
+              Engine.template.writeCSS(filters, hoverState);
+						});
+            $("#orientation").change(function() {
+              $("#blending-mode").change();
+            });
+					},
+					newimage : function (){
+						//Super simple demo image swap
+						$("a[data-fullsize]").click(function() {
+                event.preventDefault(); //stop href from using anchor #
+								var newUrl = $(this).data("fullsize");
+								$("#demoimage").attr("src", newUrl);
+								$(".preset img").attr("src", newUrl);
+								console.log(newUrl);
+						});
+						//Replace the SRC of the demo image with the new URL to image in text field
+						$("#imageURL").change(function() {
+							var demoimage = $(this).val();
+							$("#demoimage").attr("src", demoimage);
+							$(".preset img").attr("src", demoimage);
+              console.log("imageURL");
+						});
+					},
+					showhidefilters : function (){
+						//toggle the sliders/text box inputs to enable or disable filters
+						$("label").click(function() {
+							var myLabel = $(this);
+							var myFilter = $(this).data("filter");
+							myFilter = "input[data-filter="+ myFilter  + "]";
+
+							if ($(myFilter).is(':disabled') === true) {
+								$(myFilter).attr("disabled", false);
+								 $("#sepia-a").change();
+								 $(myLabel).removeClass("disabled");
+							} else {
+								$(myFilter).attr("disabled", true);
+								$(myLabel).addClass("disabled");
+								 $("#sepia-a").change();
+							}
+						});
+					},
+          reset : function() {
+          //Return to every input to its default value
+            $( "input[data-filter]" ).each(function() {
+              var defaultVal = $(this).attr('value');
+              $(this).val(defaultVal);
+              Engine.ui.killOverlay(); //obliterate the Overlay
+              $("#overlay-radio-none").prop("checked", true);
+            });
+            $("#sepia-a").change();
+          },
+					resetButton : function() {
+						$("#reset").click(function() {
+							Engine.ui.reset(); //trigger reset
+						});
+					},
+					activeOverlay : function() {
+						//New overlay functionality
+            console.log("activeOverlay");
+						$('input[type=radio][name=overlay]').change(function() {
+							var myChecked = $("input[type=radio][name=overlay]:checked").val();
+							if ( myChecked == "#overlay-radio-none") {
+								Engine.ui.killOverlay();
+							} else if ( myChecked == "#overlay-solid") {
+                $('.overlay-group').hide();
+								$(myChecked).css('display', 'inline-block');
+								$("#blending-mode").css('display', 'inline-block');
+                $("#orientation").hide();
+                $(".overlay-group input:visible").change();
+              }  else {
+								$('.overlay-group').hide();
+								$(myChecked).css('display', 'inline-block');
+								$("#blending-mode").css('display', 'inline-block');
+                $("#orientation").css('display', 'inline-block');
+								$(".overlay-group input:visible").change();
+							}
+						});
+					},
+          killOverlay : function (){
+            console.log("killOverlay");
+            $('.overlay-group').hide();
+            $("#filter .overlay-css").html("");
+            $("#overlay-css").html("");
+            $("#blending-mode").hide();
+            $("#orientation").hide();
+          },
+					sorting : function(){
+						//jQuery UI init
+						$( "#sortable" ).sortable({
+							axis: "y",
+							containment:  "#contain",
+							scroll: false,
+							stop:  function(event, ui) {
+								$("#sepia-a").change();
+						 }
+					 });
+				 },
+				 colorPick : function() {
+					 //New Spectrum code
+					 	$('#overlay-solid-color .color').spectrum({
+							preferredFormat: "rgb",
+					    showInput: true,
+							showAlpha: true,
+					    showPalette: false,
+							color: 'rgba(112,55,200, 0.4)',
+							move: function (color) { Engine.ui.updateColor("#overlay-solid-color-text", color); },
+							hide: function (color) { Engine.ui.updateColor("#overlay-solid-color-text", color); }
+						});
+						//overlay-linear-gradient color 1
+						$('#overlay-gradient-color1').spectrum({
+							preferredFormat: "rgb",
+					    showInput: true,
+							showAlpha: true,
+					    showPalette: false,
+							color: 'rgba(255, 0, 134, 0.4)',
+							move: function (color) { Engine.ui.updateColor("#overlay-gradient-color1-text", color); },
+							hide: function (color) { Engine.ui.updateColor("#overlay-gradient-color1-text", color); }
+						});
+						//overlay-linear-gradient color 2
+						$('#overlay-gradient-color2').spectrum({
+							preferredFormat: "rgb",
+					    showInput: true,
+							showAlpha: true,
+					    showPalette: false,
+							color: 'rgba(16, 255, 0, 0.4)',
+							move: function (color) { Engine.ui.updateColor("#overlay-gradient-color2-text", color); },
+							hide: function (color) { Engine.ui.updateColor("#overlay-gradient-color2-text", color); }
+						});
+
+						$('.overlay-solid-color').change(function() {
+							//console.log("solid");
+							var myGradient = $("#overlay-solid-color-text").val();
+							var myBlending = $("#blending-mode").val();
+              console.log("overlay-solid-color:" + myGradient);
+              Engine.template.writeOverlay(myBlending, myGradient);
+						});
+            $('.overlay-gradient-color').change(function() {
+              //console.log("gradient");
+              var myColor1 = $("#overlay-gradient-color1-text").val();
+              var myColor2 = $("#overlay-gradient-color2-text").val();
+              var myBlending = $("#blending-mode").val();
+              var orientation = $("#orientation").val();
+              orientation = orientation.replace(/_/g," ");
+              console.log("orientation:" + orientation);
+              var myGradient = orientation + ","+ myColor1 +" 0%, "+ myColor2 +" 100%);"
+              Engine.template.writeOverlay(myBlending, myGradient);
+            });
+				 },
+         changeSelect : function() {
+           $("#orientation").change(function() {
+              $("input[type=radio]").change()
+           });
+           $("#blending-mode").change(function(){
+             $("input[type=radio]").change()
+           });
+         },
+				 presetSet : function(filterName, newValue) {
+					 //use for presets
+					 var mySliderNameA = "#" + filterName + "-a";
+					 var mySliderNameB ="#" +  filterName + "-b";
+					 if (newValue !== undefined ) {
+						 $(mySliderNameA).val(newValue);
+						 $(mySliderNameB).val(newValue);
+					 } else {
+							newValue  = $(mySliderNameA).attr('value');
+							$(mySliderNameA).val(newValue);
+							$(mySliderNameB).val(newValue);
+					 }
+				 },
+				 gradientCheck : function(obj) {
+           // Used by presets to change the gradients
+					 var gradient = $(obj).data("gradient");
+           gradient = '[value="' + gradient + '"]';
+					 $("input[name=overlay]").filter(gradient).prop("checked", true)
+					 var color1 = $(obj).data("color1");
+					 var color2 = $(obj).data("color2");
+           var orientation = $(obj).data("orientation");
+					 $(".overlay-group input.color1").val(color1);
+					 $(".overlay-group input.color2").val(color2);
+					 var blendingMode = $(obj).data("blending-mode");
+           $("#blending-mode").val(blendingMode);
+           $("#orientation").val(orientation);
+           Engine.ui.updateColorPicker(".overlay-group input.color1.text", ".overlay-group input.color1.picker");
+           Engine.ui.updateColorPicker(".overlay-group input.color2.text", ".overlay-group input.color2.picker");
+           console.log("gradientCheck");
+				 },
+         updateColorPicker : function(target, destination) {
+             //Updates the colorPicker swatch to match the color value in the text field.
+             $(destination).spectrum("set", $(target).val());
+         },
+         updateColor : function(element, color) {
+           $(element).val( (color ? color : "") );
+           $(element).change();
+           console.log("UpdateColor");
+         },
+         flipDemoImage : function() {
+           $(".css-tab").click(function() {
+             console.log("Css-Tab");
+             event.preventDefault();
+             var el = $(this);
+             if (el.text() == el.data("text-swap")) {
+               el.text(el.data("text-original"));
+               $(this).parent().removeClass("flip");
+             } else {
+               el.data("text-original", el.text());
+               el.text(el.data("text-swap"));
+               $(this).parent().addClass("flip");
+             }
+             $(".filter-parent").toggleClass("flip");
+           });
+         },
+				 presets : function() {
+					 $(".preset").click(function() {
+             event.preventDefault(); //stop href from using anchor #
+             Engine.ui.reset();
+             var placed = {};
+             placed = $(this).data();
+             $.each( placed, function( key, value ) {
+                Engine.ui.presetSet(key, value);
+              });
+						 Engine.ui.gradientCheck(this);
+						 $("#sepia-a").change();//dummy change to trigger change() events.
+						 $("input[type=radio]").change();//dummy change to trigger change() events.
+					 });
+				}
+		} // ui
+	}; // Engine
+	Engine.ui.sliders();
+	Engine.ui.onChangesEvents();
+	Engine.ui.sorting();
+	Engine.ui.showhidefilters();
+	Engine.ui.resetButton();
+	Engine.ui.presets();
+	Engine.ui.newimage();
+	Engine.ui.activeOverlay();
+	Engine.ui.colorPick();
+  Engine.ui.flipDemoImage();
+  Engine.ui.changeSelect();
+  Engine.urlShare.createURL();
+  Engine.urlShare.getURL();
+});
+}(jQuery));
+
+//Scroll / load / scroll functions
+/*
+$( window ).resize(function() {
+});
+jQuery(window).load(function() {
+});
+jQuery(window).scroll(function() {
+});
+*/
+
+

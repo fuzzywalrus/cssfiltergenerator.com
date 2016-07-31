@@ -120,8 +120,7 @@
                 <h3>Overlay</h3>
                 <input type="radio" name="overlay" value="#overlay-radio-none" id="overlay-radio-none" checked> None<br>
                 <input type="radio" name="overlay" value="#overlay-solid" id="overlay-radio-solid"> Solid<br>
-                <input type="radio" name="overlay" value="#overlay-linear-gradient" > Linear Gradient<br>
-                <input type="radio" name="overlay" value="#overlay-radial-gradient" > Radial Gradient<br>
+                <input type="radio" name="overlay" value="#overlay-gradient" > Gradient<br>
                 <div id="overlay-solid" class="overlay-group">
                   <div  id="overlay-solid-color">
                     <input type="text" class="overlay-solid-color color picker " name="solid" value="#5367ce"/>
@@ -129,28 +128,18 @@
                   </div>
                 </div>
 
-                <div id="overlay-linear-gradient" class="overlay-group">
+                <div id="overlay-gradient" class="overlay-group">
                   <div class="wrapper">
-                    <input class="overlay-linear-gradient-color color1 picker" value="rgba(62, 162, 253, 0.4)" id="overlay-linear-gradient-color1">
-                    <input class="overlay-linear-gradient-color color1 text" value="rgba(62, 162, 253, 0.4)" data-urlname="c1" data-gradient="#overlay-linear-gradient"  id="overlay-linear-gradient-color1-text">
+                    <input class="overlay-gradient-color color1 picker" value="rgba(62, 162, 253, 0.4)" id="overlay-gradient-color1">
+                    <input class="overlay-gradient-color color1 text" value="rgba(62, 162, 253, 0.4)" data-urlname="c1" data-gradient="#overlay-gradient"  id="overlay-gradient-color1-text">
                   </div>
                   <div class="wrapper">
-                    <input class="overlay-linear-gradient-color color2 picker" value="rgba(2, 122, 233, 0.8)" id="overlay-linear-gradient-color2">
-                    <input class="overlay-linear-gradient-color color2 text" value="rgba(2, 122, 233, 0.8)" data-urlname="c2" data-gradient="#overlay-linear-gradient" id="overlay-linear-gradient-color2-text">
-                  </div>
-                </div>
-                <div id="overlay-radial-gradient" class="overlay-group">
-                  <div class="wrapper">
-                    <input class="overlay-radial-gradient-color color1 picker" value="rgba(62, 162, 253, 0.4)" id="overlay-radial-gradient-color1">
-                    <input class="overlay-radial-gradient-color color1 text" value="rgba(62, 162, 253, 0.4)" data-urlname="c1" data-gradient="#overlay-radial-gradient"  id="overlay-radial-gradient-color1-text">
-                  </div>
-                  <div class="wrapper">
-                    <input class="overlay-radial-gradient-color color2 picker" value="rgba(83, 10, 100, 0.9)" id="overlay-radial-gradient-color2">
-                    <input class="overlay-radial-gradient-color color2 text" value="rgba(83, 10, 100, 0.9)" data-urlname="c2"  data-gradient="#overlay-radial-gradient" id="overlay-radial-gradient-color2-text">
+                    <input class="overlay-gradient-color color2 picker" value="rgba(2, 122, 233, 0.8)" id="overlay-gradient-color2">
+                    <input class="overlay-gradient-color color2 text" value="rgba(2, 122, 233, 0.8)" data-urlname="c2" data-gradient="#overlay-gradient" id="overlay-gradient-color2-text">
                   </div>
                 </div>
-                <select id="blending-mode" class="overlay-solid-color"  data-urlname="bm" >
-                  <option value="multiply" selected>multiply<option>
+                <select id="blending-mode" data-urlname="bm" >
+                  <option value="multiply" selected>multiply</option>
                   <option value="screen">screen</option>
                   <option value="overlay">overlay</option>
                   <option value="darken">darken</option>
@@ -165,7 +154,18 @@
                   <option value="saturation">saturation</option>
                   <option value="color">color</option>
                   <option value="saturation">luminosity</option>
-                  <option value="saturation">normal</option>
+                  <option value="normal">normal</option>
+                </select>
+                <select id="orientation" data-urlname="ot">
+                  <option value="linear-gradient(to_right" selected>horizontal&nbsp;&nbsp;→</option>
+                  <option value="linear-gradient(to_left" selected>horizontal&nbsp;&nbsp;←</option>
+                  <option value="linear-gradient(to_bottom">vertical&nbsp;&nbsp;↓</option>
+                  <option value="linear-gradient(to_top">vertical&nbsp;&nbsp;↑</option>
+                  <option value="linear-gradient(45deg">diagonal&nbsp;&nbsp;↗</option>
+                  <option value="linear-gradient(135deg">diagonal&nbsp;&nbsp;↘</option>
+                  <option value="linear-gradient(225deg">diagonal&nbsp;&nbsp;↙</option>
+                  <option value="linear-gradient(315deg">diagonal&nbsp;&nbsp;↖</option>
+                  <option value="radial-gradient(ellipse_at_center">radial&nbsp;&nbsp;○</option>
                 </select>
                 <div id="overlay-css"></div>
               </div>
@@ -180,10 +180,10 @@
                     <img src="/img/demo.jpg" id="demoimage" alt="Demo Image for displaying CSS filters and mix-blend-modes">
                   </div>
                   <div id="filter">
-                    <h5>HTML:</h5>
+                    <span class="titles-css"><h5>HTML:</h5>
                       <p><span>&lt;div class=&quot;myfilter&quot;&gt;&lt;img scr=&quot;my/path/to/image.jpg&quot;&gt;&lt;/div&gt;</span></p>
                       <br>
-                    <h5>CSS:</h5>
+                    <h5>CSS:</h5></span>
                     <span class="filter-css"></span>
                     <span class="overlay-css"></span>
                   </div>
@@ -279,6 +279,13 @@
             <p>Note: Presets do not reorder filters yet. Coming soon!</p>
             <small>courtesy of <a href="https://una.im/CSSgram/">CSSGram</a></small><br>
             <div class="row">
+              <!--
+              <option value="linear-gradient(to_right" selected>horizontal&nbsp;&nbsp;→</option>
+              <option value="linear-gradient(to_bottom">vertical&nbsp;&nbsp;↓</option>
+              <option value="linear-gradient(135deg">diagonal&nbsp;&nbsp;↘</option>
+              <option value="linear-gradient(45deg">diagonal&nbsp;&nbsp;↗</option>
+              <option value="radial-gradient(ellipse_at_center">radial&nbsp;&nbsp;○</option>
+            -->
               <div class="col-xs-3 col-sm-2">
                 <a href="#" class="preset _1977" data-contrast="1.1" data-brightness="1.1" data-saturate="1.3" data-blending-mode="screen" data-color1="rgba(243, 106, 188, 0.3)" data-gradient="#overlay-solid">
                   <img src="/img/dalles-thumb.jpg" alt="preset 1977">
@@ -286,13 +293,13 @@
                 <small>1977</small>
               </div>
               <div class="col-xs-3 col-sm-2">
-                <a href="#" class="preset aden" data-huerotate="-20" data-contrast="0.9" data-saturate="0.85" data-brightness="1.2" data-gradient="#overlay-linear-gradient" data-blending-mode="darken" data-color1="rgba(66, 10, 14, 0.2)" data-color2="rgba(66, 10, 14, 0.0)">
+                <a href="#" class="preset aden" data-huerotate="-20" data-contrast="0.9" data-saturate="0.85" data-brightness="1.2" data-gradient="#overlay-gradient" data-blending-mode="darken" data-color1="rgba(66, 10, 14, 0.2)" data-color2="rgba(66, 10, 14, 0.0)" data-orientation="linear-gradient(to_right">
                   <img src="/img/dalles-thumb.jpg" alt="preset aden">
                 </a><br>
                 <small>aden</small>
               </div>
               <div class="col-xs-3 col-sm-2">
-                  <a href="#" class="preset brooklyn" data-contrast="0.9" data-brightness="1.1" data-blending-mode="overlay" data-gradient="#overlay-radial-gradient" data-color1="rgba(168, 223, 193, 0.4)" data-color2="rgba(196, 183, 200, 0.99)">
+                  <a href="#" class="preset brooklyn" data-contrast="0.9" data-brightness="1.1" data-blending-mode="overlay" data-gradient="#overlay-gradient" data-color1="rgba(168, 223, 193, 0.4)" data-color2="rgba(196, 183, 200, 0.99)" data-orientation="radial-gradient(ellipse_at_center">
                   <img src="/img/dalles-thumb.jpg" alt="preset dalles">
                 </a><br>
                 <small>brooklyn</small>
@@ -304,19 +311,19 @@
                 <small>clarendon</small>
               </div>
               <div class="col-xs-3 col-sm-2">
-                  <a href="#" class="preset earlybird" data-contrast="0.9" data-sepia="0.2" data-blending-mode="overlay" data-gradient="#overlay-radial-gradient" data-color1="rgba(208, 186, 142, 0.98)" data-color2="rgba(54, 3, 9, 0.99)">
+                  <a href="#" class="preset earlybird" data-contrast="0.9" data-sepia="0.2" data-blending-mode="overlay" data-gradient="#overlay-gradient" data-color1="rgba(208, 186, 142, 0.98)" data-color2="rgba(54, 3, 9, 0.99)" data-orientation="radial-gradient(ellipse_at_center">
                   <img src="/img/dalles-thumb.jpg" alt="preset earlybird">
                 </a><br>
                 <small>earlybird</small>
               </div>
               <div class="col-xs-3 col-sm-2">
-                  <a href="#" class="preset gingham" data-brightness="1.05" data-huerotate="-10" data-blending-mode="darken"  data-gradient="#overlay-linear-gradient" data-color1="rgba(66, 10, 14, 0.2)" data-color2="rgba(66, 10, 14, 0.0)">
+                  <a href="#" class="preset gingham" data-brightness="1.05" data-huerotate="-10" data-blending-mode="darken"  data-gradient="#overlay-gradient" data-color1="rgba(66, 10, 14, 0.2)" data-color2="rgba(66, 10, 14, 0.0)" data-orientation="linear-gradient(to_right">
                   <img src="/img/dalles-thumb.jpg" alt="preset gingham">
                 </a><br>
                 <small>gingham</small>
               </div>
               <div class="col-xs-3 col-sm-2">
-                    <a href="#" class="preset hudson" data-brightness="1.2" data-contrast="0.9" data-saturate="1.1" data-blending-mode="multiply" data-gradient="#overlay-radial-gradient" data-color1="rgba(166, 177, 255, 0.5)" data-color2="rgba(52, 33, 54, 0.5)">
+                    <a href="#" class="preset hudson" data-brightness="1.2" data-contrast="0.9" data-saturate="1.1" data-blending-mode="multiply" data-gradient="#overlay-gradient" data-color1="rgba(166, 177, 255, 0.5)" data-color2="rgba(52, 33, 54, 0.5)" ata-orientation="radial-gradient(ellipse_at_center">
                   <img src="/img/dalles-thumb.jpg" alt="preset hudson">
                 </a><br>
                 <small>hudson</small>
@@ -334,13 +341,13 @@
                 <small>lark</small>
               </div>
               <div class="col-xs-3 col-sm-2">
-                  <a href="#" class="preset lofi" data-saturate="1.1" data-contrast="1.5" data-blending-mode="multiply"  data-gradient="#overlay-radial-gradient" data-color1="rgba(0, 0, 0, 0.0)" data-color2="rgba(34, 34, 34, 0.99)">
+                  <a href="#" class="preset lofi" data-saturate="1.1" data-contrast="1.5" data-blending-mode="multiply"  data-gradient="#overlay-gradient" data-color1="rgba(0, 0, 0, 0.0)" data-color2="rgba(34, 34, 34, 0.99)" data-orientation="radial-gradient(ellipse_at_center">
                   <img src="/img/dalles-thumb.jpg" alt="preset lofi">
                 </a><br>
                 <small>lofi</small>
               </div>
               <div class="col-xs-3 col-sm-2">
-                  <a href="#" class="preset mayfair" data-contrast="1.1" data-saturate="1.1" data-blending-mode="overlay" data-gradient="#overlay-radial-gradient" data-color1="rgba(255, 255, 255, 0.4)" data-color2="rgba(255, 200, 200, 0.3)" >
+                  <a href="#" class="preset mayfair" data-contrast="1.1" data-saturate="1.1" data-blending-mode="overlay" data-gradient="#overlay-gradient" data-color1="rgba(255, 255, 255, 0.4)" data-color2="rgba(255, 200, 200, 0.3)" data-orientation="radial-gradient(ellipse_at_center">
                   <img src="/img/dalles-thumb.jpg" alt="preset mayfair">
                 </a><br>
                 <small>mayfair</small>
@@ -364,7 +371,7 @@
                 <small>reyes</small>
               </div>
               <div class="col-xs-3 col-sm-2">
-                  <a href="#" class="preset rise"  data-brightness="1.1" data-contrast="0.85" data-saturate="0.75"  data-blending-mode="multiply" data-color1="rgba(236, 205, 169, 0.15)" data-color2="rgba(50, 30, 7, 0.4)" data-gradient="#overlay-radial-gradient">
+                  <a href="#" class="preset rise"  data-brightness="1.1" data-contrast="0.85" data-saturate="0.75"  data-blending-mode="multiply" data-color1="rgba(236, 205, 169, 0.15)" data-color2="rgba(50, 30, 7, 0.4)" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse_at_center">
                   <img src="/img/dalles-thumb.jpg" alt="preset rise">
                 </a><br>
                 <small>rise</small>
@@ -376,7 +383,7 @@
                 <small>slumber</small>
               </div>
               <div class="col-xs-3 col-sm-2">
-                  <a href="#" class="preset toaster" data-contrast="1.5" data-brightness="0.9" data-blending-mode="screen" data-color1="rgba(128, 78, 15, 0.99)" data-color2="rgba(59, 0, 59, 0.99)" data-gradient="#overlay-radial-gradient">
+                  <a href="#" class="preset toaster" data-contrast="1.5" data-brightness="0.9" data-blending-mode="screen" data-color1="rgba(128, 78, 15, 0.99)" data-color2="rgba(59, 0, 59, 0.99)" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse_at_center">
                   <img src="/img/dalles-thumb.jpg" alt="preset toaster">
                 </a><br>
                 <small>toaster</small>
@@ -396,7 +403,7 @@
                 <small>willow</small>
               </div>
               <div class="col-xs-3 col-sm-2">
-                  <a href="#" class="preset xpro2" data-sepia="0.3" data-blending-mode="color-burn" data-color1="rgba(230, 231, 224, 0.2)" data-color2="rgba(43, 42, 161, 0.79)" data-gradient="#overlay-radial-gradient">
+                  <a href="#" class="preset xpro2" data-sepia="0.3" data-blending-mode="color-burn" data-color1="rgba(230, 231, 224, 0.2)" data-color2="rgba(43, 42, 161, 0.79)" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse_at_center">
                   <img src="/img/dalles-thumb.jpg" alt="preset xpro2">
                 </a>
               <br>
@@ -546,6 +553,8 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-12">
+              <p>Q: <strong>When I share my filter URL, why does it revert to the demo image?</strong>:</p>
+              <p>While already technically feasible, this isn't a planned featured (for now) to ensure some level of user-experience.</p>
               <p>Q: <strong>Can I use Filters on Gifs, SVGs, Videos etc?</strong>:</p>
               <p>Yes!</p>
               <p>Q: <strong>Does this degrade gracefully</strong>:</p>
@@ -563,7 +572,7 @@
           <div class="col-sm-12">
             <h3>What's to come?</h3>
             <p>This project is active development and plenty-o-features are on the way. In no particular order, planned features:</p>
-            <p>Preset reordering of filters. Show/Hide Presets and demo images. concat JS. More documentation / examples. Spiffier UI. Tooltips. Upload your own image. Better Touch Support. Better responsive behavior. Move project to GitHub after v1.0. Actual Logo.
+            <p>Saved URL / Preset reordering of filters. Show/Hide Presets and demo images.  More documentation / examples. Spiffier UI. Tooltips. Upload your own image. Better Touch Support. Better responsive behavior. Concat JS/set up grunt, Move project to GitHub after v1.0. Actual Logo.
             </p>
             <small><a href="http://greggant.com">by Greg Gant</a></small>
           </div>

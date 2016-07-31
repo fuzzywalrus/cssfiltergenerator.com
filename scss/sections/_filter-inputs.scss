@@ -49,6 +49,9 @@ input[type=text] {
 #imageURL {
 	max-width: 100%;
 	width: 290px;
+	@media (min-width: $screen-sm-min) {
+		width: 365px;
+	}
 }
 //select
 #blending-mode {

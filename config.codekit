@@ -204,7 +204,7 @@
 		"outputAbbreviatedPath": "\/js\/app-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1,
-		"outputStyle": 1,
+		"outputStyle": 0,
 		"syntaxCheckerStyle": 0
 		},
 	"\/js\/source\/handlebars-v4.0.5.js": {

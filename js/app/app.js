@@ -20,6 +20,7 @@
             var context = {myBlending: myBlending, myGradient: myGradient};
             var html    = template(context);
             $(".overlay-css").html(template(context));
+            console.log("writeOverlay");
           },
         },
         urlShare : {
@@ -33,8 +34,11 @@
                 var urlVarName = $(this).data("urlname");
                 var myDefaultVal  = $(this).attr('value'); //get the default for comparison
                 var myCurrentValue = $(this).val();  //get the current value
-                var myValue = myCurrentValue.replace(/\s/g, ''); // remove spaces
-                myURL = urlVarName + "=" + myValue + "&" ;
+                if (myCurrentValue != null) {
+                  var myCurrentValue = myCurrentValue.replace(/\s/g, ''); // remove spaces
+                }
+
+                myURL = urlVarName + "=" + myCurrentValue + "&" ;
                 if ( $(this).is(':disabled') === false && $(this).is(':visible') ) { //only get the visible inputs
                   if (myCurrentValue !== myDefaultVal) { // make sure we're not stashing the default values into the URL since its messy :)
                     fullURL = myURL + fullURL;
@@ -53,11 +57,12 @@
              $.each(document.location.search.substr(1).split('&'),function(c,q){ // http://stackoverflow.com/questions/4656843/jquery-get-querystring-from-url
                var i = q.split('=');
                queries[i[0].toString()] = i[1].toString();
+               console.log(queries);
              });
              $.each( queries, function( key, value ) {
                 var query = "[data-urlname*='"  + key + "']"; //data attributes for both range & text input
                 var query2 = "[data-pair*='"  + key + "']";
-                console.log(query +" "+ value);
+                //console.log(query +" "+ value);
                 $(query).val(value);
                 $(query2).val(value);
             });
@@ -65,13 +70,14 @@
             if(window.location.href.indexOf("r=") > -1) {
              var newString =  String(queries["r"]);
               var myActiveOverlay = 'input[value="#' + newString + '"]';
-              console.log(myActiveOverlay);
               $(myActiveOverlay).prop("checked", true).change();
               Engine.ui.updateColorPicker(".color1.text",  ".color1.picker" );
             }
             //no point in tryig to set the second color if it doesn't exist
             if(window.location.href.indexOf("c2=")> -1) {
               Engine.ui.updateColorPicker(".color2.text",  ".color2.picker" );
+            } else {
+              Engine.ui.updateColorPicker(".color1.text",  ".color.picker" ); //if there isn't a second color, then update the solid color picker
             }
              console.log(queries);
              $("#sepia-a").change();
@@ -104,6 +110,7 @@
 					},
 					onChangesEvents : function() {
 						//when sliders are changed
+            console.log("onChangesEvents");
 						$("#contain input").change(function() {
 							var filters = "";
 							var hoverState = "";
@@ -124,6 +131,9 @@
 						  });
               Engine.template.writeCSS(filters, hoverState);
 						});
+            $("#orientation").change(function() {
+              $("#blending-mode").change();
+            });
 					},
 					newimage : function (){
 						//Super simple demo image swap
@@ -139,6 +149,7 @@
 							var demoimage = $(this).val();
 							$("#demoimage").attr("src", demoimage);
 							$(".preset img").attr("src", demoimage);
+              console.log("imageURL");
 						});
 					},
 					showhidefilters : function (){
@@ -176,23 +187,33 @@
 					},
 					activeOverlay : function() {
 						//New overlay functionality
+            console.log("activeOverlay");
 						$('input[type=radio][name=overlay]').change(function() {
 							var myChecked = $("input[type=radio][name=overlay]:checked").val();
 							if ( myChecked == "#overlay-radio-none") {
 								Engine.ui.killOverlay();
-							} else {
+							} else if ( myChecked == "#overlay-solid") {
+                $('.overlay-group').hide();
+								$(myChecked).css('display', 'inline-block');
+								$("#blending-mode").css('display', 'inline-block');
+                $("#orientation").hide();
+                $(".overlay-group input:visible").change();
+              }  else {
 								$('.overlay-group').hide();
 								$(myChecked).css('display', 'inline-block');
 								$("#blending-mode").css('display', 'inline-block');
+                $("#orientation").css('display', 'inline-block');
 								$(".overlay-group input:visible").change();
 							}
 						});
 					},
           killOverlay : function (){
+            console.log("killOverlay");
             $('.overlay-group').hide();
             $("#filter .overlay-css").html("");
             $("#overlay-css").html("");
             $("#blending-mode").hide();
+            $("#orientation").hide();
           },
 					sorting : function(){
 						//jQuery UI init
@@ -217,71 +238,53 @@
 							hide: function (color) { Engine.ui.updateColor("#overlay-solid-color-text", color); }
 						});
 						//overlay-linear-gradient color 1
-						$('#overlay-linear-gradient-color1').spectrum({
+						$('#overlay-gradient-color1').spectrum({
 							preferredFormat: "rgb",
 					    showInput: true,
 							showAlpha: true,
 					    showPalette: false,
 							color: 'rgba(255, 0, 134, 0.4)',
-							move: function (color) { Engine.ui.updateColor("#overlay-linear-gradient-color1-text", color); },
-							hide: function (color) { Engine.ui.updateColor("#overlay-linear-gradient-color1-text", color); }
+							move: function (color) { Engine.ui.updateColor("#overlay-gradient-color1-text", color); },
+							hide: function (color) { Engine.ui.updateColor("#overlay-gradient-color1-text", color); }
 						});
 						//overlay-linear-gradient color 2
-						$('#overlay-linear-gradient-color2').spectrum({
+						$('#overlay-gradient-color2').spectrum({
 							preferredFormat: "rgb",
 					    showInput: true,
 							showAlpha: true,
 					    showPalette: false,
 							color: 'rgba(16, 255, 0, 0.4)',
-							move: function (color) { Engine.ui.updateColor("#overlay-linear-gradient-color2-text", color); },
-							hide: function (color) { Engine.ui.updateColor("#overlay-linear-gradient-color2-text", color); }
-						});
-						//overlay-linear-gradient color 1
-						$('#overlay-radial-gradient-color1').spectrum({
-							preferredFormat: "rgb",
-					    showInput: true,
-							showAlpha: true,
-					    showPalette: false,
-							color: 'rgba(100, 10, 10, 0.9)',
-							move: function (color) { Engine.ui.updateColor("#overlay-radial-gradient-color1-text", color); },
-							hide: function (color) { Engine.ui.updateColor("#overlay-radial-gradient-color1-text", color); }
-						});
-						//overlay-linear-gradient color 2
-						$('#overlay-radial-gradient-color2').spectrum({
-							preferredFormat: "rgb",
-					    showInput: true,
-							showAlpha: true,
-					    showPalette: false,
-							color: 'rgba(83, 10, 100, 0.9)',
-							move: function (color) { Engine.ui.updateColor("#overlay-radial-gradient-color2-text", color); },
-							hide: function (color) { Engine.ui.updateColor("#overlay-radial-gradient-color2-text", color); }
+							move: function (color) { Engine.ui.updateColor("#overlay-gradient-color2-text", color); },
+							hide: function (color) { Engine.ui.updateColor("#overlay-gradient-color2-text", color); }
 						});
 
 						$('.overlay-solid-color').change(function() {
 							//console.log("solid");
 							var myGradient = $("#overlay-solid-color-text").val();
 							var myBlending = $("#blending-mode").val();
+              console.log("overlay-solid-color:" + myGradient);
               Engine.template.writeOverlay(myBlending, myGradient);
 						});
-
-						$('.overlay-linear-gradient-color').change(function() {
-							//console.log("gradient");
-							var myColor1 = $("#overlay-linear-gradient-color1-text").val();
-							var myColor2 = $("#overlay-linear-gradient-color2-text").val();
-							var myBlending = $("#blending-mode").val();
-							var myGradient = "linear-gradient(to bottom,"+ myColor1 +" 0%, "+ myColor2 +" 100%);"
+            $('.overlay-gradient-color').change(function() {
+              //console.log("gradient");
+              var myColor1 = $("#overlay-gradient-color1-text").val();
+              var myColor2 = $("#overlay-gradient-color2-text").val();
+              var myBlending = $("#blending-mode").val();
+              var orientation = $("#orientation").val();
+              orientation = orientation.replace(/_/g," ");
+              console.log("orientation:" + orientation);
+              var myGradient = orientation + ","+ myColor1 +" 0%, "+ myColor2 +" 100%);"
               Engine.template.writeOverlay(myBlending, myGradient);
-						});
-
-						$('.overlay-radial-gradient-color').change(function() {
-							//console.log("radial");
-							var myColor1x = $("#overlay-radial-gradient-color1-text").val();
-							var myColor2x = $("#overlay-radial-gradient-color2-text").val();
-							var myBlending = $("#blending-mode").val();
-							var myGradient = "radial-gradient(ellipse at center, " + myColor1x +" 0%, "+ myColor2x +" 100%);"
-              Engine.template.writeOverlay(myBlending, myGradient);
-						});
+            });
 				 },
+         changeSelect : function() {
+           $("#orientation").change(function() {
+              $("input[type=radio]").change()
+           });
+           $("#blending-mode").change(function(){
+             $("input[type=radio]").change()
+           });
+         },
 				 presetSet : function(filterName, newValue) {
 					 //use for presets
 					 var mySliderNameA = "#" + filterName + "-a";
@@ -296,18 +299,21 @@
 					 }
 				 },
 				 gradientCheck : function(obj) {
-           // Used by presents to change the gradients
+           // Used by presets to change the gradients
 					 var gradient = $(obj).data("gradient");
            gradient = '[value="' + gradient + '"]';
 					 $("input[name=overlay]").filter(gradient).prop("checked", true)
 					 var color1 = $(obj).data("color1");
 					 var color2 = $(obj).data("color2");
+           var orientation = $(obj).data("orientation");
 					 $(".overlay-group input.color1").val(color1);
 					 $(".overlay-group input.color2").val(color2);
 					 var blendingMode = $(obj).data("blending-mode");
            $("#blending-mode").val(blendingMode);
+           $("#orientation").val(orientation);
            Engine.ui.updateColorPicker(".overlay-group input.color1.text", ".overlay-group input.color1.picker");
            Engine.ui.updateColorPicker(".overlay-group input.color2.text", ".overlay-group input.color2.picker");
+           console.log("gradientCheck");
 				 },
          updateColorPicker : function(target, destination) {
              //Updates the colorPicker swatch to match the color value in the text field.
@@ -316,9 +322,11 @@
          updateColor : function(element, color) {
            $(element).val( (color ? color : "") );
            $(element).change();
+           console.log("UpdateColor");
          },
          flipDemoImage : function() {
            $(".css-tab").click(function() {
+             console.log("Css-Tab");
              event.preventDefault();
              var el = $(this);
              if (el.text() == el.data("text-swap")) {
@@ -358,6 +366,7 @@
 	Engine.ui.activeOverlay();
 	Engine.ui.colorPick();
   Engine.ui.flipDemoImage();
+  Engine.ui.changeSelect();
   Engine.urlShare.createURL();
   Engine.urlShare.getURL();
 });
