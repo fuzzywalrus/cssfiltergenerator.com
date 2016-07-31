@@ -1,4 +1,7 @@
-# CSSFilterGenerator.com Source Code
+# [CSSFilterGenerator.com](http://www.cssfiltergenerator.com/) Source Code
+
+CSS filters allow graphical effects, leverging inbrowser post-processing of images. Create and share Instagram like filters with non-destructive edits and/or animated effects for use in your web projects.
+
 
 ###Site Structure
 
