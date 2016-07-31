@@ -3,6 +3,28 @@
   var Engine;
     jQuery(document).ready(function() {
       Engine = {
+        template : {
+          //Mustachejs calls
+          writeCSS : function(filters, hoverState) {
+            //writes the css filter to the dom
+            var source   = $("#filter-template").html();
+            var template = Handlebars.compile(source);
+            var context = {filters: filters, hoverState: hoverState};
+            var html    = template(context);
+            $(".filter-css").html(template(context));
+          },
+          writeOverlay : function(myBlending, myGradient) {
+            //writes the css filter to the dom
+            var source   = $("#overlay-template").html();
+            var template = Handlebars.compile(source);
+            var context = {myBlending: myBlending, myGradient: myGradient};
+            var html    = template(context);
+            $(".overlay-css").html(template(context));
+          },
+        },
+        urlShare : {
+
+        },
         ui: {
 					sliders : function () {
 						//on change events for sliders
@@ -59,11 +81,12 @@
                queries[i[0].toString()] = i[1].toString();
              });
              $.each( queries, function( key, value ) {
-                var query = "[data-urlname="  + key + "]";
-                console.log(query);
+                var query = "[data-urlname*='"  + key + "']";
+                var query2 = "[data-pair*='"  + key + "']";
+                console.log(query +" "+ value);
                 $(query).val(value);
-                $("#sepia-a").change();
-                $("#sepia-b").change();
+                $(query2).val(value);
+                //$("#sepia-b").change();
             });
             if(window.location.href.indexOf("r=") > -1) {
              var newString =  String(queries["r"]);
@@ -77,7 +100,10 @@
               Engine.ui.updateColorPicker(".color2.text",  ".color2.picker" );
             }
              console.log(queries);
+             $("#sepia-a").change();
+
           },
+
 					onChangesEvents : function() {
 						//when sliders are changed
 						$("#contain input").change(function() {
@@ -98,15 +124,7 @@
 									hoverState = hoverState + concatMehover;
 								}
 						  });
-							// ugly writes to DOM, to be replaced;
-							$("#filter .filter-css").html("<p>" + ".myfilter { <p>&nbsp;&nbsp;&nbsp; filter: " + filters + ";</p> <p>&nbsp;&nbsp;&nbsp; -webkit-filter: " + filters +  ";  <p>&nbsp;&nbsp;&nbsp; -moz-filter: " + filters + "; <p>}");
-							$("#inlinestyle").html("<style> #filter-wrapper:hover {"+ "filter: " + hoverState + " !important; -webkit-filter: " + hoverState + " !important;  -moz-filter: " + hoverState + " !important;" +"}</style>")
-							$("#filter-wrapper").attr("style", "filter: " + filters + "; -webkit-filter: " + filters + ";  -moz-filter: " + filters + ";");
-							$("img[data-fullsize]").attr("style", "filter: " + filters + "; -webkit-filter: " + filters + ";  -moz-filter: " + filters + ";");
-							if ( $("#overlay-radio-none").prop("checked") ) {
-								$("#filter .overlay-css").html("");
-							   $("#overlay-css").html("");
-							}
+              Engine.template.writeCSS(filters, hoverState);
 						});
 					},
 					newimage : function (){
@@ -197,7 +215,6 @@
 							move: function (color) { Engine.ui.updateColor("#overlay-solid-color-text", color); },
 							hide: function (color) { Engine.ui.updateColor("#overlay-solid-color-text", color); }
 						});
-
 						//overlay-linear-gradient color 1
 						$('#overlay-linear-gradient-color1').spectrum({
 							preferredFormat: "rgb",
@@ -218,7 +235,6 @@
 							move: function (color) { Engine.ui.updateColor("#overlay-linear-gradient-color2-text", color); },
 							hide: function (color) { Engine.ui.updateColor("#overlay-linear-gradient-color2-text", color); }
 						});
-
 						//overlay-linear-gradient color 1
 						$('#overlay-radial-gradient-color1').spectrum({
 							preferredFormat: "rgb",
@@ -240,43 +256,29 @@
 							hide: function (color) { Engine.ui.updateColor("#overlay-radial-gradient-color2-text", color); }
 						});
 
-
 						$('.overlay-solid-color').change(function() {
-							console.log("solid");
-							var myColor = $("#overlay-solid-color-text").val();
+							//console.log("solid");
+							var myGradient = $("#overlay-solid-color-text").val();
 							var myBlending = $("#blending-mode").val();
-							//ugly writes to the DOM
-							$("#filter .overlay-css").html("<p>" + ".myfilter {<p>&nbsp;&nbsp;&nbsp;position:relative; <p>} <p>.myfilter:after{ <p>&nbsp;&nbsp;&nbsp; content: ''; <p>&nbsp;&nbsp;&nbsp; display: block;  <p>&nbsp;&nbsp;&nbsp;  top: 0;  <p>&nbsp;&nbsp;&nbsp;  left: 0;  <p>&nbsp;&nbsp;&nbsp;  height: 100%;  <p>&nbsp;&nbsp;&nbsp;  width: 100%;  <p>&nbsp;&nbsp;&nbsp; position: absolute;  <p>&nbsp;&nbsp;&nbsp; background-color:" + myColor + ";  <p>&nbsp;&nbsp;&nbsp; mix-blend-mode: " + myBlending + "; <p> }");
-              var myHover = "<style>#filter-wrapper:hover:after {opacity: 0;}</style>";
-              myColor = "<style>#filter-wrapper:after{ background-color:" + myColor +"; mix-blend-mode: "  + myBlending + "; }</style>";
-							$("#overlay-css").html(myColor  + myHover);
+              Engine.template.writeOverlay(myBlending, myGradient);
 						});
 
 						$('.overlay-linear-gradient-color').change(function() {
-							console.log("gradient");
+							//console.log("gradient");
 							var myColor1 = $("#overlay-linear-gradient-color1-text").val();
 							var myColor2 = $("#overlay-linear-gradient-color2-text").val();
 							var myBlending = $("#blending-mode").val();
 							var myGradient = "linear-gradient(to bottom,"+ myColor1 +" 0%, "+ myColor2 +" 100%);"
-							//ugly writes to the DOM
-							$("#filter .overlay-css").html("<p>" + ".myfilter {<p>&nbsp;&nbsp;&nbsp;position:relative; <p>} <p>.myfilter:after{ <p>&nbsp;&nbsp;&nbsp; content: ''; <p>&nbsp;&nbsp;&nbsp; display: block;  <p>&nbsp;&nbsp;&nbsp;  top: 0;  <p>&nbsp;&nbsp;&nbsp;  left: 0;  <p>&nbsp;&nbsp;&nbsp;  height: 100%;  <p>&nbsp;&nbsp;&nbsp;  width: 100%;  <p>&nbsp;&nbsp;&nbsp; position: absolute;  <p>&nbsp;&nbsp;&nbsp; background:" + myGradient + ";  <p>&nbsp;&nbsp;&nbsp; mix-blend-mode: " + myBlending + "; <p> }");
-              var myHover = "<style>#filter-wrapper:hover:after {opacity: 0;}</style>";
-            	myGradient = "<style>#filter-wrapper:after{ background:" + myGradient +"; mix-blend-mode: "  + myBlending + "; }</style>";
-
-							$("#overlay-css").html(myGradient + myHover);
+              Engine.template.writeOverlay(myBlending, myGradient);
 						});
 
 						$('.overlay-radial-gradient-color').change(function() {
-							console.log("radial");
+							//console.log("radial");
 							var myColor1x = $("#overlay-radial-gradient-color1-text").val();
 							var myColor2x = $("#overlay-radial-gradient-color2-text").val();
 							var myBlending = $("#blending-mode").val();
 							var myGradient = "radial-gradient(ellipse at center, " + myColor1x +" 0%, "+ myColor2x +" 100%);"
-							//ugly writes to the DOM
-							$("#filter .overlay-css").html("<p>" + ".myfilter {<p>&nbsp;&nbsp;&nbsp;position:relative; <p>} <p>.myfilter:after{ <p>&nbsp;&nbsp;&nbsp; content: ''; <p>&nbsp;&nbsp;&nbsp; display: block;  <p>&nbsp;&nbsp;&nbsp;  top: 0;  <p>&nbsp;&nbsp;&nbsp;  left: 0;  <p>&nbsp;&nbsp;&nbsp;  height: 100%;  <p>&nbsp;&nbsp;&nbsp;  width: 100%;  <p>&nbsp;&nbsp;&nbsp; position: absolute;  <p>&nbsp;&nbsp;&nbsp; background:" + myGradient + ";  <p>&nbsp;&nbsp;&nbsp; mix-blend-mode: " + myBlending + "; <p> }");
-              var myHover = "<style>#filter-wrapper:hover:after {opacity: 0;}</style>";
-            	myGradient = "<style>#filter-wrapper:after{ background:" + myGradient +"; mix-blend-mode: "  + myBlending + "; }</style>";
-							$("#overlay-css").html(myGradient + myHover);
+              Engine.template.writeOverlay(myBlending, myGradient);
 						});
 				 },
 				 presetSet : function(filterName, newValue) {
@@ -306,7 +308,6 @@
            $("#blending-mode").val(blendingMode);
            Engine.ui.updateColorPicker(".overlay-group input.color1.text", ".overlay-group input.color1.picker");
            Engine.ui.updateColorPicker(".overlay-group input.color2.text", ".overlay-group input.color2.picker");
-
 				 },
          updateColorPicker : function(target, destination) {
              //Updates the colorPicker swatch to match the color value in the text field.
@@ -333,10 +334,8 @@
 						 var mySepia = $(this).data("sepia");
 						 Engine.ui.presetSet("sepia", mySepia);
 						 Engine.ui.gradientCheck(this);
-
 						 $("#sepia-a").change();//dummy change to trigger change() events.
 						 $("input[type=radio]").change();//dummy change to trigger change() events.
-
 					 });
 				}
 		} // ui
