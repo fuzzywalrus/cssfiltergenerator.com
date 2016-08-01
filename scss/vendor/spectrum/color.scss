@@ -370,13 +370,15 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
     display:inline-block;
     *zoom: 1;
     *display: inline;
-    border: solid 1px #91765d;
-    background: #eee;
-    color: #333;
+    border: solid 2px rgb(70, 76, 90);
+    //background: #eee;
+    background: $dark-metal;
+    //color: #333;
+    color: white;
     vertical-align: middle;
 }
 .sp-replacer:hover, .sp-replacer.sp-active {
-    border-color: #F0C49B;
+    border-color: #8e9ab8;
     color: #111;
 }
 .sp-replacer.sp-disabled {

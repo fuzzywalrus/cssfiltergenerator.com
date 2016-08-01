@@ -45,6 +45,20 @@ input[type=text] {
 	font-family:  $font-sans-serif;
 	font-weight: 500;
 }
+select {
+	 -webkit-appearance: none;
+	font-family:  $font-sans-serif;
+	background-color: $dark-metal;
+	border: 2px solid  rgb(70, 76, 90);
+	border-radius: 0px;
+	height: 31px;
+	padding-left: 10px;
+	padding-right: 30px;
+	background: url("../img/down.svg");
+	background-size: 10px;
+	background-position: 95% center ;
+	background-repeat: no-repeat;
+}
 //url
 #imageURL {
 	max-width: 100%;
@@ -54,6 +68,6 @@ input[type=text] {
 	}
 }
 //select
-#blending-mode {
+#blending-mode, #orientation {
 	display: none;
 }
