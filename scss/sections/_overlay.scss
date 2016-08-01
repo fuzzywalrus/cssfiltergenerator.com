@@ -9,7 +9,7 @@
 	}
 }
 .overlay-group {
-	margin-top: 5px;
+	margin-top: -10px;
 	display: none;
 	.wrapper {
 		margin-top: 0.5em;
@@ -22,4 +22,17 @@
 	border: 2px solid  rgb(70, 76, 90);
 	font-family:  $font-sans-serif;
 	font-weight: 500;
+}
+.fixed-col-1, .fixed-col-2 {
+	float: left;
+	position: relative;
+min-height: 1px;
+padding-left: 20px;
+padding-right: 20px;
+}
+.fixed-col-1 {
+	width: 125px
+}
+.fix-col-2 {
+	width: 490px;
 }

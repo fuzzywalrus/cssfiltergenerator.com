@@ -115,16 +115,18 @@
 							var filters = "";
 							var hoverState = "";
 							$( "input[type=range]" ).each(function() {
-								var myValue = $(this).val();
+								var myCurrentVal = $(this).val(); // current
 							 	var filterName = $(this).data("filter");
 								var myDefaultVal  = $(this).attr('value'); //gets the default value of the input for use for hover state
 								var dataAdditional = $(this).data("additional"); //appends the input data with suffix to relevant CSS
 								if (dataAdditional == undefined) { //error handler
 									dataAdditional = "";
 								}
-						    var concatMe =  filterName + "("+ myValue + dataAdditional +") ";
+						    var concatMe =  filterName + "("+ myCurrentVal + dataAdditional +") ";
 								var concatMehover = filterName + "(" + myDefaultVal + ") "; //hover state
-								if ($(this).is(':disabled') === false) {
+                console.log("onChangesEvents " + myCurrentVal + " " + myDefaultVal)
+
+								if ($(this).is(':disabled') === false && myDefaultVal !== myCurrentVal) {
 									filters = filters + concatMe;
 									hoverState = hoverState + concatMehover;
 								}

@@ -8,6 +8,7 @@ $light-grey: rgb(88, 96, 114);
 @import "sections/tables";
 @import "sections/typography";
 @import "sections/header";
+@import "sections/interface";
 @import "sections/icon";
 @import "sections/overlay";
 @import "sections/intro";
@@ -22,10 +23,9 @@ $light-grey: rgb(88, 96, 114);
 @import "sections/fallbacks-ie-hacks";
 @import "vendor/spectrum/color";
 @import "vendor/cssgram/cssgram.min";
-.inferface {
-	background: $dark-cobalt;
-	padding-bottom: 2em;
-}
+
+
+
 body {
 	background: $dark-grey;
 	background: rgba(33, 37, 43, 1);
