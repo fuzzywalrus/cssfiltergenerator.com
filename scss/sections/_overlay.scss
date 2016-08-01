@@ -1,7 +1,7 @@
 //overlay
 .overlay {
 	input[type="radio"] {
-		margin-bottom: 5px;
+		margin-bottom: 8px;
 		margin-right: 5px;
 	}
 	.sp-replacer {
@@ -26,12 +26,13 @@
 .fixed-col-1, .fixed-col-2 {
 	float: left;
 	position: relative;
-min-height: 1px;
-padding-left: 20px;
-padding-right: 20px;
+	min-height: 1px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 .fixed-col-1 {
-	width: 125px
+	width: 125px;
+	margin-top: 0.5em;
 }
 .fix-col-2 {
 	width: 490px;

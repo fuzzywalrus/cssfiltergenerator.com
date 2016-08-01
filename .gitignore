@@ -1,2 +1,12 @@
 scss/.sass-cache
 css/main.css.map
+node_modules
+_build/node_modules
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+# Icon
+css/main-min.css.map
+css/main.prefixed.css

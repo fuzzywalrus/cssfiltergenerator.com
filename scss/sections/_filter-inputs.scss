@@ -68,6 +68,13 @@ select {
 	}
 }
 //select
+.selects {
+	display:inline-block
+}
 #blending-mode, #orientation {
 	display: none;
+	margin-top: 0.5em;
+	min-width: 130px;
+	margin-bottom: 0.5em;
+	margin-left: 12px;
 }

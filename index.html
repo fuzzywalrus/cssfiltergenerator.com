@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,200' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Merriweather:700,400,300' rel='stylesheet' type='text/css'>
-    <link href='/css/main.css' rel='stylesheet' type='text/css'>
+    <link href='/css/main-min.css' rel='stylesheet' type='text/css'>
     <!--facebook-->
     <meta property="og:url"                content="http://www.CSSfiltergenerator.com" />
     <meta property="og:type"               content="website" />
@@ -192,6 +192,7 @@
                     <input class="overlay-gradient-color color2 text" value="rgba(2, 122, 233, 0.8)" data-urlname="c2" data-gradient="#overlay-gradient" id="overlay-gradient-color2-text">
                   </div>
                 </div>
+                <div class="selects">
                 <select id="blending-mode" data-urlname="bm" >
                   <option value="multiply" selected>multiply</option>
                   <option value="screen">screen</option>
@@ -221,6 +222,7 @@
                   <option value="linear-gradient(315deg">diagonal&nbsp;&nbsp;↖</option>
                   <option value="radial-gradient(ellipse_at_center">radial&nbsp;&nbsp;○</option>
                 </select>
+                </div>
                 <div id="overlay-css"></div>
               </div>
             </div>
@@ -291,13 +293,6 @@
             <p>Note: Presets do not reorder filters yet. Coming soon!</p>
             <small>courtesy of <a href="https://una.im/CSSgram/">CSSGram</a></small><br>
             <div class="row">
-              <!--
-              <option value="linear-gradient(to_right" selected>horizontal&nbsp;&nbsp;→</option>
-              <option value="linear-gradient(to_bottom">vertical&nbsp;&nbsp;↓</option>
-              <option value="linear-gradient(135deg">diagonal&nbsp;&nbsp;↘</option>
-              <option value="linear-gradient(45deg">diagonal&nbsp;&nbsp;↗</option>
-              <option value="radial-gradient(ellipse_at_center">radial&nbsp;&nbsp;○</option>
-            -->
               <div class="col-xs-3 col-sm-2">
                 <a href="#" class="preset _1977" data-contrast="1.1" data-brightness="1.1" data-saturate="1.3" data-blending-mode="screen" data-color1="rgba(243, 106, 188, 0.3)" data-gradient="#overlay-solid">
                   <img src="/img/dalles-thumb.jpg" alt="preset 1977">
@@ -585,10 +580,8 @@
            <h3>What's to come?</h3>
            <p>This project is active development and plenty-o-features are on the way. In no particular order, planned features:</p>
            <p>Saved URL / Preset reordering of filters. Show/Hide Presets and demo images.  More documentation / examples. Spiffier UI. Tooltips. Upload your own image. Better Touch Support. Better responsive behavior. Concat JS/set up grunt, Move project to GitHub after v1.0. Actual Logo.
-           <p>Saved URL / Preset reordering of filters. Show/Hide Presets and demo images.  More documentation / examples. Spiffier UI. Tooltips. Upload your own image. Better Touch Support. Better responsive behavior. Concat JS/set up grunt, Actual Logo.
            </p>
-           <small><a href="http://greggant.com">by Greg Gant</a></small>
-           <small><a href="http://greggant.com">by Greg Gant</a>, See this project on <a href="https://github.com/fuzzywalrus/https-fuzzywalrus-bitbucket.org-fuzzywalrus-cssfiltergenerator.com">Github</a></small>
+           <small><a href="http://greggant.com">by Greg Gant,</a> See this project on <a href="https://github.com/fuzzywalrus/https-fuzzywalrus-bitbucket.org-fuzzywalrus-cssfiltergenerator.com">Github</a></small>
          </div>
        </div>
      </div>
@@ -599,12 +592,10 @@
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script src="/js/source/handlebars-v4.0.5.js"></script>
     <!--
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://raw.githubusercontent.com/furf/jquery-ui-touch-punch/master/jquery.ui.touch-punch.min.js"></script>
     -->
-    <script src="/js/source/spectrum.min.js"></script>
     <script src="/js/app-min.js"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

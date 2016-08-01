@@ -34,8 +34,8 @@
                 var urlVarName = $(this).data("urlname");
                 var myDefaultVal  = $(this).attr('value'); //get the default for comparison
                 var myCurrentValue = $(this).val();  //get the current value
-                if (myCurrentValue != null) {
-                  var myCurrentValue = myCurrentValue.replace(/\s/g, ''); // remove spaces
+                if (myCurrentValue !== null) {
+                  myCurrentValue = myCurrentValue.replace(/\s/g, ''); // remove spaces
                 }
 
                 myURL = urlVarName + "=" + myCurrentValue + "&" ;
@@ -68,7 +68,7 @@
             });
             //r is shorthand for radio checkbox, if this has been set, then tag action to select the radio box for gradients
             if(window.location.href.indexOf("r=") > -1) {
-             var newString =  String(queries["r"]);
+             var newString =  String(queries.r);
               var myActiveOverlay = 'input[value="#' + newString + '"]';
               $(myActiveOverlay).prop("checked", true).change();
               Engine.ui.updateColorPicker(".color1.text",  ".color1.picker" );
@@ -119,12 +119,12 @@
 							 	var filterName = $(this).data("filter");
 								var myDefaultVal  = $(this).attr('value'); //gets the default value of the input for use for hover state
 								var dataAdditional = $(this).data("additional"); //appends the input data with suffix to relevant CSS
-								if (dataAdditional == undefined) { //error handler
+								if (dataAdditional === undefined) { //error handler
 									dataAdditional = "";
 								}
 						    var concatMe =  filterName + "("+ myCurrentVal + dataAdditional +") ";
 								var concatMehover = filterName + "(" + myDefaultVal + ") "; //hover state
-                console.log("onChangesEvents " + myCurrentVal + " " + myDefaultVal)
+                console.log("onChangesEvents " + myCurrentVal + " " + myDefaultVal);
 
 								if ($(this).is(':disabled') === false && myDefaultVal !== myCurrentVal) {
 									filters = filters + concatMe;
@@ -197,14 +197,14 @@
 							} else if ( myChecked == "#overlay-solid") {
                 $('.overlay-group').hide();
 								$(myChecked).css('display', 'inline-block');
-								$("#blending-mode").css('display', 'inline-block');
+								$("#blending-mode").css('display', 'block');
                 $("#orientation").hide();
                 $(".overlay-group input:visible").change();
               }  else {
 								$('.overlay-group').hide();
 								$(myChecked).css('display', 'inline-block');
-								$("#blending-mode").css('display', 'inline-block');
-                $("#orientation").css('display', 'inline-block');
+								$("#blending-mode").css('display', 'block');
+                $("#orientation").css('display', 'block');
 								$(".overlay-group input:visible").change();
 							}
 						});
@@ -275,16 +275,16 @@
               var orientation = $("#orientation").val();
               orientation = orientation.replace(/_/g," ");
               console.log("orientation:" + orientation);
-              var myGradient = orientation + ","+ myColor1 +" 0%, "+ myColor2 +" 100%);"
+              var myGradient = orientation + ","+ myColor1 +" 0%, "+ myColor2 +" 100%);";
               Engine.template.writeOverlay(myBlending, myGradient);
             });
 				 },
          changeSelect : function() {
            $("#orientation").change(function() {
-              $("input[type=radio]").change()
+              $("input[type=radio]").change();
            });
            $("#blending-mode").change(function(){
-             $("input[type=radio]").change()
+             $("input[type=radio]").change();
            });
          },
 				 presetSet : function(filterName, newValue) {
@@ -304,7 +304,7 @@
            // Used by presets to change the gradients
 					 var gradient = $(obj).data("gradient");
            gradient = '[value="' + gradient + '"]';
-					 $("input[name=overlay]").filter(gradient).prop("checked", true)
+					 $("input[name=overlay]").filter(gradient).prop("checked", true);
 					 var color1 = $(obj).data("color1");
 					 var color2 = $(obj).data("color2");
            var orientation = $(obj).data("orientation");
