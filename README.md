@@ -19,4 +19,10 @@ js/app/app.js - Where all the custom javascript lives
 scss/main.scss - Master Sass file that controls all the imports 
 index.html - where all the markup lives including the Handlebars templating
 
-Soon to come: Grunt build
+###Setting up
+
+This project requires Node JS/Grunt. For more info see, [nodejs.org](https://nodejs.org/en/)[gruntjs.com/](http://gruntjs.com/) and assumes basic terminal usage.
+This project by default is configured to use cssgradientgenerator.lvh.me to the root directory, in order to use browserSync. Configure this in your apache vhosts, MAMP/LAMP or any program you use to manage your virtual hosts. 
+
+Go to the _build/ directory, and run npm install to install the necessary grunt packages.
+from the _build/ directory run grunt
