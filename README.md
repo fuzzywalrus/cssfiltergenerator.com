@@ -1,7 +1,30 @@
 # [CSSFilterGenerator.com](http://www.cssfiltergenerator.com/) Source Code
 
-CSS filters allow graphical effects, leverging inbrowser post-processing of images. Create and share Instagram like filters with non-destructive edits and/or animated effects for use in your web projects.
+![logo](http://cssfiltergenerator.com/img/simple.png)
 
+CSS filters allow graphical effects, leverging inbrowser post-processing of images. Create and share Instagram-like filters with non-destructive edits and/or animated effects for use in your web projects.
+
+###Core Features
+* Live Preview
+* Live CSS generation
+* Reorderable filtering
+* CSS Gradient Overlays
+* Sharable Filter URLs
+* Presets
+* Swappable demo live preview image
+* Support information
+* Accessibility friendly (Fully tabbable interface)
+
+####Planned Features
+* Presets/Sharable URLs reorder lists
+* UI refinement
+* Uploadable Preview (will not save images)
+* Improved Mobile/Touch Support
+* Graceful fallback messaging for no-js, limited support browsers, old browsers. (Modernizr/headJS)
+
+####Nixed Features
+* Sharable preview images. For the benefit of maintaining a quality user experience, external linked images will not be sharable for several reasons: performance, copyright (sharable uploaded images may infringe on rights), hosting, and general good taste. This is a simple single static single page app. :) 
+* Full featured gradient generator. This may be revisited in the future but in the interest of scope, this has been shelved.
 
 ###Site Structure
 
@@ -22,7 +45,10 @@ index.html - where all the markup lives including the Handlebars templating
 ###Setting up
 
 This project requires Node JS/Grunt. For more info see, [nodejs.org](https://nodejs.org/en/)[gruntjs.com/](http://gruntjs.com/) and assumes basic terminal usage.
-This project by default is configured to use cssgradientgenerator.lvh.me to the root directory, in order to use browserSync. Configure this in your apache vhosts, MAMP/LAMP or any program you use to manage your virtual hosts. 
+
+This project by default is configured to use cssgradientgenerator.lvh.me to the root directory, in order to use BrowserSync. Configure this in your apache vhosts, MAMP/LAMP or any program you use to manage your virtual hosts. 
 
 Go to the _build/ directory, and run npm install to install the necessary grunt packages.
-from the _build/ directory run grunt
+from the _build/ directory run grunt.
+
+Grunt is configured to handle JS concat, uglify, and minification for buildsbuilds, some JSlinting, Sass (using libsass) builds with source maps and minification, and BrowserSync to inject CSS changes / reload for Javascript / HTML changes and for testing on multiple devices.
