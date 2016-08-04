@@ -41,7 +41,7 @@
                 myURL = urlVarName + "=" + myCurrentValue + "&" ;
                 if ( $(this).is(':disabled') === false && $(this).is(':visible') ) { //only get the visible inputs
                   if (myCurrentValue !== myDefaultVal) { // make sure we're not stashing the default values into the URL since its messy :)
-                    fullURL = myURL + fullURL;
+                  fullURL = fullURL + myURL;
                   }
                 }
               });
@@ -59,12 +59,35 @@
                queries[i[0].toString()] = i[1].toString();
                console.log(queries);
              });
+             var i = 0;
              $.each( queries, function( key, value ) {
+
+               var className = "#sortable ." + key;
+               var myObj = $(className);
+              var classTarget = "#sortable li:eq(" + i + ")";
+              if (i === 0 ) {
+                $(myObj).parent().prepend(myObj);
+              } else {
+                //$(myObj).siblings().eq(i).after(classTarget);
+                $(myObj).insertBefore($(classTarget));
+              }
+
+               var classIndex = $(className).index();
+              // className = "#sortable li:eq(" + classIndex + ")";
+              // var classTarget = "#sortable li:eq(" + i + ")";
+               //console.log(className  + " " +classTarget);
+
+               if (key != "r") {
+                 //$(className).insertAfter($(classTarget));
+                 //$(myObj).siblings().eq(i).after(this);
+                // $(className).att("data-myPos", i);
+                }
                 var query = "[data-urlname*='"  + key + "']"; //data attributes for both range & text input
                 var query2 = "[data-pair*='"  + key + "']";
                 //console.log(query +" "+ value);
                 $(query).val(value);
                 $(query2).val(value);
+                i = i + 1;
             });
             //r is shorthand for radio checkbox, if this has been set, then tag action to select the radio box for gradients
             if(window.location.href.indexOf("r=") > -1) {
@@ -218,15 +241,14 @@
             $("#orientation").hide();
           },
 					sorting : function(){
-						//jQuery UI init
-						$( "#sortable" ).sortable({
-							axis: "y",
-							containment:  "#contain",
-							scroll: false,
-							stop:  function(event, ui) {
-								$("#sepia-a").change();
-						 }
-					 });
+            //https://github.com/RubaXa/Sortable
+            var el = document.getElementById('sortable');
+            var sortable = Sortable.create(el, {
+              onUpdate: function (/**Event*/evt) {
+                 $("#sepia-a").change();//dummy change to trigger change() events.
+               }
+            });
+
 				 },
 				 colorPick : function() {
 					 //New Spectrum code

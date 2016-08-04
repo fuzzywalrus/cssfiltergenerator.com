@@ -34,7 +34,7 @@
           <div class="row">
             <div class="col-sm-12">
               <h1>CSSFilterGenerator.com</h1>
-              <small>Beta V0.8 - prerelease - working but not beautiful - more to come!</small>
+              <small>Beta V0.9 - prerelease - working but not beautiful - more to come!</small>
             </div>
           </div>
         </div>
@@ -48,55 +48,55 @@
 
               <div id="contain">
                 <ul id="sortable">
-                  <li>
+                  <li class="bl">
                     <label for="blur-a" data-filter="blur">Blur:</label>
                     <input id="blur-a" type="range"  min="0" max="75" step=".01" data-urlname="bl" data-filter="blur" data-additional="px" value="0">
                     <input id="blur-b" type="number" min="0" max="75" step=".01" data-pair="bl"    data-filter="blur" data-additional="px" value="0" >
                 	</li>
 
-                	<li>
+                	<li class="bn">
                     <label for="brightness-a" data-filter="brightness">Brightness:</label>
                     <input id="brightness-a" type="range"  min="0" max="3" step=".01" data-urlname="bn" data-filter="brightness" value="1">
                     <input id="brightness-b" type="number" min="0" max="3" step=".01" data-pair="bn"    data-filter="brightness" value="1">
                 	</li>
 
-                  <li>
+                  <li class="ct">
                     <label for="contrast-a" data-filter="contrast">Contrast:</label>
                     <input id="contrast-a" type="range"  min="0" max="3" step=".01" data-urlname="ct" data-filter="contrast" value="1">
                     <input id="contrast-b" type="number" min="0" max="3" step=".01" data-pair="ct"    data-filter="contrast" value="1" >
                   </li>
 
-                  <li>
+                  <li class="gs">
                     <label for="grayscale-a" data-filter="grayscale">Grayscale:</label>
-                    <input id="grayscale-a" type="range"  min="0" max="1" step=".01" data-urlname="g" data-filter="grayscale" value="0">
-                    <input id="grayscale-b" type="number" min="0" max="1" step=".01" data-pair="g"    data-filter="grayscale" value="1">
+                    <input id="grayscale-a" type="range"  min="0" max="1" step=".01" data-urlname="gs" data-filter="grayscale" value="0">
+                    <input id="grayscale-b" type="number" min="0" max="1" step=".01" data-pair="gs"    data-filter="grayscale" value="1">
                   </li>
 
-                  <li>
+                  <li class="hu">
                    <label for="hue-rotate-a" data-filter="hue-rotate">Hue-Rotate:</label>
-                   <input id="hue-rotate-a" type="range"  min="-360" max="360" step="1" data-urlname="h" data-filter="hue-rotate" data-additional="deg" value="0">
-                   <input id="hue-rotate-b" type="number" min="-360" max="360" step="1" data-pair="h"    data-filter="hue-rotate" data-additional="deg" value="0">
+                   <input id="hue-rotate-a" type="range"  min="-360" max="360" step="1" data-urlname="hu" data-filter="hue-rotate" data-additional="deg" value="0">
+                   <input id="hue-rotate-b" type="number" min="-360" max="360" step="1" data-pair="hu"    data-filter="hue-rotate" data-additional="deg" value="0">
                   </li>
 
-                  <li>
+                  <li class="in">
                    <label for="invert-a" data-filter="invert">Invert:</label>
-                   <input id="invert-a" type="range"  min="0" max="1" step=".01" data-urlname="i" data-filter="invert" value="0">
-                   <input id="invert-b" type="number" min="0" max="1" step=".01" data-pair="i"    data-filter="invert" value="0">
+                   <input id="invert-a" type="range"  min="0" max="1" step=".01" data-urlname="in" data-filter="invert" value="0">
+                   <input id="invert-b" type="number" min="0" max="1" step=".01" data-pair="in"    data-filter="invert" value="0">
                 	</li>
 
-                  <li>
+                  <li  class="op">
                    <label for="opacity-a" data-filter="opacity">Opacity:</label>
-                   <input id="opacity-a" type="range"  min="0" max="1" step=".01" data-urlname="o" data-filter="opacity" value="1">
-                   <input id="opacity-b" type="number" min="0" max="1" step=".01" data-pair="o"    data-filter="opacity" value="1">
+                   <input id="opacity-a" type="range"  min="0" max="1" step=".01" data-urlname="op" data-filter="opacity" value="1">
+                   <input id="opacity-b" type="number" min="0" max="1" step=".01" data-pair="op"    data-filter="opacity" value="1">
                 	</li>
 
-                  <li>
+                  <li class="sa">
                     <label for="saturate-a" data-filter="saturate">Saturate:</label>
                     <input id="saturate-a" type="range"  min="0" max="3" step=".01" data-urlname="sa" data-filter="saturate" value="1">
                     <input id="saturate-b" type="number" min="0" max="3" step=".01" data-pair="sa"    data-filter="saturate" value="1" >
                   </li>
 
-                  <li>
+                  <li class="se">
                     <label for="sepia-a" data-filter="sepia">Sepia:</label>
                     <input id="sepia-a" type="range"  min="0" max="1" step=".01" data-urlname="se" data-filter="sepia" value="0">
                     <input id="sepia-b" type="number" min="0" max="1" step=".01" data-pair="se"    data-filter="sepia" value="1" >
@@ -579,8 +579,10 @@
           <div class="col-sm-12">
            <h3>What's to come?</h3>
            <p>This project is active development and plenty-o-features are on the way. In no particular order, planned features:</p>
-           <p>Saved URL / Preset reordering of filters. Show/Hide Presets and demo images.  More documentation / examples. Spiffier UI. Tooltips. Upload your own image. Better Touch Support. Better responsive behavior. Move project to GitHub after v1.0. Actual Logo.
+           <p>Preset reordering of filters. Show/Hide Presets and demo images. More documentation / examples. Spiffier UI. Tooltips. Upload your own image. Better Touch Support. Better responsive behavior. Create an actual logo.
            </p>
+           <h3>Recent Changes</h3>
+           <p>Swapped jQuery UI for Sortable (Better touch support), and saved/shared URLs keep the order of the presets. Soon to come, better dragging. </p>
            <small><a href="http://greggant.com">by Greg Gant,</a> See this project on <a href="https://github.com/fuzzywalrus/https-fuzzywalrus-bitbucket.org-fuzzywalrus-cssfiltergenerator.com">Github</a></small>
          </div>
        </div>
@@ -591,7 +593,6 @@
     </section>
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <!--
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://raw.githubusercontent.com/furf/jquery-ui-touch-punch/master/jquery.ui.touch-punch.min.js"></script>
