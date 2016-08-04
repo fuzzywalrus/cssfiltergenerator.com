@@ -9,18 +9,19 @@ CSS filters allow graphical effects, leverging inbrowser post-processing of imag
 * Live CSS generation
 * Reorderable filtering
 * CSS Gradient Overlays
-* Sharable Filter URLs
+* Sharable Filter URLs (remembers list order)
 * Presets
 * Swappable demo live preview image
 * Support information
 * Accessibility friendly (Fully tabbable interface)
 
 ####Planned Features
-* Presets/Sharable URLs reorder lists
+* Presets reorder lists
+* Better Sorting
 * UI refinement
 * Uploadable Preview (will not save images)
-* Improved Mobile/Touch Support
-* Graceful fallback messaging for no-js, limited support browsers, old browsers. (Modernizr/headJS)
+* Improved Mobile Support
+* Graceful error fallback messaging for no-js, limited support browsers, old browsers. (Modernizr/headJS)
 
 ####Nixed Features
 * Sharable preview images. For the benefit of maintaining a quality user experience, external linked images will not be sharable for several reasons: performance, copyright (sharable uploaded images may infringe on rights), hosting, and general good taste. This is a simple single static single page app. :) 
@@ -28,12 +29,13 @@ CSS filters allow graphical effects, leverging inbrowser post-processing of imag
 
 ###Site Structure
 
-Currently CSSFilterGenerator uses the following libaries,
+Currently CSSFilterGenerator uses the following libaries. 
 * jQuery - linked via CDN
-* JQuery UI - linked via CDN
+* [Sortable](https://github.com/RubaXa/Sortable)
 * [Spectrum.JS](https://bgrins.github.io/spectrum/) - in source
 * [Handlebars.JS](http://handlebarsjs.com/) - in source
 * Bootstrap 3 Sass (heavily modified)
+(Thanks to the many authors who put in the hardwork to make this project feasible).
 
 Site currently does not require any server-side setup other than a root directory for absolute pathing, as no server-side languages are used.
 
