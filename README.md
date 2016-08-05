@@ -17,11 +17,9 @@ CSS filters allow graphical effects, leverging inbrowser post-processing of imag
 
 ####Planned Features
 * Presets reorder lists
-* Better Sorting
 * UI refinement
 * Uploadable Preview (will not save images)
 * Improved Mobile Support
-* Graceful error fallback messaging for no-js, limited support browsers, old browsers. (Modernizr/headJS)
 
 ####Nixed Features
 * Sharable preview images. For the benefit of maintaining a quality user experience, external linked images will not be sharable for several reasons: performance, copyright (sharable uploaded images may infringe on rights), hosting, and general good taste. This is a simple single static single page app. :) 
@@ -58,6 +56,9 @@ Grunt is configured to handle JS concat, uglify, and minification for buildsbuil
 
 ###Library Roles
 HeadJS - Used to create error messaging for IE, and warnings for Safari and Edge (for now).
+
 SpectrumJS - Handles the ColorPicker functionality used for overlays. 
+
 Sortable - Drag and drop functionality used for list reordering for the filters
+
 Handlebars - Only used for writes to the DOM for HTML needed for the filters.
