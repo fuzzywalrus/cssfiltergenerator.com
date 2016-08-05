@@ -23,10 +23,15 @@
     <meta name="twitter:description"       content="CSSFilterGenerator produces CSS filters and mix-blend-mode overlay code using a graphical user interface." />
     <meta name="twitter:image"             content="http://cssfiltergenerator.com/img/simple.png" />
     <script>document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/headjs/1.0.3/head.core.min.js"></script>
   </head>
   <body>
       <!-- hello person looking at my code :D -->
-      <div id="error">Javascript appears to be disabled. Please visit <a href="http://enable-javascript.com/">enable-javascript.com</a> for more details</div>
+      <div id="error">Javascript appears to be disabled. This website will not work without Javascript. Please visit <a href="http://enable-javascript.com/">enable-javascript.com</a> for more details</div>
+      <div id="ie-warning"><h3>Internet Explorer warning:</h3>
+        <p>It appears you are using Internet Explorer. This website does not work on Internet Explorer as it relies on modern CSS3 features. Please use FireFox, Chrome or Opera. When using these filters, do keep in mind graceful fallback for legacy IE users :) </p>
+      </div>
+
       <div id="inlinestyle"></div>
       <header>
         <div class="stripe"></div>
@@ -323,6 +328,9 @@
                 </select>
                 </div>
                 <div id="overlay-css"></div>
+                <div id="safari-warning"><strong>Note:</strong> It appears you are using Safari. Safari currently does not support hue, saturation, color and luminosity.
+                <br> Use FireFox, Chrome or Opera to preview these effects. If you do use these modes, be sure to create Safari fallbacks. </div>
+                <div id="edge-warning"><strong>Note:</strong>It appears you are using Edge. Edge does not support mix-blend-mode yet. Microsoft currently lists mix-blend-mode <a href="https://developer.microsoft.com/en-us/microsoft-edge/platform/status/backgroundblendmode">low priorty</a></div>
               </div>
             </div>
           </div>
@@ -331,12 +339,16 @@
       <section class="intro">
         <div class="container">
           <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-2 hidden-xs">&nbsp;</div>
+            <div class="col-sm-8">
               <div class="intro">
-                <p>CSS filters allow graphical effects, leverging inbrowser post-processing of images. Create Instagram like filters with non-destructive edits and/or animated effects!<br><strong>Instructions:</strong> Click and drag the order of the filters to change the filter order. Click the label to enable/disable each filter. Rollover hover to see image without filters.</p>
+                <p>CSS filters allow graphical effects, leverging inbrowser post-processing of images. CSSFilterGenerator allows you create Instagram-like filters with non-destructive edits and/or animated effects!</p>
+                <h3>Instructions:</h3>
+                <p>Click and drag the order of the filters to change the filter order, and click the on/off to enable or disable the filters.  Rollover hover to see image without filters.</p>
                 <p>Bookmark URL to save your filter or copy the entire URL to share your filter!</p>
               </div>
             </div>
+            <div class="col-sm-2 hidden-xs">&nbsp;</div>
           </div>
         </div>
       </section>
@@ -532,7 +544,7 @@
         <div class="row info">
           <div class="col-sm-12">
             <h4>What Browsers Support CSS Filters?</h4>
-            <p class="full-list"><small>See <a href="http://caniuse.com/#search=filter">caniuse.com for a full list.</a></small></p>
+            <p class="full-list"><small>Rollover partial support browsers for more details. See <a href="http://caniuse.com/#search=filter">caniuse.com for a full list.</a></small></p>
           </div>
         </div>
         <div class="row">
@@ -542,9 +554,12 @@
             <br><span class="nosupport">8-11</span>
           </div>
           <div class="tenth">
-            <img src="/img/fontawesome/edge.svg" class="icon-browser edge">
-            <br>Edge
-            <br><span class="partial-support">13-14</span>
+            <a class="tooltips" href="#">
+              <span class="tip">Support filter functions, but not the url function (not used on CSSFiltersGenerator)</span>
+              <img src="/img/fontawesome/edge.svg" class="icon-browser edge">
+              <br>Edge
+              <br><span class="partial-support">13-14</span>
+            </a>
           </div>
           <div class="tenth">
             <img src="/img/fontawesome/chrome.svg" class="icon-browser chrome">
@@ -568,9 +583,9 @@
             <br><span class="supported">40+</span>
           </div>
           <div class="tenth">
-            <img src="/img/fontawesome/safari.svg" class="icon-browser safari">
-            <br>Safari
-            <br><span class="supported">6+</span>
+                <img src="/img/fontawesome/safari.svg" class="icon-browser safari">
+                <br>Safari
+                <br><span class="supported">6+</span>
           </div>
           <div class="tenth">
             <img src="/img/fontawesome/safari.svg" class="icon-browser safari">
@@ -592,7 +607,7 @@
         <div class="row info">
           <div class="col-sm-12">
             <h4>What browesers support mix-blend-mode?</h4>
-            <p class="full-list"><small>See <a href="http://caniuse.com/#search=filter">caniuse.com for a full list.</a></small> </p>
+            <p class="full-list"><small>See <a href="http://caniuse.com/#search=mix-blend">caniuse.com for a full list.</a></small> </p>
           </div>
         </div>
 
@@ -628,14 +643,20 @@
             <br><span class="supported">47+</span>
           </div>
           <div class="tenth">
+            <a class="tooltips" href="#">
+              <span class="tip">Does not support hue, saturation, color, and luminosity blend modes.</span>
             <img src="/img/fontawesome/safari.svg" class="icon-browser safari">
             <br>Safari
             <br><span class="partial-support">7.1+</span>
+            </a>
           </div>
           <div class="tenth">
+            <a class="tooltips" href="#">
+              <span class="tip">Does not support hue, saturation, color, and luminosity blend modes.</span>
             <img src="/img/fontawesome/safari.svg" class="icon-browser safari">
             <br>iOS Safari
             <br><span class="partial-support">8+</span>
+            </span>
           </div>
           <div class="tenth">
             <img src="/img/fontawesome/android.svg" class="icon-browser android">
@@ -646,6 +667,12 @@
             <img src="/img/fontawesome/chrome.svg" class="icon-browser safari">
             <br>Chrome Android
             <br><span class="supported">47+</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <small>Microsoft currently lists mix-blend-mode <a href="https://developer.microsoft.com/en-us/microsoft-edge/platform/status/backgroundblendmode">low priorty</a></small>
+
           </div>
         </div>
       </div>
@@ -677,10 +704,10 @@
           <div class="col-sm-12">
            <h3>What's to come?</h3>
            <p>This project is active development and plenty-o-features are on the way. In no particular order, planned features:</p>
-           <p>Preset reordering of filters. Show/Hide Presets and demo images. More documentation / examples. Spiffier UI. Tooltips. Upload your own image. Better Touch Support. Better responsive behavior. Create an actual logo.
+           <p>Preset reordering of filters. Show/Hide Presets and demo images. Partial Support Browser warnings. More documentation / examples. Spiffier UI. Upload your own image. Better responsive behavior. Create an actual logo.
            </p>
            <h3>Recent Changes</h3>
-           <p>Swapped jQuery UI for Sortable (Better touch support), and saved/shared URLs keep the order of the presets. Soon to come, better dragging. </p>
+           <p>ESwapped jQuery UI for Sortable (Better touch support) with easier dragging, and saved/shared URLs keep the order of the filters.</p>
            <small><a href="http://greggant.com">by Greg Gant,</a> See this project on <a href="https://github.com/fuzzywalrus/https-fuzzywalrus-bitbucket.org-fuzzywalrus-cssfiltergenerator.com">Github</a></small>
          </div>
        </div>

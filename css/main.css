@@ -1764,7 +1764,9 @@ select {
   font-size: 2em;
   margin-bottom: -.5em;
   position: absolute;
-  top: -2px;
+  top: -7px;
+  left: 17px;
+  padding: 5px;
   cursor: row-resize;
   cursor: grab;
   cursor: -webkit-grab; }
@@ -2061,6 +2063,46 @@ input[type=range]:focus::-ms-fill-upper {
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
   right: 0px; }
 
+a.tooltips {
+  position: relative;
+  color: white; }
+  a.tooltips:hover {
+    color: white;
+    text-decoration: none; }
+
+a.tooltips span.tip {
+  position: absolute;
+  width: 260px;
+  color: #FFFFFF;
+  background: #3A3F4B;
+  text-align: center;
+  visibility: hidden;
+  border-radius: 6px;
+  top: -70px;
+  padding: 10px;
+  font-size: 11px;
+  line-height: 1.4em;
+  font-family: "Raleway", sans-serif; }
+
+a.tooltips span.tip:after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -8px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid #3A3F4B;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent; }
+
+a:hover.tooltips span.tip, a:focus.tooltips span.tip {
+  visibility: visible;
+  opacity: 1;
+  left: 50%;
+  margin-left: -130px;
+  z-index: 999; }
+
 .planned-updates {
   margin-bottom: 3em; }
 
@@ -2072,6 +2114,21 @@ input[type=range]:focus::-ms-fill-upper {
   background-color: #888; }
   .no-js #error {
     display: block; }
+
+#ie-warning {
+  display: none; }
+  .ie #ie-warning {
+    display: inline-block; }
+
+#edge-warning {
+  display: none; }
+  .edge #edge-warning {
+    display: inline-block; }
+
+#safari-warning {
+  display: none; }
+  .safari #safari-warning {
+    display: inline-block; }
 
 /***
 Spectrum Colorpicker v1.8.0

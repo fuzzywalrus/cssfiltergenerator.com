@@ -1,0 +1,44 @@
+a.tooltips {
+  position: relative;
+  //display: inline;
+  color: white;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+a.tooltips span.tip {
+  position: absolute;
+  width:260px;
+  color: #FFFFFF;
+  background: #3A3F4B;
+  text-align: center;
+  visibility: hidden;
+  border-radius: 6px;
+  top: -70px;
+  padding: 10px;
+  font-size: 11px;
+  line-height: 1.4em;
+  font-family: $font-sans-serif;
+
+}
+a.tooltips span.tip:after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -8px;
+  width: 0; height: 0;
+  border-top: 8px solid #3A3F4B;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+}
+a:hover.tooltips, a:focus.tooltips {
+  span.tip {
+    visibility: visible;
+    opacity: 1;
+    left: 50%;
+    margin-left: -130px;
+    z-index: 999;
+  }
+}

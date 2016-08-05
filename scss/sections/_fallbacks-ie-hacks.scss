@@ -8,3 +8,21 @@
 		display: block;
 	}
 }
+#ie-warning {
+	display: none;
+	.ie & {
+		display: inline-block;
+	}
+}
+#edge-warning {
+	display: none;
+	.edge & {
+		display: inline-block;
+	}
+}
+#safari-warning {
+		display: none;
+		.safari & {
+			display: inline-block;
+		}
+}
