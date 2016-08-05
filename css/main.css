@@ -1686,15 +1686,17 @@ ul {
   list-style: none; }
   ul li {
     padding-bottom: 0.5em;
-    padding-top: 0.5em; }
+    padding-top: 0.5em;
+    position: relative; }
 
-label {
+label.generic {
   display: inline-block;
-  min-width: 120px;
+  min-width: 85px;
   cursor: pointer;
   font-family: "Raleway", sans-serif;
-  font-weight: 400; }
-  label.disabled {
+  font-weight: 400;
+  margin-left: 30px; }
+  label.generic.disabled {
     color: #999; }
 
 .ui-sortable label {
@@ -1753,6 +1755,19 @@ select {
   min-width: 130px;
   margin-bottom: 0.5em;
   margin-left: 12px; }
+
+#sortable .row {
+  margin-bottom: 10px;
+  margin-top: 3px; }
+
+.updown {
+  font-size: 2em;
+  margin-bottom: -.5em;
+  position: absolute;
+  top: -2px;
+  cursor: row-resize;
+  cursor: grab;
+  cursor: -webkit-grab; }
 
 img#demoimage {
   max-width: 100%;
@@ -1975,6 +1990,76 @@ input[type=range]:focus::-ms-fill-upper {
 
 #cp_embed_QEAWZP {
   margin-top: 1em; }
+
+.onoffswitch {
+  position: relative;
+  width: 61px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  display: inline-block;
+  top: 6px; }
+
+.onoffswitch-checkbox {
+  display: none; }
+
+.onoffswitch-label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid #949494;
+  border-radius: 14px; }
+
+.onoffswitch-inner {
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  transition: margin 0.3s ease-in 0s; }
+
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 16px;
+  padding: 0;
+  line-height: 16px;
+  font-size: 10px;
+  color: white;
+  font-family: Trebuchet, Arial, sans-serif;
+  font-weight: bold;
+  box-sizing: border-box; }
+
+.onoffswitch-inner:before {
+  content: "ON";
+  padding-left: 10px;
+  background-color: #586072;
+  color: #FFFFFF; }
+
+.onoffswitch-inner:after {
+  content: "OFF";
+  padding-right: 10px;
+  background-color: #EEEEEE;
+  color: #999999;
+  text-align: right; }
+
+.onoffswitch-switch {
+  display: block;
+  width: 17px;
+  margin: 1.5px;
+  background: #FFFFFF;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 41px;
+  border: 2px solid #949494;
+  border-radius: 14px;
+  transition: all 0.3s ease-in 0s; }
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+  margin-left: 0; }
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+  right: 0px; }
 
 .planned-updates {
   margin-bottom: 3em; }

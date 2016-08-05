@@ -5,18 +5,22 @@ ul {
 	li {
 		padding-bottom: 0.5em;
 		padding-top: 0.5em;
+		position: relative;
 	}
 }
-label {
+
+label.generic {
 	display: inline-block;
-	min-width: 120px;
+	min-width: 85px;
 	cursor: pointer;
 	font-family: $font-sans-serif;
 	font-weight: 400;
+	margin-left: 30px;
 	&.disabled {
 		color: #999;
 	}
 }
+
 .ui-sortable {
 	label {
 		cursor: row-resize;
@@ -27,6 +31,7 @@ label {
 .sortable {
 	display: inline-block;
 	cursor: pointer;
+
 }
 input[type=number] {
 	width: 45px;
@@ -77,4 +82,19 @@ select {
 	min-width: 130px;
 	margin-bottom: 0.5em;
 	margin-left: 12px;
+}
+#sortable {
+	.row {
+		margin-bottom: 10px;
+		margin-top: 3px;
+	}
+}
+.updown {
+	font-size: 2em;
+	margin-bottom: -.5em;
+	position: absolute;
+	top: -2px;
+	cursor: row-resize;
+	cursor: grab;
+	cursor: -webkit-grab;
 }

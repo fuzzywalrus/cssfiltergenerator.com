@@ -57,34 +57,24 @@
              $.each(document.location.search.substr(1).split('&'),function(c,q){ // http://stackoverflow.com/questions/4656843/jquery-get-querystring-from-url
                var i = q.split('=');
                queries[i[0].toString()] = i[1].toString();
-               console.log(queries);
              });
              var i = 0;
              $.each( queries, function( key, value ) {
 
                var className = "#sortable ." + key;
                var myObj = $(className);
-              var classTarget = "#sortable li:eq(" + i + ")";
-              if (i === 0 ) {
+               var classTarget = "#sortable li:eq(" + i + ")";
+               if (i === 0 ) {
                 $(myObj).parent().prepend(myObj);
-              } else {
-                //$(myObj).siblings().eq(i).after(classTarget);
+                } else {
                 $(myObj).insertBefore($(classTarget));
               }
-
                var classIndex = $(className).index();
-              // className = "#sortable li:eq(" + classIndex + ")";
-              // var classTarget = "#sortable li:eq(" + i + ")";
-               //console.log(className  + " " +classTarget);
 
-               if (key != "r") {
-                 //$(className).insertAfter($(classTarget));
-                 //$(myObj).siblings().eq(i).after(this);
-                // $(className).att("data-myPos", i);
-                }
+              // if (key != "r") {
+              //  }
                 var query = "[data-urlname*='"  + key + "']"; //data attributes for both range & text input
                 var query2 = "[data-pair*='"  + key + "']";
-                //console.log(query +" "+ value);
                 $(query).val(value);
                 $(query2).val(value);
                 i = i + 1;
@@ -179,7 +169,7 @@
 					},
 					showhidefilters : function (){
 						//toggle the sliders/text box inputs to enable or disable filters
-						$("label").click(function() {
+						$("label[data-filter]").click(function() {
 							var myLabel = $(this);
 							var myFilter = $(this).data("filter");
 							myFilter = "input[data-filter="+ myFilter  + "]";
@@ -244,6 +234,7 @@
             //https://github.com/RubaXa/Sortable
             var el = document.getElementById('sortable');
             var sortable = Sortable.create(el, {
+              handle: ".updown",
               onUpdate: function (/**Event*/evt) {
                  $("#sepia-a").change();//dummy change to trigger change() events.
                }
@@ -311,6 +302,7 @@
          },
 				 presetSet : function(filterName, newValue) {
 					 //use for presets
+           
 					 var mySliderNameA = "#" + filterName + "-a";
 					 var mySliderNameB ="#" +  filterName + "-b";
 					 if (newValue !== undefined ) {
