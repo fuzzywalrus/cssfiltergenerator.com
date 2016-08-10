@@ -22,6 +22,9 @@
 	border: 2px solid  rgb(70, 76, 90);
 	font-family:  $font-sans-serif;
 	font-weight: 500;
+	@media (max-width: 600px) {
+		width: 78px;
+	}
 }
 .fixed-col-1, .fixed-col-2 {
 	float: left;

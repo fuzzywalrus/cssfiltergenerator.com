@@ -1,5 +1,11 @@
 #preview-images {
 	margin-bottom: 2em;
+	.col-xs-3 {
+		@media (max-width: $screen-xs-max) {
+			padding-left: 10px;
+	    padding-right: 10px;
+		}
+	}
 	img:hover {
 		cursor: pointer;
 	}

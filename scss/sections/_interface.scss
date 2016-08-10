@@ -6,3 +6,13 @@
       margin-top: 0;
   }
 }
+.table {
+  display: table;
+  margin: 0;
+}
+.table-cell {
+  display: table-cell;
+}
+.table-cell.num {
+  width: 50px;
+}

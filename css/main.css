@@ -1623,6 +1623,16 @@ body header .container {
   .interface h3 {
     margin-top: 0; }
 
+.table {
+  display: table;
+  margin: 0; }
+
+.table-cell {
+  display: table-cell; }
+
+.table-cell.num {
+  width: 50px; }
+
 .icon-browser {
   width: 30px; }
 
@@ -1660,6 +1670,9 @@ body header .container {
   border: 2px solid #464c5a;
   font-family: "Raleway", sans-serif;
   font-weight: 500; }
+  @media (max-width: 600px) {
+    .color1.text, .color2.text {
+      width: 78px; } }
 
 .fixed-col-1, .fixed-col-2 {
   float: left;
@@ -1708,6 +1721,12 @@ label.generic {
   display: inline-block;
   cursor: pointer; }
 
+#sortable {
+  margin-bottom: 25px; }
+  @media (min-width: 768px) {
+    #sortable {
+      margin-bottom: 0; } }
+
 input[type=number] {
   width: 45px;
   background-color: #3a3f4b;
@@ -1716,7 +1735,9 @@ input[type=number] {
   font-weight: 500; }
 
 input[type=range] {
-  width: 85%; }
+  width: 100%;
+  padding-right: 15px;
+  background: 0; }
 
 input[type=text] {
   color: white;
@@ -1827,7 +1848,20 @@ img#demoimage {
   transition: all 0.6s ease; }
 
 .preview {
-  min-height: 588px; }
+  min-height: 588px;
+  /*
+	@media (min-width: 600px) {
+
+	}
+	@media (max-width: 600px) {
+		display: inherit;
+		position: fixed;
+		z-index: 10000;
+		bottom: 0;
+		left: 0;
+		padding:0;
+	}
+	*/ }
 
 .filter-parent {
   transition: all 0.6s ease;
@@ -1849,6 +1883,13 @@ img#demoimage {
   .filter-parent #filter {
     opacity: 0; }
 
+/*
+.css-tab-parent {
+	@media (max-width: 600px){
+		background-color:  #3a3f4b;
+	}
+}
+*/
 .css-tab {
   font-family: "Raleway", sans-serif;
   display: inline-block;
@@ -1862,6 +1903,10 @@ img#demoimage {
 
 #preview-images {
   margin-bottom: 2em; }
+  @media (max-width: 767px) {
+    #preview-images .col-xs-3 {
+      padding-left: 10px;
+      padding-right: 10px; } }
   #preview-images img:hover {
     cursor: pointer; }
   #preview-images small {
@@ -1979,7 +2024,8 @@ input[type=range]:focus::-ms-fill-upper {
 
 .can-i-use {
   padding-bottom: 2em;
-  background: #282c34; }
+  background: #282c34;
+  overflow: hidden; }
   .can-i-use h4 {
     margin-bottom: 0.2em; }
   .can-i-use p.full-list {

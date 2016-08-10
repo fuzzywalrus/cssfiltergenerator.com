@@ -33,6 +33,13 @@ label.generic {
 	cursor: pointer;
 
 }
+#sortable {
+  margin-bottom: 25px;
+  @media (min-width: $screen-sm-min) {
+    margin-bottom: 0;
+  }
+}
+
 input[type=number] {
 	width: 45px;
 	background-color: $dark-metal;
@@ -41,7 +48,9 @@ input[type=number] {
 	font-weight: 500;
 }
 input[type=range] {
-	width: 85%;
+	width: 100%;
+	padding-right: 15px;
+	background: 0;
 }
 input[type=text] {
 	color: white;

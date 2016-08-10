@@ -61,6 +61,19 @@ img#demoimage {
 }
 .preview {
 	min-height: 588px;
+	/*
+	@media (min-width: 600px) {
+
+	}
+	@media (max-width: 600px) {
+		display: inherit;
+		position: fixed;
+		z-index: 10000;
+		bottom: 0;
+		left: 0;
+		padding:0;
+	}
+	*/
 
 }
 .filter-parent {
@@ -89,6 +102,13 @@ img#demoimage {
 		opacity: 0;
 	}
 }
+/*
+.css-tab-parent {
+	@media (max-width: 600px){
+		background-color:  #3a3f4b;
+	}
+}
+*/
 .css-tab {
 	font-family: $font-sans-serif;
 	display: inline-block;
