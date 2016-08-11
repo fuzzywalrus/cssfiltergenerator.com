@@ -1,0 +1,4 @@
+//extra styling for pen
+img { max-width: 100%;}
+.myfilter { position: relative; display:inline-block;}
+body { background-color: #1d1f20; color: white; }
