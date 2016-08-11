@@ -2,6 +2,7 @@
 
 ![logo](http://cssfiltergenerator.com/img/simple.png)
 
+####Tagline
 CSS filters allow graphical effects, leverging inbrowser post-processing of images. Create and share Instagram-like filters with non-destructive edits and/or animated effects for use in your web projects.
 
 ###Core Features
@@ -9,7 +10,7 @@ CSS filters allow graphical effects, leverging inbrowser post-processing of imag
 * Live CSS generation
 * Reorderable filtering
 * CSS Gradient Overlays
-* Sharable Filter URLs (remembers list order)
+* Sharable URLs to custom (remembers list order)
 * Presets
 * Swappable demo live preview image
 * Support information
@@ -19,7 +20,7 @@ CSS filters allow graphical effects, leverging inbrowser post-processing of imag
 * Presets reorder lists
 * UI refinement
 * Uploadable Preview (will not save images)
-* Improved Mobile Support
+* Improved Mobile Support 
 
 ####Nixed Features
 * Sharable preview images. For the benefit of maintaining a quality user experience, external linked images will not be sharable for several reasons: performance, copyright (sharable uploaded images may infringe on rights), hosting, and general good taste. This is a simple single static single page app. :) 
@@ -52,10 +53,10 @@ This project by default is configured to use cssgradientgenerator.lvh.me to the 
 Go to the _build/ directory, and run npm install to install the necessary grunt packages.
 from the _build/ directory run grunt.
 
-Grunt is configured to handle JS concat, uglify, and minification for buildsbuilds, some JSlinting, Sass (using libsass) builds with source maps and minification, and BrowserSync to inject CSS changes / reload for Javascript / HTML changes and for testing on multiple devices.
+Grunt is configured to handle JS concat, uglify, and minification for builds, some JSlinting, Sass (using libsass) builds with source maps and minification, and BrowserSync to inject CSS changes / reload for Javascript / HTML changes and for testing on multiple devices.
 
 ###Library Roles
-HeadJS - Used to create error messaging for IE, and warnings for Safari and Edge (for now).
+HeadJS - Used to create error messaging for IE, and warnings for Safari and Edge (for now, planned to use Modernzr for feature detection).
 
 SpectrumJS - Handles the ColorPicker functionality used for overlays. 
 
