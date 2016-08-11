@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>CSSfiltergenerator.com</title>
+    <script>document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
     <meta name="description" content="CSSFilterGenerator produces CSS filters and mix-blend-mode overlay code using a graphical user interface.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,200' rel='stylesheet' type='text/css'>
@@ -22,7 +23,6 @@
     <meta name="twitter:title"             content="CSS3generator.com" />
     <meta name="twitter:description"       content="CSSFilterGenerator produces CSS filters and mix-blend-mode overlay code using a graphical user interface." />
     <meta name="twitter:image"             content="http://cssfiltergenerator.com/img/simple.png" />
-    <script>document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/headjs/1.0.3/head.core.min.js"></script>
   </head>
   <body>
@@ -48,7 +48,7 @@
       <section class="interface">
         <div class="container">
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-6 col-lg-5">
               <div id="contain">
                 <ul id="sortable">
                   <li class="bl">
@@ -72,8 +72,6 @@
                         <input id="blur-b" type="number" min="0" max="75" step=".01" data-pair="bl"    data-filter="blur" data-additional="px" value="0" >
                       </div>
                     </div>
-
-
                 	</li>
 
                 	<li class="bn">
@@ -149,13 +147,12 @@
                     <div class="row">
                       <div class="col-sm-12">
                         <span class="updown">↕</span> <label class="generic">Hue-Rotate:</label>
-
-                       <div class="onoffswitch">
-                           <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="onoffswitch-hue-rotate" checked>
-                           <label class="onoffswitch-label" for="onoffswitch-hue-rotate" data-filter="hue-rotate">
-                               <span class="onoffswitch-inner"></span>
-                               <span class="onoffswitch-switch"></span>
-                           </label>
+                        <div class="onoffswitch">
+                          <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="onoffswitch-hue-rotate" checked>
+                          <label class="onoffswitch-label" for="onoffswitch-hue-rotate" data-filter="hue-rotate">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
                        </div>
                      </div>
                    </div>
@@ -176,8 +173,8 @@
                          <div class="onoffswitch">
                              <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="onoffswitch-invert" checked>
                              <label class="onoffswitch-label" for="onoffswitch-invert" data-filter="invert">
-                                 <span class="onoffswitch-inner"></span>
-                                 <span class="onoffswitch-switch"></span>
+                               <span class="onoffswitch-inner"></span>
+                               <span class="onoffswitch-switch"></span>
                              </label>
                          </div>
                        </div>
@@ -190,8 +187,6 @@
                          <input id="invert-b" type="number" min="0" max="1" step=".01" data-pair="in"    data-filter="invert" value="0">
                        </div>
                      </div>
-
-
                 	</li>
 
                   <li  class="op">
@@ -266,7 +261,7 @@
               </div>
             </div>
 
-            <div class="col-sm-6 preview">
+            <div class="col-sm-6 col-lg-7 preview">
                 <div class="text-right css-tab-parent"><a href="#" class="css-tab" data-text-swap="Hide CSS" data-text-original="Show CSS">Show CSS</a></div>
                 <div class="filter-parent">
                     <button id="reset">Reset</button>
@@ -330,7 +325,6 @@
           <div class="row">
             <div class="overlay ">
               <div class="fixed-col-1">
-
                 <input type="radio" name="overlay" value="#overlay-radio-none" id="overlay-radio-none" checked> None<br>
                 <input type="radio" name="overlay" value="#overlay-solid" id="overlay-radio-solid"> Solid<br>
                 <input type="radio" name="overlay" value="#overlay-gradient" > Gradient<br>
@@ -435,12 +429,10 @@
                 <a href="#" data-fullsize="/img/hood.jpg"><img src="/img/hood-thumb.jpg" alt="Illumination Saddle, Mt Hood, Oregon"></a>
                 <small>Mt. Hood</small>
               </div>
-
               <div class="col-xs-3 col-sm-2">
                 <a href="#" data-fullsize="/img/columbia-gorge.jpg"><img src="/img/columbia-gorge-thumb.jpg" alt="Columbia Gorge, Oregon"></a>
                 <small>Columbia Gorge</small>
               </div>
-
               <div class="col-xs-3 col-sm-2">
                 <a href="#" data-fullsize="/img/south-sister.jpg"><img src="/img/south-sister-thumb.jpg"  alt="False Summit, South Sister, Oregon"></a>
                 <small>South Sister</small>
@@ -623,7 +615,6 @@
             <br>Chrome
             <br><span class="supported">18+</span>
           </div>
-
           <div class="tenth">
             <img src="/img/fontawesome/firefox.svg" class="icon-browser firefox">
             <br>Firefox
@@ -640,9 +631,9 @@
             <br><span class="supported">40+</span>
           </div>
           <div class="tenth">
-                <img src="/img/fontawesome/safari.svg" class="icon-browser safari">
-                <br>Safari
-                <br><span class="supported">6+</span>
+            <img src="/img/fontawesome/safari.svg" class="icon-browser safari">
+            <br>Safari
+            <br><span class="supported">6+</span>
           </div>
           <div class="tenth">
             <img src="/img/fontawesome/safari.svg" class="icon-browser safari">
@@ -729,7 +720,6 @@
         <div class="row">
           <div class="col-sm-12">
             <small>Microsoft currently lists mix-blend-mode <a href="https://developer.microsoft.com/en-us/microsoft-edge/platform/status/backgroundblendmode">low priorty</a></small>
-
           </div>
         </div>
       </div>
@@ -764,21 +754,14 @@
            <p>Preset reordering of filters. Show/Hide Presets and demo images. Partial Support Browser warnings. More documentation / examples. Spiffier UI. Upload your own image. Better responsive behavior. Create an actual logo.
            </p>
            <h3>Recent Changes</h3>
-           <p>ESwapped jQuery UI for Sortable (Better touch support) with easier dragging, and saved/shared URLs keep the order of the filters.</p>
+           <p>Better responsive behavior. Swapped jQuery UI for Sortable (Better touch support) with easier dragging, and saved/shared URLs keep the order of the filters.</p>
            <small><a href="http://greggant.com">by Greg Gant,</a> See this project on <a href="https://github.com/fuzzywalrus/https-fuzzywalrus-bitbucket.org-fuzzywalrus-cssfiltergenerator.com">Github</a></small>
          </div>
        </div>
      </div>
-
-        </div>
-      </div>
     </section>
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
-    <!--
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://raw.githubusercontent.com/furf/jquery-ui-touch-punch/master/jquery.ui.touch-punch.min.js"></script>
-    -->
     <script src="/js/app-min.js"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
