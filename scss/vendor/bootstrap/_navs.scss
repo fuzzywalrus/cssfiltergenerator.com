@@ -106,7 +106,7 @@
       &:hover,
       &:focus {
         color: white;
-        background-color: $dark-metal;
+        background-color: $dark-grey;
         border: 1px solid $light-grey;
         border-bottom-color: transparent;
         cursor: default;
@@ -230,6 +230,12 @@
 
 // Hide tabbable panes to start, show them when `.active`
 .tab-content {
+  background-color: $dark-grey;
+
+  padding: 7px;
+  @media (min-width: $screen-sm-min) {
+    padding: 17px;
+  }
   > .tab-pane {
     display: none;
   }

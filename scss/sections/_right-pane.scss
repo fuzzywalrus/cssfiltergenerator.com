@@ -120,6 +120,7 @@ img#demoimage {
 	background-color: $light-grey;
 	border: 1px solid #3a3f4b;
 	color: white;
+  border-radius: 4px 4px 0 0;
 	&:hover, &:active, &:focus {
 		color: white;
 		text-decoration: underline;

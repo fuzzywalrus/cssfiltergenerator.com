@@ -48,7 +48,7 @@
       <section class="interface">
         <div class="container">
           <div class="row">
-            <div class="col-sm-6 col-lg-5">
+            <div class="col-sm-6 col-md-5 col-lg-5">
               <div id="contain">
                 <ul id="sortable">
                   <li class="bl">
@@ -261,7 +261,7 @@
               </div>
             </div>
 
-            <div class="col-sm-6 col-lg-7 preview">
+            <div class="col-sm-6 col-md-7 col-lg-7 preview">
                 <div class="text-right css-tab-parent"><a href="#" class="css-tab" data-text-swap="Hide CSS" data-text-original="Show CSS">Show CSS</a></div>
                 <div class="filter-parent">
                     <button id="reset">Reset</button>
@@ -390,8 +390,7 @@
       <section class="intro">
         <div class="container">
           <div class="row">
-            <div class="col-sm-2 hidden-xs">&nbsp;</div>
-            <div class="col-sm-8">
+            <div class="col-sm-12">
               <div class="intro">
                 <p>CSS filters allow graphical effects, leverging inbrowser post-processing of images. CSSFilterGenerator allows you create Instagram-like filters with non-destructive edits and/or animated effects!</p>
                 <h3>Instructions:</h3>
@@ -399,7 +398,6 @@
                 <p>Bookmark URL to save your filter or copy the entire URL to share your filter!</p>
               </div>
             </div>
-            <div class="col-sm-2 hidden-xs">&nbsp;</div>
           </div>
         </div>
       </section>
@@ -420,7 +418,7 @@
                     <a href="#presets" id="presets-tab"  role="tab"  data-toggle="tab" aria-controls="presets" aria-expanded="false">Presets</a>
                   </li>
                   <li role="presentation" class="">
-                    <a href="#faq" id="faq-tab"  role="tab"  data-toggle="tab" aria-controls="faq" aria-expanded="false">How To Use</a>
+                    <a href="#faq" id="faq-tab"  role="tab"  data-toggle="tab" aria-controls="faq" aria-expanded="false">FAQ/Advanced Examples</a>
                   </li>
                   <li role="presentation" class="">
                     <a href="#about" id="about-tab"  role="tab"  data-toggle="tab" aria-controls="about" aria-expanded="false">About</a>
@@ -438,27 +436,27 @@
                           </div>
                       </div>
                       <div class="row" id="preview-images">
-                        <div class="col-xs-3 col-sm-2">
+                        <div class="col-xs-4 col-sm-2">
                           <a href="#" data-fullsize="/img/dalles.jpg" ><img src="/img/dalles-thumb.jpg" alt="Wild Flowers, The Dalles, Oregon" ></a>
                           <small>The Dalles</small>
                         </div>
-                        <div class="col-xs-3 col-sm-2">
+                        <div class="col-xs-4 col-sm-2">
                           <a href="#" data-fullsize="/img/paintedhills.jpg"><img src="/img/paintedhills-thumb.jpg" alt="Painted Cove, Painted Hills, Oregon" ></a>
                           <small>The Painted Hills</small>
                         </div>
-                        <div class="col-xs-3 col-sm-2">
+                        <div class="col-xs-4 col-sm-2">
                           <a href="#" data-fullsize="/img/hood.jpg"><img src="/img/hood-thumb.jpg" alt="Illumination Saddle, Mt Hood, Oregon"></a>
                           <small>Mt. Hood</small>
                         </div>
-                        <div class="col-xs-3 col-sm-2">
+                        <div class="col-xs-4 col-sm-2">
                           <a href="#" data-fullsize="/img/columbia-gorge.jpg"><img src="/img/columbia-gorge-thumb.jpg" alt="Columbia Gorge, Oregon"></a>
                           <small>Columbia Gorge</small>
                         </div>
-                        <div class="col-xs-3 col-sm-2">
+                        <div class="col-xs-4 col-sm-2">
                           <a href="#" data-fullsize="/img/south-sister.jpg"><img src="/img/south-sister-thumb.jpg"  alt="False Summit, South Sister, Oregon"></a>
                           <small>South Sister</small>
                         </div>
-                        <div class="col-xs-3 col-sm-2">
+                        <div class="col-xs-4 col-sm-2">
                           <a href="#" data-fullsize="/img/mcloughlin.jpg"><img src="/img/mcloughlin-thumb.jpg" alt="Mount McLoughlin (from Saddle Rock), Oregon" ></a>
                           <small>Mount McLoughlin</small>
                         </div>
@@ -477,6 +475,7 @@
                             <p>Yes. I recommend using for IE <a href="https://modernizr.com/">modernizr</a> to detect if filters are supported. Using :after overlays can simulate brightness/darkness by using a simple overlay with a transparent background. Check out the codepen below for an example of Modernizr + filters. This can be chained with <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Applying_SVG_effects_to_HTML_content">SVGFilters</a> for IE10/IE11 support as well.</p>
                             <p data-height="600" data-theme-id="7806" data-slug-hash="QEAWZP" data-default-tab="css,result" data-user="fuzzywalrus" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/fuzzywalrus/pen/QEAWZP/">Simple CSS filter fallback</a> by Greg Gant (<a href="http://codepen.io/fuzzywalrus">@fuzzywalrus</a>) on <a href="http://codepen.io">CodePen</a>.</p>
                             <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
                             <p>Q: Can CSS Filters be animated?</p>
                             <p>Yes, see the pen below for an example.</p>
                             <p data-height="600" data-theme-id="7806" data-slug-hash="bZOzLv" data-default-tab="css,result" data-user="fuzzywalrus" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/fuzzywalrus/pen/bZOzLv/">Animating CSS filters</a> by Greg Gant (<a href="http://codepen.io/fuzzywalrus">@fuzzywalrus</a>) on <a href="http://codepen.io">CodePen</a>.</p>
@@ -507,123 +506,123 @@
                           <p>Note: Presets do not reorder filters yet. Coming soon!</p>
                           <small>courtesy of <a href="https://una.im/CSSgram/">CSSGram</a></small><br>
                           <div class="row">
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                               <a href="#" class="preset _1977" data-contrast="1.1" data-brightness="1.1" data-saturate="1.3" data-blending-mode="screen" data-color1="rgba(243, 106, 188, 0.3)" data-gradient="#overlay-solid">
                                 <img src="/img/dalles-thumb.jpg" alt="preset 1977">
                               </a><br>
                               <small>1977</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                               <a href="#" class="preset aden" data-huerotate="-20" data-contrast="0.9" data-saturate="0.85" data-brightness="1.2" data-gradient="#overlay-gradient" data-blending-mode="darken" data-color1="rgba(66, 10, 14, 0.2)" data-color2="rgba(66, 10, 14, 0.0)" data-orientation="linear-gradient(to_right">
                                 <img src="/img/dalles-thumb.jpg" alt="preset aden">
                               </a><br>
                               <small>aden</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                 <a href="#" class="preset brooklyn" data-contrast="0.9" data-brightness="1.1" data-blending-mode="overlay" data-gradient="#overlay-gradient" data-color1="rgba(168, 223, 193, 0.4)" data-color2="rgba(196, 183, 200, 0.99)" data-orientation="radial-gradient(ellipse_at_center">
                                 <img src="/img/dalles-thumb.jpg" alt="preset dalles">
                               </a><br>
                               <small>brooklyn</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                 <a href="#" class="preset clarendon" data-contrast="1.2" data-saturate="1.35" data-blending-mode="overlay" data-color1="rgba(127, 187, 227, 0.2)" data-gradient="#overlay-solid">
                                 <img src="/img/dalles-thumb.jpg" alt="preset clarendon">
                               </a><br>
                               <small>clarendon</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                 <a href="#" class="preset earlybird" data-contrast="0.9" data-sepia="0.2" data-blending-mode="overlay" data-gradient="#overlay-gradient" data-color1="rgba(208, 186, 142, 0.98)" data-color2="rgba(54, 3, 9, 0.99)" data-orientation="radial-gradient(ellipse_at_center">
                                 <img src="/img/dalles-thumb.jpg" alt="preset earlybird">
                               </a><br>
                               <small>earlybird</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                 <a href="#" class="preset gingham" data-brightness="1.05" data-huerotate="-10" data-blending-mode="darken"  data-gradient="#overlay-gradient" data-color1="rgba(66, 10, 14, 0.2)" data-color2="rgba(66, 10, 14, 0.0)" data-orientation="linear-gradient(to_right">
                                 <img src="/img/dalles-thumb.jpg" alt="preset gingham">
                               </a><br>
                               <small>gingham</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                   <a href="#" class="preset hudson" data-brightness="1.2" data-contrast="0.9" data-saturate="1.1" data-blending-mode="multiply" data-gradient="#overlay-gradient" data-color1="rgba(166, 177, 255, 0.5)" data-color2="rgba(52, 33, 54, 0.5)" ata-orientation="radial-gradient(ellipse_at_center">
                                 <img src="/img/dalles-thumb.jpg" alt="preset hudson">
                               </a><br>
                               <small>hudson</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                 <a href="#" class="preset inkwell" data-sepia="0.3" data-contrast="1.1" data-brightness="1.1" data-grayscale="1" data-gradient="#overlay-radio-none">
                                 <img src="/img/dalles-thumb.jpg" alt="preset inkwell">
                               </a><br>
                               <small>inkwell</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                 <a href="#" class="preset lark" data-contrast="0.9"  data-blending-mode="color-dodge" data-color1="#22253f" data-gradient="#overlay-solid">
                                 <img src="/img/dalles-thumb.jpg" alt="preset lark">
                               </a><br>
                               <small>lark</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                 <a href="#" class="preset lofi" data-saturate="1.1" data-contrast="1.5" data-blending-mode="multiply"  data-gradient="#overlay-gradient" data-color1="rgba(0, 0, 0, 0.0)" data-color2="rgba(34, 34, 34, 0.99)" data-orientation="radial-gradient(ellipse_at_center">
                                 <img src="/img/dalles-thumb.jpg" alt="preset lofi">
                               </a><br>
                               <small>lofi</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                 <a href="#" class="preset mayfair" data-contrast="1.1" data-saturate="1.1" data-blending-mode="overlay" data-gradient="#overlay-gradient" data-color1="rgba(255, 255, 255, 0.4)" data-color2="rgba(255, 200, 200, 0.3)" data-orientation="radial-gradient(ellipse_at_center">
                                 <img src="/img/dalles-thumb.jpg" alt="preset mayfair">
                               </a><br>
                               <small>mayfair</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                 <a href="#" class="preset moon" data-grayscale="1" data-contrast="1.1" data-brightness="1.1" data-color1="#383838" data-blending-mode="lighten" data-gradient="#overlay-solid">
                                 <img src="/img/dalles-thumb.jpg" alt="preset moon">
                               </a><br>
                               <small>moon</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                 <a href="#" class="preset nashville" data-sepia="0.2" data-contrast="1.2" data-brightness="1.05" data-saturate="1.2" data-gradient="#overlay-solid"  data-color1="rgba(247, 176, 153, 0.56)" data-blending-mode="lighten" >
                                 <img src="/img/dalles-thumb.jpg" alt="preset nashville">
                               </a><br>
                               <small>nashville</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                 <a href="#" class="preset reyes" data-sepia="0.22" data-brightness="1.1" data-contrast="0.85" data-saturate="0.75" data-color1="#efcdad" data-gradient="#overlay-solid" data-blending-mode="soft-light" >
                                 <img src="/img/dalles-thumb.jpg" alt="preset reyes">
                               </a><br>
                               <small>reyes</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                 <a href="#" class="preset rise"  data-brightness="1.1" data-contrast="0.85" data-saturate="0.75"  data-blending-mode="multiply" data-color1="rgba(236, 205, 169, 0.15)" data-color2="rgba(50, 30, 7, 0.4)" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse_at_center">
                                 <img src="/img/dalles-thumb.jpg" alt="preset rise">
                               </a><br>
                               <small>rise</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                 <a href="#" class="preset slumber" data-saturate="0.66" data-brightness="1.05" data-blending-mode="lighten" data-color1="rgba(69, 41, 12, 0.4)" data-gradient="#overlay-solid">
                                 <img src="/img/dalles-thumb.jpg" alt="preset slumber">
                               </a><br>
                               <small>slumber</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                 <a href="#" class="preset toaster" data-contrast="1.5" data-brightness="0.9" data-blending-mode="screen" data-color1="rgba(128, 78, 15, 0.99)" data-color2="rgba(59, 0, 59, 0.99)" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse_at_center">
                                 <img src="/img/dalles-thumb.jpg" alt="preset toaster">
                               </a><br>
                               <small>toaster</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                 <a href="#" class="preset walden" data-brightness="1.1" data-huerotate="-10" data-sepia="0.3" data-saturate="1.6"  data-blending-mode="screen" data-color1="rgba(0, 68, 204, 0.3)" data-gradient="#overlay-solid">
                                 <img src="/img/dalles-thumb.jpg" alt="preset walden">
                               </a>
                               <br>
                               <small>walden</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                 <a href="#" class="preset willow" data-contrast="0.95" data-brightness="0.9" data-blending-mode="overlay" data-color1="rgba(216, 205, 203, 0.99)" data-gradient="#overlay-solid">
                                 <img src="/img/dalles-thumb.jpg" alt="preset willow">
                               </a>
                               <br>
                               <small>willow</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                 <a href="#" class="preset xpro2" data-sepia="0.3" data-blending-mode="color-burn" data-color1="rgba(230, 231, 224, 0.2)" data-color2="rgba(43, 42, 161, 0.79)" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse_at_center">
                                 <img src="/img/dalles-thumb.jpg" alt="preset xpro2">
                               </a>
@@ -639,28 +638,28 @@
                             </div>
                           </div>
                           <div class="row">
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                 <a href="#" class="preset nu80s" data-brightness="1.12" data-contrast="1.1" data-blending-mode="overlay" data-color1="rgb(255, 0, 134)" data-color2="rgb(0, 117, 255)" data-gradient="#overlay-gradient" data-orientation="linear-gradient(to top,">
                                 <img src="/img/dalles-thumb.jpg" alt="preset nu80s">
                               </a>
                             <br>
                             <small>nu80s</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                 <a href="#" class="preset purple-rain"  data-brightness="1.55" data-gradient="0.75" data-hue-rotate="17" data-saturate="1.48" sepia="0.45" data-blending-mode="overlay" data-color1="rgba(10, 41, 255, 0.57)" data-gradient="#overlay-radio-solid">
                                 <img src="/img/dalles-thumb.jpg" alt="preset purple-rain">
                               </a>
                             <br>
                             <small>purple-rain</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                 <a href="#" class="preset red-sky"  data-brightness="1.59" data-gradient="0.75" data-hue-rotate="173" data-gradient="#overlay-radio-solid">
                                 <img src="/img/dalles-thumb.jpg" alt="preset red-sky">
                               </a>
                             <br>
                             <small>red-sky</small>
                             </div>
-                            <div class="col-xs-3 col-sm-2">
+                            <div class="col-xs-4 col-sm-2">
                                 <a href="#" class="preset sunset" data-brightness="2.26" data-hue-rotate="150" data-color1="#5367ce" data-gradient="#overlay-radio-solid">
                                 <img src="/img/dalles-thumb.jpg" alt="preset sunset">
                               </a>

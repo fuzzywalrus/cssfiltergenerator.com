@@ -1358,7 +1358,7 @@ table th[class*="col-"] {
         border-color: #586072; }
     .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
       color: white;
-      background-color: #3a3f4b;
+      background-color: #2d2d2d;
       border: 1px solid #586072;
       border-bottom-color: transparent;
       cursor: default; }
@@ -1414,11 +1414,16 @@ table th[class*="col-"] {
     .nav-tabs-justified > .active > a:focus, .nav-tabs.nav-justified > .active > a:focus {
       border-bottom-color: #fff; } }
 
-.tab-content > .tab-pane {
-  display: none; }
-
-.tab-content > .active {
-  display: block; }
+.tab-content {
+  background-color: #2d2d2d;
+  padding: 7px; }
+  @media (min-width: 768px) {
+    .tab-content {
+      padding: 17px; } }
+  .tab-content > .tab-pane {
+    display: none; }
+  .tab-content > .active {
+    display: block; }
 
 .nav-tabs .dropdown-menu {
   margin-top: -1px;
@@ -1746,8 +1751,6 @@ body header .container {
   padding-top: 2em;
   background: #282c34;
   padding-bottom: 2em; }
-  .interface h3 {
-    margin-top: 0; }
 
 .table {
   display: table;
@@ -2026,7 +2029,8 @@ img#demoimage {
   padding: 4px;
   background-color: #586072;
   border: 1px solid #3a3f4b;
-  color: white; }
+  color: white;
+  border-radius: 4px 4px 0 0; }
   .css-tab:hover, .css-tab:active, .css-tab:focus {
     color: white;
     text-decoration: underline; }
