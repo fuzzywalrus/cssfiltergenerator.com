@@ -23,6 +23,68 @@
             console.log("writeOverlay");
           },
         },
+        colorPicking : {
+          updateColorPicker : function(target, destination) {
+              //Updates the colorPicker swatch to match the color value in the text field.
+              $(destination).spectrum("set", $(target).val());
+          },
+          updateColor : function(element, color) {
+            $(element).val( (color ? color : "") );
+            $(element).change();
+            console.log("UpdateColor");
+          },
+          colorPick : function() {
+ 					 //New Spectrum code
+ 					 	$('#overlay-solid-color .color').spectrum({
+ 							preferredFormat: "rgb",
+ 					    showInput: true,
+ 							showAlpha: true,
+ 					    showPalette: false,
+ 							color: 'rgba(112,55,200, 0.4)',
+ 							move: function (color) { Engine.colorPicking.updateColor("#overlay-solid-color-text", color); },
+ 							hide: function (color) { Engine.colorPicking.updateColor("#overlay-solid-color-text", color); }
+ 						});
+ 						//overlay-linear-gradient color 1
+ 						$('#overlay-gradient-color1').spectrum({
+ 							preferredFormat: "rgb",
+ 					    showInput: true,
+ 							showAlpha: true,
+ 					    showPalette: false,
+ 							color: 'rgba(255, 0, 134, 0.4)',
+ 							move: function (color) { Engine.colorPicking.updateColor("#overlay-gradient-color1-text", color); },
+ 							hide: function (color) { Engine.colorPicking.updateColor("#overlay-gradient-color1-text", color); }
+ 						});
+ 						//overlay-linear-gradient color 2
+ 						$('#overlay-gradient-color2').spectrum({
+ 							preferredFormat: "rgb",
+ 					    showInput: true,
+ 							showAlpha: true,
+ 					    showPalette: false,
+ 							color: 'rgba(16, 255, 0, 0.4)',
+ 							move: function (color) { Engine.colorPicking.updateColor("#overlay-gradient-color2-text", color); },
+ 							hide: function (color) { Engine.colorPicking.updateColor("#overlay-gradient-color2-text", color); }
+ 						});
+
+ 						$('.overlay-solid-color').change(function() {
+ 							//console.log("solid");
+ 							var myGradient = $("#overlay-solid-color-text").val();
+ 							var myBlending = $("#blending-mode").val();
+               console.log("overlay-solid-color:" + myGradient);
+               Engine.template.writeOverlay(myBlending, myGradient);
+ 						});
+             $('.overlay-gradient-color').change(function() {
+               //console.log("gradient");
+               var myColor1 = $("#overlay-gradient-color1-text").val();
+               var myColor2 = $("#overlay-gradient-color2-text").val();
+               var myBlending = $("#blending-mode").val();
+               var orientation = $("#orientation").val();
+               orientation = orientation.replace(/_/g," ");
+               console.log("orientation:" + orientation);
+               var myGradient = orientation + ","+ myColor1 +" 0%, "+ myColor2 +" 100%);";
+               Engine.template.writeOverlay(myBlending, myGradient);
+             });
+ 				 }
+        },
         urlShare : {
           //URL var creation/parssing
           createURL : function() {
@@ -84,13 +146,13 @@
              var newString =  String(queries.r);
               var myActiveOverlay = 'input[value="#' + newString + '"]';
               $(myActiveOverlay).prop("checked", true).change();
-              Engine.ui.updateColorPicker(".color1.text",  ".color1.picker" );
+              Engine.colorPicking.updateColorPicker(".color1.text",  ".color1.picker" );
             }
             //no point in tryig to set the second color if it doesn't exist
             if(window.location.href.indexOf("c2=")> -1) {
-              Engine.ui.updateColorPicker(".color2.text",  ".color2.picker" );
+              Engine.colorPicking.updateColorPicker(".color2.text",  ".color2.picker" );
             } else {
-              Engine.ui.updateColorPicker(".color1.text",  ".color.picker" ); //if there isn't a second color, then update the solid color picker
+              Engine.colorPicking.updateColorPicker(".color1.text",  ".color.picker" ); //if there isn't a second color, then update the solid color picker
             }
              console.log(queries);
              $("#sepia-a").change();
@@ -241,57 +303,7 @@
             });
 
 				 },
-				 colorPick : function() {
-					 //New Spectrum code
-					 	$('#overlay-solid-color .color').spectrum({
-							preferredFormat: "rgb",
-					    showInput: true,
-							showAlpha: true,
-					    showPalette: false,
-							color: 'rgba(112,55,200, 0.4)',
-							move: function (color) { Engine.ui.updateColor("#overlay-solid-color-text", color); },
-							hide: function (color) { Engine.ui.updateColor("#overlay-solid-color-text", color); }
-						});
-						//overlay-linear-gradient color 1
-						$('#overlay-gradient-color1').spectrum({
-							preferredFormat: "rgb",
-					    showInput: true,
-							showAlpha: true,
-					    showPalette: false,
-							color: 'rgba(255, 0, 134, 0.4)',
-							move: function (color) { Engine.ui.updateColor("#overlay-gradient-color1-text", color); },
-							hide: function (color) { Engine.ui.updateColor("#overlay-gradient-color1-text", color); }
-						});
-						//overlay-linear-gradient color 2
-						$('#overlay-gradient-color2').spectrum({
-							preferredFormat: "rgb",
-					    showInput: true,
-							showAlpha: true,
-					    showPalette: false,
-							color: 'rgba(16, 255, 0, 0.4)',
-							move: function (color) { Engine.ui.updateColor("#overlay-gradient-color2-text", color); },
-							hide: function (color) { Engine.ui.updateColor("#overlay-gradient-color2-text", color); }
-						});
 
-						$('.overlay-solid-color').change(function() {
-							//console.log("solid");
-							var myGradient = $("#overlay-solid-color-text").val();
-							var myBlending = $("#blending-mode").val();
-              console.log("overlay-solid-color:" + myGradient);
-              Engine.template.writeOverlay(myBlending, myGradient);
-						});
-            $('.overlay-gradient-color').change(function() {
-              //console.log("gradient");
-              var myColor1 = $("#overlay-gradient-color1-text").val();
-              var myColor2 = $("#overlay-gradient-color2-text").val();
-              var myBlending = $("#blending-mode").val();
-              var orientation = $("#orientation").val();
-              orientation = orientation.replace(/_/g," ");
-              console.log("orientation:" + orientation);
-              var myGradient = orientation + ","+ myColor1 +" 0%, "+ myColor2 +" 100%);";
-              Engine.template.writeOverlay(myBlending, myGradient);
-            });
-				 },
          changeSelect : function() {
            $("#orientation").change(function() {
               $("input[type=radio]").change();
@@ -302,7 +314,7 @@
          },
 				 presetSet : function(filterName, newValue) {
 					 //use for presets
-           
+
 					 var mySliderNameA = "#" + filterName + "-a";
 					 var mySliderNameB ="#" +  filterName + "-b";
 					 if (newValue !== undefined ) {
@@ -327,19 +339,10 @@
 					 var blendingMode = $(obj).data("blending-mode");
            $("#blending-mode").val(blendingMode);
            $("#orientation").val(orientation);
-           Engine.ui.updateColorPicker(".overlay-group input.color1.text", ".overlay-group input.color1.picker");
-           Engine.ui.updateColorPicker(".overlay-group input.color2.text", ".overlay-group input.color2.picker");
+           Engine.colorPicking.updateColorPicker(".overlay-group input.color1.text", ".overlay-group input.color1.picker");
+           Engine.colorPicking.updateColorPicker(".overlay-group input.color2.text", ".overlay-group input.color2.picker");
            console.log("gradientCheck");
 				 },
-         updateColorPicker : function(target, destination) {
-             //Updates the colorPicker swatch to match the color value in the text field.
-             $(destination).spectrum("set", $(target).val());
-         },
-         updateColor : function(element, color) {
-           $(element).val( (color ? color : "") );
-           $(element).change();
-           console.log("UpdateColor");
-         },
          flipDemoImage : function() {
            $(".css-tab").click(function() {
              console.log("Css-Tab");
@@ -348,13 +351,33 @@
              if (el.text() == el.data("text-swap")) {
                el.text(el.data("text-original"));
                $(this).parent().removeClass("flip");
+               $(".filter-parent").css("min-height", "auto");
              } else {
                el.data("text-original", el.text());
                el.text(el.data("text-swap"));
                $(this).parent().addClass("flip");
+               Engine.ui.resizeheightcss();
              }
              $(".filter-parent").toggleClass("flip");
+
            });
+
+         },
+         tabbedInit : function() {
+           //initializes bootstrap JS
+           $('#myTabs a').click(function (e) {
+             e.preventDefault();
+             $(this).tab('show');
+           });
+         },
+         resizeheightcss : function() {
+           //This is fired on flip to ensure min height for the CSS code.
+           var a = $(".titles-css").height();
+           var b = $(".filter-css").height();
+           var c = $(".overlay-css").height();
+           var d = a + b + c + 30;
+          console.log("Test me: " + d);
+          $(".filter-parent").css("min-height", d);
          },
 				 presets : function() {
 					 $(".preset").click(function() {
@@ -380,9 +403,10 @@
 	Engine.ui.presets();
 	Engine.ui.newimage();
 	Engine.ui.activeOverlay();
-	Engine.ui.colorPick();
+	Engine.colorPicking.colorPick();
   Engine.ui.flipDemoImage();
   Engine.ui.changeSelect();
+  Engine.ui.tabbedInit();
   Engine.urlShare.createURL();
   Engine.urlShare.getURL();
 });
