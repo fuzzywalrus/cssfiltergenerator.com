@@ -351,7 +351,7 @@
              if (el.text() == el.data("text-swap")) {
                el.text(el.data("text-original"));
                $(this).parent().removeClass("flip");
-               $(".filter-parent").css("min-height", "auto");
+               $(".filter-parent").css("min-height", "100px");
              } else {
                el.data("text-original", el.text());
                el.text(el.data("text-swap"));
