@@ -2,10 +2,10 @@
 
 ![logo](http://cssfiltergenerator.com/img/simple.png)
 
-##Tagline
+## Tagline
 CSS filters allow graphical effects, leveraging inbrowser post-processing of images. Create and share Instagram-like filters with non-destructive edits and/or animated effects for use in your web projects.
 
-###Core Features
+### Core Features
 * Live Preview
 * Live CSS generation
 * Re=orderable filtering
@@ -16,17 +16,17 @@ CSS filters allow graphical effects, leveraging inbrowser post-processing of ima
 * Support information
 * Accessibility friendly (Fully tabbable interface)
 
-###Planned Features
+### Planned Features
 * Presets reorder lists
 * UI refinement
 * Uploadable Preview (will not save images)
 * Improved Mobile Support 
 
-###Nixed Features
+### Nixed Features
 * Sharable preview images. For the benefit of maintaining a quality user experience, external linked images will not be sharable for several reasons: performance, copyright (sharable uploaded images may infringe on rights), hosting, and general good taste. This is a simple single static single page app. :) 
 * Full featured gradient generator. This may be revisited in the future but in the interest of scope, this has been shelved.
 
-##Site Structure
+## Site Structure
 
 Currently CSSFilterGenerator uses the following libraries. 
 * jQuery - linked via CDN
@@ -44,7 +44,7 @@ js/app/app.js - This is where all the custom javascript lives
 scss/main.scss - This is the master Sass file that controls all the imports 
 index.html - This is where all the markup lives including the Handlebars templating
 
-###Setting up
+### Setting up
 
 This project requires Node JS/Grunt. For more info see, [nodejs.org](https://nodejs.org/en/)[gruntjs.com/](http://gruntjs.com/) and assumes basic terminal usage.
 
@@ -55,7 +55,7 @@ from the _build/ directory run grunt.
 
 Grunt is configured to handle JS concat, uglify, and minification for builds, some JSlinting, Sass (using libsass) builds with source maps and minification, and BrowserSync to inject CSS changes / reload for Javascript / HTML changes and for testing on multiple devices.
 
-###Library Roles
+### Library Roles
 HeadJS - Used to create error messaging for IE, and warnings for Safari and Edge (for now, planned to use Modernzr for feature detection).
 
 SpectrumJS - Handles the ColorPicker functionality used for overlays. 
