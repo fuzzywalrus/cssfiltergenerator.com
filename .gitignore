@@ -10,3 +10,5 @@ ehthumbs.db
 # Icon
 css/main-min.css.map
 css/main.prefixed.css
+/css/main-min.css
+/js/app-min.js
