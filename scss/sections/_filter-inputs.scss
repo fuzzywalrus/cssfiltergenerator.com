@@ -11,11 +11,13 @@ ul {
 
 label.generic {
 	display: inline-block;
-	min-width: 85px;
-	cursor: pointer;
+	//min-width: 85px;
+	cursor: grab;
+	cursor: -webkit-grab;
 	font-family: $font-sans-serif;
 	font-weight: 400;
-	margin-left: 30px;
+	margin-left: 10px;
+	    font-size: 15px;
 	&.disabled {
 		color: #999;
 	}
@@ -99,13 +101,18 @@ select {
 	}
 }
 .updown {
-	font-size: 2em;
 	margin-bottom: -.5em;
-	position: absolute;
-	top: -7px;
-	left: 17px;
+	//position: absolute;
 	padding: 5px;
 	cursor: row-resize;
 	cursor: grab;
 	cursor: -webkit-grab;
+	display: inline-block;
+	min-width: 154px;
+	.arrow {
+		position: relative;
+		top: 5px;
+		font-size: 2em;
+		display: inline-block;
+	}
 }

@@ -1833,11 +1833,12 @@ ul {
 
 label.generic {
   display: inline-block;
-  min-width: 85px;
-  cursor: pointer;
+  cursor: grab;
+  cursor: -webkit-grab;
   font-family: "Raleway", sans-serif;
   font-weight: 400;
-  margin-left: 30px; }
+  margin-left: 10px;
+  font-size: 15px; }
   label.generic.disabled {
     color: #999; }
 
@@ -1911,15 +1912,18 @@ select {
   margin-top: 3px; }
 
 .updown {
-  font-size: 2em;
   margin-bottom: -.5em;
-  position: absolute;
-  top: -7px;
-  left: 17px;
   padding: 5px;
   cursor: row-resize;
   cursor: grab;
-  cursor: -webkit-grab; }
+  cursor: -webkit-grab;
+  display: inline-block;
+  min-width: 154px; }
+  .updown .arrow {
+    position: relative;
+    top: 5px;
+    font-size: 2em;
+    display: inline-block; }
 
 img#demoimage {
   max-width: 100%;
