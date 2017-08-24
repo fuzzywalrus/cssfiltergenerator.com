@@ -46,7 +46,7 @@ index.html - This is where all the markup lives including the Handlebars templat
 
 ### Setting up
 
-This project requires Node JS/Grunt. For more info see, [nodejs.org](https://nodejs.org/en/)[gruntjs.com/](http://gruntjs.com/) and assumes basic terminal usage.
+This project requires Node JS/Grunt. For more info see, [nodejs.org](https://nodejs.org/en/) & [gruntjs.com/](http://gruntjs.com/) and assumes basic terminal usage.
 
 This project by default is configured to use cssgradientgenerator.lvh.me to the root directory, in order to use BrowserSync. Configure this in your apache vhosts or MAMP/LAMP or any program you use to manage your virtual hosts. 
 
