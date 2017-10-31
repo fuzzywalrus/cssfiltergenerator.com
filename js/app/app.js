@@ -132,9 +132,6 @@
                 $(myObj).insertBefore($(classTarget));
               }
                var classIndex = $(className).index();
-
-              // if (key != "r") {
-              //  }
                 var query = "[data-urlname*='"  + key + "']"; //data attributes for both range & text input
                 var query2 = "[data-pair*='"  + key + "']";
                 $(query).val(value);
