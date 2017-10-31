@@ -1,9 +1,11 @@
+//Global Vars
 $font-body: 'Merriweather', serif;
 $font-sans-serif: 'Raleway', sans-serif;
 $dark-cobalt: rgba(40, 44, 52, 1);
 $dark-grey: #2d2d2d;
 $dark-metal: rgba(58, 63, 75, 1);
 $light-grey: rgb(88, 96, 114);
+
 @import "vendor/bootstrap";
 @import "sections/tables";
 @import "sections/typography";
@@ -32,7 +34,7 @@ $light-grey: rgb(88, 96, 114);
 
 body {
 	background: $dark-grey;
-	background: rgba(33, 37, 43, 1);
+	background: rgba(33, 37, 44, 1);
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	color: white;

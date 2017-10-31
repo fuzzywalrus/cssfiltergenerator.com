@@ -261,7 +261,7 @@
 					},
 					activeOverlay : function() {
 						//New overlay functionality
-            console.log("activeOverlay");
+            //console.log("activeOverlay");
 						$('input[type=radio][name=overlay]').change(function() {
 							var myChecked = $("input[type=radio][name=overlay]:checked").val();
 							if ( myChecked == "#overlay-radio-none") {
@@ -400,10 +400,10 @@
 	Engine.ui.presets();
 	Engine.ui.newimage();
 	Engine.ui.activeOverlay();
-	Engine.colorPicking.colorPick();
   Engine.ui.flipDemoImage();
   Engine.ui.changeSelect();
   Engine.ui.tabbedInit();
+  Engine.colorPicking.colorPick();
   Engine.urlShare.createURL();
   Engine.urlShare.getURL();
 });

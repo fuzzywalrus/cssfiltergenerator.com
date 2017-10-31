@@ -37,6 +37,28 @@ module.exports = function(grunt) {
 				beautify: false
 			}
 		},
+		modernizr: {
+		  dist: {
+		    "parseFiles": true,
+		    "customTests": [],
+		    "dest": "../js/source/modernizr-custom.js",
+		    "tests": [
+		      // Tests
+		    ],
+				"crawl" : false, // reduce search time
+				"files" : {
+	        "src": [
+							//"js/app.js",
+							"../css/main.css" // list of files that are scanned
+	        ]
+	    },
+		    "options": [
+		      "setClasses",
+					"html5printshiv"
+		    ],
+		    "uglify": true
+		  }
+		},
 		// docs http://jshint.com/docs/options/
 		jshint: {
 			dev : {
@@ -123,6 +145,7 @@ module.exports = function(grunt) {
 	});
 	require('time-grunt')(grunt);
 	grunt.loadNpmTasks('grunt-newer');
+	grunt.loadNpmTasks("grunt-modernizr");
 
 	// Default tasks (runs them all at start to catch any updates from version control)
 	grunt.registerTask("default", ["browserSync","watch"]);
