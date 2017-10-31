@@ -3,7 +3,7 @@
 ![logo](http://cssfiltergenerator.com/img/simple.png)
 
 ## Tagline
-CSS filters allow graphical effects, leveraging inbrowser post-processing of images. Create and share Instagram-like filters with non-destructive edits and/or animated effects for use in your web projects.
+CSS filters allow graphical effects, leveraging in-browser post-processing of images. Create and share Instagram-like filters with non-destructive edits and/or animated effects for use in your web projects.
 
 ### Core Features
 * Live Preview
@@ -23,12 +23,12 @@ CSS filters allow graphical effects, leveraging inbrowser post-processing of ima
 * Improved Mobile Support 
 
 ### Nixed Features
-* Sharable preview images. For the benefit of maintaining a quality user experience, external linked images will not be sharable for several reasons: performance, copyright (sharable uploaded images may infringe on rights), hosting, and general good taste. This is a simple single static single page app. :) 
-* Full featured gradient generator. This may be revisited in the future but in the interest of scope, this has been shelved.
+* Sharable preview images. For the benefit of maintaining a quality user experience, externally linked images will not be sharable for several reasons: performance, copyright (sharable uploaded images may infringe on rights), hosting, and general good taste. This is a simple single static single page app. :) 
+* Full-featured gradient generator. This may be revisited in the future but in the interest of scope, this has been shelved.
 
 ## Site Structure
 
-Currently CSSFilterGenerator uses the following libraries. 
+Currently, CSSFilterGenerator uses the following libraries. 
 * jQuery - linked via CDN
 * [HeadJS](http://headjs.com/) - linked via CDN
 * [Sortable](https://github.com/RubaXa/Sortable) - in source
@@ -46,7 +46,7 @@ index.html - This is where all the markup lives including the Handlebars templat
 
 ### Setting up
 
-This project requires Node JS/Grunt. For more info see, [nodejs.org](https://nodejs.org/en/)[gruntjs.com/](http://gruntjs.com/) and assumes basic terminal usage.
+This project requires Node JS/Grunt. For more info see, [nodejs.org](https://nodejs.org/en/) & [gruntjs.com/](http://gruntjs.com/) and assumes basic terminal usage.
 
 This project by default is configured to use cssgradientgenerator.lvh.me to the root directory, in order to use BrowserSync. Configure this in your apache vhosts or MAMP/LAMP or any program you use to manage your virtual hosts. 
 
