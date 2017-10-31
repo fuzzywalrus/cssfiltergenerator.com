@@ -53,6 +53,8 @@ This project by default is configured to use cssgradientgenerator.lvh.me to the 
 Go to the _build/ directory, and run npm install to install the necessary grunt packages.
 from the _build/ directory run grunt.
 
+This will generate the necessary compiled CSS and JS.
+
 Grunt is configured to handle JS concat, uglify, and minification for builds, some JSlinting, Sass (using libsass) builds with source maps and minification, and BrowserSync to inject CSS changes / reload for Javascript / HTML changes and for testing on multiple devices.
 
 ### Library Roles
