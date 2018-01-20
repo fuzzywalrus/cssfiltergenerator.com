@@ -19,10 +19,27 @@
               Engine.data.filters[objName].active = $(this).prop("checked");
               console.log(Engine.data);
             });
+            //overlay change
             $('[name="overlay"]').change(function() {
                 Engine.data.overlay.type = $(this).val();
                 console.log(Engine.data);
             });
+            $('.overlay-group input').change(function() {
+              Engine.data.overlay.color0 = $("#overlay-solid-color-text").val();
+              console.log("  Engine.data.overlay.color0 " +   Engine.data.overlay.color0);
+              Engine.data.overlay.color1 = $("#overlay-gradient-color1-text").val();
+              Engine.data.overlay.color2  = $("#overlay-gradient-color2-text").val();
+              Engine.data.overlay.blend = $("#blending-mode").val();
+              Engine.data.overlay.orientation = $("#orientation").val();
+              Engine.data.overlay.orientation = Engine.data.overlay.orientation.replace(/_/g," ");
+            });
+            $('.overlay-solid-color').change(function() {
+               Engine.template.writeOverlay(Engine.data.overlay.blend, Engine.data.overlay.color0 );
+            });
+             $('.overlay-gradient-color').change(function() {
+               var myGradient =  Engine.data.overlay.orientation + ","+ Engine.data.overlay.color1 +" 0%, "+ Engine.data.overlay.color2 +" 100%);";
+               Engine.template.writeOverlay(Engine.data.overlay.blend, myGradient);
+             });
           },
           positioner : function () {
             // this writes the value of the position to each corrosponding filter
@@ -100,14 +117,16 @@
           },
           overlay: {
             type: "none",
+            color0: {
+              value: "rgba(62, 162, 253, 0.4)"
+            },
             color1: {
-              value: "rgba(62, 162, 253, 0.4)",
-              blend: "multiply"
+              value: "rgba(62, 162, 253, 0.4)"
             },
             color2: {
-              value: "rgba(2, 122, 233, 0.8)",
-              blend: "multiply"
+              value: "rgba(2, 122, 233, 0.8)"
             },
+            select: "#overlay-radio-none",
             blend: "multiply",
             gradientOrientation: "linear-gradient(to_right"
           }
@@ -149,7 +168,7 @@
             console.log("UpdateColor");
           },
           colorPick : function() {
- 					 //New Spectrum code
+ 					 //New Spectrum code, this initializes all instanes of spectrum
  					 	$('#overlay-solid-color .color').spectrum({
  							preferredFormat: "rgb",
  					    showInput: true,
@@ -159,7 +178,7 @@
  							move: function (color) { Engine.colorPicking.updateColor("#overlay-solid-color-text", color); },
  							hide: function (color) { Engine.colorPicking.updateColor("#overlay-solid-color-text", color); }
  						});
- 						//overlay-linear-gradient color 1
+ 						//overlay-linear-gradient color 1 init
  						$('#overlay-gradient-color1').spectrum({
  							preferredFormat: "rgb",
  					    showInput: true,
@@ -169,7 +188,7 @@
  							move: function (color) { Engine.colorPicking.updateColor("#overlay-gradient-color1-text", color); },
  							hide: function (color) { Engine.colorPicking.updateColor("#overlay-gradient-color1-text", color); }
  						});
- 						//overlay-linear-gradient color 2
+ 						//overlay-linear-gradient color 2 init
  						$('#overlay-gradient-color2').spectrum({
  							preferredFormat: "rgb",
  					    showInput: true,
@@ -179,25 +198,6 @@
  							move: function (color) { Engine.colorPicking.updateColor("#overlay-gradient-color2-text", color); },
  							hide: function (color) { Engine.colorPicking.updateColor("#overlay-gradient-color2-text", color); }
  						});
-
- 						$('.overlay-solid-color').change(function() {
- 							//console.log("solid");
- 							var myGradient = $("#overlay-solid-color-text").val();
- 							var myBlending = $("#blending-mode").val();
-               console.log("overlay-solid-color:" + myGradient);
-               Engine.template.writeOverlay(myBlending, myGradient);
- 						});
-             $('.overlay-gradient-color').change(function() {
-               //console.log("gradient");
-               var myColor1 = $("#overlay-gradient-color1-text").val();
-               var myColor2 = $("#overlay-gradient-color2-text").val();
-               var myBlending = $("#blending-mode").val();
-               var orientation = $("#orientation").val();
-               orientation = orientation.replace(/_/g," ");
-               console.log("orientation:" + orientation);
-               var myGradient = orientation + ","+ myColor1 +" 0%, "+ myColor2 +" 100%);";
-               Engine.template.writeOverlay(myBlending, myGradient);
-             });
  				 }
         },
         urlShare : {
@@ -299,8 +299,8 @@
 						//when sliders are changed
             console.log("onChangesEvents");
 						$("#contain input").change(function() {
-							var filters = "";
-							var hoverState = "";
+							var filters = "",
+                  hoverState = "";
               Object.keys(Engine.data.filters).forEach(function(key) {
                 if (Engine.data.filters[key].value != Engine.data.filters[key].defaultValue && Engine.data.filters[key].active === true) {
                   filters = filters + [key] + "("+ Engine.data.filters[key].value + Engine.data.filters[key].suffix  +") ";
@@ -350,13 +350,13 @@
 					},
           reset : function() {
           //Return to every input to its default value
-            $( "input[data-filter]" ).each(function() {
-              var defaultVal = $(this).attr('value');
-              $(this).val(defaultVal);
-              Engine.ui.killOverlay(); //obliterate the Overlay
-              $("#overlay-radio-none").prop("checked", true);
-            });
+          Object.keys(Engine.data.filters).forEach(function(key) {
+            Engine.data.filters[key].value = Engine.data.filters[key].defaultValue;
+            $('input[data-filter="'  + key + '"]').data(filter, Engine.data.filters[key].defaultValue);
+
+          });
             $("#sepia-a").change();
+            Engine.ui.killOverlay(); //obliterate the Overlay
           },
 					resetButton : function() {
 						$("#reset").click(function() {
@@ -417,8 +417,8 @@
 				 presetSet : function(filterName, newValue) {
 					 //use for presets
 
-					 var mySliderNameA = "#" + filterName + "-a";
-					 var mySliderNameB ="#" +  filterName + "-b";
+					 var mySliderNameA = "#" + filterName + "-a",
+					     mySliderNameB ="#" +  filterName + "-b";
 					 if (newValue !== undefined ) {
 						 $(mySliderNameA).val(newValue);
 						 $(mySliderNameB).val(newValue);
@@ -429,18 +429,17 @@
 					 }
 				 },
 				 gradientCheck : function(obj) {
-           // Used by presets to change the gradients
-					 var gradient = $(obj).data("gradient");
-           gradient = '[value="' + gradient + '"]';
-					 $("input[name=overlay]").filter(gradient).prop("checked", true);
-					 var color1 = $(obj).data("color1");
-					 var color2 = $(obj).data("color2");
-           var orientation = $(obj).data("orientation");
-					 $(".overlay-group input.color1").val(color1);
-					 $(".overlay-group input.color2").val(color2);
-					 var blendingMode = $(obj).data("blending-mode");
-           $("#blending-mode").val(blendingMode);
-           $("#orientation").val(orientation);
+           //used for presets only
+           Engine.data.overlay.color1 = $(obj).data("color1");
+           Engine.data.overlay.color2 = $(obj).data("color2");
+           Engine.data.overlay.select = $(obj).data("gradient");
+           Engine.data.overlay.gradientOrientation = $(obj).data("orientation");
+           Engine.data.overlay.blend = $(obj).data("blending-mode");
+					 $("input[name=overlay]").filter('[value="' +  Engine.data.overlay.select  + '"]').prop("checked", true);
+					 $(".overlay-group input.color1").val(Engine.data.overlay.color1);
+					 $(".overlay-group input.color2").val(Engine.data.overlay.color2);
+           $("#blending-mode").val( Engine.data.overlay.blend);
+           $("#orientation").val(Engine.data.overlay.gradientOrientation);
            Engine.colorPicking.updateColorPicker(".overlay-group input.color1.text", ".overlay-group input.color1.picker");
            Engine.colorPicking.updateColorPicker(".overlay-group input.color2.text", ".overlay-group input.color2.picker");
            console.log("gradientCheck");
