@@ -3,6 +3,121 @@
   var Engine;
     jQuery(document).ready(function() {
       Engine = {
+        data : {
+          updater : function () {
+            // This writes the input value of the numeric input into the data object's corrosponding filter.
+            $("[data-filter]").change(function() {
+              var objName = $(this).data("filter");
+              objName = objName.replace(/-/g, "");
+              Engine.data.filters[objName].value = $(this).val();
+              console.log(Engine.data);
+            });
+              // This writes the on/off value of the checkbox (switch) input into the data object's corrosponding filter.
+            $(".onoffswitch-checkbox").change(function(){
+              var objName = $(this).data("forfilter");
+              objName = objName.replace(/-/g, "");
+              Engine.data.filters[objName].active = $(this).prop("checked");
+              console.log(Engine.data);
+            });
+            $('[name="overlay"]').change(function() {
+                Engine.data.overlay.type = $(this).val();
+                console.log(Engine.data);
+            });
+          },
+          positioner : function () {
+            // this writes the value of the position to each corrosponding filter
+            $('input[data-filter][type="number"]').each(function( index, element ) {
+              var objName = $(element).data("filter");
+              objName = objName.replace(/-/g, "");
+              //console.log("index " + index + ", " + element + ", " + objName);
+              Engine.data.filters[objName].position = index;
+            });
+          },
+          filters: {
+            // default values never change
+            blur : {
+              active: true,
+              defaultValue:  0,
+              value: 0,
+              suffix: "px",
+              position: 0
+            },
+            brightness: {
+              active: true,
+              defaultValue: 1,
+              value: 1,
+              suffix: "",
+              position: 1
+            },
+            contrast: {
+              active: true,
+              value: 1,
+              defaultValue: 1,
+              suffix: "",
+              position: 2
+            },
+            grayscale: {
+              active: true,
+              value: 0,
+              defaultValue: 0,
+              suffix: "",
+              position: 3
+            },
+            huerotate: {
+              active: true,
+              value: 0,
+              defaultValue: 0,
+              suffix: "deg",
+              position: 4
+            },
+            invert: {
+              active: true,
+              value: 0,
+              defaultValue: 0,
+              position: 5
+            },
+            opacity: {
+              active: true,
+              value: 1,
+              defaultValue: 1,
+              suffix: "",
+              position: 6
+            },
+            saturate: {
+              active: true,
+              value: 1,
+              defaultValue: 1,
+              suffix: "",
+              position: 7
+            },
+            sepia: {
+              active: true,
+              value: 0,
+              defaultValue: 0,
+              suffix: "",
+              position: 8
+            }
+          },
+          overlay: {
+            type: "none",
+            color1: {
+              value: "rgba(62, 162, 253, 0.4)",
+              blend: "multiply"
+            },
+            color2: {
+              value: "rgba(2, 122, 233, 0.8)",
+              blend: "multiply"
+            },
+            blend: "multiply",
+            gradientOrientation: "linear-gradient(to_right"
+          }
+
+        },
+        init: function() {
+          //first run
+          Engine.data.updater();
+          Engine.data.positioner();
+        },
         template : {
           //Mustachejs calls
           writeCSS : function(filters, hoverState) {
@@ -186,24 +301,13 @@
 						$("#contain input").change(function() {
 							var filters = "";
 							var hoverState = "";
-							$( "input[type=range]" ).each(function() {
-								var myCurrentVal = $(this).val(); // current
-							 	var filterName = $(this).data("filter");
-								var myDefaultVal  = $(this).attr('value'); //gets the default value of the input for use for hover state
-								var dataAdditional = $(this).data("additional"); //appends the input data with suffix to relevant CSS
-								if (dataAdditional === undefined) { //error handler
-									dataAdditional = "";
-								}
-						    var concatMe =  filterName + "("+ myCurrentVal + dataAdditional +") ";
-								var concatMehover = filterName + "(" + myDefaultVal + ") "; //hover state
-                console.log("onChangesEvents " + myCurrentVal + " " + myDefaultVal);
-
-								if ($(this).is(':disabled') === false && myDefaultVal !== myCurrentVal) {
-									filters = filters + concatMe;
-									hoverState = hoverState + concatMehover;
-								}
-						  });
-              Engine.template.writeCSS(filters, hoverState);
+              Object.keys(Engine.data.filters).forEach(function(key) {
+                if (Engine.data.filters[key].value != Engine.data.filters[key].defaultValue && Engine.data.filters[key].active === true) {
+                  filters = filters + [key] + "("+ Engine.data.filters[key].value + Engine.data.filters[key].suffix  +") ";
+                  hoverState = [key] + "(" + Engine.data.filters[key].defaultValue + ") ";
+                }
+                Engine.template.writeCSS(filters, hoverState);
+              });
 						});
             $("#orientation").change(function() {
               $("#blending-mode").change();
@@ -295,6 +399,7 @@
             var sortable = Sortable.create(el, {
               handle: ".updown",
               onUpdate: function (/**Event*/evt) {
+                  Engine.data.filters.positioner();
                  $("#sepia-a").change();//dummy change to trigger change() events.
                }
             });
@@ -392,6 +497,8 @@
 				}
 		} // ui
 	}; // Engine
+  Engine.init();
+
 	Engine.ui.sliders();
 	Engine.ui.onChangesEvents();
 	Engine.ui.sorting();
@@ -406,6 +513,8 @@
   Engine.colorPicking.colorPick();
   Engine.urlShare.createURL();
   Engine.urlShare.getURL();
+
+  console.log (Engine.data);
 });
 }(jQuery));
 
