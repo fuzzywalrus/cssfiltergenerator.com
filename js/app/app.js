@@ -8,7 +8,6 @@
             // This writes the input value of the numeric input into the data object's corrosponding filter.
             $("[data-filter]").change(function() {
               var objName = $(this).data("filter");
-              objName = objName.replace(/-/g, "");
               Engine.data.filters[objName].value = $(this).val();
               console.log(Engine.data);
               Engine.urlShare.createURL();
@@ -16,7 +15,6 @@
               // This writes the on/off value of the checkbox (switch) input into the data object's corrosponding filter.
             $(".onoffswitch-checkbox").change(function(){
               var objName = $(this).data("forfilter");
-              objName = objName.replace(/-/g, "");
               Engine.data.filters[objName].active = $(this).prop("checked");
               console.log(Engine.data);
             });
@@ -49,8 +47,9 @@
                   hoverState = "";
                Object.keys(Engine.data.filters).forEach(function(key) {
                  if (Engine.data.filters[key].value != Engine.data.filters[key].defaultValue && Engine.data.filters[key].active === true) {
-                   filters = filters + [key] + "("+ Engine.data.filters[key].value + Engine.data.filters[key].suffix  +") ";
-                   hoverState = [key] + "(" + Engine.data.filters[key].defaultValue + ") ";
+
+                   filters = filters +  Engine.data.filters[key].cssname + "("+ Engine.data.filters[key].value + Engine.data.filters[key].suffix  +") ";
+                   hoverState = Engine.data.filters[key].cssname + "(" + Engine.data.filters[key].defaultValue + ") ";
                  }
                  Engine.template.writeCSS(filters, hoverState);
                });
@@ -63,7 +62,6 @@
             // this writes the value of the position to each corrosponding filter
             $('input[data-filter][type="number"]').each(function( index, element ) {
               var objName = $(element).data("filter");
-              objName = objName.replace(/-/g, "");
               //console.log("index " + index + ", " + element + ", " + objName);
               Engine.data.filters[objName].position = index;
             });
@@ -74,6 +72,7 @@
               active: true,
               defaultValue:  0,
               value: 0,
+              cssname: "blur",
               suffix: "px",
               position: 0
             },
@@ -81,6 +80,7 @@
               active: true,
               defaultValue: 1,
               value: 1,
+              cssname: "brightness",
               suffix: "",
               position: 1
             },
@@ -88,6 +88,7 @@
               active: true,
               value: 1,
               defaultValue: 1,
+              cssname: "contrast",
               suffix: "",
               position: 2
             },
@@ -95,6 +96,7 @@
               active: true,
               value: 0,
               defaultValue: 0,
+              cssname: "grayscale",
               suffix: "",
               position: 3
             },
@@ -102,6 +104,7 @@
               active: true,
               value: 0,
               defaultValue: 0,
+              cssname: "hue-rotate",
               suffix: "deg",
               position: 4
             },
@@ -109,12 +112,15 @@
               active: true,
               value: 0,
               defaultValue: 0,
+              cssname: "invert",
+              suffix: "",
               position: 5
             },
             opacity: {
               active: true,
               value: 1,
               defaultValue: 1,
+              cssname: "opacity",
               suffix: "",
               position: 6
             },
@@ -122,6 +128,7 @@
               active: true,
               value: 1,
               defaultValue: 1,
+              cssname: "saturate",
               suffix: "",
               position: 7
             },
@@ -129,6 +136,7 @@
               active: true,
               value: 0,
               defaultValue: 0,
+              cssname: "sepia",
               suffix: "",
               position: 8
             }
@@ -245,8 +253,10 @@
              $.each( queries, function( key, value ) {
                console.log("key " +  key + "$(\"[data-filter='"  + key + "'])\" ");
               $("[data-filter='"  + key + "']").val(value);
-            });
+              Engine.data.filters[key].value = value;
               $("#sepia-a").change();
+            });
+
             //r is shorthand for radio checkbox, if this has been set, then tag action to select the radio box for gradients
             if(window.location.href.indexOf("r=") > -1) {
              var newString =  String(queries.r);
@@ -484,7 +494,6 @@
   Engine.ui.changeSelect();
   Engine.ui.tabbedInit();
   Engine.colorPicking.colorPick();
-  //Engine.urlShare.createURL();
   Engine.urlShare.getURL();
 
   console.log (Engine.data);

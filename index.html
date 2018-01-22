@@ -66,10 +66,10 @@
                     </div>
                     <div class="table">
                       <div class="table-cell">
-                        <input id="blur-a" type="range"  min="0" max="75" step=".01" data-urlname="bl" data-filter="blur" data-additional="px" value="0">
+                        <input id="blur-a" type="range"  min="0" max="75" step=".01"  data-filter="blur" data-additional="px" value="0">
                       </div>
                       <div class="table-cell num">
-                        <input id="blur-b" type="number" min="0" max="75" step=".01" data-pair="bl"    data-filter="blur" data-additional="px" value="0" >
+                        <input id="blur-b" type="number" min="0" max="75" step=".01"  data-filter="blur" data-additional="px" value="0" >
                       </div>
                     </div>
                 	</li>
@@ -89,10 +89,10 @@
                     </div>
                     <div class="table">
                       <div class="table-cell">
-                        <input id="brightness-a" type="range"  min="0" max="3" step=".01" data-urlname="bn" data-filter="brightness" value="1">
+                        <input id="brightness-a" type="range"  min="0" max="3" step=".01" data-filter="brightness" value="1">
                       </div>
                       <div class="table-cell num">
-                        <input id="brightness-b" type="number" min="0" max="3" step=".01" data-pair="bn"    data-filter="brightness" value="1">
+                        <input id="brightness-b" type="number" min="0" max="3" step=".01" data-filter="brightness" value="1">
                       </div>
                     </div>
                 	</li>
@@ -112,10 +112,10 @@
                     </div>
                     <div class="table">
                       <div class="table-cell">
-                        <input id="contrast-a" type="range"  min="0" max="3" step=".01" data-urlname="ct" data-filter="contrast" value="1">
+                        <input id="contrast-a" type="range"  min="0" max="3" step=".01" data-filter="contrast" value="1">
                       </div>
                       <div class="table-cell num">
-                        <input id="contrast-b" type="number" min="0" max="3" step=".01" data-pair="ct"    data-filter="contrast" value="1" >
+                        <input id="contrast-b" type="number" min="0" max="3" step=".01" data-filter="contrast" value="1" >
                       </div>
                     </div>
                   </li>
@@ -135,10 +135,10 @@
                     </div>
                     <div class="table">
                       <div class="table-cell">
-                        <input id="grayscale-a" type="range"  min="0" max="1" step=".01" data-urlname="gs" data-filter="grayscale" value="0">
+                        <input id="grayscale-a" type="range"  min="0" max="1" step=".01" data-filter="grayscale" value="0">
                       </div>
                       <div class="table-cell num">
-                        <input id="grayscale-b" type="number" min="0" max="1" step=".01" data-pair="gs"    data-filter="grayscale" value="1">
+                        <input id="grayscale-b" type="number" min="0" max="1" step=".01"  data-filter="grayscale" value="1">
                       </div>
                     </div>
                   </li>
@@ -148,8 +148,8 @@
                       <div class="col-sm-12">
                         <span class="updown"><span class="arrow">↕</span> <label class="generic">Hue-Rotate:</label></span>
                         <div class="onoffswitch">
-                          <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="onoffswitch-hue-rotate" data-forfilter="hue-rotate"  checked>
-                          <label class="onoffswitch-label" for="onoffswitch-hue-rotate" data-filter="hue-rotate">
+                          <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="onoffswitch-hue-rotate" data-forfilter="huerotate"  checked>
+                          <label class="onoffswitch-label" for="onoffswitch-hue-rotate" data-filter="huerotate">
                             <span class="onoffswitch-inner"></span>
                             <span class="onoffswitch-switch"></span>
                           </label>
@@ -158,10 +158,10 @@
                    </div>
                    <div class="table">
                      <div class="table-cell">
-                       <input id="hue-rotate-a" type="range"  min="-360" max="360" step="1" data-urlname="hu" data-filter="hue-rotate" data-additional="deg" value="0">
+                       <input id="hue-rotate-a" type="range"  min="-360" max="360" step="1"  data-filter="huerotate" value="0">
                      </div>
                      <div class="table-cell num">
-                       <input id="hue-rotate-b" type="number" min="-360" max="360" step="1" data-pair="hu"    data-filter="hue-rotate" data-additional="deg" value="0">
+                       <input id="hue-rotate-b" type="number" min="-360" max="360" step="1"  data-filter="huerotate" value="0">
                      </div>
                    </div>
                   </li>
@@ -181,10 +181,10 @@
                      </div>
                      <div class="table">
                        <div class="table-cell">
-                         <input id="invert-a" type="range"  min="0" max="1" step=".01" data-urlname="in" data-filter="invert" value="0">
+                         <input id="invert-a" type="range"  min="0" max="1" step=".01" data-filter="invert" value="0">
                        </div>
                        <div class="table-cell num">
-                         <input id="invert-b" type="number" min="0" max="1" step=".01" data-pair="in"    data-filter="invert" value="0">
+                         <input id="invert-b" type="number" min="0" max="1" step=".01" data-filter="invert" value="0">
                        </div>
                      </div>
                 	</li>
@@ -204,10 +204,10 @@
                      </div>
                      <div class="table">
                        <div class="table-cell">
-                          <input id="opacity-a" type="range"  min="0" max="1" step=".01" data-urlname="op" data-filter="opacity" value="1">
+                          <input id="opacity-a" type="range"  min="0" max="1" step=".01" data-filter="opacity" value="1">
                        </div>
                        <div class="table-cell num">
-                         <input id="opacity-b" type="number" min="0" max="1" step=".01" data-pair="op"    data-filter="opacity" value="1">
+                         <input id="opacity-b" type="number" min="0" max="1" step=".01"  data-filter="opacity" value="1">
                        </div>
                      </div>
                 	</li>
@@ -227,10 +227,10 @@
                     </div>
                     <div class="table">
                       <div class="table-cell">
-                         <input id="saturate-a" type="range"  min="0" max="3" step=".01" data-urlname="sa" data-filter="saturate" value="1">
+                         <input id="saturate-a" type="range"  min="0" max="3" step=".01" data-filter="saturate" value="1">
                       </div>
                       <div class="table-cell num">
-                        <input id="saturate-b" type="number" min="0" max="3" step=".01" data-pair="sa"    data-filter="saturate" value="1" >
+                        <input id="saturate-b" type="number" min="0" max="3" step=".01"  data-filter="saturate" value="1" >
                       </div>
                     </div>
                   </li>
@@ -250,10 +250,10 @@
                     </div>
                     <div class="table">
                       <div class="table-cell">
-                        <input id="sepia-a" type="range"  min="0" max="1" step=".01" data-urlname="se" data-filter="sepia" value="0">
+                        <input id="sepia-a" type="range"  min="0" max="1" step=".01" data-filter="sepia" value="0">
                       </div>
                       <div class="table-cell num">
-                        <input id="sepia-b" type="number" min="0" max="1" step=".01" data-pair="se"    data-filter="sepia" value="1" >
+                        <input id="sepia-b" type="number" min="0" max="1" step=".01" data-filter="sepia" value="1" >
                       </div>
                     </div>
                   </li>
@@ -333,22 +333,22 @@
                 <div id="overlay-solid" class="overlay-group">
                   <div  id="overlay-solid-color">
                     <input type="text" class="overlay-solid-color color picker " name="solid" value="#5367ce"/>
-                    <input type="text" class="overlay-solid-color color1 text" name="solid"  data-urlname="c1" data-gradient="#overlay-solid" id="overlay-solid-color-text" value="#5367ce"/>
+                    <input type="text" class="overlay-solid-color color1 text" name="solid"  data-gradient="#overlay-solid" id="overlay-solid-color-text" value="#5367ce"/>
                   </div>
                 </div>
 
                 <div id="overlay-gradient" class="overlay-group">
                   <div class="wrapper">
                     <input class="overlay-gradient-color color1 picker" value="rgba(62, 162, 253, 0.4)" id="overlay-gradient-color1">
-                    <input class="overlay-gradient-color color1 text" value="rgba(62, 162, 253, 0.4)" data-urlname="c1" data-gradient="#overlay-gradient"  id="overlay-gradient-color1-text">
+                    <input class="overlay-gradient-color color1 text" value="rgba(62, 162, 253, 0.4)"  data-gradient="#overlay-gradient"  id="overlay-gradient-color1-text">
                   </div>
                   <div class="wrapper">
                     <input class="overlay-gradient-color color2 picker" value="rgba(2, 122, 233, 0.8)" id="overlay-gradient-color2">
-                    <input class="overlay-gradient-color color2 text" value="rgba(2, 122, 233, 0.8)" data-urlname="c2" data-gradient="#overlay-gradient" id="overlay-gradient-color2-text">
+                    <input class="overlay-gradient-color color2 text" value="rgba(2, 122, 233, 0.8)" data-gradient="#overlay-gradient" id="overlay-gradient-color2-text">
                   </div>
                 </div>
                 <div class="selects">
-                <select id="blending-mode" data-urlname="bm" >
+                <select id="blending-mode" >
                   <option value="multiply" selected>multiply</option>
                   <option value="screen">screen</option>
                   <option value="overlay">overlay</option>
@@ -366,7 +366,7 @@
                   <option value="saturation">luminosity</option>
                   <option value="normal">normal</option>
                 </select>
-                <select id="orientation" data-urlname="ot">
+                <select id="orientation" >
                   <option value="linear-gradient(to_right" selected>horizontal&nbsp;&nbsp;→</option>
                   <option value="linear-gradient(to_left" selected>horizontal&nbsp;&nbsp;←</option>
                   <option value="linear-gradient(to_bottom">vertical&nbsp;&nbsp;↓</option>
@@ -630,43 +630,6 @@
                             <small>xpro2</small>
                             </div>
                           </div>
-                          <!--
-                          <div class="row">
-                            <div class="col-sm-12">
-                              <h3>CSSFilterGenerator Presets</h3>
-                              <p>Note: Presets do not reorder filters yet. Coming soon!</p>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="preset nu80s" data-brightness="1.12" data-contrast="1.1" data-blending-mode="overlay" data-color1="rgb(255, 0, 134)" data-color2="rgb(0, 117, 255)" data-gradient="#overlay-gradient" data-orientation="linear-gradient(to top,">
-                                <img src="/img/dalles-thumb.jpg" alt="preset nu80s">
-                              </a>
-                            <br>
-                            <small>nu80s</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="preset purple-rain"  data-brightness="1.55" data-gradient="0.75" data-hue-rotate="17" data-saturate="1.48" sepia="0.45" data-blending-mode="overlay" data-color1="rgba(10, 41, 255, 0.57)" data-gradient="#overlay-radio-solid">
-                                <img src="/img/dalles-thumb.jpg" alt="preset purple-rain">
-                              </a>
-                            <br>
-                            <small>purple-rain</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="preset red-sky"  data-brightness="1.59" data-gradient="0.75" data-hue-rotate="173" data-gradient="#overlay-radio-solid">
-                                <img src="/img/dalles-thumb.jpg" alt="preset red-sky">
-                              </a>
-                            <br>
-                            <small>red-sky</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="preset sunset" data-brightness="2.26" data-hue-rotate="150" data-color1="#5367ce" data-gradient="#overlay-radio-solid">
-                                <img src="/img/dalles-thumb.jpg" alt="preset sunset">
-                              </a>
-                            <br>
-                            <small>sunset</small>
-                            </div>
-                          </div> -->
                           </div>
                         </div>
                       </div>
