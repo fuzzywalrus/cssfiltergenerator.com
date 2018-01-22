@@ -4,68 +4,6 @@
     jQuery(document).ready(function() {
       Engine = {
         data : {
-          updater : function () {
-            // This writes the input value of the numeric input into the data object's corrosponding filter.
-            $("[data-filter]").change(function() {
-              var objName = $(this).data("filter");
-              Engine.data.filters[objName].value = $(this).val();
-              console.log(Engine.data);
-              Engine.urlShare.createURL();
-            });
-              // This writes the on/off value of the checkbox (switch) input into the data object's corrosponding filter.
-            $(".onoffswitch-checkbox").change(function(){
-              var objName = $(this).data("forfilter");
-              Engine.data.filters[objName].active = $(this).prop("checked");
-              console.log(Engine.data);
-            });
-            //overlay change
-            $('[name="overlay"]').change(function() {
-                Engine.data.overlay.type = $(this).val();
-                console.log(Engine.data);
-            });
-            $('.overlay-group input').change(function() {
-              Engine.data.overlay.color0 = $("#overlay-solid-color-text").val();
-              console.log("  Engine.data.overlay.color0 " +   Engine.data.overlay.color0);
-              Engine.data.overlay.color1 = $("#overlay-gradient-color1-text").val();
-              Engine.data.overlay.color2  = $("#overlay-gradient-color2-text").val();
-              Engine.data.overlay.blend = $("#blending-mode").val();
-              Engine.data.overlay.orientation = $("#orientation").val();
-              Engine.data.overlay.orientation = Engine.data.overlay.orientation.replace(/_/g," ");
-            });
-            //when solid color is changed
-            $('.overlay-solid-color').change(function() {
-               Engine.template.writeOverlay(Engine.data.overlay.blend, Engine.data.overlay.color0 );
-            });
-            //when gradient colors are changed
-             $('.overlay-gradient-color').change(function() {
-               var myGradient =  Engine.data.overlay.orientation + ","+ Engine.data.overlay.color1 +" 0%, "+ Engine.data.overlay.color2 +" 100%);";
-               Engine.template.writeOverlay(Engine.data.overlay.blend, myGradient);
-             });
-             //when sliders are changed
-             $("#contain input").change(function() {
- 							var filters = "",
-                  hoverState = "";
-               Object.keys(Engine.data.filters).forEach(function(key) {
-                 if (Engine.data.filters[key].value != Engine.data.filters[key].defaultValue && Engine.data.filters[key].active === true) {
-
-                   filters = filters +  Engine.data.filters[key].cssname + "("+ Engine.data.filters[key].value + Engine.data.filters[key].suffix  +") ";
-                   hoverState = Engine.data.filters[key].cssname + "(" + Engine.data.filters[key].defaultValue + ") ";
-                 }
-                 Engine.template.writeCSS(filters, hoverState);
-               });
- 						});
-             $("#orientation").change(function() {
-               $("#blending-mode").change();
-             });
-          },
-          positioner : function () {
-            // this writes the value of the position to each corrosponding filter
-            $('input[data-filter][type="number"]').each(function( index, element ) {
-              var objName = $(element).data("filter");
-              //console.log("index " + index + ", " + element + ", " + objName);
-              Engine.data.filters[objName].position = index;
-            });
-          },
           filters: {
             // default values never change
             blur : {
@@ -140,6 +78,68 @@
               suffix: "",
               position: 8
             }
+          },
+          updater : function () {
+            // This writes the input value of the numeric input into the data object's corrosponding filter.
+            $("[data-filter]").change(function() {
+              var objName = $(this).data("filter");
+              Engine.data.filters[objName].value = $(this).val();
+              console.log(Engine.data);
+              Engine.urlShare.createURL();
+            });
+              // This writes the on/off value of the checkbox (switch) input into the data object's corrosponding filter.
+            $(".onoffswitch-checkbox").change(function(){
+              var objName = $(this).data("forfilter");
+              Engine.data.filters[objName].active = $(this).prop("checked");
+              console.log(Engine.data);
+            });
+            //overlay change
+            $('[name="overlay"]').change(function() {
+                Engine.data.overlay.type = $(this).val();
+                console.log(Engine.data);
+            });
+            $('.overlay-group input').change(function() {
+              Engine.data.overlay.color0 = $("#overlay-solid-color-text").val();
+              console.log("  Engine.data.overlay.color0 " +   Engine.data.overlay.color0);
+              Engine.data.overlay.color1 = $("#overlay-gradient-color1-text").val();
+              Engine.data.overlay.color2  = $("#overlay-gradient-color2-text").val();
+              Engine.data.overlay.blend = $("#blending-mode").val();
+              Engine.data.overlay.orientation = $("#orientation").val();
+              Engine.data.overlay.orientation = Engine.data.overlay.orientation.replace(/_/g," ");
+            });
+            //when solid color is changed
+            $('.overlay-solid-color').change(function() {
+               Engine.template.writeOverlay(Engine.data.overlay.blend, Engine.data.overlay.color0 );
+            });
+            //when gradient colors are changed
+             $('.overlay-gradient-color').change(function() {
+               var myGradient =  Engine.data.overlay.orientation + ","+ Engine.data.overlay.color1 +" 0%, "+ Engine.data.overlay.color2 +" 100%);";
+               Engine.template.writeOverlay(Engine.data.overlay.blend, myGradient);
+             });
+             //when sliders are changed
+             $("#contain input").change(function() {
+              var filters = "",
+                  hoverState = "";
+               Object.keys(Engine.data.filters).forEach(function(key) {
+                 if (Engine.data.filters[key].value != Engine.data.filters[key].defaultValue && Engine.data.filters[key].active === true) {
+
+                   filters = filters +  Engine.data.filters[key].cssname + "("+ Engine.data.filters[key].value + Engine.data.filters[key].suffix  +") ";
+                   hoverState = Engine.data.filters[key].cssname + "(" + Engine.data.filters[key].defaultValue + ") ";
+                 }
+                 Engine.template.writeCSS(filters, hoverState);
+               });
+            });
+             $("#orientation").change(function() {
+               $("#blending-mode").change();
+             });
+          },
+          positioner : function () {
+            // this writes the value of the position to each corrosponding filter
+            $('input[data-filter][type="number"]').each(function( index, element ) {
+              var objName = $(element).data("filter");
+              //console.log("index " + index + ", " + element + ", " + objName);
+              Engine.data.filters[objName].position = index;
+            });
           },
           overlay: {
             type: "none",
@@ -245,10 +245,7 @@
              $.each(document.location.search.substr(1).split('&'),function(c,q){ // http://stackoverflow.com/questions/4656843/jquery-get-querystring-from-url
                var i = q.split('=');
                queries[i[0].toString()] = i[1].toString();
-
              });
-             console.log("queries");
-             console.log(queries);
              var i = 0;
              $.each( queries, function( key, value ) {
                console.log("key " +  key + "$(\"[data-filter='"  + key + "'])\" ");
@@ -256,7 +253,6 @@
               Engine.data.filters[key].value = value;
               $("#sepia-a").change();
             });
-
             //r is shorthand for radio checkbox, if this has been set, then tag action to select the radio box for gradients
             if(window.location.href.indexOf("r=") > -1) {
              var newString =  String(queries.r);
@@ -270,34 +266,17 @@
             } else {
               Engine.colorPicking.updateColorPicker(".color1.text",  ".color.picker" ); //if there isn't a second color, then update the solid color picker
             }
-             console.log(queries);
-
           }
         },
         ui: {
           //The UI functionality
 					sliders : function () {
 						//on change events for sliders
-						function slider(mySliderName){
-							//follow naming scheme
-							var filterName = $(mySliderName).data("filter");
-							var mySliderNameA = "#" + filterName + "-a";
-							var mySliderNameB ="#" +  filterName + "-b";
-							//slider change
-							$( mySliderNameA ).change(function() {
-								var myval = $(this).val();
-								$(mySliderNameB).val(myval);
-							});
-							//number change
-							$(mySliderNameB).change(function() {
-								var myval = $(this).val();
-								$(mySliderNameA).val(myval);
-							});
-						}
-						$( "input[data-filter]" ).each(function() {
-							slider(this);
-
-						});
+            $("[data-filter]").change(function() {
+              var value = $(this).val();
+              var target = "[data-filter='" + $(this).data("filter") + "']";
+              $(target).val(value);
+            });
 					},
 					newimage : function (){
 						//Super simple demo image swap
@@ -351,7 +330,6 @@
 					},
 					activeOverlay : function() {
 						//New overlay functionality
-            //console.log("activeOverlay");
 						$('input[type=radio][name=overlay]').change(function() {
 							var myChecked = $("input[type=radio][name=overlay]:checked").val();
 							if ( myChecked == "#overlay-radio-none") {
