@@ -11,6 +11,7 @@
               objName = objName.replace(/-/g, "");
               Engine.data.filters[objName].value = $(this).val();
               console.log(Engine.data);
+              Engine.urlShare.createURL();
             });
               // This writes the on/off value of the checkbox (switch) input into the data object's corrosponding filter.
             $(".onoffswitch-checkbox").change(function(){
@@ -33,12 +34,29 @@
               Engine.data.overlay.orientation = $("#orientation").val();
               Engine.data.overlay.orientation = Engine.data.overlay.orientation.replace(/_/g," ");
             });
+            //when solid color is changed
             $('.overlay-solid-color').change(function() {
                Engine.template.writeOverlay(Engine.data.overlay.blend, Engine.data.overlay.color0 );
             });
+            //when gradient colors are changed
              $('.overlay-gradient-color').change(function() {
                var myGradient =  Engine.data.overlay.orientation + ","+ Engine.data.overlay.color1 +" 0%, "+ Engine.data.overlay.color2 +" 100%);";
                Engine.template.writeOverlay(Engine.data.overlay.blend, myGradient);
+             });
+             //when sliders are changed
+             $("#contain input").change(function() {
+ 							var filters = "",
+                  hoverState = "";
+               Object.keys(Engine.data.filters).forEach(function(key) {
+                 if (Engine.data.filters[key].value != Engine.data.filters[key].defaultValue && Engine.data.filters[key].active === true) {
+                   filters = filters + [key] + "("+ Engine.data.filters[key].value + Engine.data.filters[key].suffix  +") ";
+                   hoverState = [key] + "(" + Engine.data.filters[key].defaultValue + ") ";
+                 }
+                 Engine.template.writeCSS(filters, hoverState);
+               });
+ 						});
+             $("#orientation").change(function() {
+               $("#blending-mode").change();
              });
           },
           positioner : function () {
@@ -204,29 +222,14 @@
           //URL var creation/parssing
           createURL : function() {
             //this changes the url on input changes
-            $( "[data-urlname]" ).change(function() {
-              var fullURL = "";
               var myURL = "";
-              $("[data-urlname]").each(function() { //iterate though is variable
-                var urlVarName = $(this).data("urlname");
-                var myDefaultVal  = $(this).attr('value'); //get the default for comparison
-                var myCurrentValue = $(this).val();  //get the current value
-                if (myCurrentValue !== null) {
-                  myCurrentValue = myCurrentValue.replace(/\s/g, ''); // remove spaces
-                }
-
-                myURL = urlVarName + "=" + myCurrentValue + "&" ;
-                if ( $(this).is(':disabled') === false && $(this).is(':visible') ) { //only get the visible inputs
-                  if (myCurrentValue !== myDefaultVal) { // make sure we're not stashing the default values into the URL since its messy :)
-                  fullURL = fullURL + myURL;
-                  }
+              Object.keys(Engine.data.filters).forEach(function(key) {
+                if (Engine.data.filters[key].value != Engine.data.filters[key].defaultValue && Engine.data.filters[key].active === true) {
+                  myURL = myURL + key + "=" + Engine.data.filters[key].value.replace(/\s/g, '') + "&" ;
                 }
               });
-              var radio = $("input[name=overlay]:checked").val();
-              radio = radio.substring(1); // this has a # so let's kill that because URL Vars do not like #
-              fullURL = "?" + fullURL  + "r=" + radio;
-              window.history.replaceState(null, null, fullURL);
-            });
+              myURL = "?" + myURL  + "r=" + Engine.data.overlay.select.substring(1); // this has a # so let's kill that because URL Vars do not like #
+              window.history.replaceState(null, null, myURL);
           },
           getURL : function () {
             //on init page load, this script makes sure that the URL doesn't if contain variables
@@ -234,25 +237,16 @@
              $.each(document.location.search.substr(1).split('&'),function(c,q){ // http://stackoverflow.com/questions/4656843/jquery-get-querystring-from-url
                var i = q.split('=');
                queries[i[0].toString()] = i[1].toString();
+
              });
+             console.log("queries");
+             console.log(queries);
              var i = 0;
              $.each( queries, function( key, value ) {
-
-               var className = "#sortable ." + key;
-               var myObj = $(className);
-               var classTarget = "#sortable li:eq(" + i + ")";
-               if (i === 0 ) {
-                $(myObj).parent().prepend(myObj);
-                } else {
-                $(myObj).insertBefore($(classTarget));
-              }
-               var classIndex = $(className).index();
-                var query = "[data-urlname*='"  + key + "']"; //data attributes for both range & text input
-                var query2 = "[data-pair*='"  + key + "']";
-                $(query).val(value);
-                $(query2).val(value);
-                i = i + 1;
+               console.log("key " +  key + "$(\"[data-filter='"  + key + "'])\" ");
+              $("[data-filter='"  + key + "']").val(value);
             });
+              $("#sepia-a").change();
             //r is shorthand for radio checkbox, if this has been set, then tag action to select the radio box for gradients
             if(window.location.href.indexOf("r=") > -1) {
              var newString =  String(queries.r);
@@ -261,13 +255,13 @@
               Engine.colorPicking.updateColorPicker(".color1.text",  ".color1.picker" );
             }
             //no point in tryig to set the second color if it doesn't exist
-            if(window.location.href.indexOf("c2=")> -1) {
+            if(window.location.href.indexOf("color2=")> -1) {
               Engine.colorPicking.updateColorPicker(".color2.text",  ".color2.picker" );
             } else {
               Engine.colorPicking.updateColorPicker(".color1.text",  ".color.picker" ); //if there isn't a second color, then update the solid color picker
             }
              console.log(queries);
-             $("#sepia-a").change();
+
           }
         },
         ui: {
@@ -294,24 +288,6 @@
 							slider(this);
 
 						});
-					},
-					onChangesEvents : function() {
-						//when sliders are changed
-            console.log("onChangesEvents");
-						$("#contain input").change(function() {
-							var filters = "",
-                  hoverState = "";
-              Object.keys(Engine.data.filters).forEach(function(key) {
-                if (Engine.data.filters[key].value != Engine.data.filters[key].defaultValue && Engine.data.filters[key].active === true) {
-                  filters = filters + [key] + "("+ Engine.data.filters[key].value + Engine.data.filters[key].suffix  +") ";
-                  hoverState = [key] + "(" + Engine.data.filters[key].defaultValue + ") ";
-                }
-                Engine.template.writeCSS(filters, hoverState);
-              });
-						});
-            $("#orientation").change(function() {
-              $("#blending-mode").change();
-            });
 					},
 					newimage : function (){
 						//Super simple demo image swap
@@ -405,7 +381,6 @@
             });
 
 				 },
-
          changeSelect : function() {
            $("#orientation").change(function() {
               $("input[type=radio]").change();
@@ -499,7 +474,6 @@
   Engine.init();
 
 	Engine.ui.sliders();
-	Engine.ui.onChangesEvents();
 	Engine.ui.sorting();
 	Engine.ui.showhidefilters();
 	Engine.ui.resetButton();
@@ -510,7 +484,7 @@
   Engine.ui.changeSelect();
   Engine.ui.tabbedInit();
   Engine.colorPicking.colorPick();
-  Engine.urlShare.createURL();
+  //Engine.urlShare.createURL();
   Engine.urlShare.getURL();
 
   console.log (Engine.data);
