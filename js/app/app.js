@@ -77,7 +77,22 @@
               cssname: "sepia",
               suffix: "",
               position: 8
-            }
+            },
+          },
+          overlay: {
+            type: "none",
+            color0: {
+              value: "rgba(62, 162, 253, 0.4)"
+            },
+            color1: {
+              value: "rgba(62, 162, 253, 0.4)"
+            },
+            color2: {
+              value: "rgba(2, 122, 233, 0.8)"
+            },
+            select: "#overlay-radio-none",
+            blend: "multiply",
+            gradientOrientation: "linear-gradient(to right"
           },
           updater : function () {
             // This writes the input value of the numeric input into the data object's corrosponding filter.
@@ -105,7 +120,7 @@
               Engine.data.overlay.color2  = $("#overlay-gradient-color2-text").val();
               Engine.data.overlay.blend = $("#blending-mode").val();
               Engine.data.overlay.orientation = $("#orientation").val();
-              Engine.data.overlay.orientation = Engine.data.overlay.orientation.replace(/_/g," ");
+              //Engine.data.overlay.orientation = Engine.data.overlay.orientation.replace(/_/g," ");
             });
             //when solid color is changed
             $('.overlay-solid-color').change(function() {
@@ -141,21 +156,7 @@
               Engine.data.filters[objName].position = index;
             });
           },
-          overlay: {
-            type: "none",
-            color0: {
-              value: "rgba(62, 162, 253, 0.4)"
-            },
-            color1: {
-              value: "rgba(62, 162, 253, 0.4)"
-            },
-            color2: {
-              value: "rgba(2, 122, 233, 0.8)"
-            },
-            select: "#overlay-radio-none",
-            blend: "multiply",
-            gradientOrientation: "linear-gradient(to_right"
-          }
+
 
         },
         init: function() {
@@ -273,9 +274,7 @@
 					sliders : function () {
 						//on change events for sliders
             $("[data-filter]").change(function() {
-              var value = $(this).val();
-              var target = "[data-filter='" + $(this).data("filter") + "']";
-              $(target).val(value);
+              $("[data-filter='" + $(this).data("filter") + "']").val( $(this).val() );
             });
 					},
 					newimage : function (){
@@ -285,48 +284,43 @@
 								var newUrl = $(this).data("fullsize");
 								$("#demoimage").attr("src", newUrl);
 								$(".preset img").attr("src", newUrl);
-								console.log(newUrl);
 						});
 						//Replace the SRC of the demo image with the new URL to image in text field
 						$("#imageURL").change(function() {
 							var demoimage = $(this).val();
 							$("#demoimage").attr("src", demoimage);
 							$(".preset img").attr("src", demoimage);
-              console.log("imageURL");
 						});
 					},
 					showhidefilters : function (){
 						//toggle the sliders/text box inputs to enable or disable filters
 						$("label[data-filter]").click(function() {
-							var myLabel = $(this);
-							var myFilter = $(this).data("filter");
-							myFilter = "input[data-filter="+ myFilter  + "]";
+							var myLabel = $(this),
+							    myFilter = "input[data-filter="+ $(this).data("filter")  + "]";
 
 							if ($(myFilter).is(':disabled') === true) {
-								$(myFilter).attr("disabled", false);
+								$(myFilter).attr("disabled", false).removeClass("disabled");
 								 $("#sepia-a").change();
-								 $(myLabel).removeClass("disabled");
 							} else {
-								$(myFilter).attr("disabled", true);
-								$(myLabel).addClass("disabled");
+								$(myFilter).attr("disabled", true).addClass("disabled");
 								 $("#sepia-a").change();
 							}
 						});
 					},
           reset : function() {
-          //Return to every input to its default value
-          Object.keys(Engine.data.filters).forEach(function(key) {
-            Engine.data.filters[key].value = Engine.data.filters[key].defaultValue;
-            $('input[data-filter="'  + key + '"]').data(filter, Engine.data.filters[key].defaultValue);
+            //Return to every input to its default value
+            Object.keys(Engine.data.filters).forEach(function(key) {
+              Engine.data.filters[key].value = Engine.data.filters[key].defaultValue;
+              $('input[data-filter="'  + key + '"]').data(filter, Engine.data.filters[key].defaultValue);
 
-          });
-            $("#sepia-a").change();
-            Engine.ui.killOverlay(); //obliterate the Overlay
-          },
-					resetButton : function() {
-						$("#reset").click(function() {
-							Engine.ui.reset(); //trigger reset
-						});
+            });
+              $("#sepia-a").change();
+              Engine.ui.killOverlay(); //obliterate the Overlay
+            },
+  					resetButton : function() {
+  						$("#reset").click(function() {
+  							Engine.ui.reset(); //trigger reset
+  						});
 					},
 					activeOverlay : function() {
 						//New overlay functionality
@@ -377,19 +371,18 @@
              $("input[type=radio]").change();
            });
          },
-				 presetSet : function(filterName, newValue) {
+				 presetSet : function(key, newValue) {
 					 //use for presets
-
-					 var mySliderNameA = "#" + filterName + "-a",
-					     mySliderNameB ="#" +  filterName + "-b";
+           console.log("key " + key + " New Value " + newValue);
 					 if (newValue !== undefined ) {
-						 $(mySliderNameA).val(newValue);
-						 $(mySliderNameB).val(newValue);
+            // Engine.data.filters[key].value = newValue;
+						 $("input[data-filter="+ key  + "]").val(newValue);
 					 } else {
 							newValue  = $(mySliderNameA).attr('value');
-							$(mySliderNameA).val(newValue);
-							$(mySliderNameB).val(newValue);
+              //Engine.data.filters[key].value = newValue;
+							$("input[data-filter="+ key  + "]").val(newValue);
 					 }
+           $("input[type=radio]").change();
 				 },
 				 gradientCheck : function(obj) {
            //used for presets only
