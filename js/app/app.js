@@ -119,8 +119,13 @@
               // This writes the on/off value of the checkbox (switch) input into the data object's corrosponding filter.
             $(".onoffswitch-checkbox").change(function(){
               var objName = $(this).data("forfilter");
+              if ( Engine.data.filters[objName].active === true) {
+                Engine.data.filters[objName].active = false;
+              } else {
+                Engine.data.filters[objName].active = true;
+              }
               Engine.data.filters[objName].active = $(this).prop("checked");
-              console.log(Engine.data);
+              Engine.urlShare.createURL();
             });
             //overlay change
             $('[name="overlay"]').change(function() {
@@ -246,14 +251,13 @@
           createURL : function() {
             //creates the url on input changes
               var myURL = "?" + JSURL.stringify(Engine.data);
-              console.log(myURL);
               window.history.replaceState(null, null,  myURL);
           },
           getURL : function () {
             var myURL = null,
                 filters,
-                hoverState;;
-            myURL = JSURL.parse( document.location.search.substring(1) );
+                hoverState;
+            myURL = JSURL.parse( document.location.search.substring(1) ); // remove ? mark & parse
             if (myURL !== null && myURL !== "" ) {
               Engine.data = myURL;
               Object.keys(Engine.data.filters).forEach(function(key) {
@@ -262,9 +266,13 @@
                   hoverState = Engine.data.defaults[key].cssname + "(" + Engine.data.defaults[key].defaultValue + ") ";
                   $('input[data-filter="'  + key + '"]').val( Engine.data.filters[key].value );
                 }
-                Engine.template.writeCSS(filters, hoverState);
-              });
-              $("#sepia-a").change();
+                if (Engine.data.filters[key].active === false) {
+                  $('input[data-filter="'  + key + '"]').val( Engine.data.filters[key].value );
+                  $('input[data-forfilter="'  + key + '"]').prop("checked", Engine.data.filters[key].active );
+                }
+              Engine.template.writeCSS(filters, hoverState);
+            });
+            $("#sepia-a").change();
             }
           }
         },
@@ -319,6 +327,7 @@
   					resetButton : function() {
   						$("#reset").click(function() {
   							Engine.ui.reset(); //trigger reset
+                window.history.replaceState(null, null,  "/");
   						});
 					},
 					activeOverlay : function() {
