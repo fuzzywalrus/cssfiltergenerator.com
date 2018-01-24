@@ -1,82 +1,102 @@
 (function(jQuery) {
   "use strict";
   var Engine;
-    jQuery(document).ready(function() {
+  jQuery(document).ready(function() {
       Engine = {
         data : {
+          // default values never change
           filters: {
-            // default values never change
             blur : {
               active: true,
-              defaultValue:  0,
               value: 0,
-              cssname: "blur",
-              suffix: "px",
               position: 0
             },
             brightness: {
               active: true,
-              defaultValue: 1,
               value: 1,
-              cssname: "brightness",
-              suffix: "",
               position: 1
             },
             contrast: {
               active: true,
               value: 1,
-              defaultValue: 1,
-              cssname: "contrast",
-              suffix: "",
               position: 2
             },
             grayscale: {
               active: true,
               value: 0,
-              defaultValue: 0,
-              cssname: "grayscale",
-              suffix: "",
               position: 3
             },
             huerotate: {
               active: true,
               value: 0,
-              defaultValue: 0,
-              cssname: "hue-rotate",
-              suffix: "deg",
               position: 4
             },
             invert: {
               active: true,
               value: 0,
-              defaultValue: 0,
-              cssname: "invert",
-              suffix: "",
               position: 5
             },
             opacity: {
               active: true,
               value: 1,
-              defaultValue: 1,
-              cssname: "opacity",
-              suffix: "",
               position: 6
             },
             saturate: {
               active: true,
               value: 1,
-              defaultValue: 1,
-              cssname: "saturate",
-              suffix: "",
               position: 7
             },
             sepia: {
               active: true,
               value: 0,
+              position: 8
+            },
+          },
+          defaults: {
+            blur: {
+              defaultValue: 0,
+              cssname: "blur",
+              suffix: "px"
+            },
+            brightness: {
+              defaultValue: 1,
+              cssname: "brightness",
+              suffix: "",
+            },
+            contrast: {
+              defaultValue: 1,
+              cssname: "contrast",
+              suffix: "",
+            },
+            grayscale: {
+              defaultValue: 0,
+              cssname: "grayscale",
+              suffix: ""
+            },
+            huerotate: {
+              defaultValue: 0,
+              cssname: "hue-rotate",
+              suffix: "deg"
+            },
+            invert: {
+              defaultValue: 0,
+              cssname: "invert",
+              suffix: ""
+            },
+            opacity: {
+              defaultValue: 1,
+              cssname: "opacity",
+              suffix: ""
+            },
+            saturate: {
+              defaultValue: 1,
+              cssname: "saturate",
+              suffix: ""
+            },
+            sepia: {
               defaultValue: 0,
               cssname: "sepia",
-              suffix: "",
-              position: 8
+              suffix: ""
             },
           },
           overlay: {
@@ -90,6 +110,7 @@
           updater : function () {
             // This writes the input value of the numeric input into the data object's corrosponding filter.
             $("[data-filter]").change(function() {
+              console.log(Engine);
               var objName = $(this).data("filter");
               Engine.data.filters[objName].value = $(this).val();
               console.log(Engine.data);
@@ -129,9 +150,9 @@
               var filters = "",
                   hoverState = "";
                Object.keys(Engine.data.filters).forEach(function(key) {
-                 if (Engine.data.filters[key].value != Engine.data.filters[key].defaultValue && Engine.data.filters[key].active === true) {
-                   filters = filters +  Engine.data.filters[key].cssname + "("+ Engine.data.filters[key].value + Engine.data.filters[key].suffix  +") ";
-                   hoverState = Engine.data.filters[key].cssname + "(" + Engine.data.filters[key].defaultValue + ") ";
+                 if (Engine.data.filters[key].value != Engine.data.defaults[key].defaultValue && Engine.data.filters[key].active === true) {
+                   filters = filters +  Engine.data.defaults[key].cssname + "("+ Engine.data.filters[key].value + Engine.data.defaults[key].suffix  +") ";
+                   hoverState = Engine.data.defaults[key].cssname + "(" + Engine.data.defaults[key].defaultValue + ") ";
                  }
                  Engine.template.writeCSS(filters, hoverState);
                });
@@ -229,17 +250,22 @@
               window.history.replaceState(null, null,  myURL);
           },
           getURL : function () {
-            var myURL = JSURL.parse( document.location.search.substring(1) );
-            Engine.data = myURL;
-            var filters, hoverState;
-            Object.keys(Engine.data.filters).forEach(function(key) {
-              if (Engine.data.filters[key].value != Engine.data.filters[key].defaultValue && Engine.data.filters[key].active === true) {
-                filters = filters +  Engine.data.filters[key].cssname + "("+ Engine.data.filters[key].value + Engine.data.filters[key].suffix  +") ";
-                hoverState = Engine.data.filters[key].cssname + "(" + Engine.data.filters[key].defaultValue + ") ";
-              }
-              Engine.template.writeCSS(filters, hoverState);
-            });
-            $("#sepia-a").change();
+            var myURL = null,
+                filters,
+                hoverState;;
+            myURL = JSURL.parse( document.location.search.substring(1) );
+            if (myURL !== null && myURL !== "" ) {
+              Engine.data = myURL;
+              Object.keys(Engine.data.filters).forEach(function(key) {
+                if (Engine.data.filters[key].value != Engine.data.defaults[key].defaultValue && Engine.data.filters[key].active === true) {
+                  filters = filters +  Engine.data.defaults[key].cssname + "("+ Engine.data.filters[key].value + Engine.data.defaults[key].suffix  +") ";
+                  hoverState = Engine.data.defaults[key].cssname + "(" + Engine.data.defaults[key].defaultValue + ") ";
+                  $('input[data-filter="'  + key + '"]').val( Engine.data.filters[key].value );
+                }
+                Engine.template.writeCSS(filters, hoverState);
+              });
+              $("#sepia-a").change();
+            }
           }
         },
         ui: {
@@ -283,8 +309,8 @@
           reset : function() {
             //Return to every input to its default value
             Object.keys(Engine.data.filters).forEach(function(key) {
-              Engine.data.filters[key].value = Engine.data.filters[key].defaultValue;
-              $('input[data-filter="'  + key + '"]').data(filter, Engine.data.filters[key].defaultValue);
+              Engine.data.filters[key].value = Engine.data.defaults[key].defaultValue;
+              $('input[data-filter="'  + key + '"]').data(filter, Engine.data.defaults[key].defaultValue);
 
             });
               $("#sepia-a").change();
