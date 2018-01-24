@@ -3,6 +3,53 @@
   var Engine;
   jQuery(document).ready(function() {
       Engine = {
+        defaults: {
+          blur: {
+            defaultValue: 0,
+            cssname: "blur",
+            suffix: "px"
+          },
+          brightness: {
+            defaultValue: 1,
+            cssname: "brightness",
+            suffix: "",
+          },
+          contrast: {
+            defaultValue: 1,
+            cssname: "contrast",
+            suffix: "",
+          },
+          grayscale: {
+            defaultValue: 0,
+            cssname: "grayscale",
+            suffix: ""
+          },
+          huerotate: {
+            defaultValue: 0,
+            cssname: "hue-rotate",
+            suffix: "deg"
+          },
+          invert: {
+            defaultValue: 0,
+            cssname: "invert",
+            suffix: ""
+          },
+          opacity: {
+            defaultValue: 1,
+            cssname: "opacity",
+            suffix: ""
+          },
+          saturate: {
+            defaultValue: 1,
+            cssname: "saturate",
+            suffix: ""
+          },
+          sepia: {
+            defaultValue: 0,
+            cssname: "sepia",
+            suffix: ""
+          },
+        },
         data : {
           // default values never change
           filters: {
@@ -50,53 +97,6 @@
               active: true,
               value: 0,
               position: 8
-            },
-          },
-          defaults: {
-            blur: {
-              defaultValue: 0,
-              cssname: "blur",
-              suffix: "px"
-            },
-            brightness: {
-              defaultValue: 1,
-              cssname: "brightness",
-              suffix: "",
-            },
-            contrast: {
-              defaultValue: 1,
-              cssname: "contrast",
-              suffix: "",
-            },
-            grayscale: {
-              defaultValue: 0,
-              cssname: "grayscale",
-              suffix: ""
-            },
-            huerotate: {
-              defaultValue: 0,
-              cssname: "hue-rotate",
-              suffix: "deg"
-            },
-            invert: {
-              defaultValue: 0,
-              cssname: "invert",
-              suffix: ""
-            },
-            opacity: {
-              defaultValue: 1,
-              cssname: "opacity",
-              suffix: ""
-            },
-            saturate: {
-              defaultValue: 1,
-              cssname: "saturate",
-              suffix: ""
-            },
-            sepia: {
-              defaultValue: 0,
-              cssname: "sepia",
-              suffix: ""
             },
           },
           overlay: {
@@ -155,9 +155,9 @@
               var filters = "",
                   hoverState = "";
                Object.keys(Engine.data.filters).forEach(function(key) {
-                 if (Engine.data.filters[key].value != Engine.data.defaults[key].defaultValue && Engine.data.filters[key].active === true) {
-                   filters = filters +  Engine.data.defaults[key].cssname + "("+ Engine.data.filters[key].value + Engine.data.defaults[key].suffix  +") ";
-                   hoverState = Engine.data.defaults[key].cssname + "(" + Engine.data.defaults[key].defaultValue + ") ";
+                 if (Engine.data.filters[key].value != Engine.defaults[key].defaultValue && Engine.data.filters[key].active === true) {
+                   filters = filters +  Engine.defaults[key].cssname + "("+ Engine.data.filters[key].value + Engine.defaults[key].suffix  +") ";
+                   hoverState = Engine.defaults[key].cssname + "(" + Engine.defaults[key].defaultValue + ") ";
                  }
                  Engine.template.writeCSS(filters, hoverState);
                });
@@ -258,20 +258,38 @@
                 filters,
                 hoverState;
             myURL = JSURL.parse( document.location.search.substring(1) ); // remove ? mark & parse
+            console.log("myURL");
+            console.log(myURL);
             if (myURL !== null && myURL !== "" ) {
               Engine.data = myURL;
               Object.keys(Engine.data.filters).forEach(function(key) {
-                if (Engine.data.filters[key].value != Engine.data.defaults[key].defaultValue && Engine.data.filters[key].active === true) {
-                  filters = filters +  Engine.data.defaults[key].cssname + "("+ Engine.data.filters[key].value + Engine.data.defaults[key].suffix  +") ";
-                  hoverState = Engine.data.defaults[key].cssname + "(" + Engine.data.defaults[key].defaultValue + ") ";
+                if (Engine.data.filters[key].value !== Engine.defaults[key].defaultValue && Engine.data.filters[key].active === true) {
+                  filters = filters +  Engine.defaults[key].cssname + "("+ Engine.data.filters[key].value + Engine.defaults[key].suffix  +") ";
+                  hoverState = Engine.defaults[key].cssname + "(" + Engine.defaults[key].defaultValue + ") ";
                   $('input[data-filter="'  + key + '"]').val( Engine.data.filters[key].value );
                 }
                 if (Engine.data.filters[key].active === false) {
                   $('input[data-filter="'  + key + '"]').val( Engine.data.filters[key].value );
                   $('input[data-forfilter="'  + key + '"]').prop("checked", Engine.data.filters[key].active );
                 }
+
               Engine.template.writeCSS(filters, hoverState);
-            });
+              });
+              if (Engine.data.overlay.select !== "#overlay-radio-none") {
+                $("#overlay-solid-color-text").val(  Engine.data.overlay.color0 );
+                $("#overlay-gradient-color1-text").val(Engine.data.overlay.color1);
+                $("#overlay-gradient-color2-text").val(Engine.data.overlay.color2);
+                $('#overlay-solid-color .color').spectrum({ color: Engine.data.overlay.color0 });
+                $('#overlay-gradient-color1').spectrum({ color: Engine.data.overlay.color1 });
+                $('#overlay-gradient-color2').spectrum({ color: Engine.data.overlay.color2 });
+                $("#blending-mode").val(Engine.data.overlay.blend);
+                $("#orientation").val(Engine.data.overlay.orientation);
+                $('[value="'+Engine.data.overlay.select+'"]').click();
+              }
+              //Engine.ui.gradientCheck(Engine.data.overlay);
+              /* Object.keys(Engine.data.overlay).forEach(function(key) {
+                Engine.data.overlay[key]
+              }); */
             $("#sepia-a").change();
             }
           }
@@ -317,8 +335,8 @@
           reset : function() {
             //Return to every input to its default value
             Object.keys(Engine.data.filters).forEach(function(key) {
-              Engine.data.filters[key].value = Engine.data.defaults[key].defaultValue;
-              $('input[data-filter="'  + key + '"]').data(filter, Engine.data.defaults[key].defaultValue);
+              Engine.data.filters[key].value = Engine.defaults[key].defaultValue;
+              $('input[data-filter="'  + key + '"]').data(filter, Engine.defaults[key].defaultValue);
 
             });
               $("#sepia-a").change();
