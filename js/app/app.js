@@ -80,16 +80,9 @@
             },
           },
           overlay: {
-            type: "none",
-            color0: {
-              value: "rgba(62, 162, 253, 0.4)"
-            },
-            color1: {
-              value: "rgba(62, 162, 253, 0.4)"
-            },
-            color2: {
-              value: "rgba(2, 122, 233, 0.8)"
-            },
+            color0: "rgba(62, 162, 253, 0.4)",
+            color1: "rgba(62, 162, 253, 0.4)",
+            color2: "rgba(2, 122, 233, 0.8)",
             select: "#overlay-radio-none",
             blend: "multiply",
             gradientOrientation: "linear-gradient(to right"
@@ -110,7 +103,7 @@
             });
             //overlay change
             $('[name="overlay"]').change(function() {
-                Engine.data.overlay.type = $(this).val();
+                Engine.data.overlay.select = $(this).val();
                 console.log(Engine.data);
             });
             $('.overlay-group input').change(function() {
@@ -137,7 +130,6 @@
                   hoverState = "";
                Object.keys(Engine.data.filters).forEach(function(key) {
                  if (Engine.data.filters[key].value != Engine.data.filters[key].defaultValue && Engine.data.filters[key].active === true) {
-
                    filters = filters +  Engine.data.filters[key].cssname + "("+ Engine.data.filters[key].value + Engine.data.filters[key].suffix  +") ";
                    hoverState = Engine.data.filters[key].cssname + "(" + Engine.data.filters[key].defaultValue + ") ";
                  }
@@ -228,45 +220,26 @@
  				 }
         },
         urlShare : {
-          //URL var creation/parssing
+          //URL var creation/parssing uses jsurl.js
+          //https://github.com/Sage/jsurl/
           createURL : function() {
-            //this changes the url on input changes
-              var myURL = "";
-              Object.keys(Engine.data.filters).forEach(function(key) {
-                if (Engine.data.filters[key].value != Engine.data.filters[key].defaultValue && Engine.data.filters[key].active === true) {
-                  myURL = myURL + key + "=" + Engine.data.filters[key].value.replace(/\s/g, '') + "&" ;
-                }
-              });
-              myURL = "?" + myURL  + "r=" + Engine.data.overlay.select.substring(1); // this has a # so let's kill that because URL Vars do not like #
-              window.history.replaceState(null, null, myURL);
+            //creates the url on input changes
+              var myURL = "?" + JSURL.stringify(Engine.data);
+              console.log(myURL);
+              window.history.replaceState(null, null,  myURL);
           },
           getURL : function () {
-            //on init page load, this script makes sure that the URL doesn't if contain variables
-            var queries = {}; //object of URL vars
-             $.each(document.location.search.substr(1).split('&'),function(c,q){ // http://stackoverflow.com/questions/4656843/jquery-get-querystring-from-url
-               var i = q.split('=');
-               queries[i[0].toString()] = i[1].toString();
-             });
-             var i = 0;
-             $.each( queries, function( key, value ) {
-               console.log("key " +  key + "$(\"[data-filter='"  + key + "'])\" ");
-              $("[data-filter='"  + key + "']").val(value);
-              Engine.data.filters[key].value = value;
-              $("#sepia-a").change();
+            var myURL = JSURL.parse( document.location.search.substring(1) );
+            Engine.data = myURL;
+            var filters, hoverState;
+            Object.keys(Engine.data.filters).forEach(function(key) {
+              if (Engine.data.filters[key].value != Engine.data.filters[key].defaultValue && Engine.data.filters[key].active === true) {
+                filters = filters +  Engine.data.filters[key].cssname + "("+ Engine.data.filters[key].value + Engine.data.filters[key].suffix  +") ";
+                hoverState = Engine.data.filters[key].cssname + "(" + Engine.data.filters[key].defaultValue + ") ";
+              }
+              Engine.template.writeCSS(filters, hoverState);
             });
-            //r is shorthand for radio checkbox, if this has been set, then tag action to select the radio box for gradients
-            if(window.location.href.indexOf("r=") > -1) {
-             var newString =  String(queries.r);
-              var myActiveOverlay = 'input[value="#' + newString + '"]';
-              $(myActiveOverlay).prop("checked", true).change();
-              Engine.colorPicking.updateColorPicker(".color1.text",  ".color1.picker" );
-            }
-            //no point in tryig to set the second color if it doesn't exist
-            if(window.location.href.indexOf("color2=")> -1) {
-              Engine.colorPicking.updateColorPicker(".color2.text",  ".color2.picker" );
-            } else {
-              Engine.colorPicking.updateColorPicker(".color1.text",  ".color.picker" ); //if there isn't a second color, then update the solid color picker
-            }
+            $("#sepia-a").change();
           }
         },
         ui: {
@@ -375,11 +348,9 @@
 					 //use for presets
            console.log("key " + key + " New Value " + newValue);
 					 if (newValue !== undefined ) {
-            // Engine.data.filters[key].value = newValue;
 						 $("input[data-filter="+ key  + "]").val(newValue);
 					 } else {
 							newValue  = $(mySliderNameA).attr('value');
-              //Engine.data.filters[key].value = newValue;
 							$("input[data-filter="+ key  + "]").val(newValue);
 					 }
            $("input[type=radio]").change();
@@ -429,12 +400,9 @@
          },
          resizeheightcss : function() {
            //This is fired on flip to ensure min height for the CSS code.
-           var a = $(".titles-css").height();
-           var b = $(".filter-css").height();
-           var c = $(".overlay-css").height();
-           var d = a + b + c + 30;
-          console.log("Test me: " + d);
-          $(".filter-parent").css("min-height", d);
+          $(".filter-parent").css("min-height", (
+            $(".titles-css").height() + $(".filter-css").height() + $(".overlay-css").height() + 30
+          ));
          },
 				 presets : function() {
 					 $(".preset").click(function() {
