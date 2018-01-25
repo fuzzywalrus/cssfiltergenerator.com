@@ -174,8 +174,6 @@
               Engine.data.filters[objName].position = index;
             });
           },
-
-
         },
         init: function() {
           //first run
@@ -286,10 +284,6 @@
                 $("#orientation").val(Engine.data.overlay.orientation);
                 $('[value="'+Engine.data.overlay.select+'"]').click();
               }
-              //Engine.ui.gradientCheck(Engine.data.overlay);
-              /* Object.keys(Engine.data.overlay).forEach(function(key) {
-                Engine.data.overlay[key]
-              }); */
             $("#sepia-a").change();
             }
           }
@@ -370,7 +364,6 @@
 						});
 					},
           killOverlay : function (){
-            console.log("killOverlay");
             $('.overlay-group').hide();
             $("#filter .overlay-css").html("");
             $("#overlay-css").html("");
@@ -387,7 +380,6 @@
                  $("#sepia-a").change();//dummy change to trigger change() events.
                }
             });
-
 				 },
          changeSelect : function() {
            $("#orientation").change(function() {
