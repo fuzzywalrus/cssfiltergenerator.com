@@ -1,0 +1,20 @@
+.btn {
+  background: $light-grey;
+  padding: 10px 20px;
+  margin-top: 10px;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    background: darken($light-grey, 10%);
+    color: white;
+    text-decoration: none;
+  }
+}
+#writeFilter {
+  margin-right: 5px;
+}
+#readFilter {
+  display: none;
+}

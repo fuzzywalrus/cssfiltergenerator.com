@@ -178,21 +178,26 @@
           },
         },
         dataStorage: {
+          checkData : function () {
+            if (localStorage.getItem("data") !== null) {
+              $("#readFilter").show();
+            }
+          },
           writeData : function (){
             localStorage.setItem('data', JSON.stringify(Engine.data));
+            Engine.dataStorage.checkData();
           },
           readData : function () {
             var retrievedObject = localStorage.getItem('data');
-            console.log('retrievedObject: ', JSON.parse(retrievedObject));
             retrievedObject =  JSON.parse(retrievedObject);
             return retrievedObject;
-
           }
         },
         init: function() {
           //first run
           Engine.data.updater();
           Engine.data.positioner();
+          Engine.dataStorage.checkData();
         },
         template : {
           //Mustachejs calls
@@ -327,10 +332,8 @@
             $("#writeFilter").click(function() {
                 Engine.dataStorage.writeData();
             });
-
           },
           loadFilter : function() {
-//            if ()
             $("#readFilter").click(function() {
               var dataStorage = Engine.dataStorage.readData();
               if (dataStorage !== "" || dataStorage !== null ) {
