@@ -326,8 +326,8 @@
             <div class="overlay ">
               <div class="fixed-col-1">
                 <input type="radio" name="overlay" value="#overlay-radio-none" id="overlay-radio-none" checked="true"> None<br>
-                <input type="radio" name="overlay" value="#overlay-solid" id="overlay-radio-solid"> Solid<br>
-                <input type="radio" name="overlay" value="#overlay-gradient" > Gradient<br>
+                <input type="radio" name="overlay" value="#overlay-solid" id="overlay-radio-solid" checked="false"> Solid<br>
+                <input type="radio" name="overlay" value="#overlay-gradient" checked="false"> Gradient<br>
               </div>
               <div class="fixed-col-2">
                 <div id="overlay-solid" class="overlay-group">
@@ -383,6 +383,11 @@
                 <br> Use FireFox, Chrome or Opera to preview these effects. If you do use these modes, be sure to create Safari fallbacks. </div>
                 <div id="edge-warning"><strong>Note:</strong>It appears you are using Edge. Edge does not support mix-blend-mode yet. Microsoft currently lists mix-blend-mode <a href="https://developer.microsoft.com/en-us/microsoft-edge/platform/status/backgroundblendmode">low priorty</a></div>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <a class="btn" id="writeFilter">Save Filter</a> <a class="btn" id="readFilter">Load Filter</a>
             </div>
           </div>
         </div>

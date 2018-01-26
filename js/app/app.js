@@ -107,24 +107,26 @@
             blend: "multiply",
             gradientOrientation: "linear-gradient(to right"
           },
+
           updater : function () {
             // This writes the input value of the numeric input into the data object's corrosponding filter.
             $("[data-filter]").change(function() {
               console.log(Engine);
-              var objName = $(this).data("filter");
-              Engine.data.filters[objName].value = $(this).val();
+              var filterNameKey = $(this).data("filter");
+              Engine.data.filters[filterNameKey].value = $(this).val();
               console.log(Engine.data);
               Engine.urlShare.createURL();
+
             });
               // This writes the on/off value of the checkbox (switch) input into the data object's corrosponding filter.
             $(".onoffswitch-checkbox").change(function(){
-              var objName = $(this).data("forfilter");
-              if ( Engine.data.filters[objName].active === true) {
-                Engine.data.filters[objName].active = false;
+              var filterNameKey = $(this).data("forfilter");
+              if ( Engine.data.filters[filterNameKey].active === true) {
+                Engine.data.filters[filterNameKey].active = false;
               } else {
-                Engine.data.filters[objName].active = true;
+                Engine.data.filters[filterNameKey].active = true;
               }
-              Engine.data.filters[objName].active = $(this).prop("checked");
+              Engine.data.filters[filterNameKey].active = $(this).prop("checked");
               Engine.urlShare.createURL();
             });
             //overlay change
@@ -174,6 +176,18 @@
               Engine.data.filters[objName].position = index;
             });
           },
+        },
+        dataStorage: {
+          writeData : function (){
+            localStorage.setItem('data', JSON.stringify(Engine.data));
+          },
+          readData : function () {
+            var retrievedObject = localStorage.getItem('data');
+            console.log('retrievedObject: ', JSON.parse(retrievedObject));
+            retrievedObject =  JSON.parse(retrievedObject);
+            return retrievedObject;
+
+          }
         },
         init: function() {
           //first run
@@ -256,8 +270,6 @@
                 filters,
                 hoverState;
             myURL = JSURL.parse( document.location.search.substring(1) ); // remove ? mark & parse
-            console.log("myURL");
-            console.log(myURL);
             if (myURL !== null && myURL !== "" ) {
               Engine.data = myURL;
               Object.keys(Engine.data.filters).forEach(function(key) {
@@ -311,6 +323,23 @@
 							$(".preset img").attr("src", demoimage);
 						});
 					},
+          saveFilter : function() {
+            $("#writeFilter").click(function() {
+                Engine.dataStorage.writeData();
+            });
+
+          },
+          loadFilter : function() {
+//            if ()
+            $("#readFilter").click(function() {
+              var dataStorage = Engine.dataStorage.readData();
+              if (dataStorage !== "" || dataStorage !== null ) {
+                console.log("it worked!");
+                Engine.data = dataStorage;
+                $("#sepia-a").change();
+              }
+            });
+          },
 					showhidefilters : function (){
 						//toggle the sliders/text box inputs to enable or disable filters
 						$("label[data-filter]").click(function() {
@@ -330,7 +359,7 @@
             //Return to every input to its default value
             Object.keys(Engine.data.filters).forEach(function(key) {
               Engine.data.filters[key].value = Engine.defaults[key].defaultValue;
-              $('input[data-filter="'  + key + '"]').data(filter, Engine.defaults[key].defaultValue);
+              $('input[data-filter="'  + key + 'url"]').data(filter, Engine.defaults[key].defaultValue);
 
             });
               $("#sepia-a").change();
@@ -477,6 +506,8 @@
   Engine.ui.flipDemoImage();
   Engine.ui.changeSelect();
   Engine.ui.tabbedInit();
+  Engine.ui.saveFilter();
+  Engine.ui.loadFilter();
   Engine.colorPicking.colorPick();
   Engine.urlShare.getURL();
 
