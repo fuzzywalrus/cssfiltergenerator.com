@@ -1762,6 +1762,25 @@ body header .container {
 .table-cell.num {
   width: 50px; }
 
+.btn {
+  background: #586072;
+  padding: 10px 20px;
+  margin-top: 10px;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  cursor: pointer; }
+  .btn:hover {
+    background: #424855;
+    color: white;
+    text-decoration: none; }
+
+#writeFilter {
+  margin-right: 5px; }
+
+#readFilter {
+  display: none; }
+
 .icon-browser {
   width: 30px; }
 
@@ -3078,7 +3097,7 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 
 body {
   background: #2d2d2d;
-  background: #21252b;
+  background: #21252c;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white; }
