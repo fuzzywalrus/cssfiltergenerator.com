@@ -387,7 +387,9 @@
           </div>
           <div class="row">
             <div class="col-sm-12">
-              <a class="btn" id="writeFilter">Save Filter</a> <a class="btn" id="readFilter">Load Filter</a>
+              <a class="btn" id="shareURL">Create URL</a>
+              <a class="btn" id="writeFilter">Save Filter</a>
+              <a class="btn" id="readFilter">Load Filter</a>
             </div>
           </div>
         </div>
@@ -800,9 +802,20 @@
     <section>
       <div class="stripe"></div>
     </section>
-
-
-
+    <div id="shareModal">
+      <div id="closeModal">X</div>
+      <div class="flex">
+        <div>
+          <h1>Share URL</h1>
+          <p>The following URL will allow you to share your current filter with others. Copy the entire URL and send it via email, social media, slack or other service. </p>
+          <div class="share">
+            <input type="text" id="clipboardText">
+            <a class="btn" id="clipboard">Copy to clipboard</a>
+          </div>
+          <h1 class="copied">Copied!</h1>
+        </div>
+      </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>

@@ -115,7 +115,7 @@
               var filterNameKey = $(this).data("filter");
               Engine.data.filters[filterNameKey].value = $(this).val();
               console.log(Engine.data);
-              Engine.urlShare.createURL();
+
 
             });
               // This writes the on/off value of the checkbox (switch) input into the data object's corrosponding filter.
@@ -127,7 +127,7 @@
                 Engine.data.filters[filterNameKey].active = true;
               }
               Engine.data.filters[filterNameKey].active = $(this).prop("checked");
-              Engine.urlShare.createURL();
+
             });
             //overlay change
             $('[name="overlay"]').change(function() {
@@ -267,8 +267,9 @@
           //https://github.com/Sage/jsurl/
           createURL : function() {
             //creates the url on input changes
-              var myURL = "?" + JSURL.stringify(Engine.data);
-              window.history.replaceState(null, null,  myURL);
+            var myURL = "?" + JSURL.stringify(Engine.data);
+            return myURL;
+              //window.history.replaceState(null, null,  myURL);
           },
           getURL : function () {
             var myURL = null,
@@ -331,6 +332,25 @@
           saveFilter : function() {
             $("#writeFilter").click(function() {
                 Engine.dataStorage.writeData();
+            });
+          },
+          shareURL : function () {
+            $("#shareURL").click(function() {
+              var myURL = "http://www.cssfiltergenerator.com/" + Engine.urlShare.createURL();
+              $("#clipboardText").val(myURL);
+              $("#shareModal").fadeIn();
+            });
+            $("#clipboard").click(function() {
+              var copyText = document.getElementById("clipboardText");
+              copyText.select();
+              document.execCommand("Copy");
+              $(".copied").css({ opacity: 1 });
+              setTimeout(function () {
+                  $(".copied").css({ opacity: 0 });
+              }, 3100);
+            });
+            $("#closeModal").click(function() {
+              $("#shareModal").fadeOut();
             });
           },
           loadFilter : function() {
@@ -510,6 +530,7 @@
   Engine.ui.changeSelect();
   Engine.ui.tabbedInit();
   Engine.ui.saveFilter();
+  Engine.ui.shareURL();
   Engine.ui.loadFilter();
   Engine.colorPicking.colorPick();
   Engine.urlShare.getURL();
