@@ -33,8 +33,8 @@ module.exports = function(grunt) {
 				}
 			},
 			options: {
-				mangle: true,
-				beautify: false
+				mangle: false,
+				beautify: true
 			}
 		},
 		modernizr: {

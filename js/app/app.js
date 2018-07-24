@@ -6,46 +6,55 @@
         defaults: {
           blur: {
             defaultValue: 0,
+            defaultPosition: 0,
             cssname: "blur",
             suffix: "px"
           },
           brightness: {
             defaultValue: 1,
+            defaultPosition: 1,
             cssname: "brightness",
             suffix: "",
           },
           contrast: {
             defaultValue: 1,
+            defaultPosition: 2,
             cssname: "contrast",
             suffix: "",
           },
           grayscale: {
             defaultValue: 0,
+            defaultPosition: 3,
             cssname: "grayscale",
             suffix: ""
           },
           huerotate: {
             defaultValue: 0,
+            defaultPosition: 4,
             cssname: "hue-rotate",
             suffix: "deg"
           },
           invert: {
             defaultValue: 0,
+            defaultPosition: 5,
             cssname: "invert",
             suffix: ""
           },
           opacity: {
             defaultValue: 1,
+            defaultPosition: 6,
             cssname: "opacity",
             suffix: ""
           },
           saturate: {
             defaultValue: 1,
+            defaultPosition: 7,
             cssname: "saturate",
             suffix: ""
           },
           sepia: {
             defaultValue: 0,
+            defaultPosition: 8,
             cssname: "sepia",
             suffix: ""
           },
@@ -115,8 +124,6 @@
               var filterNameKey = $(this).data("filter");
               Engine.data.filters[filterNameKey].value = $(this).val();
               console.log(Engine.data);
-
-
             });
               // This writes the on/off value of the checkbox (switch) input into the data object's corrosponding filter.
             $(".onoffswitch-checkbox").change(function(){
@@ -170,6 +177,7 @@
           },
           positioner : function () {
             // this writes the value of the position to each corrosponding filter
+            console.log("i'm a fuckin' function");
             $('input[data-filter][type="number"]').each(function( index, element ) {
               var objName = $(element).data("filter");
               //console.log("index " + index + ", " + element + ", " + objName);
@@ -217,6 +225,22 @@
             var html    = template(context);
             $(".overlay-css").html(template(context));
             console.log("writeOverlay");
+          },
+          sortFilters : function () {
+            var presorted = [];
+            var postsorted = [];
+
+            Object.keys(Engine.data.filters).forEach(function(key) {
+              presorted[key] = Engine.data.filters[key].position;
+            });
+            postsorted = presorted;
+            postsorted.sort(function(a, b) {
+                return a[1] - b[1];
+            });
+            console.log("presorted");
+            console.log(presorted);
+            console.log("postsorted");
+            console.log(postsorted);
           },
         },
         colorPicking : {
@@ -269,7 +293,6 @@
             //creates the url on input changes
             var myURL = "?" + JSURL.stringify(Engine.data);
             return myURL;
-              //window.history.replaceState(null, null,  myURL);
           },
           getURL : function () {
             var myURL = null,
@@ -302,9 +325,25 @@
                 $("#orientation").val(Engine.data.overlay.orientation);
                 $('[value="'+Engine.data.overlay.select+'"]').click();
               }
-            $("#sepia-a").change();
+            Engine.ui.triggerChange();
             }
           }
+        },
+
+        sortProperties : function (obj) {
+          // convert object into array
+        	var sortable=[];
+        	for(var key in obj) {
+            if ( obj.hasOwnProperty(key) ) {
+              sortable.push([key, obj[key]]); // each item is an array in format [key, value]
+
+            }
+          }
+        	// sort items by value
+        	sortable.sort(function(a, b) {
+        	  return a[1]-b[1]; // compare numbers
+        	});
+        	return sortable; // array in format [ [ key1, val1 ], [ key2, val2 ], ... ]
         },
         ui: {
           //The UI functionality
@@ -359,7 +398,7 @@
               if (dataStorage !== "" || dataStorage !== null ) {
                 console.log("it worked!");
                 Engine.data = dataStorage;
-                $("#sepia-a").change();
+                Engine.ui.triggerChange();
               }
             });
           },
@@ -368,13 +407,12 @@
 						$("label[data-filter]").click(function() {
 							var myLabel = $(this),
 							    myFilter = "input[data-filter="+ $(this).data("filter")  + "]";
-
 							if ($(myFilter).is(':disabled') === true) {
 								$(myFilter).attr("disabled", false).removeClass("disabled");
-								 $("#sepia-a").change();
+								Engine.ui.triggerChange();
 							} else {
 								$(myFilter).attr("disabled", true).addClass("disabled");
-								 $("#sepia-a").change();
+								Engine.ui.triggerChange();
 							}
 						});
 					},
@@ -385,7 +423,7 @@
               $('input[data-filter="'  + key + 'url"]').data(filter, Engine.defaults[key].defaultValue);
 
             });
-              $("#sepia-a").change();
+              Engine.ui.triggerChange();
               Engine.ui.killOverlay(); //obliterate the Overlay
             },
   					resetButton : function() {
@@ -422,103 +460,146 @@
             $("#blending-mode").hide();
             $("#orientation").hide();
           },
-					sorting : function(){
-            //https://github.com/RubaXa/Sortable
-            var el = document.getElementById('sortable');
-            var sortable = Sortable.create(el, {
-              handle: ".updown",
-              onUpdate: function (/**Event*/evt) {
-                  Engine.data.filters.positioner();
-                 $("#sepia-a").change();//dummy change to trigger change() events.
-               }
-            });
-				 },
-         changeSelect : function() {
-           $("#orientation").change(function() {
-              $("input[type=radio]").change();
-           });
-           $("#blending-mode").change(function(){
-             $("input[type=radio]").change();
-           });
-         },
-				 presetSet : function(key, newValue) {
-					 //use for presets
-           console.log("key " + key + " New Value " + newValue);
-					 if (newValue !== undefined ) {
-						 $("input[data-filter="+ key  + "]").val(newValue);
-					 } else {
-							newValue  = $(mySliderNameA).attr('value');
-							$("input[data-filter="+ key  + "]").val(newValue);
-					 }
-           $("input[type=radio]").change();
-				 },
-				 gradientCheck : function(obj) {
-           //used for presets only
-           Engine.data.overlay.color1 = $(obj).data("color1");
-           Engine.data.overlay.color2 = $(obj).data("color2");
-           Engine.data.overlay.select = $(obj).data("gradient");
-           Engine.data.overlay.gradientOrientation = $(obj).data("orientation");
-           Engine.data.overlay.blend = $(obj).data("blending-mode");
-					 $("input[name=overlay]").filter('[value="' +  Engine.data.overlay.select  + '"]').prop("checked", true);
-					 $(".overlay-group input.color1").val(Engine.data.overlay.color1);
-					 $(".overlay-group input.color2").val(Engine.data.overlay.color2);
-           $("#blending-mode").val( Engine.data.overlay.blend);
-           $("#orientation").val(Engine.data.overlay.gradientOrientation);
-           Engine.colorPicking.updateColorPicker(".overlay-group input.color1.text", ".overlay-group input.color1.picker");
-           Engine.colorPicking.updateColorPicker(".overlay-group input.color2.text", ".overlay-group input.color2.picker");
-           console.log("gradientCheck");
-				 },
-         flipDemoImage : function() {
-           $(".css-tab").click(function() {
-             console.log("Css-Tab");
-             event.preventDefault();
-             var el = $(this);
-             if (el.text() == el.data("text-swap")) {
-               el.text(el.data("text-original"));
-               $(this).parent().removeClass("flip");
-               $(".filter-parent").css("min-height", "100px");
-             } else {
-               el.data("text-original", el.text());
-               el.text(el.data("text-swap"));
-               $(this).parent().addClass("flip");
-               Engine.ui.resizeheightcss();
-             }
-             $(".filter-parent").toggleClass("flip");
-
-           });
-
-         },
-         tabbedInit : function() {
-           //initializes bootstrap JS
-           $('#myTabs a').click(function (e) {
-             e.preventDefault();
-             $(this).tab('show');
-           });
-         },
-         resizeheightcss : function() {
-           //This is fired on flip to ensure min height for the CSS code.
-          $(".filter-parent").css("min-height", (
-            $(".titles-css").height() + $(".filter-css").height() + $(".overlay-css").height() + 30
-          ));
-         },
-				 presets : function() {
-					 $(".preset").click(function() {
-             event.preventDefault(); //stop href from using anchor #
-             Engine.ui.reset();
-             var placed = {};
-             placed = $(this).data();
-             $.each( placed, function( key, value ) {
-                Engine.ui.presetSet(key, value);
+  				sorting : function(){
+              // https://github.com/RubaXa/Sortable
+              var el = document.getElementById('sortable');
+              //sortable.store.set(sortable);
+              var sortable = Sortable.create(el, {
+                handle: ".updown",
+                group: "localStorage-example",
+              	store: {
+              		/**
+              		 * Get the order of elements. Called once during initialization.
+              		 * @param   {Sortable}  sortable
+              		 * @returns {Array}
+              		 */
+              		get: function (sortable) {
+              			var order = localStorage.getItem(sortable.options.group.name);
+              			return order ? order.split('|') : [];
+              		},
+              		/**
+              		 * Save the order of elements. Called onEnd (when the item is dropped).
+              		 * @param {Sortable}  sortable
+              		 */
+              		set: function (sortable) {
+              			var order = sortable.toArray();
+              			localStorage.setItem(sortable.options.group.name, order.join('|'));
+              		}
+              	},
+                onSort: function (/**Event*/evt) {
+                	console.log("onSort");	// same properties as onEnd
+                },
+                onChoose: function (/**Event*/evt) {
+              		console.log("onChoose");  // element index within parent
+              	},
+                onFilter: function (/**Event*/evt) {
+              		console.log("onFilter"); // HTMLElement receiving the `mousedown|tapstart` event.
+              	},
+                onUpdate: function (/**Event*/evt) {
+                  //Engine.data.filters.positioner();
+                  console.log("onupdate");
+                  $('input[data-filter][type="number"]').each(function( index, element ) {
+                    var objName = $(element).data("filter");
+                    //console.log("index " + index + ", " + element + ", " + objName);
+                    Engine.data.filters[objName].position = index;
+                  });
+                  Engine.ui.triggerChange();
+                }
               });
-						 Engine.ui.gradientCheck(this);
-						 $("#sepia-a").change();//dummy change to trigger change() events.
-						 $("input[type=radio]").change();//dummy change to trigger change() events.
-					 });
-				}
+              var test =  sortable.option;
+              //console.log("sortable.option + sortable.options.group.name");
+              //console.log(sortable.option());
+
+              //console.log(order);
+  				 },
+           changeSelect : function() {
+             $("#orientation").change(function() {
+                $("input[type=radio]").change();
+             });
+             $("#blending-mode").change(function(){
+               $("input[type=radio]").change(); //dummy change to trigger change() events.
+             });
+           },
+           triggerChange : function() {
+             Engine.template.sortFilters();
+
+             $("#sepia-a").change();
+           },
+  				 presetSet : function(key, newValue) {
+  					 //use for presets
+             console.log("key " + key + " New Value " + newValue);
+  					 if (newValue !== undefined ) {
+  						 $("input[data-filter="+ key  + "]").val(newValue);
+  					 } else {
+  							newValue  = $(mySliderNameA).attr('value');
+  							$("input[data-filter="+ key  + "]").val(newValue);
+  					 }
+             $("input[type=radio]").change();
+  				 },
+  				 gradientCheck : function(obj) {
+             //used for presets only
+             Engine.data.overlay.color1 = $(obj).data("color1");
+             Engine.data.overlay.color2 = $(obj).data("color2");
+             Engine.data.overlay.select = $(obj).data("gradient");
+             Engine.data.overlay.gradientOrientation = $(obj).data("orientation");
+             Engine.data.overlay.blend = $(obj).data("blending-mode");
+  					 $("input[name=overlay]").filter('[value="' +  Engine.data.overlay.select  + '"]').prop("checked", true);
+  					 $(".overlay-group input.color1").val(Engine.data.overlay.color1);
+  					 $(".overlay-group input.color2").val(Engine.data.overlay.color2);
+             $("#blending-mode").val( Engine.data.overlay.blend);
+             $("#orientation").val(Engine.data.overlay.gradientOrientation);
+             Engine.colorPicking.updateColorPicker(".overlay-group input.color1.text", ".overlay-group input.color1.picker");
+             Engine.colorPicking.updateColorPicker(".overlay-group input.color2.text", ".overlay-group input.color2.picker");
+             console.log("gradientCheck");
+  				 },
+           flipDemoImage : function() {
+             $(".css-tab").click(function() {
+               console.log("Css-Tab");
+               event.preventDefault();
+               var el = $(this);
+               if (el.text() == el.data("text-swap")) {
+                 el.text(el.data("text-original"));
+                 $(this).parent().removeClass("flip");
+                 $(".filter-parent").css("min-height", "100px");
+               } else {
+                 el.data("text-original", el.text());
+                 el.text(el.data("text-swap"));
+                 $(this).parent().addClass("flip");
+                 Engine.ui.resizeheightcss();
+               }
+               $(".filter-parent").toggleClass("flip");
+             });
+           },
+           tabbedInit : function() {
+             //initializes bootstrap JS
+             $('#myTabs a').click(function (e) {
+               e.preventDefault();
+               $(this).tab('show');
+             });
+           },
+           resizeheightcss : function() {
+             //This is fired on flip to ensure min height for the CSS code.
+            $(".filter-parent").css("min-height", (
+              $(".titles-css").height() + $(".filter-css").height() + $(".overlay-css").height() + 30
+            ));
+           },
+  				 presets : function() {
+  					 $(".preset").click(function() {
+               event.preventDefault(); //stop href from using anchor #
+               Engine.ui.reset();
+               var placed = {};
+               placed = $(this).data();
+               $.each( placed, function( key, value ) {
+                  Engine.ui.presetSet(key, value);
+                });
+  						 Engine.ui.gradientCheck(this);
+  						 Engine.ui.triggerChange();
+  						 $("input[type=radio]").change();//dummy change to trigger change() events.
+  					 });
+  				}
 		} // ui
 	}; // Engine
   Engine.init();
-
 	Engine.ui.sliders();
 	Engine.ui.sorting();
 	Engine.ui.showhidefilters();
