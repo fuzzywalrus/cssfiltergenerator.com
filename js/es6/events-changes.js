@@ -10,10 +10,7 @@ const eventsChanges = {
       //console.log(`${filterNameKey}: ${data.filters[filterNameKey].value}`);
     });
   },
-  triggerChange : function() {
-    //Engine.template.sortFilters();
-    $("#sepia-a").change();
-  },
+
   //make sure both inputs have the same data
   // related functions: recordData
   setInputPairs : function(filterNameKey) {
@@ -94,31 +91,18 @@ const eventsChanges = {
    createTemplateString: function()  {
      $("#contain input").change(function() {
        let stringed = controlSort.createString(data.filters);
-       console.log(stringed);
-       /*
-      let filters = "",
-          hoverState = "";
-        Object.entries(data.filters).forEach(([key, value]) => {
-          console.log(`Key: ${key}, Value: ${value.value}, Active: ${value.active}, Position: ${value.position}, hoverState: ${hoverState}, filters: ${filters}`);
-          let returnData = controlSort.createString(key, value, filters, hoverState);
-          filters =  filters + returnData.newfilters;
-          hoverState = hoverState  + returnData.newhoverState;
-          console.log(returnData);
-          console.log(`hoverState: ${hoverState}, filters: ${filters}`)
-          //controlSort.createString(key, filters, hoverState);
-
-          if (value.value != defaults[key].defaultValue && value.active === true) {
-              filters = `${filters} ${defaults[key].cssname}\(${value.value}${defaults[key].unit}\) `;
-              hoverState = `${hoverState} ${defaults[key].cssname}\(${defaults[key].defaultValue}${defaults[key].unit}\) `;
-            }
-
-        });
-          */
-        mustacheTemplate.writeCSS(stringed.filters, stringed.hoverState);
+       mustacheTemplate.writeCSS(stringed.filters, stringed.hoverState);
      });
    },
    triggerChange : function() {
      $("#sepia-a").change();
+   },
+   imageSwap: function() {
+     $("#imageURL").change(function() {
+       var demoimage = $(this).val();
+       $("#demoimage").attr("src", demoimage);
+       $(".preset img").attr("src", demoimage);
+     });
    }
 }
 eventsChanges.recordData();
@@ -126,3 +110,4 @@ eventsChanges.setInputPairs();
 eventsChanges.onOffSwitch();
 eventsChanges.overlayChanges();
 eventsChanges.createTemplateString();
+eventsChanges.imageSwap();

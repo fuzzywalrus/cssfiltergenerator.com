@@ -401,6 +401,16 @@
 		"sC": 0,
 		"tS": 0
 		},
+	"\/js\/es6\/control-datastorage.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/js\/es6\/control-datastorage-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
 	"\/js\/es6\/control-sort.js": {
 		"ft": 64,
 		"ma": 0,
@@ -2344,6 +2354,12 @@
 			"followForSyntaxChecking": 1,
 			"linkedFileAbbreviatedPath": "\/js\/es6\/events-changes.js",
 			"position": 9,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/es6\/control-datastorage.js",
+			"position": 10,
 			"type": 0
 			}
 		],

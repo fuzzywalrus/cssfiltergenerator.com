@@ -3,13 +3,18 @@ const controlSort = {
     let filters = "",
         hoverState = "";
     Object.entries(obj).forEach(([key, value]) => {
-        console.log(`Key: ${key}, Value: ${value.value}, Active: ${value.active}, Position: ${value.position}, hoverState: ${hoverState}, filters: ${filters}`);
+      //  console.log(`Key: ${key}, Value: ${value.value}, Active: ${value.active}, Position: ${value.position}, hoverState: ${hoverState}, filters: ${filters}`);
         if (value.value != defaults[key].defaultValue && value.active === true) {
             filters = `${filters} ${defaults[key].cssname}\(${value.value}${defaults[key].unit}\) `;
             hoverState = `${hoverState} ${defaults[key].cssname}\(${defaults[key].defaultValue}${defaults[key].unit}\) `;
           }
       });
       return { filters, hoverState}
+  },
+  syncFilterDataToDOM: function(obj) {
+    Object.entries(obj).forEach(([key, value]) => {
+      $(`input[data-filter='${key}']`).val(value.value);
+    });
   }
 }
 
@@ -206,6 +211,73 @@ sortProperties : function (obj) {
 },
 
 */
+const uiSortable = {
+  init : function(){
+      // https://github.com/RubaXa/Sortable
+      var el = document.getElementById('sortable');
+      //sortable.store.set(sortable);
+      var sortable = Sortable.create(el, {
+        handle: ".updown",
+        group: "localStorage-example",
+        store: {
+          /**
+           * Get the order of elements. Called once during initialization.
+           * @param   {Sortable}  sortable
+           * @returns {Array}
+           */
+          get: function (sortable) {
+            var order = localStorage.getItem(sortable.options.group.name);
+            return order ? order.split('|') : [];
+          },
+          /**
+           * Save the order of elements. Called onEnd (when the item is dropped).
+           * @param {Sortable}  sortable
+           */
+          set: function (sortable) {
+            var order = sortable.toArray();
+            localStorage.setItem(sortable.options.group.name, order.join('|'));
+          }
+        },
+        onSort: function (/**Event*/evt) {
+          console.log("onSort");	// same properties as onEnd
+        },
+        onChoose: function (/**Event*/evt) {
+          console.log("onChoose");  // element index within parent
+        },
+        onFilter: function (/**Event*/evt) {
+          console.log("onFilter"); // HTMLElement receiving the `mousedown|tapstart` event.
+        },
+        onUpdate: function (/**Event*/evt) {
+          //Engine.data.filters.positioner();
+          console.log("onupdate");
+          $('input[data-filter][type="number"]').each(function( index, element ) {
+            var objName = $(element).data("filter");
+            //console.log("index " + index + ", " + element + ", " + objName);
+            data.filters[objName].position = index;
+          });
+          //ui.triggerChange();
+          eventsChanges.triggerChange();
+        }
+      });
+      var test =  sortable.option;
+   },
+   sortProperties : function (obj) {
+     // convert object into array
+     var sortable=[];
+     for(var key in obj) {
+       if ( obj.hasOwnProperty(key) ) {
+         sortable.push([key, obj[key]]); // each item is an array in format [key, value]
+
+       }
+     }
+     // sort items by value
+     sortable.sort(function(a, b) {
+       return a[1]-b[1]; // compare numbers
+     });
+     return sortable; // array in format [ [ key1, val1 ], [ key2, val2 ], ... ]
+   }
+}
+uiSortable.init();
 
 
 const mustacheTemplate = {
@@ -269,11 +341,12 @@ const eventsClick = {
       eventsResets.killOverlay(); //obliterate the Overlay
       window.history.replaceState(null, null,  "/");
       console.log("reset");;
+      controlSort.syncFilterDataToDOM(data.filters);
     });
   },
   flipDemoImage : function() {
-    $(".css-tab").click(function() {
-      event.preventDefault();
+    $(".css-tab").click(function(e) {
+      e.preventDefault();
       $(".filter-parent").toggleClass("flip");
       $(this).toggleClass("alt-text");
     });
@@ -296,54 +369,60 @@ const eventsClick = {
     $("#closeModal").click(function() {
      $("#shareModal").fadeOut();
     });
+  },
+  saveFilter: function () {
+    $("#writeFilter").click(function() {
+      controlDataStorage.writeData();
+    });
+  },
+  copyToClipboard : function() {
+    $("#clipboard").click(function() {
+      var copyText = document.getElementById("clipboardText");
+      console.log("copy");
+      copyText.select();
+      document.execCommand("Copy");
+      $(".copied").css({ opacity: 1 });
+      setTimeout(function () {
+          $(".copied").css({ opacity: 0 });
+      }, 3100);
+    });
+  },
+  closeModal : function() {
+    $("#shareModal").click(function() {
+      $("#shareModal").fadeOut();
+    });
+  },
+  loadFilter : function() {
+    $("#readFilter").click(function() {
+
+      let dataStorage = controlDataStorage.readData();
+      if (dataStorage !== "" || dataStorage !== null ) {
+        console.log("it worked!");
+        data = dataStorage;
+        eventsChanges.triggerChange();
+      }
+      controlSort.syncFilterDataToDOM(data.filters);
+    });
+  },
+  imageSwap: function() {
+    $("a[data-fullsize]").click(function() {
+        event.preventDefault(); //stop href from using anchor #
+        var newUrl = $(this).data("fullsize");
+        $("#demoimage").attr("src", newUrl);
+        $(".preset img").attr("src", newUrl);
+    });
   }
+
 }
 eventsClick.showhidefilters();
 eventsClick.resetButton();
 eventsClick.flipDemoImage();
 eventsClick.shareURL();
-
-
-
-
-function saveFilter() {
-  $("#writeFilter").click(function() {
-    //  Engine.dataStorage.writeData();
-  });
-}
-
- function shareURL () {
-  $("#shareURL").click(function() {
-    /* let myURL = "http://www.cssfiltergenerator.com/" + Engine.urlShare.createURL();
-    $("#clipboardText").val(myURL);
-    $("#shareModal").fadeIn(); */
-  });
-  $("#clipboard").click(function() {
-    var copyText = document.getElementById("clipboardText");
-    copyText.select();
-    document.execCommand("Copy");
-    $(".copied").css({ opacity: 1 });
-    setTimeout(function () {
-        $(".copied").css({ opacity: 0 });
-    }, 3100);
-  });
-  $("#closeModal").click(function() {
-    $("#shareModal").fadeOut();
-  });
-}
-
-function loadFilter () {
-  $("#readFilter").click(function() {
-    /*
-    var dataStorage = Engine.dataStorage.readData();
-    if (dataStorage !== "" || dataStorage !== null ) {
-      console.log("it worked!");
-      Engine.data = dataStorage;
-      Engine.ui.triggerChange();
-    }
-    */
-  });
-}
+eventsClick.saveFilter();
+eventsClick.copyToClipboard();
+eventsClick.closeModal();
+eventsClick.loadFilter();
+eventsClick.imageSwap();
 
 
 const eventsResets = {
@@ -375,10 +454,7 @@ const eventsChanges = {
       //console.log(`${filterNameKey}: ${data.filters[filterNameKey].value}`);
     });
   },
-  triggerChange : function() {
-    //Engine.template.sortFilters();
-    $("#sepia-a").change();
-  },
+
   //make sure both inputs have the same data
   // related functions: recordData
   setInputPairs : function(filterNameKey) {
@@ -459,31 +535,18 @@ const eventsChanges = {
    createTemplateString: function()  {
      $("#contain input").change(function() {
        let stringed = controlSort.createString(data.filters);
-       console.log(stringed);
-       /*
-      let filters = "",
-          hoverState = "";
-        Object.entries(data.filters).forEach(([key, value]) => {
-          console.log(`Key: ${key}, Value: ${value.value}, Active: ${value.active}, Position: ${value.position}, hoverState: ${hoverState}, filters: ${filters}`);
-          let returnData = controlSort.createString(key, value, filters, hoverState);
-          filters =  filters + returnData.newfilters;
-          hoverState = hoverState  + returnData.newhoverState;
-          console.log(returnData);
-          console.log(`hoverState: ${hoverState}, filters: ${filters}`)
-          //controlSort.createString(key, filters, hoverState);
-
-          if (value.value != defaults[key].defaultValue && value.active === true) {
-              filters = `${filters} ${defaults[key].cssname}\(${value.value}${defaults[key].unit}\) `;
-              hoverState = `${hoverState} ${defaults[key].cssname}\(${defaults[key].defaultValue}${defaults[key].unit}\) `;
-            }
-
-        });
-          */
-        mustacheTemplate.writeCSS(stringed.filters, stringed.hoverState);
+       mustacheTemplate.writeCSS(stringed.filters, stringed.hoverState);
      });
    },
    triggerChange : function() {
      $("#sepia-a").change();
+   },
+   imageSwap: function() {
+     $("#imageURL").change(function() {
+       var demoimage = $(this).val();
+       $("#demoimage").attr("src", demoimage);
+       $(".preset img").attr("src", demoimage);
+     });
    }
 }
 eventsChanges.recordData();
@@ -491,6 +554,26 @@ eventsChanges.setInputPairs();
 eventsChanges.onOffSwitch();
 eventsChanges.overlayChanges();
 eventsChanges.createTemplateString();
+eventsChanges.imageSwap();
+
+
+controlDataStorage = {
+  checkData : function () {
+    if (localStorage.getItem("data") !== null) {
+      $("#readFilter").show();
+    }
+  },
+  writeData : function (){
+    localStorage.setItem('data', JSON.stringify(data));
+    controlDataStorage.checkData();
+  },
+  readData : function () {
+    let retrievedObject = localStorage.getItem('data');
+    retrievedObject =  JSON.parse(retrievedObject);
+    return retrievedObject;
+  }
+}
+controlDataStorage.checkData();
 
 
 //init
