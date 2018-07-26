@@ -2,6 +2,32 @@ const controlSort = {
   createString:  function(obj) {
     let filters = "",
         hoverState = "";
+
+    //need to create a map so we can use it to iterate over the data obj based on data.filter[key].positions
+    let map = new Map();
+      Object.entries(data.filters).forEach(([key, value]) => {
+        map.set(key, data.filters[key].position);
+      });
+      let newMap = new Map([...map].sort(([k, v], [k2, v2])=> {
+        if (v > v2) {
+          return 1;
+        }
+        if (v < v2) {
+          return -1;
+        }
+        return 0;
+    }));
+    newMap.forEach( (key, value, map) =>{
+      if (data.filters[value].value != defaults[value].defaultValue && data.filters[value].active === true) {
+          filters = `${filters} ${defaults[value].cssname}\(${data.filters[value].value}${defaults[value].unit}\) `;
+          hoverState = `${hoverState} ${defaults[value].cssname}\(${defaults[value].defaultValue}${defaults[value].unit}\) `;
+        }
+        console.log(`key: ${key}, value ${value}`)
+    });
+    console.log(`filters: ${filters}, hoverState: ${hoverState}`);
+    return { filters, hoverState }
+
+    /*
     Object.entries(obj).forEach(([key, value]) => {
       //  console.log(`Key: ${key}, Value: ${value.value}, Active: ${value.active}, Position: ${value.position}, hoverState: ${hoverState}, filters: ${filters}`);
         if (value.value != defaults[key].defaultValue && value.active === true) {
@@ -10,11 +36,13 @@ const controlSort = {
           }
       });
       return { filters, hoverState}
+      */
   },
   syncFilterDataToDOM: function(obj) {
     Object.entries(obj).forEach(([key, value]) => {
       $(`input[data-filter='${key}']`).val(value.value);
     });
+    uiSortable.initSort();
   },
   //make sure both inputs have the same data
   // related functions: recordData
@@ -29,7 +57,7 @@ const controlSort = {
     let map = new Map();
     Object.entries(data.filters).forEach(([key, value]) => {
       map.set(defaults[key].cssname, data.filters[key].position);
-    })
+    });
     let newMap = new Map([...map].sort(([k, v], [k2, v2])=> {
       if (v > v2) {
         return 1;
@@ -39,6 +67,15 @@ const controlSort = {
       }
       return 0;
     }));
+    /*
+    Object.entries(data.filters).forEach(([key, value]) => {
+      let temp = newMap.get(key);
+      if (temp !== undefined) {
+        data.filters[key].value = temp;
+      }
+      console.log("temp:" + temp);
+    });
+    */
     console.log(newMap);
   }
 }
@@ -217,74 +254,30 @@ const colorPicking = {
 colorPicking.colorPick();
 
 
-/*
-sortProperties : function (obj) {
-  // convert object into array
-  var sortable=[];
-  for(var key in obj) {
-    if ( obj.hasOwnProperty(key) ) {
-      sortable.push([key, obj[key]]); // each item is an array in format [key, value]
-
-    }
+// init
+var el = document.getElementById('sortable');
+var mySortable = Sortable.create(el, {
+  handle: ".updown",
+  group: "localStorage-example",
+  onSort: function (/**Event*/evt) {
+    console.log("onSort");	// same properties as onEnd
+  },
+  onChoose: function (/**Event*/evt) {
+    console.log("onChoose");  // element index within parent
+  },
+  onFilter: function (/**Event*/evt) {
+    console.log("onFilter"); // HTMLElement receiving the `mousedown|tapstart` event.
+  },
+  onUpdate: function (/**Event*/evt) {
+    console.log("onupdate");
+    $('input[data-filter][type="number"]').each(function( index, element ) {
+      var objName = $(element).data("filter");
+      data.filters[objName].position = index;
+    });
+    eventsChanges.triggerChange();
   }
-  // sort items by value
-  sortable.sort(function(a, b) {
-    return a[1]-b[1]; // compare numbers
-  });
-  return sortable; // array in format [ [ key1, val1 ], [ key2, val2 ], ... ]
-},
-
-*/
+});
 const uiSortable = {
-  init : function(){
-      // https://github.com/RubaXa/Sortable
-      var el = document.getElementById('sortable');
-      //sortable.store.set(sortable);
-      var sortable = Sortable.create(el, {
-        handle: ".updown",
-        group: "localStorage-example",
-        store: {
-          /**
-           * Get the order of elements. Called once during initialization.
-           * @param   {Sortable}  sortable
-           * @returns {Array}
-           */
-          get: function (sortable) {
-            var order = localStorage.getItem(sortable.options.group.name);
-            return order ? order.split('|') : [];
-          },
-          /**
-           * Save the order of elements. Called onEnd (when the item is dropped).
-           * @param {Sortable}  sortable
-           */
-          set: function (sortable) {
-            var order = sortable.toArray();
-            localStorage.setItem(sortable.options.group.name, order.join('|'));
-          }
-        },
-        onSort: function (/**Event*/evt) {
-          console.log("onSort");	// same properties as onEnd
-        },
-        onChoose: function (/**Event*/evt) {
-          console.log("onChoose");  // element index within parent
-        },
-        onFilter: function (/**Event*/evt) {
-          console.log("onFilter"); // HTMLElement receiving the `mousedown|tapstart` event.
-        },
-        onUpdate: function (/**Event*/evt) {
-          //Engine.data.filters.positioner();
-          console.log("onupdate");
-          $('input[data-filter][type="number"]').each(function( index, element ) {
-            var objName = $(element).data("filter");
-            //console.log("index " + index + ", " + element + ", " + objName);
-            data.filters[objName].position = index;
-          });
-          //ui.triggerChange();
-          eventsChanges.triggerChange();
-        }
-      });
-      var test =  sortable.option;
-   },
    sortProperties : function (obj) {
      // convert object into array
      var sortable=[];
@@ -299,9 +292,34 @@ const uiSortable = {
        return a[1]-b[1]; // compare numbers
      });
      return sortable; // array in format [ [ key1, val1 ], [ key2, val2 ], ... ]
+   },
+   sortList: function () {
+     let arr = [];
+     let map = new Map();
+       Object.entries(data.filters).forEach(([key, value]) => {
+         map.set(key, data.filters[key].position);
+       });
+       let newMap = new Map([...map].sort(([k, v], [k2, v2])=> {
+         if (v > v2) {
+           return 1;
+         }
+         if (v < v2) {
+           return -1;
+         }
+         return 0;
+     }));
+     newMap.forEach( (key, value, map) =>{
+       arr.push(value)
+     });
+     console.log(arr)
+     return(arr);
+   },
+   initSort: function() {
+     mySortable.sort(uiSortable.sortList());
+
    }
 }
-uiSortable.init();
+//uiSortable.init();
 
 
 const mustacheTemplate = {
@@ -313,7 +331,6 @@ const mustacheTemplate = {
     let context = {filters: filters, hoverState: hoverState};
     let html    = template(context);
     $(".filter-css").html(template(context));
-    console.log("writeCSS");
   },
   writeOverlay : function(myBlending, myGradient) {
     //writes the css filter to the dom
@@ -461,8 +478,10 @@ const eventsResets = {
     // sync data back to default
     Object.keys(data.filters).forEach(function(key) {
       data.filters[key].value = defaults[key].defaultValue;
+      data.filters[key].position = defaults[key].position;
       $('input[data-filter="'  + key + 'url"]').data(filter, defaults[key].defaultValue);
     });
+    uiSortable.initSort();
   }
 }
 

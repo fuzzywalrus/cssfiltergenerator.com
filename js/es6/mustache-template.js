@@ -7,7 +7,6 @@ const mustacheTemplate = {
     let context = {filters: filters, hoverState: hoverState};
     let html    = template(context);
     $(".filter-css").html(template(context));
-    console.log("writeCSS");
   },
   writeOverlay : function(myBlending, myGradient) {
     //writes the css filter to the dom
