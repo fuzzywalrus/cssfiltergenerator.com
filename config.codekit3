@@ -2310,13 +2310,13 @@
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/es6\/model-urlshare.js",
+			"linkedFileAbbreviatedPath": "\/js\/es6\/model-data.js",
 			"position": 2,
 			"type": 0
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/es6\/model-data.js",
+			"linkedFileAbbreviatedPath": "\/js\/es6\/mustache-template.js",
 			"position": 3,
 			"type": 0
 			},
@@ -2334,31 +2334,31 @@
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/es6\/mustache-template.js",
+			"linkedFileAbbreviatedPath": "\/js\/es6\/events-click.js",
 			"position": 6,
 			"type": 0
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/es6\/events-click.js",
+			"linkedFileAbbreviatedPath": "\/js\/es6\/events-resets.js",
 			"position": 7,
 			"type": 0
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/es6\/events-resets.js",
+			"linkedFileAbbreviatedPath": "\/js\/es6\/events-changes.js",
 			"position": 8,
 			"type": 0
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/es6\/events-changes.js",
+			"linkedFileAbbreviatedPath": "\/js\/es6\/control-datastorage.js",
 			"position": 9,
 			"type": 0
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/es6\/control-datastorage.js",
+			"linkedFileAbbreviatedPath": "\/js\/es6\/model-urlshare.js",
 			"position": 10,
 			"type": 0
 			}
