@@ -15,6 +15,31 @@ const controlSort = {
     Object.entries(obj).forEach(([key, value]) => {
       $(`input[data-filter='${key}']`).val(value.value);
     });
+  },
+  //make sure both inputs have the same data
+  // related functions: recordData
+  setInputPairs : function(filterNameKey) {
+    $(`[data-filter="${filterNameKey}"`).each(function() {
+      if ($(this).data("filter") !== data.filters[filterNameKey].value  ) {
+        $(this).val( data.filters[filterNameKey].value)
+      }
+    });
+  },
+  mapData : function() {
+    let map = new Map();
+    Object.entries(data.filters).forEach(([key, value]) => {
+      map.set(defaults[key].cssname, data.filters[key].position);
+    })
+    let newMap = new Map([...map].sort(([k, v], [k2, v2])=> {
+      if (v > v2) {
+        return 1;
+      }
+      if (v < v2) {
+        return -1;
+      }
+      return 0;
+    }));
+    console.log(newMap);
   }
 }
 
@@ -58,7 +83,7 @@ const modelURLShare = {
   //URL var creation/parssing uses jsurl.js
   //https://github.com/Sage/jsurl/
   createURL : function() {
-    //creates the url on input changes
+    //creates the url
     var myURL = "?" + JSURL.stringify(data);
     return myURL;
   },
@@ -80,8 +105,6 @@ const modelURLShare = {
       let stringed = controlSort.createString(data.filters);
       mustacheTemplate.writeCSS(stringed.filters, stringed.hoverState);
       modelURLShare.checkActiveFilters(data.filters);
-
-
       if (data.overlay.select !== "#overlay-radio-none") {
         $("#overlay-solid-color-text").val(data.overlay.color0 );
         $("#overlay-gradient-color1-text").val(data.overlay.color1);
@@ -103,10 +126,11 @@ const modelURLShare = {
 let modelData = function () {
   // filter data storage
   class FilterData {
-    constructor (position, value, active = true) {
-      this.active = active; //all states start as active
-      this.value = position;
+    constructor (value, position, active = true) {
+      this.value = value;
       this.position = position;
+      this.active = active; //all states start as active
+
     }
   }
   let blur = new FilterData(0,0);
@@ -394,7 +418,6 @@ const eventsClick = {
   },
   loadFilter : function() {
     $("#readFilter").click(function() {
-
       let dataStorage = controlDataStorage.readData();
       if (dataStorage !== "" || dataStorage !== null ) {
         console.log("it worked!");
@@ -427,6 +450,7 @@ eventsClick.imageSwap();
 
 const eventsResets = {
   killOverlay : function () {
+    // remove and hide overlay
     $('.overlay-group').hide();
     $("#filter .overlay-css").html("");
     $("#overlay-css").html("");
@@ -434,6 +458,7 @@ const eventsResets = {
     $("#orientation").hide();
   },
   resetData : function() {
+    // sync data back to default
     Object.keys(data.filters).forEach(function(key) {
       data.filters[key].value = defaults[key].defaultValue;
       $('input[data-filter="'  + key + 'url"]').data(filter, defaults[key].defaultValue);
@@ -442,7 +467,7 @@ const eventsResets = {
 }
 
 
-
+//
 const eventsChanges = {
   // This writes the input value of the numeric input into the data object's corrosponding filter.
   // related functions: setInputPairs
@@ -450,20 +475,12 @@ const eventsChanges = {
     $("[data-filter]").change(function() {
       let filterNameKey = $(this).data("filter"); //active filter
       data.filters[filterNameKey].value = $(this).val(); //write data
-      eventsChanges.setInputPairs(filterNameKey)
+      controlSort.setInputPairs(filterNameKey)
       //console.log(`${filterNameKey}: ${data.filters[filterNameKey].value}`);
     });
   },
 
-  //make sure both inputs have the same data
-  // related functions: recordData
-  setInputPairs : function(filterNameKey) {
-    $(`[data-filter="${filterNameKey}"`).each(function() {
-      if ($(this).data("filter") !== data.filters[filterNameKey].value  ) {
-        $(this).val( data.filters[filterNameKey].value)
-      }
-    });
-  },
+
 
   // This writes the on/off value of the checkbox (switch) input into the data object's corrosponding filter.
   onOffSwitch : function() {
@@ -550,13 +567,13 @@ const eventsChanges = {
    }
 }
 eventsChanges.recordData();
-eventsChanges.setInputPairs();
 eventsChanges.onOffSwitch();
 eventsChanges.overlayChanges();
 eventsChanges.createTemplateString();
 eventsChanges.imageSwap();
 
 
+//All things reladed to localestorage read/writes
 controlDataStorage = {
   checkData : function () {
     if (localStorage.getItem("data") !== null) {
@@ -572,6 +589,7 @@ controlDataStorage = {
     retrievedObject =  JSON.parse(retrievedObject);
     return retrievedObject;
   }
+
 }
 controlDataStorage.checkData();
 

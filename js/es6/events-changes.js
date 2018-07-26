@@ -1,4 +1,4 @@
-
+//
 const eventsChanges = {
   // This writes the input value of the numeric input into the data object's corrosponding filter.
   // related functions: setInputPairs
@@ -6,20 +6,12 @@ const eventsChanges = {
     $("[data-filter]").change(function() {
       let filterNameKey = $(this).data("filter"); //active filter
       data.filters[filterNameKey].value = $(this).val(); //write data
-      eventsChanges.setInputPairs(filterNameKey)
+      controlSort.setInputPairs(filterNameKey)
       //console.log(`${filterNameKey}: ${data.filters[filterNameKey].value}`);
     });
   },
 
-  //make sure both inputs have the same data
-  // related functions: recordData
-  setInputPairs : function(filterNameKey) {
-    $(`[data-filter="${filterNameKey}"`).each(function() {
-      if ($(this).data("filter") !== data.filters[filterNameKey].value  ) {
-        $(this).val( data.filters[filterNameKey].value)
-      }
-    });
-  },
+
 
   // This writes the on/off value of the checkbox (switch) input into the data object's corrosponding filter.
   onOffSwitch : function() {
@@ -106,7 +98,6 @@ const eventsChanges = {
    }
 }
 eventsChanges.recordData();
-eventsChanges.setInputPairs();
 eventsChanges.onOffSwitch();
 eventsChanges.overlayChanges();
 eventsChanges.createTemplateString();

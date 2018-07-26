@@ -75,7 +75,6 @@ const eventsClick = {
   },
   loadFilter : function() {
     $("#readFilter").click(function() {
-
       let dataStorage = controlDataStorage.readData();
       if (dataStorage !== "" || dataStorage !== null ) {
         console.log("it worked!");

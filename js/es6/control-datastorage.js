@@ -1,3 +1,4 @@
+//All things reladed to localestorage read/writes
 controlDataStorage = {
   checkData : function () {
     if (localStorage.getItem("data") !== null) {
@@ -13,5 +14,6 @@ controlDataStorage = {
     retrievedObject =  JSON.parse(retrievedObject);
     return retrievedObject;
   }
+
 }
 controlDataStorage.checkData();

@@ -2,7 +2,7 @@ const modelURLShare = {
   //URL var creation/parssing uses jsurl.js
   //https://github.com/Sage/jsurl/
   createURL : function() {
-    //creates the url on input changes
+    //creates the url
     var myURL = "?" + JSURL.stringify(data);
     return myURL;
   },
@@ -24,8 +24,6 @@ const modelURLShare = {
       let stringed = controlSort.createString(data.filters);
       mustacheTemplate.writeCSS(stringed.filters, stringed.hoverState);
       modelURLShare.checkActiveFilters(data.filters);
-
-
       if (data.overlay.select !== "#overlay-radio-none") {
         $("#overlay-solid-color-text").val(data.overlay.color0 );
         $("#overlay-gradient-color1-text").val(data.overlay.color1);

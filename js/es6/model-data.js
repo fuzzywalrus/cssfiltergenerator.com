@@ -1,10 +1,11 @@
 let modelData = function () {
   // filter data storage
   class FilterData {
-    constructor (position, value, active = true) {
-      this.active = active; //all states start as active
-      this.value = position;
+    constructor (value, position, active = true) {
+      this.value = value;
       this.position = position;
+      this.active = active; //all states start as active
+
     }
   }
   let blur = new FilterData(0,0);
