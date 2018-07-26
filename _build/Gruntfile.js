@@ -29,7 +29,7 @@ module.exports = function(grunt) {
 		uglify: {
 			dev: {
 				files: {
-					"../js/app-min.js": ["../js/source/*", "../js/app/*" ]
+					"../js/app-min.js": ["../js/source/*", "../js/es6/*" ]
 				}
 			},
 			options: {

@@ -371,13 +371,153 @@
 		"sC": 1,
 		"tS": 0
 		},
-	"\/js\/app\/app.js": {
+	"\/js\/app.v2-min.js": {
 		"ft": 64,
 		"ma": 0,
 		"mi": 1,
 		"oA": 0,
+		"oAP": "\/js\/app.v2-min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/js\/app.v2.js": {
+		"ft": 64,
+		"ma": 1,
+		"mi": 0,
+		"oA": 0,
+		"oAP": "\/js\/app.v2-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"\/js\/app\/app.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
 		"oAP": "\/js\/app-min.js",
-		"oF": 2,
+		"oF": 3,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/js\/es6\/control-sort.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/js\/es6\/control-sort-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/js\/es6\/events-changes.js": {
+		"ft": 64,
+		"ma": 1,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "\/js\/es6\/events-changes-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"\/js\/es6\/events-click.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/js\/es6\/events-click-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/js\/es6\/events-resets.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/js\/es6\/events-resets-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/js\/es6\/model-data.js": {
+		"ft": 64,
+		"ma": 1,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "\/js\/es6\/model-data-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"\/js\/es6\/model-defaults.js": {
+		"ft": 64,
+		"ma": 1,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "\/js\/es6\/model-defaults-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"\/js\/es6\/model-urlshare.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/js\/es6\/model-urlshare-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/js\/es6\/mustache-template.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/js\/es6\/mustache-template-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/js\/es6\/ui-colorpicker.js": {
+		"ft": 64,
+		"ma": 1,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "\/js\/es6\/ui-colorpicker-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"\/js\/es6\/ui-sortable.js": {
+		"ft": 64,
+		"ma": 1,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/js\/es6\/ui-sortable-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"\/js\/libs-min.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/libs-min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/js\/libs.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/libs-min.js",
+		"oF": 0,
 		"sC": 0,
 		"tS": 0
 		},
@@ -385,50 +525,50 @@
 		"ft": 64,
 		"ma": 0,
 		"mi": 1,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/js\/source\/handlebars-v4.0.5-min.js",
 		"oF": 0,
-		"sC": 1,
+		"sC": 0,
 		"tS": 0
 		},
 	"\/js\/source\/jsurl.js": {
 		"ft": 64,
 		"ma": 0,
-		"mi": 1,
-		"oA": 0,
+		"mi": 0,
+		"oA": 1,
 		"oAP": "\/js\/source\/jsurl-min.js",
 		"oF": 0,
-		"sC": 1,
+		"sC": 0,
 		"tS": 0
 		},
 	"\/js\/source\/modernizr-custom.js": {
 		"ft": 64,
 		"ma": 0,
-		"mi": 1,
-		"oA": 0,
+		"mi": 0,
+		"oA": 1,
 		"oAP": "\/js\/source\/modernizr-custom-min.js",
 		"oF": 0,
-		"sC": 1,
+		"sC": 0,
 		"tS": 0
 		},
 	"\/js\/source\/sortable.min.js": {
 		"ft": 64,
 		"ma": 0,
-		"mi": 1,
-		"oA": 0,
+		"mi": 0,
+		"oA": 1,
 		"oAP": "\/js\/source\/sortable.min-min.js",
 		"oF": 0,
-		"sC": 1,
+		"sC": 0,
 		"tS": 0
 		},
 	"\/js\/source\/spectrum.min.js": {
 		"ft": 64,
 		"ma": 0,
-		"mi": 1,
-		"oA": 0,
+		"mi": 0,
+		"oA": 1,
 		"oAP": "\/js\/source\/spectrum.min-min.js",
 		"oF": 0,
-		"sC": 1,
+		"sC": 0,
 		"tS": 0
 		},
 	"\/README.md": {
@@ -876,6 +1016,23 @@
 		"oAP": "\/scss\/.sass-cache\/f76c9a424d03b741d07d4505ec8ee6871b2fa5eb\/_variables.scssc",
 		"oF": 0
 		},
+	"\/scss\/main.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/scss\/main-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"\/scss\/main.css.map": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/scss\/main.css.map",
+		"oF": 0
+		},
 	"\/scss\/main.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -884,8 +1041,8 @@
 		"ft": 4,
 		"ma": 1,
 		"oA": 0,
-		"oAP": "\/scss\/main.css",
-		"oF": 0,
+		"oAP": "\/css\/main-min.css",
+		"oF": 2,
 		"oS": 1,
 		"uL": 1
 		},
@@ -2128,6 +2285,100 @@
 "hooks": [
 	],
 "manualImportLinks": {
+	"\/js\/app.v2.js": [
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/es6\/control-sort.js",
+			"position": 0,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/es6\/model-defaults.js",
+			"position": 1,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/es6\/model-urlshare.js",
+			"position": 2,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/es6\/model-data.js",
+			"position": 3,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/es6\/ui-colorpicker.js",
+			"position": 4,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/es6\/ui-sortable.js",
+			"position": 5,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/es6\/mustache-template.js",
+			"position": 6,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/es6\/events-click.js",
+			"position": 7,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/es6\/events-resets.js",
+			"position": 8,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/es6\/events-changes.js",
+			"position": 9,
+			"type": 0
+			}
+		],
+	"\/js\/libs.js": [
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/source\/handlebars-v4.0.5.js",
+			"position": 0,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/source\/jsurl.js",
+			"position": 1,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/source\/modernizr-custom.js",
+			"position": 2,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/source\/sortable.min.js",
+			"position": 3,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/source\/spectrum.min.js",
+			"position": 4,
+			"type": 0
+			}
+		]
 	},
 "projectAttributes": {
 	"creationDate": 531118219,
@@ -2844,7 +3095,7 @@
 			"optionString": "{'allowParens': false}"
 			},
 		"no-console": {
-			"active": 1,
+			"active": 0,
 			"optionString": "{'allow': ['warn', 'error']}"
 			},
 		"no-const-assign": {
@@ -3555,7 +3806,7 @@
 			"flagValue": -1
 			},
 		"camelcase": {
-			"active": 0,
+			"active": 1,
 			"flagValue": -1
 			},
 		"couch": {

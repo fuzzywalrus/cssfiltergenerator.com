@@ -117,8 +117,16 @@ img#demoimage {
 	border: 1px solid #3a3f4b;
 	color: white;
   border-radius: 4px 4px 0 0;
+	span:after{
+		content: "Show CSS";
+	}
 	&:hover, &:active, &:focus {
 		color: white;
 		text-decoration: underline;
+	}
+	&.alt-text {
+		span:after{
+			content: "Hide CSS";
+		}
 	}
 }
