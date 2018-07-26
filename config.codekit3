@@ -501,6 +501,16 @@
 		"sC": 3,
 		"tS": 0
 		},
+	"\/js\/es6\/ui-gradient.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "\/js\/es6\/ui-gradient-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
 	"\/js\/es6\/ui-sortable.js": {
 		"ft": 64,
 		"ma": 1,
@@ -2334,32 +2344,38 @@
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/es6\/events-click.js",
+			"linkedFileAbbreviatedPath": "\/js\/es6\/ui-gradient.js",
 			"position": 6,
 			"type": 0
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/es6\/events-resets.js",
+			"linkedFileAbbreviatedPath": "\/js\/es6\/events-click.js",
 			"position": 7,
 			"type": 0
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/es6\/events-changes.js",
+			"linkedFileAbbreviatedPath": "\/js\/es6\/events-resets.js",
 			"position": 8,
 			"type": 0
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/es6\/control-datastorage.js",
+			"linkedFileAbbreviatedPath": "\/js\/es6\/events-changes.js",
 			"position": 9,
 			"type": 0
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/es6\/model-urlshare.js",
+			"linkedFileAbbreviatedPath": "\/js\/es6\/control-datastorage.js",
 			"position": 10,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/es6\/model-urlshare.js",
+			"position": 11,
 			"type": 0
 			}
 		],

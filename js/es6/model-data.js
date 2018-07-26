@@ -33,8 +33,8 @@ let modelData = function () {
     //overlay is special case, no use creating a class
     overlay: {
       color0: "rgba(62, 162, 253, 0.4)",
-      color1: "rgba(62, 162, 253, 0.4)",
-      color2: "rgba(2, 122, 233, 0.8)",
+      color1: "rgba(255, 255, 255, 0.4)",
+      color2: "rgba(255, 0, 62, 0.9)",
       select: "#overlay-radio-none",
       blend: "multiply",
       gradientOrientation: "linear-gradient(to right"

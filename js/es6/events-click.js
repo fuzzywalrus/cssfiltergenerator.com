@@ -91,6 +91,25 @@ const eventsClick = {
         $("#demoimage").attr("src", newUrl);
         $(".preset img").attr("src", newUrl);
     });
+  },
+  presets : function() {
+    $(".preset").click(function() {
+      event.preventDefault(); //stop href from using anchor #
+      eventsResets.resetData();
+      let placed = {};
+      let map = new Map();
+      placed = $(this).data();
+      Object.entries(placed).forEach(([key, value]) => {
+        if (key.includes("filter") == true ) {
+          let str = key.replace("filter", "");
+          map.set(str, value);
+        }
+      });
+      uiGradient.presetSet(map);
+      uiGradient.gradientCheck(this);
+      controlSort.syncFilterDataToDOM(data.filters);
+      eventsChanges.triggerChange();
+    });
   }
 
 }
@@ -103,3 +122,4 @@ eventsClick.copyToClipboard();
 eventsClick.closeModal();
 eventsClick.loadFilter();
 eventsClick.imageSwap();
+eventsClick.presets();

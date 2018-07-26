@@ -10,9 +10,6 @@ const eventsChanges = {
       //console.log(`${filterNameKey}: ${data.filters[filterNameKey].value}`);
     });
   },
-
-
-
   // This writes the on/off value of the checkbox (switch) input into the data object's corrosponding filter.
   onOffSwitch : function() {
     $(".onoffswitch-checkbox").change(function(){
@@ -26,7 +23,6 @@ const eventsChanges = {
       console.log(data.filters[filterNameKey].active)
     });
   },
-
   //overlay change
   overlayChanges : function() {
     $('[name="overlay"]').change(function() {
@@ -77,7 +73,6 @@ const eventsChanges = {
       $("#blending-mode").change();
     });
   },
-
    //when sliders are changed
    //rleated functions mustacheTemplate.writeCSS
    createTemplateString: function()  {
@@ -88,12 +83,21 @@ const eventsChanges = {
    },
    triggerChange : function() {
      $("#sepia-a").change();
+     $("input[type=radio]").change();
    },
    imageSwap: function() {
      $("#imageURL").change(function() {
        var demoimage = $(this).val();
        $("#demoimage").attr("src", demoimage);
        $(".preset img").attr("src", demoimage);
+     });
+   },
+   overlayDropdowns: function() {
+     $("#orientation").change(function(){
+       $(".overlay-gradient-color").change();
+     });
+     $("#blending-mode").change(function(){
+       $(".overlay-gradient-color").change();
      });
    }
 }
@@ -102,3 +106,4 @@ eventsChanges.onOffSwitch();
 eventsChanges.overlayChanges();
 eventsChanges.createTemplateString();
 eventsChanges.imageSwap();
+eventsChanges.overlayDropdowns();

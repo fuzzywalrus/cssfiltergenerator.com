@@ -14,6 +14,5 @@ controlDataStorage = {
     retrievedObject =  JSON.parse(retrievedObject);
     return retrievedObject;
   }
-
 }
 controlDataStorage.checkData();

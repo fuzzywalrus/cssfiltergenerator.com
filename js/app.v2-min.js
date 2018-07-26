@@ -130,8 +130,8 @@ let modelData = function () {
     //overlay is special case, no use creating a class
     overlay: {
       color0: "rgba(62, 162, 253, 0.4)",
-      color1: "rgba(62, 162, 253, 0.4)",
-      color2: "rgba(2, 122, 233, 0.8)",
+      color1: "rgba(255, 255, 255, 0.4)",
+      color2: "rgba(255, 0, 62, 0.9)",
       select: "#overlay-radio-none",
       blend: "multiply",
       gradientOrientation: "linear-gradient(to right"
@@ -293,6 +293,34 @@ const uiSortable = {
 //uiSortable.init();
 
 
+const uiGradient = {
+  presetSet : function(map) {
+    //use for presets
+    map.forEach( (value, key, map) =>{
+      console.log(`key: ${key} , value: ${value} `)
+        data.filters[key].value = value;
+    });
+    $("input[type=radio]").change();
+  },
+  gradientCheck : function(obj) {
+    //used for presets only
+    data.overlay.color1 = $(obj).data("color1");
+    data.overlay.color2 = $(obj).data("color2");
+    data.overlay.select = $(obj).data("gradient");
+    data.overlay.gradientOrientation = $(obj).data("orientation");
+    data.overlay.blend = $(obj).data("blending-mode");
+    $("input[name=overlay]").filter(`[value="${data.overlay.select}"]`).prop("checked", true);
+    $(".overlay-group input.color1").val(data.overlay.color1);
+    $(".overlay-group input.color2").val(data.overlay.color2);
+    $("#blending-mode").val( data.overlay.blend);
+    $("#orientation").val(data.overlay.gradientOrientation);
+    colorPicking.updateColorPicker(".overlay-group input.color1.text", ".overlay-group input.color1.picker");
+    colorPicking.updateColorPicker(".overlay-group input.color2.text", ".overlay-group input.color2.picker");
+    console.log("gradientCheck");
+  }
+}
+
+
 const eventsClick = {
    showhidefilters : function (){
     //toggle the sliders/text box inputs to enable or disable filters
@@ -386,6 +414,25 @@ const eventsClick = {
         $("#demoimage").attr("src", newUrl);
         $(".preset img").attr("src", newUrl);
     });
+  },
+  presets : function() {
+    $(".preset").click(function() {
+      event.preventDefault(); //stop href from using anchor #
+      eventsResets.resetData();
+      let placed = {};
+      let map = new Map();
+      placed = $(this).data();
+      Object.entries(placed).forEach(([key, value]) => {
+        if (key.includes("filter") == true ) {
+          let str = key.replace("filter", "");
+          map.set(str, value);
+        }
+      });
+      uiGradient.presetSet(map);
+      uiGradient.gradientCheck(this);
+      controlSort.syncFilterDataToDOM(data.filters);
+      eventsChanges.triggerChange();
+    });
   }
 
 }
@@ -398,6 +445,7 @@ eventsClick.copyToClipboard();
 eventsClick.closeModal();
 eventsClick.loadFilter();
 eventsClick.imageSwap();
+eventsClick.presets();
 
 
 const eventsResets = {
@@ -433,9 +481,6 @@ const eventsChanges = {
       //console.log(`${filterNameKey}: ${data.filters[filterNameKey].value}`);
     });
   },
-
-
-
   // This writes the on/off value of the checkbox (switch) input into the data object's corrosponding filter.
   onOffSwitch : function() {
     $(".onoffswitch-checkbox").change(function(){
@@ -449,7 +494,6 @@ const eventsChanges = {
       console.log(data.filters[filterNameKey].active)
     });
   },
-
   //overlay change
   overlayChanges : function() {
     $('[name="overlay"]').change(function() {
@@ -500,7 +544,6 @@ const eventsChanges = {
       $("#blending-mode").change();
     });
   },
-
    //when sliders are changed
    //rleated functions mustacheTemplate.writeCSS
    createTemplateString: function()  {
@@ -511,12 +554,21 @@ const eventsChanges = {
    },
    triggerChange : function() {
      $("#sepia-a").change();
+     $("input[type=radio]").change();
    },
    imageSwap: function() {
      $("#imageURL").change(function() {
        var demoimage = $(this).val();
        $("#demoimage").attr("src", demoimage);
        $(".preset img").attr("src", demoimage);
+     });
+   },
+   overlayDropdowns: function() {
+     $("#orientation").change(function(){
+       $(".overlay-gradient-color").change();
+     });
+     $("#blending-mode").change(function(){
+       $(".overlay-gradient-color").change();
      });
    }
 }
@@ -525,6 +577,7 @@ eventsChanges.onOffSwitch();
 eventsChanges.overlayChanges();
 eventsChanges.createTemplateString();
 eventsChanges.imageSwap();
+eventsChanges.overlayDropdowns();
 
 
 //All things reladed to localestorage read/writes
@@ -543,7 +596,6 @@ controlDataStorage = {
     retrievedObject =  JSON.parse(retrievedObject);
     return retrievedObject;
   }
-
 }
 controlDataStorage.checkData();
 
