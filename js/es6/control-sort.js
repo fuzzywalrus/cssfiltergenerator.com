@@ -2,7 +2,6 @@ const controlSort = {
   createString:  function(obj) {
     let filters = "",
         hoverState = "";
-
     //need to create a map so we can use it to iterate over the data obj based on data.filter[key].positions
     let map = new Map();
       Object.entries(data.filters).forEach(([key, value]) => {
@@ -26,17 +25,6 @@ const controlSort = {
     });
     console.log(`filters: ${filters}, hoverState: ${hoverState}`);
     return { filters, hoverState }
-
-    /*
-    Object.entries(obj).forEach(([key, value]) => {
-      //  console.log(`Key: ${key}, Value: ${value.value}, Active: ${value.active}, Position: ${value.position}, hoverState: ${hoverState}, filters: ${filters}`);
-        if (value.value != defaults[key].defaultValue && value.active === true) {
-            filters = `${filters} ${defaults[key].cssname}\(${value.value}${defaults[key].unit}\) `;
-            hoverState = `${hoverState} ${defaults[key].cssname}\(${defaults[key].defaultValue}${defaults[key].unit}\) `;
-          }
-      });
-      return { filters, hoverState}
-      */
   },
   syncFilterDataToDOM: function(obj) {
     Object.entries(obj).forEach(([key, value]) => {
@@ -67,15 +55,6 @@ const controlSort = {
       }
       return 0;
     }));
-    /*
-    Object.entries(data.filters).forEach(([key, value]) => {
-      let temp = newMap.get(key);
-      if (temp !== undefined) {
-        data.filters[key].value = temp;
-      }
-      console.log("temp:" + temp);
-    });
-    */
     console.log(newMap);
   }
 }

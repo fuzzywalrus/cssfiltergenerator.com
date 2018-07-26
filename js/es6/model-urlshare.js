@@ -35,8 +35,9 @@ const modelURLShare = {
         $("#orientation").val(data.overlay.orientation);
         $('[value="'+data.overlay.select+'"]').click();
       }
-    eventsChanges.triggerChange();
+      controlSort.syncFilterDataToDOM(data.filters);
+      eventsChanges.triggerChange();
     }
   }
 }
-//modelURLShare.getURL();
+modelURLShare.getURL();

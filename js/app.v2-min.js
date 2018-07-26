@@ -2,7 +2,6 @@ const controlSort = {
   createString:  function(obj) {
     let filters = "",
         hoverState = "";
-
     //need to create a map so we can use it to iterate over the data obj based on data.filter[key].positions
     let map = new Map();
       Object.entries(data.filters).forEach(([key, value]) => {
@@ -26,17 +25,6 @@ const controlSort = {
     });
     console.log(`filters: ${filters}, hoverState: ${hoverState}`);
     return { filters, hoverState }
-
-    /*
-    Object.entries(obj).forEach(([key, value]) => {
-      //  console.log(`Key: ${key}, Value: ${value.value}, Active: ${value.active}, Position: ${value.position}, hoverState: ${hoverState}, filters: ${filters}`);
-        if (value.value != defaults[key].defaultValue && value.active === true) {
-            filters = `${filters} ${defaults[key].cssname}\(${value.value}${defaults[key].unit}\) `;
-            hoverState = `${hoverState} ${defaults[key].cssname}\(${defaults[key].defaultValue}${defaults[key].unit}\) `;
-          }
-      });
-      return { filters, hoverState}
-      */
   },
   syncFilterDataToDOM: function(obj) {
     Object.entries(obj).forEach(([key, value]) => {
@@ -67,15 +55,6 @@ const controlSort = {
       }
       return 0;
     }));
-    /*
-    Object.entries(data.filters).forEach(([key, value]) => {
-      let temp = newMap.get(key);
-      if (temp !== undefined) {
-        data.filters[key].value = temp;
-      }
-      console.log("temp:" + temp);
-    });
-    */
     console.log(newMap);
   }
 }
@@ -114,50 +93,6 @@ const modelDefaults = function() {
   return defaults
 }
 const defaults = modelDefaults();
-
-
-const modelURLShare = {
-  //URL var creation/parssing uses jsurl.js
-  //https://github.com/Sage/jsurl/
-  createURL : function() {
-    //creates the url
-    var myURL = "?" + JSURL.stringify(data);
-    return myURL;
-  },
-  checkActiveFilters: function (obj) {
-    Object.entries(obj).forEach( ([key, value]) => {
-      if (obj[key].active === false) {
-        $(`input[data-filter='${key}']`).val( Engdata.filters[key].value );
-        $(`input[data-forfilter='${key}']`).prop("checked", Engine.data.filters[key].active );
-      }
-    });
-  },
-  getURL : function () {
-    var myURL = null,
-        filters,
-        hoverState;
-    myURL = JSURL.parse( document.location.search.substring(1) ); // remove ? mark & parse
-    if (myURL !== null && myURL !== "" ) {
-      data = myURL;
-      let stringed = controlSort.createString(data.filters);
-      mustacheTemplate.writeCSS(stringed.filters, stringed.hoverState);
-      modelURLShare.checkActiveFilters(data.filters);
-      if (data.overlay.select !== "#overlay-radio-none") {
-        $("#overlay-solid-color-text").val(data.overlay.color0 );
-        $("#overlay-gradient-color1-text").val(data.overlay.color1);
-        $("#overlay-gradient-color2-text").val(data.overlay.color2);
-        $('#overlay-solid-color .color').spectrum({ color: data.overlay.color0 });
-        $('#overlay-gradient-color1').spectrum({ color: data.overlay.color1 });
-        $('#overlay-gradient-color2').spectrum({ color: data.overlay.color2 });
-        $("#blending-mode").val(data.overlay.blend);
-        $("#orientation").val(data.overlay.orientation);
-        $('[value="'+data.overlay.select+'"]').click();
-      }
-    eventsChanges.triggerChange();
-    }
-  }
-}
-//modelURLShare.getURL();
 
 
 let modelData = function () {
@@ -205,6 +140,42 @@ let modelData = function () {
   return data;
 }
 let data = modelData();
+
+
+const mustacheTemplate = {
+  //Mustachejs calls
+  writeCSS : function(filters, hoverState) {
+    //writes the css filter to the dom
+    let source   = $("#filter-template").html();
+    let template = Handlebars.compile(source);
+    let context = {filters: filters, hoverState: hoverState};
+    let html    = template(context);
+    $(".filter-css").html(template(context));
+  },
+  writeOverlay : function(myBlending, myGradient) {
+    //writes the css filter to the dom
+    let source   = $("#overlay-template").html();
+    let template = Handlebars.compile(source);
+    let context = {myBlending: myBlending, myGradient: myGradient};
+    let html    = template(context);
+    $(".overlay-css").html(template(context));
+    console.log("writeOverlay");
+  },
+  sortFilters : function () {
+    let presorted = [];
+    let postsorted = [];
+
+    Object.keys(data.filters).forEach(function(key) {
+      presorted[key] = data.filters[key].position;
+    });
+    postsorted = presorted;
+    postsorted.sort(function(a, b) {
+        return a[1] - b[1];
+    });
+    console.log("presorted");
+    console.log(presorted);
+  }
+}
 
 
 
@@ -320,42 +291,6 @@ const uiSortable = {
    }
 }
 //uiSortable.init();
-
-
-const mustacheTemplate = {
-  //Mustachejs calls
-  writeCSS : function(filters, hoverState) {
-    //writes the css filter to the dom
-    let source   = $("#filter-template").html();
-    let template = Handlebars.compile(source);
-    let context = {filters: filters, hoverState: hoverState};
-    let html    = template(context);
-    $(".filter-css").html(template(context));
-  },
-  writeOverlay : function(myBlending, myGradient) {
-    //writes the css filter to the dom
-    let source   = $("#overlay-template").html();
-    let template = Handlebars.compile(source);
-    let context = {myBlending: myBlending, myGradient: myGradient};
-    let html    = template(context);
-    $(".overlay-css").html(template(context));
-    console.log("writeOverlay");
-  },
-  sortFilters : function () {
-    let presorted = [];
-    let postsorted = [];
-
-    Object.keys(data.filters).forEach(function(key) {
-      presorted[key] = data.filters[key].position;
-    });
-    postsorted = presorted;
-    postsorted.sort(function(a, b) {
-        return a[1] - b[1];
-    });
-    console.log("presorted");
-    console.log(presorted);
-  }
-}
 
 
 const eventsClick = {
@@ -611,6 +546,51 @@ controlDataStorage = {
 
 }
 controlDataStorage.checkData();
+
+
+const modelURLShare = {
+  //URL var creation/parssing uses jsurl.js
+  //https://github.com/Sage/jsurl/
+  createURL : function() {
+    //creates the url
+    var myURL = "?" + JSURL.stringify(data);
+    return myURL;
+  },
+  checkActiveFilters: function (obj) {
+    Object.entries(obj).forEach( ([key, value]) => {
+      if (obj[key].active === false) {
+        $(`input[data-filter='${key}']`).val( Engdata.filters[key].value );
+        $(`input[data-forfilter='${key}']`).prop("checked", Engine.data.filters[key].active );
+      }
+    });
+  },
+  getURL : function () {
+    var myURL = null,
+        filters,
+        hoverState;
+    myURL = JSURL.parse( document.location.search.substring(1) ); // remove ? mark & parse
+    if (myURL !== null && myURL !== "" ) {
+      data = myURL;
+      let stringed = controlSort.createString(data.filters);
+      mustacheTemplate.writeCSS(stringed.filters, stringed.hoverState);
+      modelURLShare.checkActiveFilters(data.filters);
+      if (data.overlay.select !== "#overlay-radio-none") {
+        $("#overlay-solid-color-text").val(data.overlay.color0 );
+        $("#overlay-gradient-color1-text").val(data.overlay.color1);
+        $("#overlay-gradient-color2-text").val(data.overlay.color2);
+        $('#overlay-solid-color .color').spectrum({ color: data.overlay.color0 });
+        $('#overlay-gradient-color1').spectrum({ color: data.overlay.color1 });
+        $('#overlay-gradient-color2').spectrum({ color: data.overlay.color2 });
+        $("#blending-mode").val(data.overlay.blend);
+        $("#orientation").val(data.overlay.orientation);
+        $('[value="'+data.overlay.select+'"]').click();
+      }
+      controlSort.syncFilterDataToDOM(data.filters);
+      eventsChanges.triggerChange();
+    }
+  }
+}
+modelURLShare.getURL();
 
 
 //init
