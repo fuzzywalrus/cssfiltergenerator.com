@@ -47,9 +47,6 @@ const eventsClick = {
          $(".copied").css({ opacity: 0 });
      }, 3100);
     });
-    $("#closeModal").click(function() {
-     $("#shareModal").fadeOut();
-    });
   },
   saveFilter: function () {
     $("#writeFilter").click(function() {
@@ -99,6 +96,7 @@ const eventsClick = {
       let placed = {};
       let map = new Map();
       placed = $(this).data();
+      //iterate over object to make a map to pass to presetSet
       Object.entries(placed).forEach(([key, value]) => {
         if (key.includes("filter") == true ) {
           let str = key.replace("filter", "");
