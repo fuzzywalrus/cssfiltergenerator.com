@@ -1705,7 +1705,7 @@ h4, h5 {
   font-weight: 300; }
 
 small {
-  font-size: 75%; }
+  font-size: 80%; }
 
 strong {
   font-weight: 700; }
@@ -2422,6 +2422,9 @@ a:hover.tooltips span.tip, a:focus.tooltips span.tip {
 
 .planned-updates {
   margin-bottom: 3em; }
+  .planned-updates ul {
+    padding-left: 1.5em;
+    list-style: circle; }
 
 #error {
   display: none;
