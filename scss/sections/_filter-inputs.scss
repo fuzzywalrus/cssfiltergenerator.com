@@ -82,6 +82,14 @@ select {
 	@media (min-width: $screen-sm-min) {
 		width: 365px;
 	}
+	.urlERR & {
+		border: 1px solid red;
+		&:focus {
+    outline: none !important;
+    border-color: red;
+    box-shadow: 0 0 10px #719ECE;
+		}
+	}
 }
 //select
 .selects {

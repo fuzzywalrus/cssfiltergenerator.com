@@ -20,18 +20,18 @@ const eventsChanges = {
         data.filters[filterNameKey].active = true;
       }
       data.filters[filterNameKey].active = $(this).prop("checked");
-      console.log(data.filters[filterNameKey].active)
+      //console.log(data.filters[filterNameKey].active)
     });
   },
   //overlay change
   overlayChanges : function() {
     $('[name="overlay"]').change(function() {
         data.overlay.select = $(this).val();
-        console.log(data.overlay.select);
+      //  console.log(data.overlay.select);
     });
     $('.overlay-group input').change(function() {
       data.overlay.color0 = $("#overlay-solid-color-text").val();
-      console.log("  data.overlay.color0 " +   data.overlay.color0);
+    //  console.log("  data.overlay.color0 " +   data.overlay.color0);
       data.overlay.color1 = $("#overlay-gradient-color1-text").val();
       data.overlay.color2  = $("#overlay-gradient-color2-text").val();
       data.overlay.blend = $("#blending-mode").val();
@@ -45,14 +45,14 @@ const eventsChanges = {
     //when gradient colors are changed
     $('.overlay-gradient-color').change(function() {
        let myGradient = `${data.overlay.orientation},${data.overlay.color1} 0%, ${data.overlay.color2} 100%)`;
-       console.log("myGradient:" + myGradient);
+       //console.log("myGradient:" + myGradient);
        mustacheTemplate.writeOverlay(data.overlay.blend, myGradient);
     });
 
     //New overlay functionality
     $('input[type=radio][name=overlay]').change(function() {
       let myChecked = $("input[type=radio][name=overlay]:checked").val();
-      console.log("myChecked:" + myChecked);
+      //console.log("myChecked:" + myChecked);
       if ( myChecked == "#overlay-radio-none") {
         eventsResets.killOverlay();
       } else if ( myChecked == "#overlay-solid") {
@@ -88,8 +88,14 @@ const eventsChanges = {
    imageSwap: function() {
      $("#imageURL").change(function() {
        var demoimage = $(this).val();
-       $("#demoimage").attr("src", demoimage);
-       $(".preset img").attr("src", demoimage);
+       if (controlSort.ValidURL(demoimage) == true) {
+         $("#demoimage").attr("src", demoimage);
+         $(".preset img").attr("src", demoimage);
+         $("body").removeClass("urlERR");
+       } else {
+         $("body").addClass("urlERR");
+       }
+
      });
    },
    overlayDropdowns: function() {
