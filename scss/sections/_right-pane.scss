@@ -63,6 +63,18 @@ img#demoimage {
 	border: 1px solid $dark-metal;
 	transition: all 0.6s ease;
 }
+#previewImage {
+	position: absolute;
+	left: 20px;
+	top: 0px;
+	font-family: Raleway,sans-serif;
+	    display: inline-block;
+	    padding: 4px;
+	    background-color: #586072;
+	    border: 1px solid #3a3f4b;
+	    color: #fff;
+	    border-radius: 4px 4px 0 0;
+}
 .preview {
 	@media (min-width: 600px) {
 		min-width: 300px;

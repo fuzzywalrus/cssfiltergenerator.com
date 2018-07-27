@@ -45,6 +45,7 @@
         </div>
       </header>
 
+    <div class="fullcontent">
       <section class="interface">
         <div class="container">
           <div class="row">
@@ -264,6 +265,8 @@
             </div>
             <div class="col-sm-6 col-md-7 col-lg-7 preview">
                 <div class="text-right css-tab-parent"><a href="#" class="css-tab"><span></span></a></div>
+                <button id="previewImage">Change Image</button>
+
                 <div class="filter-parent">
                     <button id="reset">Reset</button>
                   <div id="filter-wrapper">
@@ -421,12 +424,6 @@
               <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
                 <ul class="nav nav-tabs" id="myTabs" role="tablist">
                   <li role="presentation" class="active">
-                    <a href="#previewed" id="previewed-tab" role="tab" data-toggle="tab" aria-controls="previewed" aria-expanded="true">Preview Image</a>
-                  </li>
-                  <li role="presentation" class="">
-                    <a href="#presets" id="presets-tab"  role="tab"  data-toggle="tab" aria-controls="presets" aria-expanded="false">Presets</a>
-                  </li>
-                  <li role="presentation" class="">
                     <a href="#faq" id="faq-tab"  role="tab"  data-toggle="tab" aria-controls="faq" aria-expanded="false">FAQ/Advanced Examples</a>
                   </li>
                   <li role="presentation" class="">
@@ -434,45 +431,8 @@
                   </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                  <div class="tab-pane fade active in" role="tabpanel" id="previewed" aria-labelledby="previewed-tab">
-                    <section>
-                      <div class="row">
-                          <div class="col-sm-12">
-                            <h3>Preview Image</h3>
-                            <label>URL: </label>
-                          <input type="text" id="imageURL" placeholder="http://www.cssfiltergenerator.com/img/demo.jpg">
-                            <h4>Or use one of the following image (click to swap).</h4>
-                          </div>
-                      </div>
-                      <div class="row" id="preview-images">
-                        <div class="col-xs-4 col-sm-2">
-                          <a href="#" data-fullsize="/img/dalles.jpg" ><img src="/img/dalles-thumb.jpg" alt="Wild Flowers, The Dalles, Oregon" ></a>
-                          <small>The Dalles</small>
-                        </div>
-                        <div class="col-xs-4 col-sm-2">
-                          <a href="#" data-fullsize="/img/paintedhills.jpg"><img src="/img/paintedhills-thumb.jpg" alt="Painted Cove, Painted Hills, Oregon" ></a>
-                          <small>The Painted Hills</small>
-                        </div>
-                        <div class="col-xs-4 col-sm-2">
-                          <a href="#" data-fullsize="/img/hood.jpg"><img src="/img/hood-thumb.jpg" alt="Illumination Saddle, Mt Hood, Oregon"></a>
-                          <small>Mt. Hood</small>
-                        </div>
-                        <div class="col-xs-4 col-sm-2">
-                          <a href="#" data-fullsize="/img/columbia-gorge.jpg"><img src="/img/columbia-gorge-thumb.jpg" alt="Columbia Gorge, Oregon"></a>
-                          <small>Columbia Gorge</small>
-                        </div>
-                        <div class="col-xs-4 col-sm-2">
-                          <a href="#" data-fullsize="/img/south-sister.jpg"><img src="/img/south-sister-thumb.jpg"  alt="False Summit, South Sister, Oregon"></a>
-                          <small>South Sister</small>
-                        </div>
-                        <div class="col-xs-4 col-sm-2">
-                          <a href="#" data-fullsize="/img/mcloughlin.jpg"><img src="/img/mcloughlin-thumb.jpg" alt="Mount McLoughlin (from Saddle Rock), Oregon" ></a>
-                          <small>Mount McLoughlin</small>
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                  <div class="tab-pane fade" role="tabpanel" id="faq" aria-labelledby="faq-presets">
+
+                  <div class="tab-pane fade active in" role="tabpanel" id="faq" aria-labelledby="faq-presets">
                     <section class="faq">
                         <div class="row">
                           <div class="col-sm-12">
@@ -515,144 +475,6 @@
                          </div>
                        </div>
                     </section>
-                  </div>
-                  <div class="tab-pane fade" role="tabpanel" id="presets" aria-labelledby="profile-presets">
-                    <section class="presets">
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <h3>CSSGram Presets</h3>
-                          <p>Note: Presets do not reorder filters yet. Coming soon!</p>
-                          <small>courtesy of <a href="https://una.im/CSSgram/">CSSGram</a></small><br>
-                          <div class="row">
-                            <div class="col-xs-4 col-sm-2">
-                              <a href="#" class="preset _1977" data-filtercontrast="1.1" data-filterbrightness="1.1" data-filtersaturate="1.3" data-blending-mode="screen" data-color1="rgba(243, 106, 188, 0.3)" data-gradient="#overlay-solid">
-                                <img src="/img/dalles-thumb.jpg" alt="preset 1977">
-                              </a><br>
-                              <small>1977</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                              <a href="#" class="preset aden" data-filterhuerotate="-20" data-filtercontrast="0.9" data-filtersaturate="0.85" data-filterbrightness="1.2" data-gradient="#overlay-gradient" data-blending-mode="darken" data-color1="rgba(66, 10, 14, 0.2)" data-color2="rgba(66, 10, 14, 0.0)" data-orientation="linear-gradient(to_right">
-                                <img src="/img/dalles-thumb.jpg" alt="preset aden">
-                              </a><br>
-                              <small>aden</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="preset brooklyn" data-filtercontrast="0.9" data-filterbrightness="1.1" data-blending-mode="overlay" data-gradient="#overlay-gradient" data-color1="rgba(168, 223, 193, 0.4)" data-color2="rgba(196, 183, 200, 0.99)" data-orientation="radial-gradient(ellipse at center">
-                                <img src="/img/dalles-thumb.jpg" alt="preset dalles">
-                              </a><br>
-                              <small>brooklyn</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="preset clarendon" data-filtercontrast="1.2" data-filtersaturate="1.35" data-blending-mode="overlay" data-color1="rgba(127, 187, 227, 0.2)" data-gradient="#overlay-solid">
-                                <img src="/img/dalles-thumb.jpg" alt="preset clarendon">
-                              </a><br>
-                              <small>clarendon</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="preset earlybird" data-filtercontrast="0.9" data-filtersepia="0.2" data-blending-mode="overlay" data-gradient="#overlay-gradient" data-color1="rgba(208, 186, 142, 0.98)" data-color2="rgba(54, 3, 9, 0.99)" data-orientation="radial-gradient(ellipse at center">
-                                <img src="/img/dalles-thumb.jpg" alt="preset earlybird">
-                              </a><br>
-                              <small>earlybird</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="preset gingham" data-filterbrightness="1.05" data-filterhuerotate="-10" data-blending-mode="darken"  data-gradient="#overlay-gradient" data-color1="rgba(66, 10, 14, 0.2)" data-color2="rgba(66, 10, 14, 0.0)" data-orientation="linear-gradient(to_right">
-                                <img src="/img/dalles-thumb.jpg" alt="preset gingham">
-                              </a><br>
-                              <small>gingham</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                  <a href="#" class="preset hudson" data-filterbrightness="1.2" data-filtercontrast="0.9" data-filtersaturate="1.1" data-blending-mode="multiply" data-gradient="#overlay-gradient" data-color1="rgba(166, 177, 255, 0.5)" data-color2="rgba(52, 33, 54, 0.5)" data-orientation="radial-gradient(ellipse at center">
-                                <img src="/img/dalles-thumb.jpg" alt="preset hudson">
-                              </a><br>
-                              <small>hudson</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="preset inkwell" data-filtersepia="0.3" data-filtercontrast="1.1" data-filterbrightness="1.1" data-filtergrayscale="0.99" data-gradient="#overlay-radio-none">
-                                <img src="/img/dalles-thumb.jpg" alt="preset inkwell">
-                              </a><br>
-                              <small>inkwell</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="preset lark" data-filtercontrast="0.9"  data-blending-mode="color-dodge" data-color1="#22253f" data-gradient="#overlay-solid">
-                                <img src="/img/dalles-thumb.jpg" alt="preset lark">
-                              </a><br>
-                              <small>lark</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="preset lofi" data-filtersaturate="1.1" data-filtercontrast="1.5" data-blending-mode="multiply"  data-gradient="#overlay-gradient" data-color1="rgba(0, 0, 0, 0.0)" data-color2="rgba(34, 34, 34, 0.99)" data-orientation="radial-gradient(ellipse at center">
-                                <img src="/img/dalles-thumb.jpg" alt="preset lofi">
-                              </a><br>
-                              <small>lofi</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="preset mayfair" data-filtercontrast="1.1" data-filtersaturate="1.1" data-blending-mode="overlay" data-gradient="#overlay-gradient" data-color1="rgba(255, 255, 255, 0.4)" data-color2="rgba(255, 200, 200, 0.3)" data-orientation="radial-gradient(ellipse at center">
-                                <img src="/img/dalles-thumb.jpg" alt="preset mayfair">
-                              </a><br>
-                              <small>mayfair</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="preset moon" data-filtergrayscale="0.99" data-filtercontrast="1.1" data-filterbrightness="1.1" data-color1="#383838" data-blending-mode="lighten" data-gradient="#overlay-solid">
-                                <img src="/img/dalles-thumb.jpg" alt="preset moon">
-                              </a><br>
-                              <small>moon</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="preset nashville" data-filtersepia="0.2" data-filtercontrast="1.2" data-filterbrightness="1.05" data-filtersaturate="1.2" data-gradient="#overlay-solid"  data-color1="rgba(247, 176, 153, 0.56)" data-blending-mode="lighten" >
-                                <img src="/img/dalles-thumb.jpg" alt="preset nashville">
-                              </a><br>
-                              <small>nashville</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="preset reyes" data-filtersepia="0.22" data-filterbrightness="1.1" data-filtercontrast="0.85" data-filtersaturate="0.75" data-color1="#efcdad" data-gradient="#overlay-solid" data-blending-mode="soft-light" >
-                                <img src="/img/dalles-thumb.jpg" alt="preset reyes">
-                              </a><br>
-                              <small>reyes</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="preset rise"  data-filterbrightness="1.1" data-filtercontrast="0.85" data-filtersaturate="0.75"  data-blending-mode="multiply" data-color1="rgba(236, 205, 169, 0.15)" data-color2="rgba(50, 30, 7, 0.4)" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse at center">
-                                <img src="/img/dalles-thumb.jpg" alt="preset rise">
-                              </a><br>
-                              <small>rise</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="preset slumber" data-filtersaturate="0.66" data-filterbrightness="1.05" data-blending-mode="lighten" data-color1="rgba(69, 41, 12, 0.4)" data-gradient="#overlay-solid">
-                                <img src="/img/dalles-thumb.jpg" alt="preset slumber">
-                              </a><br>
-                              <small>slumber</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="preset toaster" data-filtercontrast="1.5" data-filterbrightness="0.9" data-blending-mode="screen" data-color1="rgba(128, 78, 15, 0.99)" data-color2="rgba(59, 0, 59, 0.99)" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse at center">
-                                <img src="/img/dalles-thumb.jpg" alt="preset toaster">
-                              </a><br>
-                              <small>toaster</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="preset walden" data-filterbrightness="1.1" data-filterhuerotate="-10" data-filtersepia="0.3" data-filtersaturate="1.6"  data-blending-mode="screen" data-color1="rgba(0, 68, 204, 0.3)" data-gradient="#overlay-solid">
-                                <img src="/img/dalles-thumb.jpg" alt="preset walden">
-                              </a>
-                              <br>
-                              <small>walden</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="preset willow" data-filtercontrast="0.95" data-filterbrightness="0.9" data-blending-mode="overlay" data-color1="rgba(216, 205, 203, 0.99)" data-gradient="#overlay-solid">
-                                <img src="/img/dalles-thumb.jpg" alt="preset willow">
-                              </a>
-                              <br>
-                              <small>willow</small>
-                            </div>
-                            <div class="col-xs-4 col-sm-2">
-                                <a href="#" class="preset xpro2" data-filtersepia="0.3" data-blending-mode="color-burn" data-color1="rgba(230, 231, 224, 0.2)" data-color2="rgba(43, 42, 161, 0.79)" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse at center">
-                                <img src="/img/dalles-thumb.jpg" alt="preset xpro2">
-                              </a>
-                            <br>
-                            <small>xpro2</small>
-                            </div>
-                          </div>
-                          </div>
-                        </div>
-                      </div>
-                    </section>
-                  </div>
                   </div>
             </div>
           </div>
@@ -827,7 +649,185 @@
         </div>
       </div>
     </div>
+  </div>
+    <div id="fullscreenOverlay">
+      <section class="container">
+        <div class="row">
+            <div class="col-sm-12">
+              <h3>Preview Image</h3>
+              <label>URL: </label>
+            <input type="text" id="imageURL" placeholder="http://www.cssfiltergenerator.com/img/demo.jpg">
+              <h4>Or use one of the following image (click to swap).</h4>
+              <button id="fullscreenOverlayClose">Close</button>
 
+            </div>
+        </div>
+        <div class="row" id="preview-images">
+          <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2">
+            <a href="#" data-fullsize="/img/dalles.jpg" ><img src="/img/dalles-thumb.jpg" alt="Wild Flowers, The Dalles, Oregon" ></a>
+            <small>The Dalles</small>
+          </div>
+          <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2">
+            <a href="#" data-fullsize="/img/paintedhills.jpg"><img src="/img/paintedhills-thumb.jpg" alt="Painted Cove, Painted Hills, Oregon" ></a>
+            <small>The Painted Hills</small>
+          </div>
+          <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2">
+            <a href="#" data-fullsize="/img/hood.jpg"><img src="/img/hood-thumb.jpg" alt="Illumination Saddle, Mt Hood, Oregon"></a>
+            <small>Mt. Hood</small>
+          </div>
+          <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2">
+            <a href="#" data-fullsize="/img/columbia-gorge.jpg"><img src="/img/columbia-gorge-thumb.jpg" alt="Columbia Gorge, Oregon"></a>
+            <small>Columbia Gorge</small>
+          </div>
+          <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2">
+            <a href="#" data-fullsize="/img/south-sister.jpg"><img src="/img/south-sister-thumb.jpg"  alt="False Summit, South Sister, Oregon"></a>
+            <small>South Sister</small>
+          </div>
+          <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2">
+            <a href="#" data-fullsize="/img/mcloughlin.jpg"><img src="/img/mcloughlin-thumb.jpg" alt="Mount McLoughlin (from Saddle Rock), Oregon" ></a>
+            <small>Mount McLoughlin</small>
+          </div>
+        </div>
+
+
+
+        <section class="presets">
+          <div class="row">
+            <div class="col-sm-12">
+              <h3>CSSGram Presets</h3>
+              <p>Note: Presets do not reorder filters yet. Coming soon!</p>
+              <small>courtesy of <a href="https://una.im/CSSgram/">CSSGram</a></small><br>
+              <div class="row">
+                <div class="col-xs-4 col-sm-2">
+                  <a href="#" class="preset _1977" data-filtercontrast="1.1" data-filterbrightness="1.1" data-filtersaturate="1.3" data-blending-mode="screen" data-color1="rgba(243, 106, 188, 0.3)" data-gradient="#overlay-solid">
+                    <img src="/img/dalles-thumb.jpg" alt="preset 1977">
+                  </a><br>
+                  <small>1977</small>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                  <a href="#" class="preset aden" data-filterhuerotate="-20" data-filtercontrast="0.9" data-filtersaturate="0.85" data-filterbrightness="1.2" data-gradient="#overlay-gradient" data-blending-mode="darken" data-color1="rgba(66, 10, 14, 0.2)" data-color2="rgba(66, 10, 14, 0.0)" data-orientation="linear-gradient(to_right">
+                    <img src="/img/dalles-thumb.jpg" alt="preset aden">
+                  </a><br>
+                  <small>aden</small>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="preset brooklyn" data-filtercontrast="0.9" data-filterbrightness="1.1" data-blending-mode="overlay" data-gradient="#overlay-gradient" data-color1="rgba(168, 223, 193, 0.4)" data-color2="rgba(196, 183, 200, 0.99)" data-orientation="radial-gradient(ellipse at center">
+                    <img src="/img/dalles-thumb.jpg" alt="preset dalles">
+                  </a><br>
+                  <small>brooklyn</small>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="preset clarendon" data-filtercontrast="1.2" data-filtersaturate="1.35" data-blending-mode="overlay" data-color1="rgba(127, 187, 227, 0.2)" data-gradient="#overlay-solid">
+                    <img src="/img/dalles-thumb.jpg" alt="preset clarendon">
+                  </a><br>
+                  <small>clarendon</small>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="preset earlybird" data-filtercontrast="0.9" data-filtersepia="0.2" data-blending-mode="overlay" data-gradient="#overlay-gradient" data-color1="rgba(208, 186, 142, 0.98)" data-color2="rgba(54, 3, 9, 0.99)" data-orientation="radial-gradient(ellipse at center">
+                    <img src="/img/dalles-thumb.jpg" alt="preset earlybird">
+                  </a><br>
+                  <small>earlybird</small>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="preset gingham" data-filterbrightness="1.05" data-filterhuerotate="-10" data-blending-mode="darken"  data-gradient="#overlay-gradient" data-color1="rgba(66, 10, 14, 0.2)" data-color2="rgba(66, 10, 14, 0.0)" data-orientation="linear-gradient(to_right">
+                    <img src="/img/dalles-thumb.jpg" alt="preset gingham">
+                  </a><br>
+                  <small>gingham</small>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                      <a href="#" class="preset hudson" data-filterbrightness="1.2" data-filtercontrast="0.9" data-filtersaturate="1.1" data-blending-mode="multiply" data-gradient="#overlay-gradient" data-color1="rgba(166, 177, 255, 0.5)" data-color2="rgba(52, 33, 54, 0.5)" data-orientation="radial-gradient(ellipse at center">
+                    <img src="/img/dalles-thumb.jpg" alt="preset hudson">
+                  </a><br>
+                  <small>hudson</small>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="preset inkwell" data-filtersepia="0.3" data-filtercontrast="1.1" data-filterbrightness="1.1" data-filtergrayscale="0.99" data-gradient="#overlay-radio-none">
+                    <img src="/img/dalles-thumb.jpg" alt="preset inkwell">
+                  </a><br>
+                  <small>inkwell</small>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="preset lark" data-filtercontrast="0.9"  data-blending-mode="color-dodge" data-color1="#22253f" data-gradient="#overlay-solid">
+                    <img src="/img/dalles-thumb.jpg" alt="preset lark">
+                  </a><br>
+                  <small>lark</small>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="preset lofi" data-filtersaturate="1.1" data-filtercontrast="1.5" data-blending-mode="multiply"  data-gradient="#overlay-gradient" data-color1="rgba(0, 0, 0, 0.0)" data-color2="rgba(34, 34, 34, 0.99)" data-orientation="radial-gradient(ellipse at center">
+                    <img src="/img/dalles-thumb.jpg" alt="preset lofi">
+                  </a><br>
+                  <small>lofi</small>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="preset mayfair" data-filtercontrast="1.1" data-filtersaturate="1.1" data-blending-mode="overlay" data-gradient="#overlay-gradient" data-color1="rgba(255, 255, 255, 0.4)" data-color2="rgba(255, 200, 200, 0.3)" data-orientation="radial-gradient(ellipse at center">
+                    <img src="/img/dalles-thumb.jpg" alt="preset mayfair">
+                  </a><br>
+                  <small>mayfair</small>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="preset moon" data-filtergrayscale="0.99" data-filtercontrast="1.1" data-filterbrightness="1.1" data-color1="#383838" data-blending-mode="lighten" data-gradient="#overlay-solid">
+                    <img src="/img/dalles-thumb.jpg" alt="preset moon">
+                  </a><br>
+                  <small>moon</small>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="preset nashville" data-filtersepia="0.2" data-filtercontrast="1.2" data-filterbrightness="1.05" data-filtersaturate="1.2" data-gradient="#overlay-solid"  data-color1="rgba(247, 176, 153, 0.56)" data-blending-mode="lighten" >
+                    <img src="/img/dalles-thumb.jpg" alt="preset nashville">
+                  </a><br>
+                  <small>nashville</small>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="preset reyes" data-filtersepia="0.22" data-filterbrightness="1.1" data-filtercontrast="0.85" data-filtersaturate="0.75" data-color1="#efcdad" data-gradient="#overlay-solid" data-blending-mode="soft-light" >
+                    <img src="/img/dalles-thumb.jpg" alt="preset reyes">
+                  </a><br>
+                  <small>reyes</small>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="preset rise"  data-filterbrightness="1.1" data-filtercontrast="0.85" data-filtersaturate="0.75"  data-blending-mode="multiply" data-color1="rgba(236, 205, 169, 0.15)" data-color2="rgba(50, 30, 7, 0.4)" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse at center">
+                    <img src="/img/dalles-thumb.jpg" alt="preset rise">
+                  </a><br>
+                  <small>rise</small>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="preset slumber" data-filtersaturate="0.66" data-filterbrightness="1.05" data-blending-mode="lighten" data-color1="rgba(69, 41, 12, 0.4)" data-gradient="#overlay-solid">
+                    <img src="/img/dalles-thumb.jpg" alt="preset slumber">
+                  </a><br>
+                  <small>slumber</small>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="preset toaster" data-filtercontrast="1.5" data-filterbrightness="0.9" data-blending-mode="screen" data-color1="rgba(128, 78, 15, 0.99)" data-color2="rgba(59, 0, 59, 0.99)" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse at center">
+                    <img src="/img/dalles-thumb.jpg" alt="preset toaster">
+                  </a><br>
+                  <small>toaster</small>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="preset walden" data-filterbrightness="1.1" data-filterhuerotate="-10" data-filtersepia="0.3" data-filtersaturate="1.6"  data-blending-mode="screen" data-color1="rgba(0, 68, 204, 0.3)" data-gradient="#overlay-solid">
+                    <img src="/img/dalles-thumb.jpg" alt="preset walden">
+                  </a>
+                  <br>
+                  <small>walden</small>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="preset willow" data-filtercontrast="0.95" data-filterbrightness="0.9" data-blending-mode="overlay" data-color1="rgba(216, 205, 203, 0.99)" data-gradient="#overlay-solid">
+                    <img src="/img/dalles-thumb.jpg" alt="preset willow">
+                  </a>
+                  <br>
+                  <small>willow</small>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="preset xpro2" data-filtersepia="0.3" data-blending-mode="color-burn" data-color1="rgba(230, 231, 224, 0.2)" data-color2="rgba(43, 42, 161, 0.79)" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse at center">
+                    <img src="/img/dalles-thumb.jpg" alt="preset xpro2">
+                  </a>
+                <br>
+                <small>xpro2</small>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </div>
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

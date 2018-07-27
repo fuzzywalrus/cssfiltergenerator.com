@@ -108,8 +108,17 @@ const eventsClick = {
       controlSort.syncFilterDataToDOM(data.filters);
       eventsChanges.triggerChange();
     });
+  },
+  previewImage: function () {
+    $("#previewImage").click(function(){
+      $("body").addClass("fullScreenOverlay");
+    });
+  },
+  fullscreenOverlayClose: function() {
+    $("#fullscreenOverlayClose").click(function(){
+      $("body").removeClass("fullScreenOverlay");
+    });
   }
-
 }
 eventsClick.showhidefilters();
 eventsClick.resetButton();
@@ -121,3 +130,5 @@ eventsClick.closeModal();
 eventsClick.loadFilter();
 eventsClick.imageSwap();
 eventsClick.presets();
+eventsClick.previewImage();
+eventsClick.fullscreenOverlayClose();
