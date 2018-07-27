@@ -399,8 +399,12 @@
           </div>
         </div>
       </section>
+    </section>
+    <section>
+      <div class="stripe"></div>
+    </section>
       <section class="intro">
-        <div class="container">
+        <div class="container text-contain ">
           <div class="row">
             <div class="col-sm-12">
               <div class="intro">
@@ -418,16 +422,19 @@
       </section>
 
       <section class="additional-options">
-        <div class="container">
+        <div class="container text-contain">
           <div class="row">
             <div class="col-sm-12">
               <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
                 <ul class="nav nav-tabs" id="myTabs" role="tablist">
                   <li role="presentation" class="active">
-                    <a href="#faq" id="faq-tab"  role="tab"  data-toggle="tab" aria-controls="faq" aria-expanded="false">FAQ/Advanced Examples</a>
+                    <a href="#faq" id="faq-tab"  role="tab"  data-toggle="tab" aria-controls="faq" aria-expanded="false">FAQ</a>
                   </li>
                   <li role="presentation" class="">
                     <a href="#about" id="about-tab"  role="tab"  data-toggle="tab" aria-controls="about" aria-expanded="false">About</a>
+                  </li>
+                  <li role="presentation" class="">
+                    <a href="#advanced" id="advanced-tab"  role="tab"  data-toggle="tab" aria-controls="advanced" aria-expanded="false">Advanced Examples</a>
                   </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -441,13 +448,10 @@
                             <p>Q: <strong>Can I use Filters on Gifs, SVGs, Videos, etc.?</strong>:</p>
                             <p>Yes!</p>
                             <p>Q: <strong>Does this degrade gracefully</strong>:</p>
-                            <p>Yes. I recommend using for IE <a href="https://modernizr.com/">modernizr</a> to detect if filters are supported. Using :after overlays can simulate brightness/darkness by using a simple overlay with a transparent background. Check out the codepen below for an example of Modernizr + filters. This can be chained with <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Applying_SVG_effects_to_HTML_content">SVG Filters</a> for IE10/IE11 support as well.</p>
-                            <p data-height="600" data-theme-id="7806" data-slug-hash="QEAWZP" data-default-tab="css,result" data-user="fuzzywalrus" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/fuzzywalrus/pen/QEAWZP/">Simple CSS filter fallback</a> by Greg Gant (<a href="http://codepen.io/fuzzywalrus">@fuzzywalrus</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-                            <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+                            <p>Yes. I recommend using for IE <a href="https://modernizr.com/">modernizr</a> to detect if filters are supported. Using :after overlays can simulate brightness/darkness by using a simple overlay with a transparent background. Check out the codepen below for an example of Modernizr + filters. This can be chained with <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Applying_SVG_effects_to_HTML_content">SVG Filters</a> for IE10/IE11 support as well. See the advanced tab above for an example.</p>
+                            <p>Q: I hit save but I can't access my saved filter from another browser or computer. What happened?</p>
+                            <p>Since this site doesn't use any sort of tracking or user accounts, it uses what's known as "LocalStorage", a feature of modern web browsers, which is only accessable by that particular web browser. It's insanely efficient (saving a filter is less than 1k) but also can't be shared. This is a good thing as it ensures privacy. Right now you can only save 1 filter, although you can save filters by using the "Create URL" feature. </p>
 
-                            <p>Q: Can CSS Filters be animated?</p>
-                            <p>Yes, see the pen below for an example.</p>
-                            <p data-height="600" data-theme-id="7806" data-slug-hash="bZOzLv" data-default-tab="css,result" data-user="fuzzywalrus" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/fuzzywalrus/pen/bZOzLv/">Animating CSS filters</a> by Greg Gant (<a href="http://codepen.io/fuzzywalrus">@fuzzywalrus</a>) on <a href="http://codepen.io">CodePen</a>.</p>
                           </div>
                         </div>
                     </section>
@@ -458,7 +462,7 @@
                           <div class="col-sm-12">
                             <h3>History</h3>
                             <p>This site originally started as a codepen I created to share with a UX Designer I was working with. Realizing how useful a utility like this is, even to me as a developer, I ended up creating a fully fledged interface which became this website. Since coding this, there are a few others products there I've seen, but none offer the ability to reorder the filters or have as robust gradient creators within the same single page app, or ability to share filters via custom URLs. There's still features I'd like to implement. Generally, this site receives a few sporadic updates a year as I find time to revisit it. The most recent update was an overhaul under the hood. </p>
-                            <p>This website doesn't contain any advertisements and uses only Google analytics for barebones tracking. It's entirely free to use, and any CSS filter code it generates for you is free for to use in any projects without attribution. If you like this website, share it with friends, or drop me a line <a href="mailto:blog@greggant.com">blog@greggant.com</a>.</p>
+                            <p>This website doesn't contain any advertisements and uses only Google analytics for barebones tracking. It's entirely free to use, and any CSS filter code it generates for you can be used in any projects without attribution. If you like this website, share it with friends, or drop me a line <a href="mailto:blog@greggant.com">blog@greggant.com</a>.</p>
                            <h3>What's to come?</h3>
                            <p>This project is active development, and plenty-o-features are on the way. In no particular order, planned features:</p>
                            <p>Preset reordering of filters. Partial Support Browser warnings. More documentation / examples. Spiffier UI. Upload your own image.  Create an actual logo.
@@ -479,6 +483,23 @@
                          </div>
                        </div>
                     </section>
+                  </div>
+
+                    <div class="tab-pane fade" role="tabpanel" id="advanced" aria-labelledby="advanced">
+                      <section class="planned-updates">
+                          <div class="row">
+                            <div class="col-sm-12">
+                              <h3>Advanced examples</h3>
+                              <p>Old browser/Internet Explorer fallbacks</p>
+                              <p data-height="600" data-theme-id="7806" data-slug-hash="QEAWZP" data-default-tab="css,result" data-user="fuzzywalrus" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/fuzzywalrus/pen/QEAWZP/">Simple CSS filter fallback</a> by Greg Gant (<a href="http://codepen.io/fuzzywalrus">@fuzzywalrus</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+                              <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+                              <p>CSS Filters animation</p>
+                              <p data-height="600" data-theme-id="7806" data-slug-hash="bZOzLv" data-default-tab="css,result" data-user="fuzzywalrus" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/fuzzywalrus/pen/bZOzLv/">Animating CSS filters</a> by Greg Gant (<a href="http://codepen.io/fuzzywalrus">@fuzzywalrus</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+                           </div>
+                         </div>
+                      </section>
+                    </div>
                   </div>
             </div>
           </div>
