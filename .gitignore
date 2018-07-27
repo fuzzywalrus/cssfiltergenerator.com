@@ -8,9 +8,12 @@ _build/node_modules
 .DS_Store*
 ehthumbs.db
 # Icon
-css/main-min.css.map
-css/main.prefixed.css
+/css/main-min.css.map
+/css/main.min.css.map
+/css/main.prefixed.css
 /css/main-min.css
+/css/main.min.css
+/css/main.css
 /js/app-min.js
 /js/source/modernizr-custom.js
 /css/main.css
@@ -18,3 +21,4 @@ css/main.prefixed.css
 /js/app.v2.js
 /js/libs-min.js
 /js/libs.js
+/js/app.js
