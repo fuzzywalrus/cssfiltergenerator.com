@@ -111,6 +111,7 @@ const eventsClick = {
   },
   previewImage: function () {
     $("#previewImage").click(function(){
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
       $("body").addClass("fullScreenOverlay");
     });
   },
