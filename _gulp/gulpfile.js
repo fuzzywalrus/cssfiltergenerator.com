@@ -5,7 +5,7 @@ var gulp = require('gulp'),
     cleanCSS = require('gulp-clean-css'),
     sourcemaps = require('gulp-sourcemaps'),
     rename = require('gulp-rename'),
-    uglify = require('gulp-uglify'),
+    terser = require('gulp-terser');
     concat = require('gulp-concat'),
     shell = require('gulp-shell'),
     pump = require('pump'),
@@ -73,15 +73,16 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest(appDefaults.javascriptDirDestination));
 });
 
-//uglify scripts
-gulp.task('compress', function (cb) {
-  pump([
-        gulp.src(appDefaults.javascriptUglify),
-        uglify(),
-        gulp.dest(appDefaults.javascriptDirDestination)
-    ],
-    cb
-  );
+
+
+gulp.task("terser", function () {
+  return gulp.src(appDefaults.javascriptUglify)
+    .pipe(terser({
+      compress: true,
+      warnings: true,
+      ecma: 6
+    }))
+    .pipe(gulp.dest(appDefaults.javascriptDirDestination))
 });
 
 /*
@@ -133,7 +134,7 @@ gulp.task('default',['serve'], function() {
   gulp.watch(appDefaults.javascriptDir , function(event) {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
     gulp.run('scripts');
-    gulp.run('compress');
+    gulp.run('terser');
   });
   gulp.watch(appDefaults.watchJavascript).on('change', browserSync.reload);
   gulp.watch(appDefaults.watchHTML).on('change', browserSync.reload);
@@ -150,7 +151,7 @@ gulp.task('styleguide',['serve'], function() {
   gulp.watch(appDefaults.javascriptDir , function(event) {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
     gulp.run('scripts');
-    gulp.run('compress');
+    gulp.run('terser');
   });
   gulp.watch(appDefaults.watchJavascript).on('change', browserSync.reload);
   gulp.watch(appDefaults.watchHTML).on('change', browserSync.reload);

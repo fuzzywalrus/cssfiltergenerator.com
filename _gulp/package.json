@@ -21,7 +21,7 @@
     "gulp-shell": ">=0.6.5",
     "gulp-sourcemaps": "^2.6.3",
     "gulp-svg-symbols": "^3.1.1",
-    "gulp-uglify": ">=3.0.0",
+    "gulp-terser": "^1.0.1",
     "kss": "^3.0.0-beta.18",
     "michelangelo": "^0.6.1",
     "pump": ">=2.0.0",
