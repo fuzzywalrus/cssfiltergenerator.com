@@ -2,7 +2,7 @@ const eventsClick = {
    showhidefilters : function (){
     //toggle the sliders/text box inputs to enable or disable filters
     $("label[data-filter]").click(function() {
-      console.log("BOOP")
+    //  console.log("BOOP")
       let myLabel = $(this),
           myFilter = `input[data-filter='${$(this).data("filter")}']`;
           console.log(myFilter);
@@ -21,7 +21,7 @@ const eventsClick = {
       eventsChanges.triggerChange();
       eventsResets.killOverlay(); //obliterate the Overlay
       window.history.replaceState(null, null,  "/");
-      console.log("reset");;
+      //console.log("reset");;
       controlSort.syncFilterDataToDOM(data.filters);
     });
   },
@@ -74,7 +74,7 @@ const eventsClick = {
     $("#readFilter").click(function() {
       let dataStorage = controlDataStorage.readData();
       if (dataStorage !== "" || dataStorage !== null ) {
-        console.log("it worked!");
+        //console.log("it worked!");
         data = dataStorage;
         eventsChanges.triggerChange();
       }
@@ -82,7 +82,7 @@ const eventsClick = {
     });
   },
   imageSwap: function() {
-    $("a[data-fullsize]").click(function() {
+    $("a[data-fullsize]").click(function(event) {
         event.preventDefault(); //stop href from using anchor #
         var newUrl = $(this).data("fullsize");
         $("#demoimage").attr("src", newUrl);
@@ -90,7 +90,7 @@ const eventsClick = {
     });
   },
   presets : function() {
-    $(".preset").click(function() {
+    $(".preset").click(function(event) {
       event.preventDefault(); //stop href from using anchor #
       eventsResets.resetData();
       let placed = {};
