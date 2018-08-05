@@ -27,9 +27,7 @@ const eventsClick = {
   },
   flipDemoImage : function() {
     $(".css-tab").click(function(e) {
-      e.preventDefault();
-      $(".filter-parent").toggleClass("flip");
-      $(this).toggleClass("alt-text");
+      eventActions.toggleCSSTab(e);
     });
   },
   shareURL: function () {
@@ -79,6 +77,7 @@ const eventsClick = {
         eventsChanges.triggerChange();
       }
       controlSort.syncFilterDataToDOM(data.filters);
+      mySortable.sort(uiSortable.sortList());
     });
   },
   imageSwap: function() {
@@ -103,6 +102,7 @@ const eventsClick = {
           map.set(str, value);
         }
       });
+      console.log(map)
       uiGradient.presetSet(map);
       uiGradient.gradientCheck(this);
       controlSort.syncFilterDataToDOM(data.filters);
@@ -111,13 +111,15 @@ const eventsClick = {
   },
   previewImage: function () {
     $("#previewImage").click(function(){
-      document.body.scrollTop = document.documentElement.scrollTop = 0;
-      $("body").addClass("fullScreenOverlay");
+      eventActions.showFullScreenOverlay();
     });
   },
   fullscreenOverlayClose: function() {
     $("#fullscreenOverlayClose").click(function(){
-      $("body").removeClass("fullScreenOverlay");
+      eventActions.closeFullScreenOverlay();
+    });
+    $("#bib").click(function(){
+      eventActions.closeFullScreenOverlay();
     });
   }
 }

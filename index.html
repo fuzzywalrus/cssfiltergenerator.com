@@ -39,7 +39,7 @@
           <div class="row">
             <div class="col-sm-12">
               <h1>CSSFilterGenerator.com</h1>
-              <small>Version 1.0 - The only reorderable CSS filter generator!</small>
+              <small>Version 1.1 - The only reorderable CSS filter generator!</small>
             </div>
           </div>
         </div>
@@ -285,19 +285,19 @@
                 <!-- Handlebars template -->
                 <script id="filter-template" type="text/x-handlebars-template">
                   <div class="entry">
-                   <p>.myfilter {
+                   <p>.myfilter img {
                    <p>&nbsp;&nbsp;&nbsp;  filter: {{filters}};</p>
                    <p>&nbsp;&nbsp;&nbsp; -webkit-filter:  {{filters}};</p>
                    <p>&nbsp;&nbsp;&nbsp; -moz-filter: {{filters}}; </p>
                    <p>}</p>
                   </div>
                   <style>
-                    #filter-wrapper {
+                    #filter-wrapper img {
                       filter: {{filters}} !important;
                       -webkit-filter: {{filters}} !important;
                       -moz-filter: {{filters}} !important;
                     }
-                    #filter-wrapper:hover  {
+                    #filter-wrapper:hover img {
                       filter: {{hoverState}} !important;
                       -webkit-filter: {{hoverState}} !important;
                       -moz-filter: {{hoverState}} !important;
@@ -306,7 +306,7 @@
                 </script>
                 <!-- Handlebars template -->
                 <script id="overlay-template" type="text/x-handlebars-template">
-                    <p>.myfilter { </p>
+                    <p>.myfilter{ </p>
                     <p> &nbsp; &nbsp; &nbsp; position: relative;</p>
                     <p>}</p>
                     <style>#filter-wrapper:hover:after {opacity: 0;}</style>
@@ -412,6 +412,12 @@
                 <h3>Instructions:</h3>
                 <p>Click and drag the order of the filters to change the filter order. Click the label to enable/disable each filter. Rollover/hover to see the image without filters. </p>
                 <p>Create a sharable URL of your custom filter using Create URL or Save your filter, clicking the save button.</p>
+                <p>Keyboard short cuts:</p>
+                <ul>
+                  <li>Alt/Option C - toggle CSS</li>
+                  <li>Alt/Option X - toggle change image</li>
+                  <li>Esc - Close change image overlay</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -461,14 +467,23 @@
                         <div class="row">
                           <div class="col-sm-12">
                             <h3>History</h3>
-                            <p>This site originally started as a codepen I created to share with a UX Designer I was working with. Realizing how useful a utility like this is, even to me as a developer, I ended up creating a fully fledged interface which became this website. Since coding this, there are a few others products there I've seen, but none offer the ability to reorder the filters or have as robust gradient creators within the same single page app, or ability to share filters via custom URLs. There's still features I'd like to implement. Generally, this site receives a few sporadic updates a year as I find time to revisit it. The most recent update was an overhaul under the hood. </p>
-                            <p>This website doesn't contain any advertisements and uses only Google analytics for barebones tracking. It's entirely free to use, and any CSS filter code it generates for you can be used in any projects without attribution. If you like this website, share it with friends, or drop me a line <a href="mailto:blog@greggant.com">blog@greggant.com</a>. Also, check out my <a href="https://github.com/fuzzywalrus/Photoshop-FavIcon-Action">Sketch/Photoshop Favicon Creator for the obsessive</a></p>
+                            <p>This site originally started as a codepen I created to share with a UX Designer I was working with. Realizing how useful a utility like this is, even to me as a developer, I ended up creating a fully fledged interface which became this website  There are a few others sites like this out there, but none offer the ability to reorder the filters or have as robust gradient creators within the same single page app, or ability to share filters via custom URLs. There's still features I'd like to implement. Generally, this site receives a few sporadic updates a year as I find time to revisit it. The most recent update was an overhaul under the hood. </p>
+                            <p>This website doesn't contain any advertisements and uses only Google analytics for barebones tracking. It's entirely free to use, and any CSS filter code it generates for you can be used in any projects without attribution. If you like this website, share it with friends, or drop me a line <a href="mailto:blog@greggant.com">blog@greggant.com</a>. Also, check out my project, <a href="https://github.com/fuzzywalrus/Photoshop-FavIcon-Action">Sketch/Photoshop Favicon Creator for the obsessive</a> or visit my obstensibly web dev related <a href="https://blog.greggant.com">blog</a>.</p>
                            <h3>What's to come?</h3>
                            <p>This project is active development, and plenty-o-features are on the way. In no particular order, planned features:</p>
-                           <p>Preset reordering of filters. Partial Support Browser warnings. More documentation / examples. Spiffier UI. Upload your own image.  Create an actual logo.
-                           </p>
+                           <p>Partial Support Browser warnings. More documentation / examples. Spiffier UI. Upload your own image/use web cam. More presets.</p>
                            <h3>Recent Changes</h3>
-                           <p>Version 1.0 - Almost complete re-write of the underlying code to be smarter.
+                           <p>Version 1.1 - (August 2018)</p>
+                           <ul>
+                             <li>Better code generation: overlays are now no longer filtered.</li>
+                             <li>Presets reorder filter positions (finally!). The whole code rewrite was to make this sane.</li>
+                             <li>Saved Filters correctly remember positions</li>
+                             <li>Keyboard short cuts!</li>
+                             <li>Full Screen takeover now closable by clicking the background</li>
+                             <li>FireFox Bug Fix for image swap</li>
+                           </ul>
+                           <br>
+                           <p>Version 1.0 - Almost complete re-write of the underlying code to be smarter.  (July 2018)
                              <ul>
                                 <li>New presets  and image swap overlay (No more scrolling and tabs annoying scrolling to get to the prets and overlays)</li>
                                 <li>Now list orders are predictably saved and reordering of filters should be easier.</li>
@@ -477,7 +492,7 @@
                                 <li>URLs are only generated upon request.</li>
                              </ul>
                           </p>
-                           <p>Version 0.9</p>
+                           <p>Version 0.9 - (January 2018)</p>
                            <p>Better responsive behavior. Swapped jQuery UI for Sortable (Better touch support) with easier dragging, and saved/shared URLs keep the order of the filters.</p>
 
                          </div>
@@ -675,184 +690,126 @@
       </div>
     </div>
   </div>
-    <div id="fullscreenOverlay">
-      <section class="container">
-        <div class="row">
-            <div class="col-sm-12">
-              <h3>Preview Image</h3>
-              <label>URL: </label>
-            <input type="text" id="imageURL" placeholder="http://www.cssfiltergenerator.com/img/demo.jpg">
-              <h4>Or use one of the following image (click to swap).</h4>
-              <button id="fullscreenOverlayClose">Close</button>
-
-            </div>
-        </div>
-        <div class="row" id="preview-images">
-          <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2">
-            <a href="#" data-fullsize="/img/dalles.jpg" ><img src="/img/dalles-thumb.jpg" alt="Wild Flowers, The Dalles, Oregon" ></a>
-            <small>The Dalles</small>
-          </div>
-          <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2">
-            <a href="#" data-fullsize="/img/paintedhills.jpg"><img src="/img/paintedhills-thumb.jpg" alt="Painted Cove, Painted Hills, Oregon" ></a>
-            <small>The Painted Hills</small>
-          </div>
-          <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2">
-            <a href="#" data-fullsize="/img/hood.jpg"><img src="/img/hood-thumb.jpg" alt="Illumination Saddle, Mt Hood, Oregon"></a>
-            <small>Mt. Hood</small>
-          </div>
-          <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2">
-            <a href="#" data-fullsize="/img/columbia-gorge.jpg"><img src="/img/columbia-gorge-thumb.jpg" alt="Columbia Gorge, Oregon"></a>
-            <small>Columbia Gorge</small>
-          </div>
-          <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2">
-            <a href="#" data-fullsize="/img/south-sister.jpg"><img src="/img/south-sister-thumb.jpg"  alt="False Summit, South Sister, Oregon"></a>
-            <small>South Sister</small>
-          </div>
-          <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2">
-            <a href="#" data-fullsize="/img/mcloughlin.jpg"><img src="/img/mcloughlin-thumb.jpg" alt="Mount McLoughlin (from Saddle Rock), Oregon" ></a>
-            <small>Mount McLoughlin</small>
-          </div>
-        </div>
-
-
-
-        <section class="presets">
-          <div class="row">
-            <div class="col-sm-12">
-              <h3>CSSGram Presets</h3>
-              <p>Note: Presets do not reorder filters yet. Coming soon!</p>
-              <small>courtesy of <a href="https://una.im/CSSgram/">CSSGram</a></small><br>
-              <div class="row">
-                <div class="col-xs-4 col-sm-2">
-                  <a href="#" class="preset _1977" data-filtercontrast="1.1" data-filterbrightness="1.1" data-filtersaturate="1.3" data-blending-mode="screen" data-color1="rgba(243, 106, 188, 0.3)" data-gradient="#overlay-solid">
-                    <img src="/img/dalles-thumb.jpg" alt="preset 1977">
-                  </a><br>
-                  <small>1977</small>
-                </div>
-                <div class="col-xs-4 col-sm-2">
-                  <a href="#" class="preset aden" data-filterhuerotate="-20" data-filtercontrast="0.9" data-filtersaturate="0.85" data-filterbrightness="1.2" data-gradient="#overlay-gradient" data-blending-mode="darken" data-color1="rgba(66, 10, 14, 0.2)" data-color2="rgba(66, 10, 14, 0.0)" data-orientation="linear-gradient(to_right">
-                    <img src="/img/dalles-thumb.jpg" alt="preset aden">
-                  </a><br>
-                  <small>aden</small>
-                </div>
-                <div class="col-xs-4 col-sm-2">
-                    <a href="#" class="preset brooklyn" data-filtercontrast="0.9" data-filterbrightness="1.1" data-blending-mode="overlay" data-gradient="#overlay-gradient" data-color1="rgba(168, 223, 193, 0.4)" data-color2="rgba(196, 183, 200, 0.99)" data-orientation="radial-gradient(ellipse at center">
-                    <img src="/img/dalles-thumb.jpg" alt="preset dalles">
-                  </a><br>
-                  <small>brooklyn</small>
-                </div>
-                <div class="col-xs-4 col-sm-2">
-                    <a href="#" class="preset clarendon" data-filtercontrast="1.2" data-filtersaturate="1.35" data-blending-mode="overlay" data-color1="rgba(127, 187, 227, 0.2)" data-gradient="#overlay-solid">
-                    <img src="/img/dalles-thumb.jpg" alt="preset clarendon">
-                  </a><br>
-                  <small>clarendon</small>
-                </div>
-                <div class="col-xs-4 col-sm-2">
-                    <a href="#" class="preset earlybird" data-filtercontrast="0.9" data-filtersepia="0.2" data-blending-mode="overlay" data-gradient="#overlay-gradient" data-color1="rgba(208, 186, 142, 0.98)" data-color2="rgba(54, 3, 9, 0.99)" data-orientation="radial-gradient(ellipse at center">
-                    <img src="/img/dalles-thumb.jpg" alt="preset earlybird">
-                  </a><br>
-                  <small>earlybird</small>
-                </div>
-                <div class="col-xs-4 col-sm-2">
-                    <a href="#" class="preset gingham" data-filterbrightness="1.05" data-filterhuerotate="-10" data-blending-mode="darken"  data-gradient="#overlay-gradient" data-color1="rgba(66, 10, 14, 0.2)" data-color2="rgba(66, 10, 14, 0.0)" data-orientation="linear-gradient(to_right">
-                    <img src="/img/dalles-thumb.jpg" alt="preset gingham">
-                  </a><br>
-                  <small>gingham</small>
-                </div>
-                <div class="col-xs-4 col-sm-2">
-                      <a href="#" class="preset hudson" data-filterbrightness="1.2" data-filtercontrast="0.9" data-filtersaturate="1.1" data-blending-mode="multiply" data-gradient="#overlay-gradient" data-color1="rgba(166, 177, 255, 0.5)" data-color2="rgba(52, 33, 54, 0.5)" data-orientation="radial-gradient(ellipse at center">
-                    <img src="/img/dalles-thumb.jpg" alt="preset hudson">
-                  </a><br>
-                  <small>hudson</small>
-                </div>
-                <div class="col-xs-4 col-sm-2">
-                    <a href="#" class="preset inkwell" data-filtersepia="0.3" data-filtercontrast="1.1" data-filterbrightness="1.1" data-filtergrayscale="0.99" data-gradient="#overlay-radio-none">
-                    <img src="/img/dalles-thumb.jpg" alt="preset inkwell">
-                  </a><br>
-                  <small>inkwell</small>
-                </div>
-                <div class="col-xs-4 col-sm-2">
-                    <a href="#" class="preset lark" data-filtercontrast="0.9"  data-blending-mode="color-dodge" data-color1="#22253f" data-gradient="#overlay-solid">
-                    <img src="/img/dalles-thumb.jpg" alt="preset lark">
-                  </a><br>
-                  <small>lark</small>
-                </div>
-                <div class="col-xs-4 col-sm-2">
-                    <a href="#" class="preset lofi" data-filtersaturate="1.1" data-filtercontrast="1.5" data-blending-mode="multiply"  data-gradient="#overlay-gradient" data-color1="rgba(0, 0, 0, 0.0)" data-color2="rgba(34, 34, 34, 0.99)" data-orientation="radial-gradient(ellipse at center">
-                    <img src="/img/dalles-thumb.jpg" alt="preset lofi">
-                  </a><br>
-                  <small>lofi</small>
-                </div>
-                <div class="col-xs-4 col-sm-2">
-                    <a href="#" class="preset mayfair" data-filtercontrast="1.1" data-filtersaturate="1.1" data-blending-mode="overlay" data-gradient="#overlay-gradient" data-color1="rgba(255, 255, 255, 0.4)" data-color2="rgba(255, 200, 200, 0.3)" data-orientation="radial-gradient(ellipse at center">
-                    <img src="/img/dalles-thumb.jpg" alt="preset mayfair">
-                  </a><br>
-                  <small>mayfair</small>
-                </div>
-                <div class="col-xs-4 col-sm-2">
-                    <a href="#" class="preset moon" data-filtergrayscale="0.99" data-filtercontrast="1.1" data-filterbrightness="1.1" data-color1="#383838" data-blending-mode="lighten" data-gradient="#overlay-solid">
-                    <img src="/img/dalles-thumb.jpg" alt="preset moon">
-                  </a><br>
-                  <small>moon</small>
-                </div>
-                <div class="col-xs-4 col-sm-2">
-                    <a href="#" class="preset nashville" data-filtersepia="0.2" data-filtercontrast="1.2" data-filterbrightness="1.05" data-filtersaturate="1.2" data-gradient="#overlay-solid"  data-color1="rgba(247, 176, 153, 0.56)" data-blending-mode="lighten" >
-                    <img src="/img/dalles-thumb.jpg" alt="preset nashville">
-                  </a><br>
-                  <small>nashville</small>
-                </div>
-                <div class="col-xs-4 col-sm-2">
-                    <a href="#" class="preset reyes" data-filtersepia="0.22" data-filterbrightness="1.1" data-filtercontrast="0.85" data-filtersaturate="0.75" data-color1="#efcdad" data-gradient="#overlay-solid" data-blending-mode="soft-light" >
-                    <img src="/img/dalles-thumb.jpg" alt="preset reyes">
-                  </a><br>
-                  <small>reyes</small>
-                </div>
-                <div class="col-xs-4 col-sm-2">
-                    <a href="#" class="preset rise"  data-filterbrightness="1.1" data-filtercontrast="0.85" data-filtersaturate="0.75"  data-blending-mode="multiply" data-color1="rgba(236, 205, 169, 0.15)" data-color2="rgba(50, 30, 7, 0.4)" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse at center">
-                    <img src="/img/dalles-thumb.jpg" alt="preset rise">
-                  </a><br>
-                  <small>rise</small>
-                </div>
-                <div class="col-xs-4 col-sm-2">
-                    <a href="#" class="preset slumber" data-filtersaturate="0.66" data-filterbrightness="1.05" data-blending-mode="lighten" data-color1="rgba(69, 41, 12, 0.4)" data-gradient="#overlay-solid">
-                    <img src="/img/dalles-thumb.jpg" alt="preset slumber">
-                  </a><br>
-                  <small>slumber</small>
-                </div>
-                <div class="col-xs-4 col-sm-2">
-                    <a href="#" class="preset toaster" data-filtercontrast="1.5" data-filterbrightness="0.9" data-blending-mode="screen" data-color1="rgba(128, 78, 15, 0.99)" data-color2="rgba(59, 0, 59, 0.99)" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse at center">
-                    <img src="/img/dalles-thumb.jpg" alt="preset toaster">
-                  </a><br>
-                  <small>toaster</small>
-                </div>
-                <div class="col-xs-4 col-sm-2">
-                    <a href="#" class="preset walden" data-filterbrightness="1.1" data-filterhuerotate="-10" data-filtersepia="0.3" data-filtersaturate="1.6"  data-blending-mode="screen" data-color1="rgba(0, 68, 204, 0.3)" data-gradient="#overlay-solid">
-                    <img src="/img/dalles-thumb.jpg" alt="preset walden">
-                  </a>
-                  <br>
-                  <small>walden</small>
-                </div>
-                <div class="col-xs-4 col-sm-2">
-                    <a href="#" class="preset willow" data-filtercontrast="0.95" data-filterbrightness="0.9" data-blending-mode="overlay" data-color1="rgba(216, 205, 203, 0.99)" data-gradient="#overlay-solid">
-                    <img src="/img/dalles-thumb.jpg" alt="preset willow">
-                  </a>
-                  <br>
-                  <small>willow</small>
-                </div>
-                <div class="col-xs-4 col-sm-2">
-                    <a href="#" class="preset xpro2" data-filtersepia="0.3" data-blending-mode="color-burn" data-color1="rgba(230, 231, 224, 0.2)" data-color2="rgba(43, 42, 161, 0.79)" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse at center">
-                    <img src="/img/dalles-thumb.jpg" alt="preset xpro2">
-                  </a>
-                <br>
-                <small>xpro2</small>
-                </div>
-              </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </section>
-    </div>
+  <div id="fullscreenOverlay">
+	<section class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h3>Preview Image</h3><label>URL:</label> <input id="imageURL" placeholder="http://www.cssfiltergenerator.com/img/demo.jpg" type="text">
+				<h4>Or use one of the following image (click to swap).</h4><button id="fullscreenOverlayClose">Close</button>
+			</div>
+		</div>
+		<div class="row" id="preview-images">
+			<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2">
+				<a data-fullsize="/img/dalles.jpg" href="#"><img alt="Wild Flowers, The Dalles, Oregon" src="/img/dalles-thumb.jpg"></a> <small>The Dalles</small>
+			</div>
+			<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2">
+				<a data-fullsize="/img/paintedhills.jpg" href="#"><img alt="Painted Cove, Painted Hills, Oregon" src="/img/paintedhills-thumb.jpg"></a> <small>The Painted Hills</small>
+			</div>
+			<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2">
+				<a data-fullsize="/img/hood.jpg" href="#"><img alt="Illumination Saddle, Mt Hood, Oregon" src="/img/hood-thumb.jpg"></a> <small>Mt. Hood</small>
+			</div>
+			<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2">
+				<a data-fullsize="/img/columbia-gorge.jpg" href="#"><img alt="Columbia Gorge, Oregon" src="/img/columbia-gorge-thumb.jpg"></a> <small>Columbia Gorge</small>
+			</div>
+			<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2">
+				<a data-fullsize="/img/south-sister.jpg" href="#"><img alt="False Summit, South Sister, Oregon" src="/img/south-sister-thumb.jpg"></a> <small>South Sister</small>
+			</div>
+			<div class="col-xs-6 col-sm-4 col-md-4 col-lg-2">
+				<a data-fullsize="/img/mcloughlin.jpg" href="#"><img alt="Mount McLoughlin (from Saddle Rock), Oregon" src="/img/mcloughlin-thumb.jpg"></a> <small>Mount McLoughlin</small>
+			</div>
+		</div>
+		<section class="presets">
+			<div class="row">
+				<div class="col-sm-12">
+					<h3>CSSGram Presets</h3><small>courtesy of <a href="https://una.im/CSSgram/">CSSGram</a></small><br>
+					<div class="row">
+						<div class="col-xs-4 col-sm-2">
+							<a class="preset _1977" data-blending-mode="screen" data-color1="rgba(243, 106, 188, 0.3)" data-filterbrightness="1.1" data-filtercontrast="1.1" data-filtersaturate="1.3" data-gradient="#overlay-solid" href="#"><img alt="preset 1977" src="/img/dalles-thumb.jpg"></a><br>
+							<small>1977</small>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<a class="preset aden" data-blending-mode="darken" data-color1="rgba(66, 10, 14, 0.2)" data-color2="rgba(66, 10, 14, 0.0)" data-filterbrightness="1.2" data-filtercontrast="0.9" data-filterhuerotate="-20" data-filtersaturate="0.85" data-gradient="#overlay-gradient" data-orientation="linear-gradient(to_right" href="#"><img alt="preset aden" src="/img/dalles-thumb.jpg"></a><br>
+							<small>aden</small>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<a class="preset brooklyn" data-blending-mode="overlay" data-color1="rgba(168, 223, 193, 0.4)" data-color2="rgba(196, 183, 200, 0.99)" data-filterbrightness="1.1" data-filtercontrast="0.9" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse at center" href="#"><img alt="preset dalles" src="/img/dalles-thumb.jpg"></a><br>
+							<small>brooklyn</small>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<a class="preset clarendon" data-blending-mode="overlay" data-color1="rgba(127, 187, 227, 0.2)" data-filtercontrast="1.2" data-filtersaturate="1.35" data-gradient="#overlay-solid" href="#"><img alt="preset clarendon" src="/img/dalles-thumb.jpg"></a><br>
+							<small>clarendon</small>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<a class="preset earlybird" data-blending-mode="overlay" data-color1="rgba(208, 186, 142, 0.98)" data-color2="rgba(54, 3, 9, 0.99)" data-filtercontrast="0.9" data-filtersepia="0.2" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse at center" href="#"><img alt="preset earlybird" src="/img/dalles-thumb.jpg"></a><br>
+							<small>earlybird</small>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<a class="preset gingham" data-blending-mode="darken" data-color1="rgba(66, 10, 14, 0.2)" data-color2="rgba(66, 10, 14, 0.0)" data-filterbrightness="1.05" data-filterhuerotate="-10" data-gradient="#overlay-gradient" data-orientation="linear-gradient(to_right" href="#"><img alt="preset gingham" src="/img/dalles-thumb.jpg"></a><br>
+							<small>gingham</small>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<a class="preset hudson" data-blending-mode="multiply" data-color1="rgba(166, 177, 255, 0.5)" data-color2="rgba(52, 33, 54, 0.5)" data-filterbrightness="1.2" data-filtercontrast="0.9" data-filtersaturate="1.1" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse at center" href="#"><img alt="preset hudson" src="/img/dalles-thumb.jpg"></a><br>
+							<small>hudson</small>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<a class="preset inkwell" data-filterbrightness="1.1" data-filtercontrast="1.1" data-filtergrayscale="0.99" data-filtersepia="0.3" data-gradient="#overlay-radio-none" href="#"><img alt="preset inkwell" src="/img/dalles-thumb.jpg"></a><br>
+							<small>inkwell</small>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<a class="preset lark" data-blending-mode="color-dodge" data-color1="#22253f" data-filtercontrast="0.9" data-gradient="#overlay-solid" href="#"><img alt="preset lark" src="/img/dalles-thumb.jpg"></a><br>
+							<small>lark</small>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<a class="preset lofi" data-blending-mode="multiply" data-color1="rgba(0, 0, 0, 0.0)" data-color2="rgba(34, 34, 34, 0.99)" data-filtercontrast="1.5" data-filtersaturate="1.1" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse at center" href="#"><img alt="preset lofi" src="/img/dalles-thumb.jpg"></a><br>
+							<small>lofi</small>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<a class="preset mayfair" data-blending-mode="overlay" data-color1="rgba(255, 255, 255, 0.4)" data-color2="rgba(255, 200, 200, 0.3)" data-filtercontrast="1.1" data-filtersaturate="1.1" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse at center" href="#"><img alt="preset mayfair" src="/img/dalles-thumb.jpg"></a><br>
+							<small>mayfair</small>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<a class="preset moon" data-blending-mode="lighten" data-color1="#383838" data-filterbrightness="1.1" data-filtercontrast="1.1" data-filtergrayscale="0.99" data-gradient="#overlay-solid" href="#"><img alt="preset moon" src="/img/dalles-thumb.jpg"></a><br>
+							<small>moon</small>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<a class="preset nashville" data-blending-mode="lighten" data-color1="rgba(247, 176, 153, 0.56)" data-filterbrightness="1.05" data-filtercontrast="1.2" data-filtersaturate="1.2" data-filtersepia="0.2" data-gradient="#overlay-solid" href="#"><img alt="preset nashville" src="/img/dalles-thumb.jpg"></a><br>
+							<small>nashville</small>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<a class="preset reyes" data-blending-mode="soft-light" data-color1="#efcdad" data-filterbrightness="1.1" data-filtercontrast="0.85" data-filtersaturate="0.75" data-filtersepia="0.22" data-gradient="#overlay-solid" href="#"><img alt="preset reyes" src="/img/dalles-thumb.jpg"></a><br>
+							<small>reyes</small>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<a class="preset rise" data-blending-mode="multiply" data-color1="rgba(236, 205, 169, 0.15)" data-color2="rgba(50, 30, 7, 0.4)" data-filterbrightness="1.1" data-filtercontrast="0.85" data-filtersaturate="0.75" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse at center" href="#"><img alt="preset rise" src="/img/dalles-thumb.jpg"></a><br>
+							<small>rise</small>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<a class="preset slumber" data-blending-mode="lighten" data-color1="rgba(69, 41, 12, 0.4)" data-filterbrightness="1.05" data-filtersaturate="0.66" data-gradient="#overlay-solid" href="#"><img alt="preset slumber" src="/img/dalles-thumb.jpg"></a><br>
+							<small>slumber</small>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<a class="preset toaster" data-blending-mode="screen" data-color1="rgba(128, 78, 15, 0.99)" data-color2="rgba(59, 0, 59, 0.99)" data-filterbrightness="0.9" data-filtercontrast="1.5" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse at center" href="#"><img alt="preset toaster" src="/img/dalles-thumb.jpg"></a><br>
+							<small>toaster</small>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<a class="preset walden" data-blending-mode="screen" data-color1="rgba(0, 68, 204, 0.3)" data-filterbrightness="1.1" data-filterhuerotate="-10" data-filtersaturate="1.6" data-filtersepia="0.3" data-gradient="#overlay-solid" href="#"><img alt="preset walden" src="/img/dalles-thumb.jpg"></a><br>
+							<small>walden</small>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<a class="preset willow" data-blending-mode="overlay" data-color1="rgba(216, 205, 203, 0.99)" data-filterbrightness="0.9" data-filtercontrast="0.95" data-gradient="#overlay-solid" href="#"><img alt="preset willow" src="/img/dalles-thumb.jpg"></a><br>
+							<small>willow</small>
+						</div>
+						<div class="col-xs-4 col-sm-2">
+							<a class="preset xpro2" data-blending-mode="color-burn" data-color1="rgba(230, 231, 224, 0.2)" data-color2="rgba(43, 42, 161, 0.79)" data-filtersepia="0.3" data-gradient="#overlay-gradient" data-orientation="radial-gradient(ellipse at center" href="#"><img alt="preset xpro2" src="/img/dalles-thumb.jpg"></a><br>
+							<small>xpro2</small>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</section>
+  <div id="bib"></div>
+</div>
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

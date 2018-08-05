@@ -10,7 +10,20 @@
   overflow: hidden;
   transition: opacity 0.4s;
   opacity: 0;
-
+  .container {
+    position: relative;
+    z-index: 1002;
+  }
+  #bib {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1001;
+  }
   .container {
     max-width: 960px;
     position: relative;

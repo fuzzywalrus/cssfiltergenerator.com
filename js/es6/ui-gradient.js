@@ -1,10 +1,23 @@
 const uiGradient = {
   presetSet : function(map) {
     //use for presets
+    i = 1;
+
+    // take the order of the map and place the data back into data object.
     map.forEach( (value, key, map) =>{
-      console.log(`key: ${key} , value: ${value} `)
+      console.log(`key: ${key} , value: ${value}, position: ${i}` )
+        i = i + 1;
         data.filters[key].value = value;
+        data.filters[key].position = i;
     });
+    // the rest of the positions are undefined, so need to place them
+    Object.entries(data.filters).forEach(([key, value]) => {
+      if ( data.filters[key].position == undefined) {
+        i = i + 1;
+        data.filters[key].position = i;
+      }
+    });
+    mySortable.sort(uiSortable.sortList()); // change the positions of list
     $("input[type=radio]").change();
   },
   gradientCheck : function(obj) {
