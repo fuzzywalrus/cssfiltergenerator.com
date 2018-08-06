@@ -30,7 +30,21 @@ const controlSort = {
     Object.entries(obj).forEach(([key, value]) => {
       $(`input[data-filter='${key}']`).val(value.value);
     });
+    controlSort.syncGradientDataToDOM();
     ///uiSortable.initSort();
+  },
+  syncGradientDataToDOM : function() {
+    $(data.overlay.select).attr('checked', 'checked');
+    $(".overlay-gradient-color.color1.text").val(data.overlay.color1);
+    $(".overlay-gradient-color.color2.text").val(data.overlay.color2);
+
+    $("#overlay-gradient-color1").spectrum("set", data.overlay.color1);
+    $("#overlay-gradient-color2").spectrum("set", data.overlay.color2);
+
+    $(`#blending-mode option [value="${data.overlay.blend}"]`).prop('selected', true);
+    $(`#orientation option [value="${data.overlay.orientation}"]`).prop('selected', true);
+    $(`[value="${data.overlay.select}"]`).prop("checked", true);
+    $(`[value="${data.overlay.select}"]`).change();
   },
   //make sure both inputs have the same data
   // related functions: recordData

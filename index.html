@@ -273,6 +273,16 @@
                     <img src="/img/demo.jpg" id="demoimage" alt="Demo Image for displaying CSS filters and mix-blend-modes">
                   </div>
                   <div id="filter">
+                    <div class="prefixes">
+                      Browser Prefixes
+                      <div class="onoffswitch ">
+                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="onoffswitch-browserprefix" >
+                        <label class="onoffswitch-label" for="onoffswitch-browserprefix">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                      </div>
+                    </div>
                     <span class="titles-css"><h5>HTML:</h5>
                       <p><span>&lt;div class=&quot;myfilter&quot;&gt;&lt;img scr=&quot;my/path/to/image.jpg&quot;&gt;&lt;/div&gt;</span></p>
                       <br>
@@ -287,8 +297,8 @@
                   <div class="entry">
                    <p>.myfilter img {
                    <p>&nbsp;&nbsp;&nbsp;  filter: {{filters}};</p>
-                   <p>&nbsp;&nbsp;&nbsp; -webkit-filter:  {{filters}};</p>
-                   <p>&nbsp;&nbsp;&nbsp; -moz-filter: {{filters}}; </p>
+                   <p class="prefix">&nbsp;&nbsp;&nbsp; -webkit-filter:  {{filters}};</p>
+                   <p class="prefix">&nbsp;&nbsp;&nbsp; -moz-filter: {{filters}}; </p>
                    <p>}</p>
                   </div>
                   <style>
@@ -342,11 +352,11 @@
                 </div>
 
                 <div id="overlay-gradient" class="overlay-group">
-                  <div class="wrapper">
+                  <div class="wrapper gradient1">
                     <input class="overlay-gradient-color color1 picker" value="rgba(255, 255, 255, 0.4)" id="overlay-gradient-color1">
                     <input class="overlay-gradient-color color1 text"   value="rgba(255, 255, 255, 0.4)"  data-gradient="#overlay-gradient"  id="overlay-gradient-color1-text">
                   </div>
-                  <div class="wrapper">
+                  <div class="wrapper gradient2">
 
                     <input class="overlay-gradient-color color2 picker" value="rgba(255, 0, 62, 0.9)" id="overlay-gradient-color2">
                     <input class="overlay-gradient-color color2 text"   value="rgba(255, 0, 62, 0.9)" data-gradient="#overlay-gradient" id="overlay-gradient-color2-text">
@@ -720,6 +730,21 @@
 		</div>
 		<section class="presets">
 			<div class="row">
+        <div class="col-sm-12">
+          <h3>CSSFilterGenerator Presets</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-4 col-sm-2">
+          <a class="preset _1977" data-blending-mode="screen" data-color1="rgba(243, 106, 188, 0.3)" data-filterbrightness="1.1" data-filtercontrast="1.1" data-filtersaturate="1.3" data-gradient="#overlay-solid" href="#"><img alt="preset 1977" src="/img/dalles-thumb.jpg"></a><br>
+          <small>1977</small>
+        </div>
+
+
+
+
+      </div>
+      <div class="row">
 				<div class="col-sm-12">
 					<h3>CSSGram Presets</h3><small>courtesy of <a href="https://una.im/CSSgram/">CSSGram</a></small><br>
 					<div class="row">

@@ -52,7 +52,20 @@ img#demoimage {
 	}
 }
 .titles-css, .filter-css, .overlay-css {
-	display: inline-block;
+	display: block;
+	width: 100%;
+}
+.prefix {
+	display: none;
+	.show-prefix & {
+		display: block;
+	}
+}
+.prefixes {
+	position: absolute;
+	right: 6px;
+	top: 12px;
+	z-index: 1001
 }
 #reset {
 	position: absolute;

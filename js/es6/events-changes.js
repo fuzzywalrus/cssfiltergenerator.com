@@ -14,13 +14,15 @@ const eventsChanges = {
   onOffSwitch : function() {
     $(".onoffswitch-checkbox").change(function(){
       let filterNameKey = $(this).data("forfilter");
-      if ( data.filters[filterNameKey].active === true) {
-        data.filters[filterNameKey].active = false;
-      } else {
-        data.filters[filterNameKey].active = true;
+      if ( filterNameKey != undefined) {
+        if ( data.filters[filterNameKey].active === true) {
+          data.filters[filterNameKey].active = false;
+        } else {
+          data.filters[filterNameKey].active = true;
+        }
+        data.filters[filterNameKey].active = $(this).prop("checked");
+        //console.log(data.filters[filterNameKey].active)
       }
-      data.filters[filterNameKey].active = $(this).prop("checked");
-      //console.log(data.filters[filterNameKey].active)
     });
   },
   //overlay change

@@ -17,12 +17,19 @@ const eventsClick = {
   },
   resetButton: function() {
     $("#reset").click(function() {
-      eventsResets.resetData(); //trigger reset
-      eventsChanges.triggerChange();
-      eventsResets.killOverlay(); //obliterate the Overlay
-      window.history.replaceState(null, null,  "/");
-      //console.log("reset");;
-      controlSort.syncFilterDataToDOM(data.filters);
+      if ($(".filter-parent").hasClass("flip") == false ) {
+        eventsResets.resetData(); //trigger reset
+        eventsChanges.triggerChange();
+        eventsResets.killOverlay(); //obliterate the Overlay
+        window.history.replaceState(null, null,  "/");
+        //console.log("reset");;
+        controlSort.syncFilterDataToDOM(data.filters);
+      }
+    });
+  },
+  onOffSwitchPrefix: function () {
+    $("#onoffswitch-browserprefix").click( function() {
+      $("body").toggleClass("show-prefix");
     });
   },
   flipDemoImage : function() {
@@ -134,4 +141,5 @@ eventsClick.loadFilter();
 eventsClick.imageSwap();
 eventsClick.presets();
 eventsClick.previewImage();
+eventsClick.onOffSwitchPrefix();
 eventsClick.fullscreenOverlayClose();

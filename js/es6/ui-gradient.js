@@ -1,3 +1,4 @@
+//spectrum.js
 const uiGradient = {
   presetSet : function(map) {
     //use for presets
