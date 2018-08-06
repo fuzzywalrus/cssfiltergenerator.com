@@ -42,7 +42,9 @@ const controlSort = {
     $("#overlay-gradient-color2").spectrum("set", data.overlay.color2);
 
     $(`#blending-mode option [value="${data.overlay.blend}"]`).prop('selected', true);
-    $(`#orientation option [value="${data.overlay.orientation}"]`).prop('selected', true);
+    //$(`#orientation option [value="${data.overlay.gradientOrientation}"]`).prop('selected', true);
+    $(`#orientation option[value="${data.overlay.gradientOrientation}"]`).prop('selected', true)
+
     $(`[value="${data.overlay.select}"]`).prop("checked", true);
     $(`[value="${data.overlay.select}"]`).change();
   },

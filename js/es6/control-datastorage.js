@@ -12,6 +12,8 @@ controlDataStorage = {
   readData : function () {
     let retrievedObject = localStorage.getItem('data');
     retrievedObject =  JSON.parse(retrievedObject);
+    console.log(retrievedObject);
+
     return retrievedObject;
   }
 }

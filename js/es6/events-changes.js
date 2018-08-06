@@ -37,16 +37,19 @@ const eventsChanges = {
       data.overlay.color1 = $("#overlay-gradient-color1-text").val();
       data.overlay.color2  = $("#overlay-gradient-color2-text").val();
       data.overlay.blend = $("#blending-mode").val();
-      data.overlay.orientation = $("#orientation").val();
-      //data.overlay.orientation = data.overlay.orientation.replace(/_/g," ");
-    });
+      data.overlay.gradientOrientation = $("#orientation").val();
+    });;
+    $('#orientation').on('change', function() {
+      console.log("orientation Changed");
+      data.overlay.gradientOrientation = $("#orientation").val();
+    })
     //when solid color is changed
     $('.overlay-solid-color').change(function() {
       mustacheTemplate.writeOverlay(data.overlay.blend, data.overlay.color0 );
     });
     //when gradient colors are changed
     $('.overlay-gradient-color').change(function() {
-       let myGradient = `${data.overlay.orientation},${data.overlay.color1} 0%, ${data.overlay.color2} 100%)`;
+       let myGradient = `${data.overlay.gradientOrientation},${data.overlay.color1} 0%, ${data.overlay.color2} 100%)`;
        //console.log("myGradient:" + myGradient);
        mustacheTemplate.writeOverlay(data.overlay.blend, myGradient);
     });

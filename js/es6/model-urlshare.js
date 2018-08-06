@@ -32,7 +32,7 @@ const modelURLShare = {
         $('#overlay-gradient-color1').spectrum({ color: data.overlay.color1 });
         $('#overlay-gradient-color2').spectrum({ color: data.overlay.color2 });
         $("#blending-mode").val(data.overlay.blend);
-        $("#orientation").val(data.overlay.orientation);
+        $("#orientation").val(data.overlay.gradientOrientation);
         $('[value="'+data.overlay.select+'"]').click();
       }
       controlSort.syncFilterDataToDOM(data.filters);
