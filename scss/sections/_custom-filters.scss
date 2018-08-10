@@ -1,45 +1,59 @@
-.nu80s, .purple-rain,  .red-sky,  .sunset  {
+.nu80s, .purple-rain,  .red-sky,  .sunset, .solar, .seafoam {
    position:relative;
    display: inline-block;
 }
 .nu80s {
-    filter: brightness(1.12) contrast(1.1) ;
-    -webkit-filter: brightness(1.12) contrast(1.1) ;
-    -moz-filter: brightness(1.12) contrast(1.1) ;
+  img {
+    filter: contrast(1.1) brightness(1.12) ;
+    -webkit-filter: contrast(1.1) brightness(1.12) !important;
 }
-.nu80s:after{
+  &:after{
     position: absolute; content: ''; display: block; top: 0; left: 0; height: 100%; width: 100%;
-    background: linear-gradient(to top,rgb(255, 0, 134) 0%, rgb(0, 117, 255) 100%);;
+    background: linear-gradient(to bottom,rgb(255, 0, 134) 0%, rgb(0, 117, 255) 100%);
     mix-blend-mode: overlay
+  }
 }
-.red-sky {
-  filter: brightness(1.59) grayscale(0.75) hue-rotate(173deg) ;
-  -webkit-filter: brightness(1.59) grayscale(0.75) hue-rotate(173deg);
-  -moz-filter: brightness(1.59) grayscale(0.75) hue-rotate(173deg);
+.mars-sky {
+  img {
+    filter: brightness(1.16) grayscale(0.75) hue-rotate(146deg);
+     -webkit-filter: hue-rotate(146deg) grayscale(0.75) brightness(1.59) ;
+  }
 }
-.purple-rain {
-    filter: blur(0px) brightness(1.55) contrast(1.39) grayscale(0) hue-rotate(17deg) invert(0) opacity(1) saturate(1.48) sepia(0.45) ;
-    -webkit-filter: blur(0px) brightness(1.55) contrast(1.39) grayscale(0) hue-rotate(17deg) invert(0) opacity(1) saturate(1.48) sepia(0.45) ;
-    -moz-filter: blur(0px) brightness(1.55) contrast(1.39) grayscale(0) hue-rotate(17deg) invert(0) opacity(1) saturate(1.48) sepia(0.45) ;
-}
-.purple-rain:after{
-    content: '';
-    display: block;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    background-color:rgba(10, 41, 255, 0.57);
-    mix-blend-mode: overlay;
-}
-.sunset {
-    filter: brightness(2.26) hue-rotate(150deg) ;
-    -webkit-filter: brightness(2.26) hue-rotate(150deg) ;
-    -moz-filter: brightness(2.26) hue-rotate(150deg) ;
-}
-.sunet:after{
+
+.solar {
+  img {
+   filter: hue-rotate(-172deg) invert(1) ;
+ }
+  &:after{
     position: absolute; content: ''; display: block; top: 0; left: 0; height: 100%; width: 100%;
-    background: #5367ce;
+    background: linear-gradient(to bottom,rgba(20, 0, 255, 0.65) 0%, rgba(0, 188, 255, 0.4) 100%);
+    mix-blend-mode: exclusion
+  }
+}
+
+.sunset {
+  img {
+    filter: grayscale(1) contrast(2.72) brightness(2.32) ;
+     -webkit-filter: grayscale(1) contrast(2.72) brightness(2.32) ;
+  }
+  &:after{
+    position: absolute; content: ''; display: block; top: 0; left: 0; height: 100%; width: 100%;
+    background: linear-gradient(45deg,rgb(255, 0, 0) 0%, rgb(253, 255, 0) 100%);
     mix-blend-mode: multiply
+  }
+}
+
+
+
+
+
+.seafoam {
+  img {
+    filter: contrast(0.51) ;
+    }
+    &:after{
+      position: absolute; content: ''; display: block; top: 0; left: 0; height: 100%; width: 100%;
+      background: linear-gradient(315deg,rgb(0, 255, 84) 0%, rgb(0, 61, 255) 100%);
+      mix-blend-mode: color
+    }
 }

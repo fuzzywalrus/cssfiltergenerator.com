@@ -487,6 +487,7 @@
                            <ul>
                              <li>Better code generation: overlays are now no longer filtered.</li>
                              <li>Presets reorder filter positions (finally!). The whole code rewrite was to make this sane.</li>
+                             <li>Bug fixes for data storage</li>
                              <li>Saved Filters correctly remember positions</li>
                              <li>Keyboard short cuts!</li>
                              <li>Full Screen takeover now closable by clicking the background</li>
@@ -729,21 +730,44 @@
 			</div>
 		</div>
 		<section class="presets">
+
 			<div class="row">
         <div class="col-sm-12">
-          <h3>CSSFilterGenerator Presets</h3>
+          <h3>CSSFilterGenerator <strong>EXTREME</strong> presets</h3>
         </div>
       </div>
       <div class="row">
+
         <div class="col-xs-4 col-sm-2">
-          <a class="preset _1977" data-blending-mode="screen" data-color1="rgba(243, 106, 188, 0.3)" data-filterbrightness="1.1" data-filtercontrast="1.1" data-filtersaturate="1.3" data-gradient="#overlay-solid" href="#"><img alt="preset 1977" src="/img/dalles-thumb.jpg"></a><br>
-          <small>1977</small>
+          <a class="preset nu80s" data-blending-mode="overlay" data-color1="rgb(255, 0, 134)" data-color2="rgb(0, 117, 255)" data-filterbrightness="1.12" data-filtercontrast="1.1"  data-gradient="#overlay-gradient" data-orientation="linear-gradient(to bottom"  href="#"><img alt="preset" src="/img/mcloughlin.jpg"></a><br>
+          <small>nu80s</small>
+        </div>
+
+        <div class="col-xs-4 col-sm-2">
+          <a class="preset mars-sky" data-blending-mode="overlay" data-filterbrightness="1.16"  data-filtergrayscale="0.75"  data-filterhuerotate="173"  data-gradient="#overlay-none" href="#"><img alt="preset" src="/img/columbia-gorge-thumb.jpg"></a><br>
+          <small>Mars Sky</small>
+        </div>
+
+
+        <div class="col-xs-4 col-sm-2">
+          <a class="preset seafoam" data-blending-mode="color" data-color1="rgb(0, 255, 84)" data-color2="rgb(0, 61, 255)"     data-contrast="0.59" data-gradient="#overlay-gradient" data-orientation="linear-gradient(to bottom" href="#"><img alt="preset" src="/img/demo.jpg"></a><br>
+          <small>Seafoam</small>
+        </div>
+
+        <div class="col-xs-4 col-sm-2">
+          <a class="preset solar" data-blending-mode="exclusion" data-color1="rgba(20, 0, 255, 0.65)" data-color2="rgba(0, 188, 255, 0.4)"   data-filterhuerotate="-173"  data-invert="1" data-gradient="#overlay-gradient" data-orientation="linear-gradient(to bottom" href="#"><img alt="preset" src="/img/paintedhills.jpg"></a><br>
+          <small>Solar</small>
+        </div>
+
+        <div class="col-xs-4 col-sm-2">
+          <a class="preset sunset" data-blending-mode="multiply" data-color1="rgb(255, 0, 0)" data-color2="rgb(253, 255, 0)"   data-filterbrightness="2.32"   data-filtercontrast="2.90"  data-filtergrayscale="1"   data-gradient="#overlay-gradient" data-orientation="linear-gradient(45deg" href="#"><img alt="preset" src="/img/dalles-thumb.jpg"></a><br>
+          <small>Michael Bay Sunset</small>
         </div>
 
 
 
-
       </div>
+
       <div class="row">
 				<div class="col-sm-12">
 					<h3>CSSGram Presets</h3><small>courtesy of <a href="https://una.im/CSSgram/">CSSGram</a></small><br>
@@ -753,7 +777,7 @@
 							<small>1977</small>
 						</div>
 						<div class="col-xs-4 col-sm-2">
-							<a class="preset aden" data-blending-mode="darken" data-color1="rgba(66, 10, 14, 0.2)" data-color2="rgba(66, 10, 14, 0.0)" data-filterbrightness="1.2" data-filtercontrast="0.9" data-filterhuerotate="-20" data-filtersaturate="0.85" data-gradient="#overlay-gradient" data-orientation="linear-gradient(to_right" href="#"><img alt="preset aden" src="/img/dalles-thumb.jpg"></a><br>
+							<a class="preset aden" data-blending-mode="darken" data-color1="rgba(66, 10, 14, 0.2)" data-color2="rgba(66, 10, 14, 0.0)" data-filterbrightness="1.2" data-filtercontrast="0.9" data-filterhuerotate="-20" data-filtersaturate="0.85" data-gradient="#overlay-gradient" data-orientation="linear-gradient(to right" href="#"><img alt="preset aden" src="/img/dalles-thumb.jpg"></a><br>
 							<small>aden</small>
 						</div>
 						<div class="col-xs-4 col-sm-2">
@@ -769,7 +793,7 @@
 							<small>earlybird</small>
 						</div>
 						<div class="col-xs-4 col-sm-2">
-							<a class="preset gingham" data-blending-mode="darken" data-color1="rgba(66, 10, 14, 0.2)" data-color2="rgba(66, 10, 14, 0.0)" data-filterbrightness="1.05" data-filterhuerotate="-10" data-gradient="#overlay-gradient" data-orientation="linear-gradient(to_right" href="#"><img alt="preset gingham" src="/img/dalles-thumb.jpg"></a><br>
+							<a class="preset gingham" data-blending-mode="darken" data-color1="rgba(66, 10, 14, 0.2)" data-color2="rgba(66, 10, 14, 0.0)" data-filterbrightness="1.05" data-filterhuerotate="-10" data-gradient="#overlay-gradient" data-orientation="linear-gradient(to right" href="#"><img alt="preset gingham" src="/img/dalles-thumb.jpg"></a><br>
 							<small>gingham</small>
 						</div>
 						<div class="col-xs-4 col-sm-2">
