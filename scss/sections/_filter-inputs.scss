@@ -12,8 +12,8 @@ ul {
 label.generic {
 	display: inline-block;
 	//min-width: 85px;
-	cursor: grab;
-	cursor: -webkit-grab;
+	cursor: ns-resize;
+	cursor: -webkit-ns-resize;
 	font-family: $font-sans-serif;
 	font-weight: 400;
 	margin-left: 10px;
