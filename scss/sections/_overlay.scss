@@ -1,7 +1,10 @@
 //overlay
 .overlay {
+	label {
+		cursor: pointer;
+	}
 	input[type="radio"] {
-		margin-bottom: 8px;
+		margin-bottom: 12px;
 		margin-right: 5px;
 	}
 	.sp-replacer {

@@ -1814,8 +1814,11 @@ body header .container {
       width: 10%;
       float: left; } }
 
+.overlay label {
+  cursor: pointer; }
+
 .overlay input[type="radio"] {
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   margin-right: 5px; }
 
 .overlay .sp-replacer {
