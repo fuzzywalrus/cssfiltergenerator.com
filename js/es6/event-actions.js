@@ -1,16 +1,16 @@
 const eventActions = {
-  showFullScreenOverlay : function() {
+  showFullScreenOverlay : () => {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     $("body").addClass("fullScreenOverlay");
   },
-  closeFullScreenOverlay : function () {
+  closeFullScreenOverlay : () => {
     $("body").removeClass("fullScreenOverlay");
   },
-  toggleCSSTab : function(e) {
+  toggleCSSTab : (e) => {
     if (e != undefined) {
       e.preventDefault();
     }
     $(".filter-parent").toggleClass("flip");
-    $(this).toggleClass("alt-text");
+    $(e.target).toggleClass("alt-text");
   }
 }

@@ -1,10 +1,10 @@
 const eventsClick = {
-   showhidefilters : function (){
+   showhidefilters : () => {
     //toggle the sliders/text box inputs to enable or disable filters
-    $("label[data-filter]").click(function() {
-    //  console.log("BOOP")
-      let myLabel = $(this),
-          myFilter = `input[data-filter='${$(this).data("filter")}']`;
+    $("label[data-filter]").click( (event) => {
+      console.log("BOOP")
+      let myLabel = $(event.target),
+          myFilter = `input[data-filter='${$(event.target).data("filter")}']`;
           console.log(myFilter);
       if ($(myFilter).is(':disabled') === true) {
         $(myFilter).attr("disabled", false).removeClass("disabled");
@@ -16,7 +16,7 @@ const eventsClick = {
     });
   },
   resetButton: function() {
-    $("#reset").click(function() {
+    $("#reset").click( (event) => {
       if ($(".filter-parent").hasClass("flip") == false ) {
         eventsResets.resetData(); //trigger reset
         eventsChanges.triggerChange();
@@ -28,22 +28,22 @@ const eventsClick = {
     });
   },
   onOffSwitchPrefix: function () {
-    $("#onoffswitch-browserprefix").click( function() {
+    $("#onoffswitch-browserprefix").click( () => {
       $("body").toggleClass("show-prefix");
     });
   },
   flipDemoImage : function() {
-    $(".css-tab").click(function(e) {
+    $(".css-tab").click( (e) => {
       eventActions.toggleCSSTab(e);
     });
   },
   shareURL: function () {
-    $("#shareURL").click(function() {
+    $("#shareURL").click( (event) => {
      let myURL = "http://www.cssfiltergenerator.com/" + modelURLShare.createURL();
      $("#clipboardText").val(myURL);
      $("#shareModal").fadeIn();
     });
-    $("#clipboard").click(function() {
+    $("#clipboard").click( (event) => {
      var copyText = document.getElementById("clipboardText");
      copyText.select();
      document.execCommand("Copy");
@@ -54,29 +54,29 @@ const eventsClick = {
     });
   },
   saveFilter: function () {
-    $("#writeFilter").click(function() {
+    $("#writeFilter").click( () => {
       controlDataStorage.writeData();
     });
   },
   copyToClipboard : function() {
-    $("#clipboard").click(function() {
+    $("#clipboard").click( () => {
       var copyText = document.getElementById("clipboardText");
       console.log("copy");
       copyText.select();
       document.execCommand("Copy");
       $(".copied").css({ opacity: 1 });
-      setTimeout(function () {
+      setTimeout(  () => {
           $(".copied").css({ opacity: 0 });
       }, 3100);
     });
   },
   closeModal : function() {
-    $("#shareModal").click(function() {
+    $("#shareModal").click( () => {
       $("#shareModal").fadeOut();
     });
   },
   loadFilter : function() {
-    $("#readFilter").click(function() {
+    $("#readFilter").click( ()=> {
       let dataStorage = controlDataStorage.readData();
       if (dataStorage !== "" || dataStorage !== null ) {
         //console.log("it worked!");
@@ -88,20 +88,20 @@ const eventsClick = {
     });
   },
   imageSwap: function() {
-    $("a[data-fullsize]").click(function(event) {
+    $("a[data-fullsize]").click( (event) => {
         event.preventDefault(); //stop href from using anchor #
-        var newUrl = $(this).data("fullsize");
+        var newUrl = $(event.target).data("fullsize");
         $("#demoimage").attr("src", newUrl);
         $(".preset img").attr("src", newUrl);
     });
   },
   presets : function() {
-    $(".preset").click(function(event) {
+    $(".preset").click( (event) => {
       event.preventDefault(); //stop href from using anchor #
       eventsResets.resetData();
       let placed = {};
       let map = new Map();
-      placed = $(this).data();
+      placed = $(event.target).data();
       //iterate over object to make a map to pass to presetSet
       Object.entries(placed).forEach(([key, value]) => {
         if (key.includes("filter") == true ) {
@@ -117,15 +117,15 @@ const eventsClick = {
     });
   },
   previewImage: function () {
-    $("#previewImage").click(function(){
+    $("#previewImage").click( () => {
       eventActions.showFullScreenOverlay();
     });
   },
   fullscreenOverlayClose: function() {
-    $("#fullscreenOverlayClose").click(function(){
+    $("#fullscreenOverlayClose").click( () => {
       eventActions.closeFullScreenOverlay();
     });
-    $("#bib").click(function(){
+    $("#bib").click( (event)=> {
       eventActions.closeFullScreenOverlay();
     });
   }

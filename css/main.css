@@ -1871,8 +1871,8 @@ ul {
 
 label.generic {
   display: inline-block;
-  cursor: grab;
-  cursor: -webkit-grab;
+  cursor: ns-resize;
+  cursor: -webkit-ns-resize;
   font-family: "Raleway", sans-serif;
   font-weight: 400;
   margin-left: 10px;

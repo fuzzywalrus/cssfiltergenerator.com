@@ -2,36 +2,36 @@
 const eventsChanges = {
   // This writes the input value of the numeric input into the data object's corrosponding filter.
   // related functions: setInputPairs
-  recordData : function() {
-    $("[data-filter]").change(function() {
-      let filterNameKey = $(this).data("filter"); //active filter
-      data.filters[filterNameKey].value = $(this).val(); //write data
+  recordData : () => {
+    $("[data-filter]").change( (event)=> {
+      let filterNameKey = $(event.currentTarget).data("filter"); //active filter
+      data.filters[filterNameKey].value = $(event.currentTarget).val(); //write data
       controlSort.setInputPairs(filterNameKey)
       //console.log(`${filterNameKey}: ${data.filters[filterNameKey].value}`);
     });
   },
   // This writes the on/off value of the checkbox (switch) input into the data object's corrosponding filter.
-  onOffSwitch : function() {
-    $(".onoffswitch-checkbox").change(function(){
-      let filterNameKey = $(this).data("forfilter");
+  onOffSwitch : () => {
+    $(".onoffswitch-checkbox").change( (event) => {
+      let filterNameKey = $(event.currentTarget).data("forfilter");
       if ( filterNameKey != undefined) {
         if ( data.filters[filterNameKey].active === true) {
           data.filters[filterNameKey].active = false;
         } else {
           data.filters[filterNameKey].active = true;
         }
-        data.filters[filterNameKey].active = $(this).prop("checked");
+        data.filters[filterNameKey].active = $(event.currentTarget).prop("checked");
         //console.log(data.filters[filterNameKey].active)
       }
     });
   },
   //overlay change
-  overlayChanges : function() {
-    $('[name="overlay"]').change(function() {
-        data.overlay.select = $(this).val();
+  overlayChanges : () => {
+    $('[name="overlay"]').change( (event) => {
+        data.overlay.select = $(event.currentTarget).val();
       //  console.log(data.overlay.select);
     });
-    $('.overlay-group input').change(function() {
+    $('.overlay-group input').change( () => {
       data.overlay.color0 = $("#overlay-solid-color-text").val();
     //  console.log("  data.overlay.color0 " +   data.overlay.color0);
       data.overlay.color1 = $("#overlay-gradient-color1-text").val();
@@ -39,23 +39,23 @@ const eventsChanges = {
       data.overlay.blend = $("#blending-mode").val();
       data.overlay.gradientOrientation = $("#orientation").val();
     });;
-    $('#orientation').on('change', function() {
+    $('#orientation').on('change', () => {
       console.log("orientation Changed");
       data.overlay.gradientOrientation = $("#orientation").val();
     })
     //when solid color is changed
-    $('.overlay-solid-color').change(function() {
+    $('.overlay-solid-color').change( () => {
       mustacheTemplate.writeOverlay(data.overlay.blend, data.overlay.color0 );
     });
     //when gradient colors are changed
-    $('.overlay-gradient-color').change(function() {
+    $('.overlay-gradient-color').change( () => {
        let myGradient = `${data.overlay.gradientOrientation},${data.overlay.color1} 0%, ${data.overlay.color2} 100%)`;
        //console.log("myGradient:" + myGradient);
        mustacheTemplate.writeOverlay(data.overlay.blend, myGradient);
     });
 
     //New overlay functionality
-    $('input[type=radio][name=overlay]').change(function() {
+    $('input[type=radio][name=overlay]').change( () => {
       let myChecked = $("input[type=radio][name=overlay]:checked").val();
       //console.log("myChecked:" + myChecked);
       if ( myChecked == "#overlay-radio-none") {
@@ -74,25 +74,25 @@ const eventsChanges = {
         $(".overlay-group input:visible").change();
       }
     });
-    $("#orientation").change(function() {
+    $("#orientation").change( () => {
       $("#blending-mode").change();
     });
   },
    //when sliders are changed
    //rleated functions mustacheTemplate.writeCSS
-   createTemplateString: function()  {
-     $("#contain input").change(function() {
+   createTemplateString: () =>  {
+     $("#contain input").change( (event) => {
        let stringed = controlSort.createString(data.filters);
        mustacheTemplate.writeCSS(stringed.filters, stringed.hoverState);
      });
    },
-   triggerChange : function() {
+   triggerChange : () => {
      $("#sepia-a").change();
      $("input[type=radio]").change();
    },
-   imageSwap: function() {
-     $("#imageURL").change(function() {
-       var demoimage = $(this).val();
+   imageSwap: () => {
+     $("#imageURL").change( (event) => {
+       var demoimage = $(event.currentTarget).val();
        if (controlSort.ValidURL(demoimage) == true) {
          $("#demoimage").attr("src", demoimage);
          $(".preset img").attr("src", demoimage);
@@ -103,11 +103,11 @@ const eventsChanges = {
 
      });
    },
-   overlayDropdowns: function() {
-     $("#orientation").change(function(){
+   overlayDropdowns: () => {
+     $("#orientation").change( (event) => {
        $(".overlay-gradient-color").change();
      });
-     $("#blending-mode").change(function(){
+     $("#blending-mode").change(  (event) => {
        $(".overlay-gradient-color").change();
      });
    }
