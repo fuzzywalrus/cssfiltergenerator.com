@@ -11,6 +11,6 @@ const eventActions = {
       e.preventDefault();
     }
     $(".filter-parent").toggleClass("flip");
-    $(e.target).toggleClass("alt-text");
+    $(e.currentTarget).toggleClass("alt-text");
   }
 }

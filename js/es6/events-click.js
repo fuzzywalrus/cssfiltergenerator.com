@@ -2,9 +2,10 @@ const eventsClick = {
    showhidefilters : () => {
     //toggle the sliders/text box inputs to enable or disable filters
     $("label[data-filter]").click( (event) => {
-      console.log("BOOP")
-      let myLabel = $(event.target),
-          myFilter = `input[data-filter='${$(event.target).data("filter")}']`;
+      console.log(`event ${event.currentTarget}`);
+      console.log(event.currentTarget);
+      let myLabel = $(event.currentTarget),
+          myFilter = `input[data-filter='${$(event.currentTarget).data("filter")}']`;
           console.log(myFilter);
       if ($(myFilter).is(':disabled') === true) {
         $(myFilter).attr("disabled", false).removeClass("disabled");
@@ -15,7 +16,7 @@ const eventsClick = {
       }
     });
   },
-  resetButton: function() {
+  resetButton: () => {
     $("#reset").click( (event) => {
       if ($(".filter-parent").hasClass("flip") == false ) {
         eventsResets.resetData(); //trigger reset
@@ -27,17 +28,17 @@ const eventsClick = {
       }
     });
   },
-  onOffSwitchPrefix: function () {
+  onOffSwitchPrefix: () => {
     $("#onoffswitch-browserprefix").click( () => {
       $("body").toggleClass("show-prefix");
     });
   },
-  flipDemoImage : function() {
+  flipDemoImage : () => {
     $(".css-tab").click( (e) => {
       eventActions.toggleCSSTab(e);
     });
   },
-  shareURL: function () {
+  shareURL: () => {
     $("#shareURL").click( (event) => {
      let myURL = "http://www.cssfiltergenerator.com/" + modelURLShare.createURL();
      $("#clipboardText").val(myURL);
@@ -48,17 +49,17 @@ const eventsClick = {
      copyText.select();
      document.execCommand("Copy");
      $(".copied").css({ opacity: 1 });
-     setTimeout(function () {
+     setTimeout(  () => {
          $(".copied").css({ opacity: 0 });
      }, 3100);
     });
   },
-  saveFilter: function () {
+  saveFilter: () => {
     $("#writeFilter").click( () => {
       controlDataStorage.writeData();
     });
   },
-  copyToClipboard : function() {
+  copyToClipboard : () => {
     $("#clipboard").click( () => {
       var copyText = document.getElementById("clipboardText");
       console.log("copy");
@@ -70,12 +71,12 @@ const eventsClick = {
       }, 3100);
     });
   },
-  closeModal : function() {
+  closeModal : () => {
     $("#shareModal").click( () => {
       $("#shareModal").fadeOut();
     });
   },
-  loadFilter : function() {
+  loadFilter : () => {
     $("#readFilter").click( ()=> {
       let dataStorage = controlDataStorage.readData();
       if (dataStorage !== "" || dataStorage !== null ) {
@@ -87,21 +88,21 @@ const eventsClick = {
       mySortable.sort(uiSortable.sortList());
     });
   },
-  imageSwap: function() {
+  imageSwap: () => {
     $("a[data-fullsize]").click( (event) => {
         event.preventDefault(); //stop href from using anchor #
-        var newUrl = $(event.target).data("fullsize");
+        var newUrl = $(event.currentTarget).data("fullsize");
         $("#demoimage").attr("src", newUrl);
         $(".preset img").attr("src", newUrl);
     });
   },
-  presets : function() {
+  presets : () => {
     $(".preset").click( (event) => {
       event.preventDefault(); //stop href from using anchor #
       eventsResets.resetData();
       let placed = {};
       let map = new Map();
-      placed = $(event.target).data();
+      placed = $(event.currentTarget).data();
       //iterate over object to make a map to pass to presetSet
       Object.entries(placed).forEach(([key, value]) => {
         if (key.includes("filter") == true ) {
@@ -116,12 +117,12 @@ const eventsClick = {
       eventsChanges.triggerChange();
     });
   },
-  previewImage: function () {
+  previewImage: () => {
     $("#previewImage").click( () => {
       eventActions.showFullScreenOverlay();
     });
   },
-  fullscreenOverlayClose: function() {
+  fullscreenOverlayClose: () => {
     $("#fullscreenOverlayClose").click( () => {
       eventActions.closeFullScreenOverlay();
     });

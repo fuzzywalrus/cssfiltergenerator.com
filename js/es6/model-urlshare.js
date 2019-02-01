@@ -1,12 +1,12 @@
 const modelURLShare = {
   //URL var creation/parssing uses jsurl.js
   //https://github.com/Sage/jsurl/
-  createURL : function() {
+  createURL : () => {
     //creates the url
     var myURL = "?" + JSURL.stringify(data);
     return myURL;
   },
-  checkActiveFilters: function (obj) {
+  checkActiveFilters: (obj) => {
     Object.entries(obj).forEach( ([key, value]) => {
       if (obj[key].active === false) {
         $(`input[data-filter='${key}']`).val( Engdata.filters[key].value );
@@ -14,7 +14,7 @@ const modelURLShare = {
       }
     });
   },
-  getURL : function () {
+  getURL : () => {
     var myURL = null,
         filters,
         hoverState;

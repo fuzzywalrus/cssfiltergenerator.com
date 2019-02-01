@@ -1,6 +1,6 @@
 const eventsKeypress = {
-  keyPress : function() {
-    document.onkeydown = function(evt) {
+  keyPress : () => {
+    document.onkeydown = (evt) => {
       evt = evt || window.event;
       if (evt.keyCode == 27) {
           eventsKeypress.escapeKeyAction()
@@ -15,7 +15,7 @@ const eventsKeypress = {
       }
     }
   },
-  escapeKeyAction : function() {
+  escapeKeyAction : () => {
     $("body").removeClass("fullScreenOverlay");
   }
 }

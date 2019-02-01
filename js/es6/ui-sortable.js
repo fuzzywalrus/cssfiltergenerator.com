@@ -22,7 +22,7 @@ var mySortable = Sortable.create(el, {
   }
 });
 const uiSortable = {
-   sortProperties : function (obj) {
+   sortProperties : (obj) => {
      // convert object into array
      var sortable=[];
      for(var key in obj) {

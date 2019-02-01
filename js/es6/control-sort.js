@@ -51,9 +51,10 @@ const controlSort = {
   //make sure both inputs have the same data
   // related functions: recordData
   setInputPairs : (filterNameKey) => {
-    $(`[data-filter="${filterNameKey}"`).each( (event) => {
-      if ($(event.target).data("filter") !== data.filters[filterNameKey].value  ) {
-        $(event.target).val( data.filters[filterNameKey].value)
+    $(`[data-filter="${filterNameKey}"`).each( (index, element) => {
+      console.log(`filterNameKey: ${filterNameKey}`);
+      if ($(element).data("filter") !== data.filters[filterNameKey].value  ) {
+        $(element).val( data.filters[filterNameKey].value)
       }
     });
   },

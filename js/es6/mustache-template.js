@@ -1,6 +1,6 @@
 const mustacheTemplate = {
   //Mustachejs calls
-  writeCSS : function(filters, hoverState) {
+  writeCSS : (filters, hoverState) => {
     //writes the css filter to the dom
     let source   = $("#filter-template").html();
     let template = Handlebars.compile(source);
@@ -8,7 +8,7 @@ const mustacheTemplate = {
     let html    = template(context);
     $(".filter-css").html(template(context));
   },
-  writeOverlay : function(myBlending, myGradient) {
+  writeOverlay : (myBlending, myGradient) => {
     //writes the css filter to the dom
     let source   = $("#overlay-template").html();
     let template = Handlebars.compile(source);
@@ -17,11 +17,11 @@ const mustacheTemplate = {
     $(".overlay-css").html(template(context));
     console.log("writeOverlay");
   },
-  sortFilters : function () {
+  sortFilters :  () => {
     let presorted = [];
     let postsorted = [];
 
-    Object.keys(data.filters).forEach(function(key) {
+    Object.keys(data.filters).forEach( (key) => {
       presorted[key] = data.filters[key].position;
     });
     postsorted = presorted;

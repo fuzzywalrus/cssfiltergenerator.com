@@ -1,6 +1,6 @@
 //spectrum.js
 const uiGradient = {
-  presetSet : function(map) {
+  presetSet : (map) => {
     //use for presets
     i = 1;
 
@@ -21,7 +21,7 @@ const uiGradient = {
     mySortable.sort(uiSortable.sortList()); // change the positions of list
     $("input[type=radio]").change();
   },
-  gradientCheck : function(obj) {
+  gradientCheck : (obj) => {
     //used for presets only
     data.overlay.color1 = $(obj).data("color1");
     data.overlay.color2 = $(obj).data("color2");
