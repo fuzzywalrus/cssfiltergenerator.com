@@ -1,10 +1,18 @@
 //Global Vars
 $font-body: 'Merriweather', serif;
 $font-sans-serif: 'Raleway', sans-serif;
-$dark-cobalt: rgba(40, 44, 52, 1);
-$dark-grey: #2d2d2d;
-$dark-metal: rgba(58, 63, 75, 1);
-$light-grey: rgb(88, 96, 114);
+$dark-cobalt: white;
+$dark-grey: #808e9b;
+$dark-metal: #485460;
+$light-grey: #485460;
+
+
+$primary1: #38302E;
+$primary2: #6F6866;
+$primary3: #788585;
+$primary4: #9CAEA9;
+$primary5: #CCDAD1;
+
 
 @import "vendor/bootstrap";
 @import "sections/tables";
@@ -33,15 +41,14 @@ $light-grey: rgb(88, 96, 114);
 @import "sections/custom-presets";
 @import "vendor/spectrum/color";
 @import "vendor/cssgram/cssgram.min";
-
+@import "vendor/rangeslider";
 
 
 body {
-	background: $dark-grey;
-	background: rgba(33, 37, 44, 1);
+	background: $primary2;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	color: white;
+	//color: white;
 }
 img {
 	max-width: 100%;

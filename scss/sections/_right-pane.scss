@@ -71,12 +71,15 @@ img#demoimage {
 	}
 }
 #reset {
+	font-family: Consolas, 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monaco, monospace;
+	font-size: 13px;
+	padding: 4px;
 	position: absolute;
-	left: 0px;
-	top: 0px;
+	right: 0px;
+	bottom: 0px;
 	z-index: 1000;
-	background-color: $dark-grey;
-	border: 1px solid $dark-metal;
+	background-color: $primary3;
+	border: 1px solid $primary3;
 	transition: all 0.6s ease;
 }
 #previewImage {
@@ -84,12 +87,12 @@ img#demoimage {
 	left: 20px;
 	top: 0px;
 	font-family: Raleway,sans-serif;
-	    display: inline-block;
-	    padding: 4px;
-	    background-color: #586072;
-	    border: 1px solid #3a3f4b;
-	    color: #fff;
-	    border-radius: 4px 4px 0 0;
+  display: inline-block;
+  padding: 4px;
+  background-color: $primary3;
+  border: 1px solid $primary3;
+  //color: #fff;
+  //border-radius: 4px 4px 0 0;
 }
 .preview {
 	@media (min-width: 600px) {
@@ -141,10 +144,10 @@ img#demoimage {
 	font-family: $font-sans-serif;
 	display: inline-block;
 	padding: 4px;
-	background-color: $light-grey;
-	border: 1px solid #3a3f4b;
-	color: white;
-  border-radius: 4px 4px 0 0;
+	background-color: $primary4;
+	border: 1px solid $primary4;
+	//color: white;
+  //border-radius: 4px 4px 0 0;
 	span:after{
 		content: "Show CSS";
 	}

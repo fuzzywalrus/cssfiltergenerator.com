@@ -1,5 +1,5 @@
 .btn {
-  background: $light-grey;
+  background: $primary3;
   padding: 10px 20px;
   margin-top: 10px;
   display: inline-block;
@@ -7,7 +7,7 @@
   text-decoration: none;
   cursor: pointer;
   &:hover {
-    background: darken($light-grey, 10%);
+    background: darken($primary4, 10%);
     color: white;
     text-decoration: none;
   }

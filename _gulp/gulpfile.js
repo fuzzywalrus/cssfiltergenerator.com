@@ -5,7 +5,7 @@ var gulp = require('gulp'),
     cleanCSS = require('gulp-clean-css'),
     sourcemaps = require('gulp-sourcemaps'),
     rename = require('gulp-rename'),
-    terser = require('gulp-terser');
+    uglify = require('gulp-uglify-es').default;
     concat = require('gulp-concat'),
     shell = require('gulp-shell'),
     pump = require('pump'),
@@ -27,6 +27,7 @@ var gulp = require('gulp'),
         '../js/source/modernizr-custom.js',
         '../node_modules/sortablejs/Sortable.min.js',
         '../node_modules/spectrum-colorpicker/spectrum.js',
+        '../js/src/rangeslider.min.js',
         '../js/es6/control-sort.js',
         '../js/es6/model-defaults.js',
         '../js/es6/model-data.js',
@@ -37,6 +38,8 @@ var gulp = require('gulp'),
         '../js/es6/events-click.js',
         '../js/es6/events-resets.js',
         '../js/es6/events-changes.js',
+        '../js/es6/events-keypress.js',
+        '../js/es6/event-actions.js',
         '../js/es6/control-datastorage.js',
         '../js/es6/model-urlshare.js'],
       javascriptDirDestination : "../js/",
@@ -73,16 +76,25 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest(appDefaults.javascriptDirDestination));
 });
 
-
-
-gulp.task("terser", function () {
-  return gulp.src(appDefaults.javascriptUglify)
-    .pipe(terser({
-      compress: true,
-      warnings: true,
-      ecma: 6
-    }))
-    .pipe(gulp.dest(appDefaults.javascriptDirDestination))
+//uglify scripts
+gulp.task('compress', function (cb) {
+  pump([
+        gulp.src(appDefaults.javascriptUglify),
+        uglify(),
+        gulp.dest(appDefaults.javascriptDirDestination)
+    ],
+    cb
+  );
+});
+gulp.task("uglify", function () {
+    return gulp.src(appDefaults.javascriptUglify)
+        .pipe(rename("app.min.js"))
+        .pipe(sourcemaps.init())
+        .pipe(uglify())
+        .pipe(sourcemaps.write()) // Inline source maps.
+        // For external source map file:
+        //.pipe(sourcemaps.write("./maps")) // In this case: lib/maps/bundle.min.js.map
+        .pipe(gulp.dest(appDefaults.javascriptDirDestination));
 });
 
 /*
@@ -134,7 +146,7 @@ gulp.task('default',['serve'], function() {
   gulp.watch(appDefaults.javascriptDir , function(event) {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
     gulp.run('scripts');
-    gulp.run('terser');
+    gulp.run('uglify');
   });
   gulp.watch(appDefaults.watchJavascript).on('change', browserSync.reload);
   gulp.watch(appDefaults.watchHTML).on('change', browserSync.reload);
@@ -151,7 +163,7 @@ gulp.task('styleguide',['serve'], function() {
   gulp.watch(appDefaults.javascriptDir , function(event) {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
     gulp.run('scripts');
-    gulp.run('terser');
+    gulp.run('uglify');
   });
   gulp.watch(appDefaults.watchJavascript).on('change', browserSync.reload);
   gulp.watch(appDefaults.watchHTML).on('change', browserSync.reload);
