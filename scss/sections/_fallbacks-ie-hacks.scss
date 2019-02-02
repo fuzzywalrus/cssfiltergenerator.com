@@ -1,9 +1,16 @@
-#error {
-	display: none;
+.error {
 	text-align: center;
 	font-size: 30px;
 	padding: 10px;
 	background-color: #888;
+	padding: 20px;
+	a {
+		color: red;
+	}
+}
+#error {
+	display: none;
+
 	.no-js & {
 		display: block;
 	}
@@ -25,4 +32,10 @@
 		.safari & {
 			display: inline-block;
 		}
+}
+#error-es6 {
+	display: none;
+	.no-es6 & {
+		display: block;
+	}
 }

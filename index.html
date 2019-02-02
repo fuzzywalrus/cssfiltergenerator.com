@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>CSS Filter Generator - create CSS and share CSS filters and mix-blend-mode overlays</title>
-    <script>document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
+    <script>var supportsES6=function(){try{return new Function("(a = 0) => a"),document.documentElement.className=document.documentElement.className.replace("no-js","js es6"),!0}catch(e){return document.documentElement.className=document.documentElement.className.replace("no-js","js no-es6"),!1}};supportsES6();</script>
     <meta name="description" content="CSS Filter Generator produces CSS filters and mix-blend-mode overlay code using a graphical user interface.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,200' rel='stylesheet' type='text/css'>
@@ -27,10 +27,12 @@
   </head>
   <body>
       <!-- hello person looking at my code :D -->
-      <div id="error">Javascript appears to be disabled. This website will not work without Javascript. Please visit <a href="http://enable-javascript.com/">enable-javascript.com</a> for more details</div>
-      <div id="ie-warning"><h3>Internet Explorer warning:</h3>
+      <div id="error" class="error">Javascript appears to be disabled. This website will not work without Javascript. Please visit <a href="http://enable-javascript.com/">enable-javascript.com</a> for more details</div>
+      <div id="ie-warning" class="error"><h3>Internet Explorer warning:</h3>
         <p>It appears you are using Internet Explorer. This website does not work on Internet Explorer as it relies on modern CSS3 features. Please use FireFox, Chrome or Opera. When using these filters, do keep in mind graceful fallback for legacy IE users :) </p>
       </div>
+
+      <div id="error-es6" class="error">Your browser appears to be out of date and will not function on this website, see <a href="https://updatemybrowser.org/">updatemybrowser.org</a> for a list of up-to-date browsers.</div>
 
       <div id="inlinestyle"></div>
       <header>
@@ -39,7 +41,7 @@
           <div class="row">
             <div class="col-sm-12">
               <h1>CSSFilterGenerator.com</h1>
-              <small>Version 1.1 - The only reorderable CSS filter generator!</small>
+              <small>Version 1.2 - The only reorderable CSS filter generator!</small>
             </div>
           </div>
         </div>
@@ -253,7 +255,7 @@
                     <div class="table">
                       <div class="table-cell">
                         <input id="sepia-a" type="range"  min="0" max="1" step=".01" data-filter="sepia" value="0">
-                      </div>
+                      </div>error-es6
                       <div class="table-cell num">
                         <input id="sepia-b" type="number" min="0" max="1" step=".01" data-filter="sepia" value="1" >
                       </div>
@@ -483,6 +485,12 @@
                            <p>This project is active development, and plenty-o-features are on the way. In no particular order, planned features:</p>
                            <p>Partial Support Browser warnings. More documentation / examples. Spiffier UI. Upload your own image/use web cam.</p>
                            <h3>Recent Changes</h3>
+                           <p>Version 1.2 - (Febuary 2019)</p>
+                           <ul>
+                             <li>Safari bugfix for bad syntax preventing it to work properly</li>
+                             <li>Reset filter bug fix</li>
+                             <li>Non ES6 warnings</li>
+                           </ul>
                            <p>Version 1.1 - (August 2018)</p>
                            <ul>
                              <li>Better code generation: overlays are now no longer filtered.</li>
