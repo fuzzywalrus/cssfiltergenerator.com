@@ -9,8 +9,8 @@ const modelURLShare = {
   checkActiveFilters: (obj) => {
     Object.entries(obj).forEach( ([key, value]) => {
       if (obj[key].active === false) {
-        $(`input[data-filter='${key}']`).val( Engdata.filters[key].value );
-        $(`input[data-forfilter='${key}']`).prop("checked", Engine.data.filters[key].active );
+        $(`input[data-filter="${key}"]`).val( Engdata.filters[key].value );
+        $(`input[data-forfilter="${key}"]`).prop("checked", Engine.data.filters[key].active );
       }
     });
   },

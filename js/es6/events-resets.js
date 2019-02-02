@@ -1,5 +1,5 @@
 const eventsResets = {
-  killOverlay : () => {
+  killOverlay : function () {
     // remove and hide overlay
     $('.overlay-group').hide();
     $("#filter .overlay-css").html("");
@@ -7,9 +7,9 @@ const eventsResets = {
     $("#blending-mode").hide();
     $("#orientation").hide();
   },
-  resetData : () => {
+  resetData : function() {
     // sync data back to default
-    Object.keys(data.filters).forEach( (key) => {
+    Object.keys(data.filters).forEach(function(key) {
       data.filters[key].value = defaults[key].defaultValue;
       data.filters[key].position = defaults[key].position;
       $('input[data-filter="'  + key + 'url"]').data(filter, defaults[key].defaultValue);

@@ -25,6 +25,8 @@ const eventsClick = {
         window.history.replaceState(null, null,  "/");
         //console.log("reset");;
         controlSort.syncFilterDataToDOM(data.filters);
+        $("#overlay-radio-none").click();
+
       }
     });
   },
