@@ -4,13 +4,13 @@ const eventsKeypress = {
       evt = evt || window.event;
       if (evt.keyCode == 27) {
           eventsKeypress.escapeKeyAction()
-      } else if ( evt.altKey && evt.which == 67) {
+      } else if ( evt.altKey && evt.which == 88) {
         if ( $("body").hasClass("fullScreenOverlay") ) {
             eventActions.closeFullScreenOverlay();
         } else {
             eventActions.showFullScreenOverlay();
         }
-      } else if ( evt.altKey && evt.which == 88) {
+      } else if ( evt.altKey && evt.which == 67) {
         eventActions.toggleCSSTab();
       }
     }

@@ -112,9 +112,9 @@ const eventsClick = {
           map.set(str, value);
         }
       });
-      console.log(map)
+      console.log(map);
       uiGradient.presetSet(map);
-      uiGradient.gradientCheck(this);
+      uiGradient.gradientCheck(event.currentTarget);
       controlSort.syncFilterDataToDOM(data.filters);
       eventsChanges.triggerChange();
     });
