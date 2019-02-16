@@ -9,6 +9,7 @@ CSS filters allow graphical effects, leveraging in-browser post-processing of im
 * Live Preview
 * Live CSS generation
 * Re=orderable filtering
+* Presets reorder lists
 * CSS Gradient Overlays
 * Sharable URLs to custom (remembers list order)
 * Presets
@@ -17,7 +18,6 @@ CSS filters allow graphical effects, leveraging in-browser post-processing of im
 * Accessibility friendly (Fully tabbable interface)
 
 ### Planned Features
-* Presets reorder lists
 * UI refinement
 * Uploadable Preview (will not save images)
 * Improved Mobile Support
@@ -31,9 +31,9 @@ CSS filters allow graphical effects, leveraging in-browser post-processing of im
 Currently, CSSFilterGenerator uses the following libraries.
 * jQuery - linked via CDN
 * [HeadJS](http://headjs.com/) - linked via CDN
-* [Sortable](https://github.com/RubaXa/Sortable) - in source
-* [Spectrum.JS](https://bgrins.github.io/spectrum/) - in source
-* [Handlebars.JS](http://handlebarsjs.com/) - in source
+* [Sortable](https://github.com/RubaXa/Sortable) -  npm installed
+* [Spectrum.JS](https://bgrins.github.io/spectrum/) - npm installed
+* [Handlebars.JS](http://handlebarsjs.com/) - npm installed
 * Bootstrap 3 Sass (heavily modified) - in source
 (Thanks to the many authors who put in the hard-work to make this project feasible).
 
