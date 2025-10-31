@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { FilterData, OverlayConfig, Preset } from '@/types/filter';
 import { defaultAppState } from '@/lib/filterDefaults';
-import { filterConfigs } from '@/lib/filterDefaults';
 import SortableFilterList from '@/components/SortableFilterList';
 import PreviewArea from '@/components/PreviewArea';
 import OverlayControls from '@/components/OverlayControls';
@@ -26,11 +25,17 @@ export default function Home() {
       if (urlState && urlState.filters && urlState.overlay) {
         setFilters(urlState.filters);
         setOverlay(urlState.overlay);
+        if (urlState.currentImageSrc) {
+          setCurrentImageSrc(urlState.currentImageSrc);
+        }
       } else {
         const savedState = loadFromLocalStorage();
         if (savedState && savedState.filters && savedState.overlay) {
           setFilters(savedState.filters);
           setOverlay(savedState.overlay);
+          if (savedState.currentImageSrc) {
+            setCurrentImageSrc(savedState.currentImageSrc);
+          }
         }
       }
     } catch (error) {
@@ -81,7 +86,7 @@ export default function Home() {
   };
 
   const saveFilter = () => {
-    const state = { filters, overlay };
+    const state = { filters, overlay, currentImageSrc };
     const success = saveToLocalStorage(state);
     if (success) {
       alert('Filter saved successfully!');
@@ -91,7 +96,7 @@ export default function Home() {
   };
 
   const createShareURL = () => {
-    const state = { filters, overlay };
+    const state = { filters, overlay, currentImageSrc };
     const url = createShareableURL(state);
     navigator.clipboard.writeText(url).then(() => {
       alert('Share URL copied to clipboard!');
@@ -307,6 +312,34 @@ export default function Home() {
                 </ul>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* History */}
+        <section className="mt-12 glass-card rounded-2xl p-8">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-8 h-8 gradient-primary rounded-lg flex items-center justify-center">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-white">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+                <polyline points="12,6 12,12 16,14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <h3 className="text-2xl font-bold text-slate-100">A Brief History</h3>
+          </div>
+          
+          <div className="prose prose-invert max-w-none">
+            <p className="text-slate-300 text-lg leading-relaxed mb-4">
+              This started as <strong>CSSFilterGenerator.com</strong> but the domain lapsed and now it's back as <strong>CSSFilter.com</strong>. 
+              The original tool has been helping developers create CSS filters for over a decade, starting as a simple jQuery-based 
+              interface when CSS filters were still a relatively new web technology.
+            </p>
+            
+            <p className="text-slate-300 leading-relaxed">
+              This modern version has been completely rebuilt with Next.js, TypeScript, and React, featuring drag-and-drop 
+              reordering, mix-blend-mode overlays, preset galleries, and a beautiful dark interface. While the technology 
+              has evolved significantly, the core mission remains the same: making CSS filters accessible and easy to use 
+              for designers and developers everywhere.
+            </p>
           </div>
         </section>
 

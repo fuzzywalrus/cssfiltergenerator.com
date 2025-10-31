@@ -44,15 +44,22 @@ export const createShareableURL = (state: AppState): string => {
 };
 
 const validateAppState = (state: any): state is AppState => {
-  return (
-    state &&
-    typeof state === 'object' &&
-    state.filters &&
-    typeof state.filters === 'object' &&
-    state.overlay &&
-    typeof state.overlay === 'object' &&
-    typeof state.overlay.type === 'string'
-  );
+  try {
+    return (
+      state &&
+      typeof state === 'object' &&
+      state.filters &&
+      typeof state.filters === 'object' &&
+      state.overlay &&
+      typeof state.overlay === 'object' &&
+      typeof state.overlay.type === 'string' &&
+      ['none', 'solid', 'gradient'].includes(state.overlay.type) &&
+      (state.currentImageSrc === undefined || typeof state.currentImageSrc === 'string')
+    );
+  } catch (error) {
+    console.error('Error validating app state:', error);
+    return false;
+  }
 };
 
 export const loadFromURL = (): AppState | null => {
@@ -63,14 +70,19 @@ export const loadFromURL = (): AppState | null => {
     const filterParam = url.searchParams.get('filter');
     
     if (filterParam) {
-      const decoded = atob(filterParam);
-      const parsed = JSON.parse(decoded);
-      
-      // Validate the parsed state
-      if (validateAppState(parsed)) {
-        return parsed;
-      } else {
-        console.warn('Invalid app state structure in URL');
+      try {
+        const decoded = atob(filterParam);
+        const parsed = JSON.parse(decoded);
+        
+        // Validate the parsed state
+        if (validateAppState(parsed)) {
+          return parsed;
+        } else {
+          console.warn('Invalid app state structure in URL');
+          return null;
+        }
+      } catch (parseError) {
+        console.error('Failed to parse URL filter parameter:', parseError);
         return null;
       }
     }

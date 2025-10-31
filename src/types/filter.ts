@@ -38,4 +38,5 @@ export interface Preset {
 export interface AppState {
   filters: Record<string, FilterData>;
   overlay: OverlayConfig;
+  currentImageSrc?: string;
 }
