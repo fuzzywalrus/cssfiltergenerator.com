@@ -2,12 +2,14 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { FilterData } from '@/types/filter';
+import { FilterData, OverlayConfig } from '@/types/filter';
 import { generateFilterCSS, generateCSSCode } from '@/lib/cssGenerator';
 
 interface PreviewAreaProps {
   filters: Record<string, FilterData>;
+  overlay: OverlayConfig;
   onReset?: () => void;
+  onImageChange?: (imageSrc: string) => void;
 }
 
 const demoImages = [
@@ -19,30 +21,60 @@ const demoImages = [
   { src: '/south-sister.jpg', alt: 'South Sister, Oregon', name: 'South Sister' },
 ];
 
-export default function PreviewArea({ filters, onReset }: PreviewAreaProps) {
+export default function PreviewArea({ filters, overlay, onReset, onImageChange }: PreviewAreaProps) {
   const [currentImage, setCurrentImage] = useState(demoImages[0]);
-  const [showCSS, setShowCSS] = useState(true);
+  const [cssExpanded, setCssExpanded] = useState(true);
   const [includePrefixes, setIncludePrefixes] = useState(false);
   const [showImageSelector, setShowImageSelector] = useState(false);
   const [customImageUrl, setCustomImageUrl] = useState('');
 
   const filterStyle = generateFilterCSS(filters);
-  const cssCode = generateCSSCode(filters, includePrefixes);
+  const cssCode = generateCSSCode(filters, overlay, includePrefixes);
 
   const handleUrlSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (customImageUrl.trim()) {
-      setCurrentImage({
+      const newImage = {
         src: customImageUrl.trim(),
         alt: 'Custom Image',
         name: 'Custom Image'
-      });
+      };
+      setCurrentImage(newImage);
+      onImageChange?.(newImage.src);
       setShowImageSelector(false);
     }
   };
 
+  // Generate overlay CSS for preview
+  const overlayCSS = overlay.type !== 'none' ? (() => {
+    let background = '';
+    if (overlay.type === 'solid') {
+      background = overlay.solidColor;
+    } else if (overlay.type === 'gradient') {
+      background = `${overlay.gradientOrientation}, ${overlay.gradientColor1}, ${overlay.gradientColor2})`;
+    }
+    
+    return `
+      .preview-container .myfilter::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: ${background};
+        mix-blend-mode: ${overlay.blendMode};
+        pointer-events: none;
+      }
+    `;
+  })() : '';
+
   return (
     <div className="space-y-6">
+      {/* Inject overlay CSS for preview */}
+      {overlayCSS && (
+        <style dangerouslySetInnerHTML={{ __html: overlayCSS }} />
+      )}
       {/* Controls */}
       <div className="flex flex-wrap gap-3 justify-between items-center">
         <button
@@ -52,21 +84,12 @@ export default function PreviewArea({ filters, onReset }: PreviewAreaProps) {
           Change Image
         </button>
         
-        <div className="flex gap-3">
-          <button
-            onClick={() => setShowCSS(!showCSS)}
-            className="btn-secondary px-6 py-3 rounded-xl font-medium"
-          >
-            {showCSS ? 'Hide CSS' : 'Show CSS'}
-          </button>
-          
-          <button
-            onClick={onReset}
-            className="btn-danger px-6 py-3 rounded-xl font-medium"
-          >
-            Reset
-          </button>
-        </div>
+        <button
+          onClick={onReset}
+          className="btn-danger px-6 py-3 rounded-xl font-medium"
+        >
+          Reset
+        </button>
       </div>
 
       {/* Image Selector */}
@@ -108,6 +131,7 @@ export default function PreviewArea({ filters, onReset }: PreviewAreaProps) {
                   className="cursor-pointer text-center hover:scale-105 transition-all duration-300 group"
                   onClick={() => {
                     setCurrentImage(image);
+                    onImageChange?.(image.src);
                     setShowImageSelector(false);
                   }}
                 >
@@ -130,7 +154,7 @@ export default function PreviewArea({ filters, onReset }: PreviewAreaProps) {
 
       {/* Preview Image */}
       <div className="relative glass-card rounded-2xl overflow-hidden border border-white/10 preview-container group">
-        <div className="relative w-full h-96">
+        <div className="relative w-full h-96 myfilter">
           <Image
             src={currentImage.src}
             alt={currentImage.alt}
@@ -156,19 +180,22 @@ export default function PreviewArea({ filters, onReset }: PreviewAreaProps) {
       </div>
 
       {/* CSS Output */}
-      {showCSS && (
-        <div className="glass-card rounded-2xl border border-white/10 overflow-hidden">
-          <div className="gradient-surface p-4 border-b border-white/10">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 gradient-accent rounded-lg flex items-center justify-center">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-white">
-                    <path d="m18 16 4-4-4-4m-6 8-4-4 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-                <h5 className="text-slate-100 font-bold text-lg">Generated CSS</h5>
+      <div className="glass-card rounded-2xl border border-white/10 overflow-hidden">
+        <div className="gradient-surface p-4 border-b border-white/10">
+          <div 
+            className="flex items-center justify-between cursor-pointer"
+            onClick={() => setCssExpanded(!cssExpanded)}
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 gradient-accent rounded-lg flex items-center justify-center">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-white">
+                  <path d="m18 16 4-4-4-4m-6 8-4-4 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </div>
-              
+              <h5 className="text-slate-100 font-bold text-lg">Generated CSS</h5>
+            </div>
+            
+            <div className="flex items-center gap-4">
               <label className="flex items-center gap-3 text-slate-300 text-sm">
                 <span>Browser Prefixes</span>
                 <label className="toggle-switch scale-75">
@@ -180,9 +207,23 @@ export default function PreviewArea({ filters, onReset }: PreviewAreaProps) {
                   <span className="toggle-slider"></span>
                 </label>
               </label>
+              
+              <button className="p-2 hover:bg-white/5 rounded-lg transition-colors">
+                <svg 
+                  width="20" 
+                  height="20" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  className={`text-slate-400 transition-transform duration-200 ${cssExpanded ? 'rotate-180' : ''}`}
+                >
+                  <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
             </div>
           </div>
-          
+        </div>
+        
+        {cssExpanded && (
           <div className="p-6 space-y-4">
             <div>
               <p className="text-slate-400 text-sm font-medium mb-2">HTML:</p>
@@ -209,8 +250,8 @@ export default function PreviewArea({ filters, onReset }: PreviewAreaProps) {
               Copy CSS to Clipboard
             </button>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

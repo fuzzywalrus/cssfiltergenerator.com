@@ -94,11 +94,11 @@ export const createDefaultFilters = (): Record<string, FilterData> => {
 export const defaultAppState: AppState = {
   filters: createDefaultFilters(),
   overlay: {
-    color0: "rgba(62, 162, 253, 0.4)",
-    color1: "rgba(255, 255, 255, 0.4)",
-    color2: "rgba(255, 0, 62, 0.9)",
-    select: "#overlay-radio-none",
-    blend: "multiply",
-    gradientOrientation: "linear-gradient(to right"
+    type: 'none',
+    solidColor: '#5367ce',
+    gradientColor1: 'rgba(255, 255, 255, 0.4)',
+    gradientColor2: 'rgba(255, 0, 62, 0.9)',
+    blendMode: 'multiply',
+    gradientOrientation: 'linear-gradient(to right'
   }
 };

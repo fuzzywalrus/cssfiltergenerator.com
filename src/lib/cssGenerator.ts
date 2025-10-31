@@ -1,4 +1,4 @@
-import { FilterData } from '@/types/filter';
+import { FilterData, OverlayConfig } from '@/types/filter';
 import { filterConfigs } from './filterDefaults';
 
 const isDefaultValue = (filterId: string, value: number): boolean => {
@@ -46,20 +46,56 @@ export const generateFilterCSS = (filters: Record<string, FilterData>): string =
   return activeFilters.length > 0 ? activeFilters.join(' ') : 'none';
 };
 
-export const generateCSSCode = (filters: Record<string, FilterData>, withPrefixes: boolean = false): string => {
+const generateOverlayCSS = (overlay: OverlayConfig): string => {
+  if (overlay.type === 'none') {
+    return '';
+  }
+
+  let background = '';
+  
+  if (overlay.type === 'solid') {
+    background = overlay.solidColor;
+  } else if (overlay.type === 'gradient') {
+    background = `${overlay.gradientOrientation}, ${overlay.gradientColor1}, ${overlay.gradientColor2})`;
+  }
+
+  return `
+.myfilter {
+  position: relative;
+}
+
+.myfilter:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: ${background};
+  mix-blend-mode: ${overlay.blendMode};
+  pointer-events: none;
+}`;
+};
+
+export const generateCSSCode = (
+  filters: Record<string, FilterData>, 
+  overlay: OverlayConfig,
+  withPrefixes: boolean = false
+): string => {
   const filterValue = generateFilterCSS(filters);
+  const overlayCSS = generateOverlayCSS(overlay);
   
   const baseCSS = `.myfilter img {
   filter: ${filterValue};
 }`;
 
-  if (!withPrefixes) {
-    return baseCSS;
-  }
-
-  return `.myfilter img {
+  const prefixedCSS = `.myfilter img {
   filter: ${filterValue};
   -webkit-filter: ${filterValue};
   -moz-filter: ${filterValue};
 }`;
+
+  const filterCSS = withPrefixes ? prefixedCSS : baseCSS;
+  
+  return overlayCSS ? `${filterCSS}${overlayCSS}` : filterCSS;
 };
